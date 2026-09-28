@@ -43,19 +43,20 @@
 
 /* light theme: set by the toggle on <html data-theme="light"> */
 :global([data-theme="light"]) .root {
-  --bg: #f3efe7;
-  --fg: #161513;
-  --mut: #57524a;
-  --dim: #6f695f;
-  --card: #fffdf9;
-  --dot: #ddd6c9;
-  --url: #f1ece3;
-  --stat: #f5f1e9;
-  --glass: rgba(255, 253, 249, 0.94);
-  --bub: #ece6da;
-  --ok: #2c8a50;
-  --sh1: rgba(60, 40, 15, 0.16);
-  --sh2: rgba(60, 40, 15, 0.1);
+  /* clean white with a hint of the logo's blue, instead of warm cream */
+  --bg: #f6f8fc;
+  --fg: #121826;
+  --mut: #4a5468;
+  --dim: #6b7489;
+  --card: #ffffff;
+  --dot: #cfd7e6;
+  --url: #eef2f8;
+  --stat: #f2f5fa;
+  --glass: rgba(255, 255, 255, 0.95);
+  --bub: #e9eef6;
+  --ok: #1f8a4c;
+  --sh1: rgba(22, 38, 76, 0.14);
+  --sh2: rgba(22, 38, 76, 0.09);
   --aem: var(--acc);
   --err: #c2412d;
 }
