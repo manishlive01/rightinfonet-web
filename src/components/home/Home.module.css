@@ -18,14 +18,10 @@
   --aem: color-mix(in oklch, var(--acc) 72%, #000);
 
   --line: color-mix(in srgb, var(--fg) 12%, transparent);
-  /* frosted panels: the light wave behind them shows through, blurred */
-  --glass-bg: rgba(24, 23, 21, 0.58);
-  --glass-blur: blur(22px) saturate(1.25);
   --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
   --pad-x: clamp(20px, 4vw, 64px);
 
   position: relative;
-  isolation: isolate;
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-geist-sans), "Geist", sans-serif;
@@ -271,6 +267,20 @@
   background-position: 15px 15px;
   mask-image: radial-gradient(120% 90% at 10% 10%, #000 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(120% 90% at 10% 10%, #000 20%, transparent 70%);
+}
+.heroGlow {
+  position: absolute;
+  right: -10vw;
+  top: 10vh;
+  width: 70vw;
+  height: 80vh;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklch, var(--acc) 22%, transparent),
+    transparent
+  );
+  animation: glow 8s ease-in-out infinite;
 }
 .grain {
   position: absolute;
@@ -561,9 +571,7 @@
   flex-direction: column;
   border-radius: 2cqw;
   overflow: hidden;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--card);
   border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
 }
 .chromeBar {
@@ -730,9 +738,7 @@
   gap: 1.6cqw;
   padding: 2.2cqw;
   border-radius: 2.4cqw;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--card);
   border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
 }
 .chatHeadRow {
@@ -903,18 +909,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* on mobile the service list scrolls underneath, so it needs a frosted backing */
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--bg);
 }
 @media (min-width: 1040px) {
   .stageSticky {
     height: 100vh;
     order: 2;
     background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
   }
 }
 .stageCard {
@@ -924,9 +925,7 @@
   container-type: inline-size;
   border-radius: 28px;
   overflow: hidden;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--card);
   border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
   box-shadow: 0 40px 90px -40px var(--sh1);
 }

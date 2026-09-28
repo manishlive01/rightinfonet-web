@@ -11,7 +11,6 @@ import About from "./About";
 import AcademyTeaser from "./AcademyTeaser";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import LightWave from "./motion/LightWave";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <a href="#main" className={styles.skip}>
         Skip to content
       </a>
-      <LightWave />
       <Header />
       <main id="main">
         <Hero />
