@@ -221,9 +221,13 @@ export default function LightWave() {
 
     let raf = 0;
     let frame = 0;
+    let last = start;
     const loop = (now: number) => {
       raf = requestAnimationFrame(loop);
-      const ease = 0.07;
+      // time-based so the wave settles in the same ~1s on slow and fast devices
+      const dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      const ease = 1 - Math.exp(-dt * 4);
       cur.x += (target.x - cur.x) * ease;
       cur.y += (target.y - cur.y) * ease;
       cur.focus += (target.focus - cur.focus) * ease;
