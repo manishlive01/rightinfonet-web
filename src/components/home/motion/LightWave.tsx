@@ -5,19 +5,24 @@ import styles from "./LightWave.module.css";
 import { prefersReducedMotion } from "./useInView";
 
 /**
- * Per-section look of the wave. focus 0 = crisp light strands, 1 = fully defocused aurora.
+ * Per-section pose of the wave: where its fold sits (x/y as a fraction of the viewport),
+ * and focus (0 = crisp light strands, 1 = fully defocused aurora). Poses alternate between
+ * the far left and the right so the wave sweeps across as you move from section to section.
  * Sections without an element on the current page are skipped.
  */
 const STOPS = [
-  { id: "top", focus: 0, alpha: 1 },
-  { id: "services", focus: 0.92, alpha: 0.5 },
-  { id: "work", focus: 0.82, alpha: 0.55 },
-  { id: "industries", focus: 0.92, alpha: 0.45 },
-  { id: "process", focus: 0.72, alpha: 0.55 },
-  { id: "about", focus: 0.88, alpha: 0.5 },
-  { id: "academy", focus: 0.95, alpha: 0.4 },
-  { id: "contact", focus: 0.35, alpha: 0.85 },
+  { id: "top", x: 0.42, y: 0.78, focus: 0, alpha: 1 },
+  { id: "services", x: 0.04, y: 0.95, focus: 0.9, alpha: 0.55 },
+  { id: "work", x: 0.8, y: 0.5, focus: 0.82, alpha: 0.55 },
+  { id: "industries", x: 0.03, y: 0.32, focus: 0.9, alpha: 0.5 },
+  { id: "process", x: 0.72, y: 0.9, focus: 0.72, alpha: 0.55 },
+  { id: "about", x: 0.06, y: 0.7, focus: 0.88, alpha: 0.55 },
+  { id: "academy", x: 0.82, y: 0.35, focus: 0.95, alpha: 0.4 },
+  { id: "contact", x: 0.5, y: 0.98, focus: 0.35, alpha: 0.85 },
 ];
+
+// narrow screens: the hero copy fills the top, so the fold starts low and right, behind the stage
+const NARROW_HERO = { x: 0.62, y: 0.94 };
 
 const VERT = `
 attribute vec2 aPos;
@@ -113,39 +118,34 @@ function readTarget() {
   const vh = window.innerHeight;
   const y = window.scrollY;
   const anchor = y + vh * 0.5;
-  const maxScroll = document.documentElement.scrollHeight - vh;
-  const progress = maxScroll > 0 ? clamp01(y / maxScroll) : 0;
+  const narrow = window.innerWidth < 760;
 
   const stops = STOPS.flatMap((stop) => {
-    if (stop.id === "top") return [{ ...stop, top: 0 }];
+    if (stop.id === "top") return [{ ...stop, ...(narrow ? NARROW_HERO : {}), top: 0 }];
     const el = document.getElementById(stop.id);
     return el ? [{ ...stop, top: el.getBoundingClientRect().top + y }] : [];
   });
 
-  let focus = stops[stops.length - 1].focus;
-  let alpha = stops[stops.length - 1].alpha;
+  const last = stops[stops.length - 1];
+  const out = { x: last.x, y: last.y, focus: last.focus, alpha: last.alpha };
   for (let i = 0; i < stops.length - 1; i++) {
     const a = stops[i];
     const b = stops[i + 1];
-    if (anchor < b.top) {
-      // leaving the hero is driven by scroll distance so the blur starts as soon as it moves
-      const t = i === 0 ? clamp01((y - vh * 0.1) / (vh * 0.8)) : clamp01((anchor - a.top) / (b.top - a.top));
-      const e = smooth(t);
-      focus = a.focus + (b.focus - a.focus) * e;
-      alpha = a.alpha + (b.alpha - a.alpha) * e;
-      break;
-    }
+    if (anchor >= b.top) continue;
+    // Leaving the hero follows scroll distance so the blur starts as soon as it moves.
+    // Other sections hold their pose for the first 40% before sweeping to the next one.
+    const t =
+      i === 0
+        ? clamp01((y - vh * 0.1) / (vh * 0.8))
+        : clamp01(((anchor - a.top) / (b.top - a.top) - 0.4) / 0.6);
+    const e = smooth(t);
+    out.x = a.x + (b.x - a.x) * e;
+    out.y = a.y + (b.y - a.y) * e;
+    out.focus = a.focus + (b.focus - a.focus) * e;
+    out.alpha = a.alpha + (b.alpha - a.alpha) * e;
+    break;
   }
-
-  // The fold travels left → right across the page as you scroll. On narrow screens the hero
-  // copy fills the top, so the fold starts low and to the right, behind the product stage.
-  const narrow = window.innerWidth < 760;
-  return {
-    x: narrow ? 0.55 + 0.3 * progress : 0.42 + 0.44 * progress,
-    y: (narrow ? 0.72 : 0.56) + 0.2 * Math.cos(progress * Math.PI * 3),
-    focus,
-    alpha,
-  };
+  return out;
 }
 
 export default function LightWave() {
