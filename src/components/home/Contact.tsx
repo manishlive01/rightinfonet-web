@@ -126,7 +126,7 @@ export default function Contact() {
       <div className={styles.head}>
         <Reveal as="span" className={home.kicker}>
           <span className={home.kickerDash} />
-          (07) Start a project
+          (08) Start a project
         </Reveal>
         <SplitText
           as="h2"

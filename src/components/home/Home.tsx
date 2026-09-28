@@ -8,6 +8,7 @@ import Industries from "./Industries";
 import Process from "./Process";
 import About from "./About";
 import AcademyTeaser from "./AcademyTeaser";
+import InsightsTeaser from "./InsightsTeaser";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
@@ -27,6 +28,7 @@ export default function Home() {
         <Process />
         <About />
         <AcademyTeaser />
+        <InsightsTeaser />
         <Contact />
       </main>
       <Footer />

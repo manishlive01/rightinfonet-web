@@ -12,6 +12,7 @@ const COMPANY = [
   { href: "/#industries", label: "Industries" },
   { href: "/#process", label: "Process" },
   { href: "/#about", label: "Studio" },
+  { href: "/insights", label: "Insights" },
   { href: "/#contact", label: "Contact" },
 ];
 

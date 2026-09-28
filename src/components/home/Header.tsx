@@ -85,7 +85,14 @@ export default function Header() {
     };
   }, [open]);
 
-  const current = pathname === "/academy" ? "academy" : pathname === "/work" ? "work" : sectionId;
+  const current =
+    pathname === "/academy"
+      ? "academy"
+      : pathname === "/work"
+        ? "work"
+        : pathname.startsWith("/insights")
+          ? "insights"
+          : sectionId;
   const close = () => setOpen(false);
 
   return (
