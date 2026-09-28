@@ -9,8 +9,8 @@
 }
 
 :root[data-theme="light"] {
-  --background: #f6f8fc;
-  --foreground: #121826;
+  --background: #f3efe7;
+  --foreground: #161513;
   color-scheme: light;
 }
 
