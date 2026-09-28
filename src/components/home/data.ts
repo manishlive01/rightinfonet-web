@@ -25,16 +25,6 @@ export const TABS = [
   },
 ] as const;
 
-export const MARQUEE_WORDS = [
-  "Web platforms",
-  "AI agents",
-  "Mobile apps",
-  "Product design",
-  "LIMS",
-  "Pharmacovigilance",
-  "GxP validation",
-];
-
 // PLACEHOLDER: replace with real, verifiable figures before launch.
 export const STATS = [
   { value: 10, suffix: "+", label: "Products shipped to production" },

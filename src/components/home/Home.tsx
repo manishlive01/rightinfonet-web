@@ -1,7 +1,6 @@
 import styles from "./Home.module.css";
 import Header from "./Header";
 import Hero from "./Hero";
-import Marquee from "./Marquee";
 import Proof from "./Proof";
 import Services from "./Services";
 import Work from "./Work";
@@ -21,7 +20,6 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <Marquee />
         <Proof />
         <Services />
         <Work />
