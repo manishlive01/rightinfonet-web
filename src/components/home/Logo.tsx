@@ -21,20 +21,19 @@ export default function Logo({
       aria-label="Bright Infonet"
     >
       <g className={styles.links}>
-        <line x1="60" y1="60" x2="17" y2="22" />
-        <line x1="60" y1="60" x2="100" y2="17" />
-        <line x1="60" y1="60" x2="16" y2="94" />
-        <line x1="60" y1="60" x2="66" y2="106" />
-        <line x1="60" y1="60" x2="103" y2="88" />
-        <line x1="66" y1="106" x2="103" y2="88" />
+        <line x1="58.2" y1="56.3" x2="22.7" y2="23.2" />
+        <line x1="58.2" y1="56.3" x2="100.0" y2="14.9" />
+        <line x1="58.2" y1="56.3" x2="19.5" y2="99.1" />
+        <line x1="58.2" y1="56.3" x2="65.1" y2="107.8" />
+        <line x1="58.2" y1="56.3" x2="99.1" y2="85.8" />
       </g>
       <g className={styles.nodes}>
-        <circle cx="60" cy="60" r="15.5" />
-        <circle cx="17" cy="22" r="8.5" />
-        <circle cx="100" cy="17" r="14" />
-        <circle cx="16" cy="94" r="8.5" />
-        <circle cx="66" cy="106" r="11.5" />
-        <circle cx="103" cy="88" r="10" />
+        <circle cx="58.2" cy="56.3" r="13.8" />
+        <circle cx="22.7" cy="23.2" r="9.0" />
+        <circle cx="100.0" cy="14.9" r="14.5" />
+        <circle cx="19.5" cy="99.1" r="14.0" />
+        <circle cx="65.1" cy="107.8" r="11.7" />
+        <circle cx="99.1" cy="85.8" r="9.9" />
       </g>
       {!markOnly && (
         <>
