@@ -23,6 +23,10 @@
 :global([data-theme="light"]) .word {
   fill: #2b5baa;
 }
+.wordOnly .word,
+:global([data-theme="light"]) .wordOnly .word {
+  fill: currentColor;
+}
 .nodes circle {
   transform-box: fill-box;
   transform-origin: center;

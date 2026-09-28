@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import home from "./Home.module.css";
 import styles from "./Footer.module.css";
 import InView from "./motion/InView";
@@ -18,8 +17,6 @@ const COMPANY = [
   { href: "/insights", label: "Insights" },
   { href: "/#contact", label: "Contact" },
 ];
-
-const WORDMARK = "bright infonet";
 
 export default function Footer() {
   return (
@@ -81,15 +78,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <InView className={styles.wordmark} aria-hidden="true">
-        <span className={styles.ring}>
-          <Logo markOnly className={styles.ringLogo} />
-        </span>
-        {WORDMARK.split("").map((ch, i) => (
-          <span key={i} className={styles.letter} style={{ "--i": i } as CSSProperties}>
-            {ch === " " ? " " : ch}
-          </span>
-        ))}
+      {/* faint brand watermark behind the columns and the bottom bar */}
+      <InView className={styles.watermark} rootMargin="0px" aria-hidden="true">
+        <Logo wordOnly className={styles.watermarkSvg} />
       </InView>
 
       <div className={`${styles.bottom} ${home.mono}`}>
