@@ -49,6 +49,7 @@ uniform float uCount;
 uniform vec2 uMouse;
 uniform float uPush;
 uniform float uSway;
+uniform float uWidth;
 
 const vec3 BG = vec3(0.051, 0.051, 0.047);
 const vec3 COL_A = vec3(0.941, 0.478, 0.227);
@@ -65,7 +66,7 @@ vec3 ribbon(vec2 a, float dy, float u, float phase) {
   float t = abs(dy);
   float side = smoothstep(-0.05, 0.05, dy);
   float k = mix(1.7, 2.1, side);
-  float spread = mix(0.55, 0.85, side);
+  float spread = mix(0.55, 0.85, side) * uWidth;
   float W = 0.006 + spread * pow(t, 1.25);
   float Wd = spread * 1.25 * pow(t + 1e-4, 0.25) * sign(dy);
   float rate = mix(1.2, 2.4, side);
@@ -275,6 +276,8 @@ export default function LightWave() {
     const small = window.matchMedia("(max-width: 760px)").matches;
     const reduce = prefersReducedMotion();
     gl.uniform1f(u.count, small ? 28 : 56);
+    // on a narrow screen a full-width ribbon would reach across the headline
+    gl.uniform1f(gl.getUniformLocation(program, "uWidth"), small ? 0.5 : 1);
 
     // Rendered below device resolution: the glow is soft, so the upscale is invisible.
     const resize = () => {
