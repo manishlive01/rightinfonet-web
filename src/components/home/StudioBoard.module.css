@@ -1,0 +1,350 @@
+/* Studio board: three panels; the active one is bright and replays its entrance,
+   the others rest in their finished state, dimmed. Animations only run once the
+   board is in view ([data-in="true"] on the Reveal wrapper). */
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(16px, 2vw, 22px);
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(80% 50% at 20% 0%, color-mix(in oklch, var(--acc) 18%, transparent), transparent 70%),
+    radial-gradient(60% 40% at 100% 100%, color-mix(in srgb, var(--fg) 6%, transparent), transparent 70%),
+    var(--card);
+}
+.boardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 4px 6px;
+}
+.boardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.boardMeta {
+  font-size: 11px;
+  color: var(--dim);
+}
+.liveDot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+.liveDot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--ok);
+  animation: sbPing 2s ease-out infinite;
+}
+@keyframes sbPing {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ---------- panels ---------- */
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px 18px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  opacity: 0.45;
+  transform: scale(0.985);
+  transition:
+    opacity 0.6s ease,
+    transform 0.8s var(--ease-out),
+    border-color 0.6s ease,
+    box-shadow 0.6s ease;
+}
+.zone[data-on="true"] {
+  opacity: 1;
+  transform: none;
+  border-color: color-mix(in srgb, var(--acc) 45%, transparent);
+  box-shadow: 0 18px 40px -24px var(--sh1);
+}
+.zoneHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 99px;
+  background: var(--line);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--mut);
+  white-space: nowrap;
+  transition:
+    background 0.5s,
+    color 0.5s;
+}
+.zone[data-on="true"] .tag {
+  background: color-mix(in srgb, var(--acc) 16%, transparent);
+  color: var(--acc);
+}
+
+@keyframes sbRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes sbGrow {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes sbSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}
+@keyframes sbPop {
+  from {
+    transform: scale(0);
+  }
+}
+
+/* ---------- avatars ---------- */
+.avatar {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  background: linear-gradient(140deg, oklch(0.78 0.11 var(--h)), oklch(0.56 0.13 var(--h)));
+  box-shadow: 0 6px 16px -8px var(--sh1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.avatarSm {
+  width: 24px;
+  height: 24px;
+  border-width: 1.5px;
+  font-size: 9px;
+  box-shadow: none;
+}
+.avatarYou {
+  border: 1.5px dashed var(--acc);
+  background: color-mix(in srgb, var(--acc) 10%, transparent);
+  box-shadow: none;
+  color: var(--acc);
+  font-size: 11px;
+}
+
+/* ---------- 01 team ---------- */
+.team {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.role {
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--mut);
+}
+[data-in="true"] .zone[data-on="true"] .member {
+  animation: sbRise 0.7s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 0.09s);
+}
+[data-in="true"] .zone[data-on="true"] .you .avatar {
+  animation: sbPop 0.6s var(--ease-out) 0.55s both;
+}
+.bubble {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  background: var(--bub);
+  font-size: 13px;
+  line-height: 1.45;
+}
+[data-in="true"] .zone[data-on="true"] .bubble {
+  animation: sbRise 0.7s var(--ease-out) 0.7s both;
+}
+
+/* ---------- 02 week ---------- */
+.week {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 6px 6px;
+  border-radius: 12px;
+}
+.commits {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 3px;
+  width: 100%;
+  max-width: 34px;
+  height: 62px;
+}
+.commits span {
+  height: 7px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--fg) 20%, transparent);
+  transform-origin: bottom center;
+}
+[data-in="true"] .zone[data-on="true"] .commits span {
+  animation: sbGrow 0.5s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 0.14s + var(--j) * 0.05s);
+}
+.dayLabel {
+  font-size: 10px;
+  color: var(--dim);
+}
+.friday {
+  background: color-mix(in srgb, var(--acc) 12%, transparent);
+}
+.friday .commits span {
+  background: var(--acc);
+}
+.friday .dayLabel {
+  color: var(--acc);
+}
+.demo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed color-mix(in srgb, var(--fg) 20%, transparent);
+  font-size: 12px;
+  color: var(--mut);
+}
+[data-in="true"] .zone[data-on="true"] .demo {
+  animation: sbRise 0.7s var(--ease-out) 0.9s both;
+}
+.play {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  position: relative;
+  background: var(--acc);
+}
+.play::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  border-left: 8px solid #0d0d0c;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.livePill {
+  margin-left: auto;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--ok) 16%, transparent);
+  color: var(--ok);
+  font-size: 11px;
+}
+
+/* ---------- 03 audit ---------- */
+.log {
+  display: flex;
+  flex-direction: column;
+}
+.logRow {
+  display: grid;
+  grid-template-columns: 40px 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+.logRow:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+[data-in="true"] .zone[data-on="true"] .logRow {
+  animation: sbSlide 0.6s var(--ease-out) both;
+  animation-delay: calc(0.15s + var(--i) * 0.3s);
+}
+.logTime {
+  font-size: 11px;
+  color: var(--dim);
+}
+.logWhat {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.logOk {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ok) 18%, transparent);
+  color: var(--ok);
+  font-size: 11px;
+  font-weight: 700;
+}
+[data-in="true"] .zone[data-on="true"] .logOk {
+  animation: sbPop 0.5s var(--ease-out) both;
+  animation-delay: calc(0.45s + var(--i) * 0.3s);
+}
+
+@media (max-width: 480px) {
+  .role {
+    font-size: 10px;
+  }
+  .avatar:not(.avatarSm) {
+    width: 38px;
+    height: 38px;
+  }
+  .boardMeta {
+    display: none;
+  }
+}

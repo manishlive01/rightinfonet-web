@@ -1,16 +1,26 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import home from "./Home.module.css";
 import styles from "./About.module.css";
 import Reveal from "./Reveal";
 import SectionHeading, { accent } from "./SectionHeading";
+import StudioBoard from "./StudioBoard";
+import { prefersReducedMotion, useInView } from "./motion/useInView";
 import { ABOUT_POINTS, ABOUT_STATEMENT } from "./data";
 
 const WORDS = ABOUT_STATEMENT.split(" ");
 
 export default function About() {
   const textRef = useRef<HTMLParagraphElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const gridInView = useInView(gridRef, { once: false, rootMargin: "0px" });
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  // the progress bar under the active point drives the cycle: when it fills, move on
+  const next = () => {
+    if (!prefersReducedMotion()) setActive((a) => (a + 1) % ABOUT_POINTS.length);
+  };
 
   useEffect(() => {
     const el = textRef.current;
@@ -53,22 +63,42 @@ export default function About() {
         ))}
       </p>
 
-      <div className={styles.grid}>
-        {/* PLACEHOLDER: replace with a real team or studio photo (next/image). */}
-        <Reveal className={styles.photo} aria-hidden="true">
-          <span className={styles.photoGrain} />
-          <span className={`${styles.photoLabel} ${home.mono}`}>Studio photo</span>
-          <span className={`${styles.photoCaption} ${home.mono}`}>Bright Infonet &middot; India</span>
+      <div ref={gridRef} className={styles.grid}>
+        <Reveal
+          className={styles.boardWrap}
+          aria-hidden="true"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <StudioBoard active={active} />
         </Reveal>
 
         <ol className={styles.points}>
           {ABOUT_POINTS.map((point, i) => (
-            <Reveal as="li" key={point.t} className={styles.point} delay={i * 0.1}>
+            <Reveal
+              as="li"
+              key={point.t}
+              className={`${styles.point} ${active === i ? styles.pointActive : ""}`}
+              delay={i * 0.1}
+              onMouseEnter={() => {
+                setActive(i);
+                setPaused(true);
+              }}
+              onMouseLeave={() => setPaused(false)}
+            >
               <span className={`${styles.pointNum} ${home.mono}`}>0{i + 1}</span>
               <div>
                 <h3 className={styles.pointTitle}>{point.t}</h3>
                 <p className={styles.pointDesc}>{point.d}</p>
               </div>
+              {active === i && (
+                <span
+                  className={styles.pointBar}
+                  data-running={gridInView && !paused ? "true" : "false"}
+                  onAnimationEnd={next}
+                  aria-hidden="true"
+                />
+              )}
             </Reveal>
           ))}
         </ol>
