@@ -8,7 +8,7 @@
   align-items: center;
   gap: 24px;
   padding: 0 var(--pad-x);
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 .title {
   margin: 0;
@@ -20,75 +20,10 @@
   text-transform: uppercase;
   color: var(--mut);
 }
-.rule {
-  flex: 1 0 40px;
-  height: 1px;
-  background: var(--line);
-}
-
-.logoViewport {
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-.logoTrack {
-  display: flex;
-  width: max-content;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  animation: logos 40s linear infinite;
-}
-.logoViewport:hover .logoTrack {
-  animation-play-state: paused;
-}
-@keyframes logos {
-  to {
-    transform: translateX(-50%);
-  }
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: clamp(170px, 18vw, 240px);
-  height: 88px;
-  margin-right: 16px;
-  padding: 0 26px;
-  box-sizing: border-box;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--dim);
-  transition:
-    color 0.3s,
-    border-color 0.3s,
-    background 0.3s;
-}
-.logo:hover {
-  color: var(--fg);
-  border-color: color-mix(in srgb, var(--acc) 50%, transparent);
-  background: color-mix(in srgb, var(--acc) 6%, transparent);
-}
-.logoMark {
-  width: 22px;
-  height: 22px;
-  flex: none;
-  border-radius: 7px;
-  border: 1.5px solid currentColor;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.logo:hover .logoMark {
-  transform: rotate(45deg);
-  border-radius: 50%;
-}
-
 .stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: clamp(56px, 7vw, 96px) var(--pad-x) 0;
+  margin: 0 var(--pad-x);
   border-top: 1px solid var(--line);
 }
 @media (min-width: 900px) {

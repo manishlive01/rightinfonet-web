@@ -35,18 +35,6 @@ export const MARQUEE_WORDS = [
   "GxP validation",
 ];
 
-// PLACEHOLDER: swap for real client logos (SVG) once approved for public use.
-export const CLIENT_LOGOS = [
-  "Client 01",
-  "Client 02",
-  "Client 03",
-  "Client 04",
-  "Client 05",
-  "Client 06",
-  "Client 07",
-  "Client 08",
-];
-
 // PLACEHOLDER: replace with real, verifiable figures before launch.
 export const STATS = [
   { value: 10, suffix: "+", label: "Products shipped to production" },
