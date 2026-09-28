@@ -20,7 +20,6 @@ import { prefersReducedMotion } from "./motion/useInView";
 import { WORK } from "./data";
 
 const pad2 = (n: number) => String(n).padStart(2, "0");
-const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
 function Arrow({ flip }: { flip?: boolean }) {
@@ -77,9 +76,11 @@ export default function Work() {
   const measure = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
-    const padLeft = parseFloat(getComputedStyle(el).scrollPaddingLeft) || 0;
+    // Snap points are measured from the first slide (which sits at scrollLeft 0). Reading
+    // scroll-padding instead fails: it computes to a max()/calc() string, not pixels.
+    const first = (el.children[0] as HTMLElement | undefined)?.offsetLeft ?? 0;
     const max = el.scrollWidth - el.clientWidth;
-    const raw = Array.from(el.children, (c) => (c as HTMLElement).offsetLeft - padLeft);
+    const raw = Array.from(el.children, (c) => (c as HTMLElement).offsetLeft - first);
     layout.current = {
       raw,
       pos: raw.map((p) => Math.max(0, Math.min(max, p))),
@@ -122,7 +123,7 @@ export default function Work() {
 
   // Our own eased scroll: native smooth scrolling is short and linear-feeling.
   // Snapping is switched off while it runs so the browser doesn't fight it.
-  const scrollToX = (target: number, ease = easeInOut) => {
+  const scrollToX = (target: number, ease = easeOut) => {
     const el = trackRef.current;
     if (!el) return;
     cancelAnimationFrame(anim.current);
@@ -134,7 +135,7 @@ export default function Work() {
       release();
       return;
     }
-    const dur = Math.min(1250, 700 + Math.abs(dist) * 0.3);
+    const dur = Math.min(1100, 650 + Math.abs(dist) * 0.2);
     el.classList.add(styles.free);
     const t0 = performance.now();
     const step = (now: number) => {
