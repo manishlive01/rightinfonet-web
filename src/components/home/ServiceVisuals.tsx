@@ -1,528 +1,438 @@
-import styles from "./Home.module.css";
+"use client";
+
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import home from "./Home.module.css";
+import s from "./ServiceVisuals.module.css";
 import { VALIDATION_STEPS } from "./data";
 
-function DesignVisual() {
+type VisualProps = { on: boolean };
+
+/** Counts 0..count-1 every `ms` while the visual is on; the parent remounts it to restart. */
+function useStep(on: boolean, count: number, ms: number) {
+  const [step, setStep] = useState(0);
+  useEffect(() => {
+    if (!on) return;
+    const id = setInterval(() => setStep((v) => (v + 1) % count), ms);
+    return () => clearInterval(id);
+  }, [on, count, ms]);
+  return step;
+}
+
+/** Entrance wrapper: rises into place with a stagger when its visual becomes active. */
+function Pop({ d, className = "", style, children }: { d: number; className?: string; style?: CSSProperties; children: ReactNode }) {
+  return (
+    <div className={`${s.pop} ${className}`} style={{ ...style, "--d": `${d}s` } as CSSProperties}>
+      {children}
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------- 01 design */
+
+const SWATCHES = ["var(--acc)", "#8fb3ff", "var(--ok)", "#f2c14e"];
+
+function DesignVisual({ on }: VisualProps) {
+  const pick = useStep(on, SWATCHES.length, 1800);
   return (
     <>
-      <div
-        style={{
-          position: "absolute",
-          left: "10%",
-          top: 0,
-          width: "38cqw",
-          height: "68cqw",
-        }}
-      >
-        <span
-          style={{
-            position: "absolute",
-            left: 0,
-            top: "-3.4cqw",
-            fontSize: "1.45cqw",
-            color: "var(--dim)",
-          }}
-          className={styles.mono}
-        >
-          Onboarding &middot; 390 &times; 844
-        </span>
-        <div
-          style={{
-            height: "100%",
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column",
-            gap: "2.2cqw",
-            padding: "5cqw 3.4cqw 4.4cqw",
-            borderRadius: "5cqw",
-            background: "var(--bg)",
-            border: "1px solid color-mix(in srgb,var(--fg) 16%,transparent)",
-          }}
-        >
-          <span
-            style={{
-              width: "30%",
-              height: "1.2cqw",
-              borderRadius: "1cqw",
-              background: "color-mix(in srgb,var(--fg) 16%,transparent)",
-            }}
-          />
-          <span
-            className={styles.serif}
-            style={{ fontSize: "5.6cqw", lineHeight: 0.95, letterSpacing: "-0.02em" }}
-          >
-            Welcome <span className={styles.accentItalic}>back.</span>
+      <Pop d={0.05} className={s.dFrame}>
+        <span className={`${s.caption} ${home.mono}`}>Onboarding · 390 × 844</span>
+        <div className={s.dScreen}>
+          <span className={s.dBar} />
+          <span className={`${s.dTitle} ${home.serif}`}>
+            Welcome <span className={home.accentItalic}>back.</span>
           </span>
-          <span
-            style={{
-              width: "90%",
-              height: "1.1cqw",
-              borderRadius: "1cqw",
-              background: "color-mix(in srgb,var(--fg) 10%,transparent)",
-            }}
-          />
-          <span
-            style={{
-              width: "62%",
-              height: "1.1cqw",
-              borderRadius: "1cqw",
-              background: "color-mix(in srgb,var(--fg) 10%,transparent)",
-            }}
-          />
-          <span
-            style={{
-              flex: 1,
-              borderRadius: "3cqw",
-              border: "1px dashed color-mix(in srgb,var(--fg) 18%,transparent)",
-            }}
-          />
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "6.4cqw",
-              borderRadius: "99px",
-              background: "var(--acc)",
-              color: "#0d0d0c",
-              fontSize: "1.9cqw",
-              fontWeight: 600,
-            }}
-          >
+          <span className={s.dLine} style={{ width: "90%" }} />
+          <span className={s.dLine} style={{ width: "62%" }} />
+          <span className={s.dImage} />
+          <span className={s.dButton} style={{ background: SWATCHES[pick] }}>
             Continue
+            <span className={`${s.handle} ${s.hTL}`} />
+            <span className={`${s.handle} ${s.hTR}`} />
+            <span className={`${s.handle} ${s.hBL}`} />
+            <span className={`${s.handle} ${s.hBR}`} />
+            <span className={`${s.sizeTag} ${home.mono}`}>312 × 52</span>
           </span>
         </div>
-      </div>
-      <div
-        className={styles.svGlass}
-        style={{
-          position: "absolute",
-          right: 0,
-          top: "6cqw",
-          width: "42cqw",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "1.45cqw", color: "var(--dim)" }} className={styles.mono}>
-          <span>Button / Primary</span>
-          <span style={{ color: "var(--acc)" }}>&#9670; Component</span>
+      </Pop>
+
+      <Pop d={0.18} className={s.dInspector}>
+        <div className={`${s.row} ${home.mono}`}>
+          <span className={s.dim}>Button / Primary</span>
+          <span className={s.accText}>◆ Component</span>
         </div>
-        <div style={{ display: "flex", gap: "1.2cqw" }}>
-          {["var(--acc)", "var(--fg)", "var(--ok)", "var(--dot)"].map((bg, i) => (
+        <div className={s.col}>
+          <span className={`${s.label} ${home.mono}`}>Fill</span>
+          <div className={s.swatches}>
+            {SWATCHES.map((c, i) => (
+              <span key={c} className={`${s.swatch} ${i === pick ? s.swatchOn : ""}`} style={{ background: c }} />
+            ))}
+            <span className={`${s.swatch} ${s.swatchEmpty}`} />
+          </div>
+        </div>
+        <div className={s.typeRow}>
+          <span className={`${s.aa} ${home.serif}`}>Aa</span>
+          <span className={s.col}>
+            <span className={s.strong}>Instrument Serif</span>
+            <span className={s.dim}>Display · 48 / 52</span>
+          </span>
+        </div>
+        <div className={`${s.props} ${home.mono}`}>
+          <span><span className={s.dim}>W </span>312</span>
+          <span><span className={s.dim}>H </span>52</span>
+          <span><span className={s.dim}>R </span>999</span>
+          <span><span className={s.dim}>Gap </span>16</span>
+        </div>
+      </Pop>
+
+      <div className={`${s.cursor} ${s.cursorA}`}>
+        <svg viewBox="0 0 12 14" className={s.cursorIcon}>
+          <path d="M0 0 L12 8 L6.5 8.6 L4 14 Z" />
+        </svg>
+        <span className={s.cursorName}>Priya</span>
+      </div>
+      <div className={`${s.cursor} ${s.cursorB}`}>
+        <svg viewBox="0 0 12 14" className={s.cursorIcon}>
+          <path d="M0 0 L12 8 L6.5 8.6 L4 14 Z" />
+        </svg>
+        <span className={s.cursorName}>Arjun</span>
+      </div>
+    </>
+  );
+}
+
+/* ---------------------------------------------------------------- 02 web */
+
+const ORDERS = [
+  { id: "#48211", name: "Meera K.", amt: "₹4,120", paid: true },
+  { id: "#48212", name: "Rohit M.", amt: "₹890", paid: false },
+  { id: "#48213", name: "Anika S.", amt: "₹2,340", paid: true },
+  { id: "#48214", name: "Vikram R.", amt: "₹780", paid: true },
+  { id: "#48215", name: "Sara D.", amt: "₹3,240", paid: false },
+  { id: "#48216", name: "Karan P.", amt: "₹1,560", paid: true },
+];
+const LATENCY = [40, 55, 35, 60, 48, 70, 52, 44, 62, 38];
+
+function WebVisual({ on }: VisualProps) {
+  // every tick a newer order lands on top of the table
+  const tick = useStep(on, ORDERS.length, 2200);
+  const newest = (2 + tick) % ORDERS.length;
+  const rows = [0, 1, 2].map((j) => ORDERS[(newest - j + ORDERS.length) % ORDERS.length]);
+
+  return (
+    <>
+      <Pop d={0.05} className={s.wWindow}>
+        <div className={s.chrome}>
+          <span className={s.chromeDot} />
+          <span className={s.chromeDot} />
+          <span className={s.chromeDot} />
+          <span className={`${s.url} ${home.mono}`}>admin.clientco.in/orders</span>
+        </div>
+        <div className={s.wBody}>
+          <div className={s.wSide}>
+            <span className={s.wBrand}>
+              <span className={s.wBrandDot} />
+              ClientCo
+            </span>
+            <span>Overview</span>
+            <span className={s.wSideOn}>Orders</span>
+            <span>Inventory</span>
+            <span>Team</span>
+          </div>
+          <div className={s.wMain}>
+            <div className={s.wHead}>
+              <span className={s.wTitle}>Orders</span>
+              <span className={s.live}>
+                <span className={s.liveDot} />
+                Live
+              </span>
+              <span className={s.wExport}>Export</span>
+            </div>
+            <div className={s.chart}>
+              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                <path className={s.chartFill} d="M0 32 L10 28 L20 30 L30 22 L40 24 L50 16 L60 19 L70 11 L80 13 L90 6 L100 8 L100 40 L0 40 Z" />
+                <path
+                  className={s.chartLine}
+                  d="M0 32 L10 28 L20 30 L30 22 L40 24 L50 16 L60 19 L70 11 L80 13 L90 6 L100 8"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+              <span className={s.chartPoint} />
+            </div>
+            <div className={s.table}>
+              {rows.map((r, i) => (
+                <div key={r.id} className={`${s.tRow} ${home.mono} ${i === 0 && tick > 0 ? s.tRowNew : ""}`}>
+                  <span className={s.dim}>{r.id}</span>
+                  <span>{r.name}</span>
+                  <span>{r.amt}</span>
+                  <span className={r.paid ? s.pillOk : s.pillAcc}>{r.paid ? "Paid" : "Pending"}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Pop>
+
+      <Pop d={0.2} className={s.wToast}>
+        <span className={s.toastIcon}>
+          <span className={s.spinner} />
+          <span className={s.check}>✓</span>
+        </span>
+        <span className={s.col}>
+          <span className={s.toastTitle}>
+            <span className={s.toastBuilding}>Deploying to production…</span>
+            <span className={s.toastDone}>Deployed to production</span>
+          </span>
+          <span className={`${s.dim} ${home.mono}`}>main · a3f9c1 · 42s</span>
+        </span>
+      </Pop>
+
+      <Pop d={0.32} className={s.wLatency}>
+        <span className={`${s.dim} ${home.mono}`}>p95 latency</span>
+        <span className={s.latValue}>
+          180<span className={s.latUnit}>ms</span>
+        </span>
+        <div className={s.latBars}>
+          {LATENCY.map((h, i) => (
             <span
               key={i}
-              style={{
-                width: "4.4cqw",
-                height: "4.4cqw",
-                borderRadius: "50%",
-                background: bg,
-              }}
+              className={`${s.latBar} ${i === 5 ? s.latBarAcc : ""}`}
+              style={{ height: `${h}%`, animationDelay: `${-i * 0.37}s` } as CSSProperties}
             />
           ))}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "1.8cqw", paddingTop: "1.6cqw", borderTop: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)" }}>
-          <span className={styles.serif} style={{ fontSize: "7cqw", lineHeight: 1 }}>
-            Aa
-          </span>
-          <span style={{ display: "flex", flexDirection: "column", gap: "0.3cqw", fontSize: "1.5cqw" }}>
-            <span style={{ fontWeight: 600 }}>Instrument Serif</span>
-            <span style={{ color: "var(--dim)" }}>Display &middot; 48 / 52</span>
-          </span>
-        </div>
-      </div>
+      </Pop>
     </>
   );
 }
 
-function WebVisual() {
-  const rows = [
-    { id: "#48213", name: "Anika S.", amount: "₹2,340", status: "Paid", ok: true },
-    { id: "#48212", name: "Rohit M.", amount: "₹890", status: "Pending", ok: false },
-    { id: "#48211", name: "Meera K.", amount: "₹4,120", status: "Paid", ok: true },
-  ];
+/* ---------------------------------------------------------------- 03 mobile */
+
+const CAL = Array.from({ length: 28 }, (_, i) => i);
+const OPEN_DAYS = [9, 10, 12, 16, 23];
+const SLOTS = ["10:30", "11:00", "11:30"];
+
+function MobileVisual({ on }: VisualProps) {
+  const pick = useStep(on, OPEN_DAYS.length, 1500);
   return (
     <>
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: "90cqw",
-          height: "58cqw",
-          display: "flex",
-          flexDirection: "column",
-          borderRadius: "2.4cqw",
-          overflow: "hidden",
-          background: "var(--bg)",
-          border: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)",
-        }}
-      >
-        <div style={{ flex: "none", display: "flex", alignItems: "center", gap: "1cqw", padding: "1.4cqw 1.8cqw", borderBottom: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)" }}>
-          <span className={styles.chromeDot} />
-          <span className={styles.chromeDot} />
-          <span className={styles.chromeDot} />
-          <span className={styles.mono} style={{ marginLeft: "2cqw", padding: "0.6cqw 1.4cqw", borderRadius: "1cqw", background: "var(--url)", fontSize: "1.4cqw", color: "var(--dim)" }}>
-            admin.clientco.in/orders
-          </span>
-        </div>
-        <div style={{ flex: 1, padding: "2.4cqw 2.6cqw", display: "flex", flexDirection: "column", gap: "1.2cqw", minHeight: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "1.4cqw" }}>
-            <span style={{ fontSize: "2.6cqw", fontWeight: 600, letterSpacing: "-0.02em" }}>Orders</span>
-            <span style={{ marginLeft: "auto", padding: "0.7cqw 1.6cqw", borderRadius: "99px", background: "var(--acc)", color: "#0d0d0c", fontSize: "1.4cqw", fontWeight: 600 }}>
-              Export
-            </span>
-          </div>
-          {rows.map((row) => (
-            <div
-              key={row.id}
-              className={styles.mono}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1.1fr 1.4fr 1fr auto",
-                alignItems: "center",
-                gap: "1.4cqw",
-                padding: "1.3cqw 0",
-                borderTop: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)",
-                fontSize: "1.4cqw",
-              }}
-            >
-              <span style={{ color: "var(--dim)" }}>{row.id}</span>
-              <span>{row.name}</span>
-              <span>{row.amount}</span>
-              <span
-                style={{
-                  padding: "0.3cqw 1cqw",
-                  borderRadius: "99px",
-                  fontSize: "1.25cqw",
-                  background: row.ok
-                    ? "color-mix(in srgb,var(--ok) 18%,transparent)"
-                    : "color-mix(in srgb,var(--acc) 18%,transparent)",
-                  color: row.ok ? "var(--ok)" : "var(--acc)",
-                }}
-              >
-                {row.status}
+      <Pop d={0.05} className={s.mPhoneA}>
+        <div className={s.bob}>
+          <div className={s.phone} style={{ transform: "rotate(-6deg)" }}>
+            <div className={`${s.screen} ${s.screenLight}`}>
+              <span className={s.notch} />
+              <span className={s.col}>
+                <span className={s.mSub}>Good morning,</span>
+                <span className={s.mName}>Anika</span>
               </span>
+              <div className={s.balance}>
+                <span className={s.balLabel}>Balance</span>
+                <span className={s.balValue}>₹12,480</span>
+                <span className={s.balLabel}>+₹1,200 this week</span>
+                <span className={s.shine} />
+              </div>
+              {[
+                ["Groceries", "Today", "−₹640", "#e7e0d3"],
+                ["Salary", "Mon", "+₹42k", "#cfdcc0"],
+                ["Metro card", "Sun", "−₹200", "#e7e0d3"],
+              ].map(([t, d, a, c], i) => (
+                <div key={t} className={s.txn} style={{ "--i": i } as CSSProperties}>
+                  <span className={s.txnIcon} style={{ background: c }} />
+                  <span className={s.txnText}>
+                    <span className={s.strong}>{t}</span>
+                    <span className={s.mSub}>{d}</span>
+                  </span>
+                  <span className={s.strong}>{a}</span>
+                </div>
+              ))}
+              <div className={s.tabbar}>
+                <span className={s.tabOn} />
+                <span />
+                <span />
+                <span />
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <div
-        className={`${styles.svGlass} ${styles.mono}`}
-        style={{
-          position: "absolute",
-          left: "4cqw",
-          bottom: 0,
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "1.6cqw",
-          width: "auto",
-        }}
-      >
-        <span style={{ width: "3.6cqw", height: "3.6cqw", borderRadius: "50%", background: "var(--ok)", color: "#0d0d0c", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.8cqw", fontWeight: 700 }}>
-          &#10003;
-        </span>
-        <span style={{ display: "flex", flexDirection: "column", gap: "0.3cqw" }}>
-          <span style={{ fontSize: "1.8cqw", fontWeight: 600, fontFamily: "var(--font-geist-sans)" }}>Deployed to production</span>
-          <span style={{ fontSize: "1.35cqw", color: "var(--dim)" }}>main &middot; a3f9c1 &middot; 42s</span>
-        </span>
-      </div>
-    </>
-  );
-}
-
-function MobileVisual() {
-  const slots = Array.from({ length: 28 }, (_, i) => i);
-  const highlight = new Set([9, 10, 16, 23]);
-  return (
-    <>
-      <div
-        style={{
-          position: "absolute",
-          left: "8cqw",
-          top: 0,
-          width: "34cqw",
-          height: "66cqw",
-          boxSizing: "border-box",
-          padding: "1cqw",
-          borderRadius: "6cqw",
-          background: "#050505",
-          border: "1px solid color-mix(in srgb,var(--fg) 16%,transparent)",
-          transform: "rotate(-4deg)",
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-            height: "100%",
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column",
-            gap: "2cqw",
-            padding: "5.4cqw 2.8cqw 2.8cqw",
-            borderRadius: "5cqw",
-            background: "#f6f2ea",
-            color: "#151412",
-            overflow: "hidden",
-          }}
-        >
-          <span style={{ position: "absolute", left: "50%", top: "1.2cqw", transform: "translateX(-50%)", width: "9cqw", height: "2.4cqw", borderRadius: "99px", background: "#050505" }} />
-          <span style={{ fontSize: "1.5cqw", color: "#6f695f" }}>Dr. Sharma &middot; Clinic</span>
-          <span style={{ fontSize: "3.4cqw", fontWeight: 600, letterSpacing: "-0.03em" }}>Book a slot</span>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: "0.8cqw" }}>
-            {slots.map((i) => (
-              <span
-                key={i}
-                style={{
-                  aspectRatio: "1",
-                  borderRadius: "0.8cqw",
-                  background: highlight.has(i) ? "var(--acc)" : "color-mix(in srgb,#f6f2ea 10%,transparent)",
-                }}
-              />
-            ))}
           </div>
-          <span
-            style={{
-              marginTop: "auto",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "5cqw",
-              borderRadius: "99px",
-              background: "#151412",
-              color: "#f6f2ea",
-              fontSize: "1.6cqw",
-              fontWeight: 600,
-            }}
-          >
-            Confirm booking
-          </span>
         </div>
-      </div>
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: "-3cqw", display: "flex", justifyContent: "center", gap: "1.2cqw" }}>
-        {["iOS", "Android", "One Flutter codebase"].map((label) => (
-          <span key={label} className={`${styles.svGlass} ${styles.mono}`} style={{ padding: "0.8cqw 1.6cqw", width: "auto", flexDirection: "row" }}>
-            {label}
-          </span>
-        ))}
-      </div>
-    </>
-  );
-}
+      </Pop>
 
-function AiVisual() {
-  const results = [
-    { tool: "crm.update", detail: "Deal moved to Friday" },
-    { tool: "calendar.book", detail: "Fri 4:00 PM, 3 guests" },
-    { tool: "slack.notify", detail: "#sales channel updated" },
-  ];
-  return (
-    <>
-      <div
-        className={styles.svGlass}
-        style={{ position: "absolute", left: 0, top: "22cqw", width: "25cqw" }}
-      >
-        <span className={styles.mono} style={{ fontSize: "1.3cqw", color: "var(--dim)" }}>
-          Trigger &middot; Gmail
-        </span>
-        <span style={{ fontSize: "1.7cqw", fontWeight: 500, lineHeight: 1.3 }}>
-          Client wants to move Friday&rsquo;s demo
-        </span>
-      </div>
-      <div style={{ position: "absolute", left: "38cqw", top: "22cqw", width: "18cqw", height: "18cqw" }}>
-        <span style={{ position: "absolute", inset: "-2cqw", borderRadius: "50%", border: "1px dashed var(--acc)", animation: "spin 14s linear infinite" }} />
-        <span
-          className={styles.mono}
-          style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: "50%",
-            background: "var(--acc)",
-            color: "#0d0d0c",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "2.8cqw",
-            fontWeight: 500,
-          }}
-        >
-          AI
-        </span>
-        <span style={{ position: "absolute", left: "50%", top: "calc(100% + 6cqw)", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3cqw", whiteSpace: "nowrap" }}>
-          <span style={{ fontSize: "1.7cqw", fontWeight: 600 }}>Ops Agent</span>
-          <span className={styles.mono} style={{ fontSize: "1.3cqw", color: "var(--dim)" }}>
-            3 tools &middot; 1.4s
-          </span>
-        </span>
-      </div>
-      <div style={{ position: "absolute", left: "62cqw", top: "4cqw", width: "28cqw", display: "flex", flexDirection: "column", gap: "1.4cqw" }}>
-        {results.map((r) => (
-          <div
-            key={r.tool}
-            style={{
-              boxSizing: "border-box",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.6cqw",
-              padding: "1.8cqw 2cqw",
-              borderRadius: "2cqw",
-              background: "var(--bg)",
-              border: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)",
-            }}
-          >
-            <span className={styles.mono} style={{ fontSize: "1.45cqw" }}>
-              <span style={{ color: "var(--ok)" }}>&#10003;</span> {r.tool}
-            </span>
-            <span style={{ fontSize: "1.45cqw", color: "var(--mut)" }}>{r.detail}</span>
-          </div>
-        ))}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: "flex",
-          alignItems: "center",
-          gap: "2cqw",
-          padding: "2cqw 2.4cqw",
-          borderRadius: "2cqw",
-          background: "var(--stat)",
-        }}
-      >
-        <span className={styles.mono} style={{ fontSize: "1.4cqw", color: "var(--dim)" }}>
-          Evals
-        </span>
-        <span style={{ flex: 1, height: "1cqw", borderRadius: "99px", background: "color-mix(in srgb,var(--fg) 10%,transparent)", overflow: "hidden" }}>
-          <span style={{ display: "block", width: "96%", height: "100%", borderRadius: "99px", background: "var(--ok)" }} />
-        </span>
-        <span className={styles.mono} style={{ fontSize: "1.4cqw" }}>
-          48 / 50 passed
-        </span>
-      </div>
-    </>
-  );
-}
-
-function RegulatedVisual() {
-  const log = [
-    { time: "10:42:07", who: "A. Mehta edited result", note: "Reason: transcription error" },
-    { time: "10:44:51", who: "R. Iyer reviewed batch QC-118", note: "Second-person review" },
-    { time: "10:47:30", who: "R. Iyer signed report", note: "Meaning: Approved" },
-  ];
-  return (
-    <>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 0 }}>
-        <div style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(6,minmax(0,1fr))" }}>
-          {VALIDATION_STEPS.map((step, i) => {
-            const done = i < 5;
-            return (
-              <span key={step} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1.2cqw" }}>
-                <span
-                  style={{
-                    width: "5cqw",
-                    height: "5cqw",
-                    boxSizing: "border-box",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "2cqw",
-                    fontWeight: 700,
-                    background: done ? "var(--ok)" : "var(--card)",
-                    color: done ? "#0d0d0c" : "var(--acc)",
-                    border: `1px solid ${done ? "transparent" : "var(--acc)"}`,
-                  }}
-                >
-                  {done ? "✓" : "•"}
-                </span>
-                <span className={styles.mono} style={{ fontSize: "1.4cqw", color: "var(--mut)" }}>
-                  {step}
-                </span>
+      <Pop d={0.18} className={s.mPhoneB}>
+        <div className={`${s.bob} ${s.bobLate}`}>
+          <div className={s.phone} style={{ transform: "rotate(5deg)" }}>
+            <div className={`${s.screen} ${s.screenDark}`}>
+              <span className={s.notch} />
+              <span className={s.col}>
+                <span className={s.mSubDark}>Dr. Sharma · Clinic</span>
+                <span className={s.mName}>Book a slot</span>
               </span>
-            );
-          })}
-        </div>
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: "15cqw",
-          width: "58cqw",
-          boxSizing: "border-box",
-          padding: "2.4cqw 2.6cqw 1.2cqw",
-          borderRadius: "2.4cqw",
-          background: "var(--bg)",
-          border: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "1.2cqw" }}>
-          <span style={{ fontSize: "1.9cqw", fontWeight: 600 }}>Audit trail</span>
-          <span className={styles.mono} style={{ padding: "0.4cqw 1cqw", borderRadius: "99px", border: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)", fontSize: "1.25cqw", color: "var(--mut)" }}>
-            Immutable &middot; SHA-256
-          </span>
-        </div>
-        {log.map((entry) => (
-          <div
-            key={entry.time}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "11cqw minmax(0,1fr)",
-              gap: "1.4cqw",
-              padding: "1.3cqw 0",
-              borderTop: "1px solid color-mix(in srgb,var(--fg) 12%,transparent)",
-            }}
-          >
-            <span className={styles.mono} style={{ fontSize: "1.35cqw", color: "var(--dim)" }}>
-              {entry.time}
-            </span>
-            <span style={{ display: "flex", flexDirection: "column", gap: "0.3cqw" }}>
-              <span style={{ fontSize: "1.55cqw", fontWeight: 500 }}>{entry.who}</span>
-              <span style={{ fontSize: "1.35cqw", color: "var(--dim)" }}>{entry.note}</span>
-            </span>
+              <div className={s.cal}>
+                {CAL.map((i) => (
+                  <span
+                    key={i}
+                    className={`${s.day} ${OPEN_DAYS.includes(i) ? s.dayOpen : ""} ${i === OPEN_DAYS[pick] ? s.dayPick : ""}`}
+                  />
+                ))}
+              </div>
+              <div className={s.slots}>
+                {SLOTS.map((t, i) => (
+                  <span key={t} className={`${s.slot} ${i === pick % SLOTS.length ? s.slotOn : ""}`}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <span className={s.confirm}>Confirm booking</span>
+            </div>
           </div>
-        ))}
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          right: 0,
-          top: "34cqw",
-          width: "36cqw",
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1.4cqw",
-          padding: "2.6cqw",
-          borderRadius: "2.4cqw",
-          background: "#f6f2ea",
-          color: "#151412",
-          boxShadow: "0 4cqw 8cqw var(--sh1)",
-        }}
-      >
-        <span className={styles.mono} style={{ fontSize: "1.3cqw", letterSpacing: "0.04em", textTransform: "uppercase", color: "#6f695f" }}>
-          Electronic signature
-        </span>
-        <span style={{ fontSize: "2cqw", fontWeight: 600 }}>Dr. R. Iyer</span>
-        <span
-          className={styles.serif}
-          style={{ paddingBottom: "0.8cqw", borderBottom: "1px solid #151412", fontStyle: "italic", fontSize: "6cqw", lineHeight: 1 }}
-        >
-          R. Iyer
-        </span>
-        <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "1.4cqw" }}>
-          <span>Meaning: Approved</span>
-          <span className={styles.mono} style={{ padding: "0.4cqw 1cqw", borderRadius: "99px", background: "var(--acc)", color: "#0d0d0c", fontSize: "1.25cqw" }}>
-            &#10003; 11.50
-          </span>
-        </span>
-      </div>
-      <div style={{ position: "absolute", left: 0, bottom: "-2cqw", display: "flex", gap: "1.2cqw" }}>
-        {["ALCOA+", "21 CFR Part 11", "EU Annex 11"].map((label) => (
-          <span key={label} className={`${styles.svGlass} ${styles.mono}`} style={{ padding: "0.8cqw 1.6cqw", width: "auto", flexDirection: "row" }}>
+        </div>
+      </Pop>
+
+      <Pop d={0.3} className={s.chips}>
+        {["iOS", "Android", "One Flutter codebase"].map((label) => (
+          <span key={label} className={`${s.chip} ${home.mono}`}>
             {label}
           </span>
         ))}
-      </div>
+      </Pop>
+    </>
+  );
+}
+
+/* ---------------------------------------------------------------- 04 ai */
+
+const TOOLS = [
+  { tool: "crm.update", detail: "Deal moved to Friday" },
+  { tool: "calendar.book", detail: "Fri 4:00 PM, 3 guests" },
+  { tool: "slack.notify", detail: "#sales channel updated" },
+];
+const FLOWS = ["M25 31 L36 31", "M54 31 C58 31 58 11 62 11", "M54 31 L62 31", "M54 31 C58 31 58 51 62 51"];
+
+function AiVisual({ on }: VisualProps) {
+  // 0: reading, 1..3: tools run one by one, 4-5: all done (hold), then repeat
+  const step = useStep(on, 6, 900);
+  return (
+    <>
+      <svg className={s.flows} viewBox="0 0 90 75" preserveAspectRatio="none">
+        {FLOWS.map((d) => (
+          <path key={d} d={d} className={s.flow} vectorEffect="non-scaling-stroke" />
+        ))}
+        {on &&
+          FLOWS.map((d, i) => (
+            <circle key={d} r="0.9" className={s.pulse}>
+              <animateMotion dur="1.8s" begin={`${i === 0 ? 0 : 0.6 + i * 0.25}s`} repeatCount="indefinite" path={d} />
+            </circle>
+          ))}
+      </svg>
+
+      <Pop d={0.05} className={s.aTrigger}>
+        <span className={`${s.dim} ${home.mono}`}>
+          <span className={s.incoming} /> Trigger · Gmail
+        </span>
+        <span className={s.strongLg}>Client wants to move Friday’s demo</span>
+      </Pop>
+
+      <Pop d={0.1} className={s.aCore}>
+        <span className={s.ripple} />
+        <span className={s.ripple} style={{ animationDelay: "1.2s" }} />
+        <span className={s.ringDash} />
+        <span className={s.ringSoft} />
+        <span className={`${s.orb} ${home.mono}`}>AI</span>
+        <span className={s.coreLabel}>
+          <span className={s.strong}>Ops Agent</span>
+          <span className={`${s.dim} ${home.mono}`}>{step === 0 ? "reading email…" : `${Math.min(step, 3)} / 3 tools · 1.4s`}</span>
+        </span>
+      </Pop>
+
+      {TOOLS.map((t, i) => {
+        const done = step > i + 1 || step >= 4;
+        const running = step === i + 1;
+        return (
+          <Pop key={t.tool} d={0.16 + i * 0.07} className={s.aTool} style={{ top: `${4 + i * 20}cqw` }}>
+            <span className={`${home.mono} ${s.toolName}`}>
+              <span className={`${s.toolState} ${done ? s.toolDone : running ? s.toolRun : ""}`}>{done ? "✓" : ""}</span>
+              {t.tool}
+            </span>
+            <span className={s.dim}>{t.detail}</span>
+          </Pop>
+        );
+      })}
+
+      <Pop d={0.36} className={s.evals}>
+        <span className={`${s.dim} ${home.mono}`}>Evals</span>
+        <span className={s.evalTrack}>
+          <span className={s.evalFill} />
+        </span>
+        <span className={home.mono}>48 / 50 passed</span>
+      </Pop>
+    </>
+  );
+}
+
+/* ---------------------------------------------------------------- 05 regulated */
+
+const LOG = [
+  { time: "10:42:07", who: "A. Mehta edited result", note: "Reason: transcription error" },
+  { time: "10:44:51", who: "R. Iyer reviewed batch QC-118", note: "Second-person review" },
+  { time: "10:46:12", who: "System locked record", note: "Pending e-signature" },
+  { time: "10:47:30", who: "R. Iyer signed report", note: "Meaning: Approved" },
+];
+
+function RegulatedVisual({ on }: VisualProps) {
+  // validation steps complete one by one, then hold before restarting
+  const step = useStep(on, VALIDATION_STEPS.length + 3, 700);
+  const done = Math.min(step, VALIDATION_STEPS.length);
+  return (
+    <>
+      <Pop d={0.05} className={s.rSteps}>
+        <span className={s.rTrack}>
+          <span className={s.rTrackFill} style={{ transform: `scaleX(${done / (VALIDATION_STEPS.length - 1)})` }} />
+        </span>
+        {VALIDATION_STEPS.map((label, i) => {
+          const ok = i < done;
+          return (
+            <span key={label} className={s.rStep}>
+              <span className={`${s.rNode} ${ok ? s.rNodeOk : i === done ? s.rNodeNow : ""}`}>{ok ? "✓" : "•"}</span>
+              <span className={`${s.dim} ${home.mono}`}>{label}</span>
+            </span>
+          );
+        })}
+      </Pop>
+
+      <Pop d={0.14} className={s.rLog}>
+        <div className={s.row}>
+          <span className={s.strong}>Audit trail</span>
+          <span className={`${s.badge} ${home.mono}`}>Immutable · SHA-256</span>
+        </div>
+        {LOG.map((e, i) => (
+          <div key={e.time} className={s.logRow} style={{ "--i": i } as CSSProperties}>
+            <span className={`${s.dim} ${home.mono}`}>{e.time}</span>
+            <span className={s.col}>
+              <span className={s.strong}>{e.who}</span>
+              <span className={s.dim}>{e.note}</span>
+            </span>
+          </div>
+        ))}
+      </Pop>
+
+      <Pop d={0.26} className={s.rSign}>
+        <span className={`${s.signLabel} ${home.mono}`}>Electronic signature</span>
+        <span className={s.col}>
+          <span className={s.strong}>Dr. R. Iyer</span>
+          <span className={s.signSub}>QA Manager</span>
+        </span>
+        <span className={`${s.signature} ${home.serif}`}>R. Iyer</span>
+        <span className={s.row}>
+          <span>Meaning: Approved</span>
+          <span className={`${s.stamp} ${home.mono}`}>✓ 11.50</span>
+        </span>
+      </Pop>
+
+      <Pop d={0.34} className={s.rChips}>
+        {["ALCOA+", "21 CFR Part 11", "EU Annex 11"].map((label) => (
+          <span key={label} className={`${s.chip} ${home.mono}`}>
+            {label}
+          </span>
+        ))}
+      </Pop>
     </>
   );
 }
@@ -537,13 +447,15 @@ export default function ServiceVisuals({ active }: { active: number }) {
         return (
           <div
             key={i}
-            className={styles.stageVisual}
+            className={`${home.stageVisual} ${s.vis}`}
+            data-on={on}
             style={{
               opacity: on ? 1 : 0,
               transform: on ? "none" : i < active ? "translateY(-5cqw) scale(.97)" : "translateY(5cqw) scale(.97)",
             }}
           >
-            <Visual />
+            {/* remounting on activation restarts each visual's live sequence from the top */}
+            <Visual key={on ? "on" : "off"} on={on} />
           </div>
         );
       })}

@@ -29,11 +29,35 @@
   /* for framed panels that should sit slightly wider than the text column */
   --pad-wide: max(clamp(12px, 2vw, 32px), calc((100% - var(--content)) / 2 - 40px));
 
+  --err: #ff9b8f;
+
   position: relative;
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-geist-sans), "Geist", sans-serif;
   overflow: clip;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+/* light theme: set by the toggle on <html data-theme="light"> */
+:global([data-theme="light"]) .root {
+  --bg: #f3efe7;
+  --fg: #161513;
+  --mut: #57524a;
+  --dim: #6f695f;
+  --card: #fffdf9;
+  --dot: #ddd6c9;
+  --url: #f1ece3;
+  --stat: #f5f1e9;
+  --glass: rgba(255, 253, 249, 0.94);
+  --bub: #ece6da;
+  --ok: #2c8a50;
+  --sh1: rgba(60, 40, 15, 0.16);
+  --sh2: rgba(60, 40, 15, 0.1);
+  --aem: var(--acc);
+  --err: #c2412d;
 }
 
 .root ::selection {
@@ -721,6 +745,150 @@
   overflow: hidden;
   background: #e7e0d3;
 }
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.6cqw;
+  padding: 0 1.2cqw;
+  font-size: 1.5cqw;
+  font-weight: 600;
+}
+.statusIcons {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3cqw;
+}
+.statusIcons > span:not(.battery) {
+  width: 0.5cqw;
+  background: #151412;
+}
+.battery {
+  margin-left: 0.6cqw;
+  width: 2.6cqw;
+  height: 1.3cqw;
+  box-sizing: border-box;
+  padding: 0.2cqw;
+  border-radius: 0.4cqw;
+  border: 1px solid #151412;
+}
+.battery > span {
+  display: block;
+  width: 70%;
+  height: 100%;
+  border-radius: 0.1cqw;
+  background: #151412;
+}
+.road,
+.roadV {
+  position: absolute;
+  background: #fbf8f2;
+}
+.road {
+  left: 0;
+  right: 0;
+  height: 1.2cqw;
+  margin-top: -0.6cqw;
+}
+.roadV {
+  top: 0;
+  bottom: 0;
+  width: 1.2cqw;
+  margin-left: -0.6cqw;
+}
+.park {
+  position: absolute;
+  left: 46%;
+  top: 36%;
+  width: 26%;
+  height: 15%;
+  border-radius: 0.8cqw;
+  background: #cfdcc0;
+}
+/* the route draws itself, looping with the rider (7s) */
+@keyframes routeDraw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+  45%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.route path {
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+  animation: routeDraw 7s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.pin,
+.pinPing {
+  position: absolute;
+  left: 78%;
+  top: 30%;
+  border-radius: 50%;
+}
+.pinPing {
+  width: 3cqw;
+  height: 3cqw;
+  background: var(--acc);
+  animation: ping 1.8s ease-out infinite;
+}
+.pin {
+  transform: translate(-50%, -50%);
+  width: 2cqw;
+  height: 2cqw;
+  box-sizing: border-box;
+  background: #151412;
+  border: 0.5cqw solid #fff;
+}
+.progressSegs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6cqw;
+}
+.progressSegs > span {
+  height: 0.7cqw;
+  border-radius: 99px;
+  background: #dcd4c6;
+  overflow: hidden;
+}
+.progressSegs > .segOn {
+  background: var(--acc);
+}
+@keyframes segLive {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+.progressSegs > .segLive {
+  animation: segLive 1.4s ease-in-out infinite;
+}
+.callBtn {
+  flex: none;
+  width: 4.2cqw;
+  height: 4.2cqw;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 1px solid #dcd4c6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3cqw;
+  font-weight: 600;
+}
 .riderDot {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -1122,22 +1290,6 @@
   height: 6px;
   border-radius: 50%;
   background: var(--acc);
-}
-
-/* service visual sub-pieces (simplified) */
-.svGlass {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8cqw;
-  padding: 1.8cqw 2cqw;
-  border-radius: 2cqw;
-  background: var(--glass);
-  border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
-}
-.svLight {
-  background: #f6f2ea;
-  color: #151412;
 }
 
 /* ---------- academy ---------- */

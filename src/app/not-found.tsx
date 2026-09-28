@@ -14,7 +14,7 @@ export default function NotFound() {
     <main className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-32 text-center">
       <p className="font-mono text-xs uppercase tracking-widest text-[#f07a3a]">Error 404</p>
       <h1 className="text-4xl font-semibold tracking-tight">Page not found</h1>
-      <p className="max-w-md text-lg text-[#bdb7ac]">
+      <p className="max-w-md text-lg text-foreground/70">
         The page you are looking for does not exist or has been moved.
       </p>
       <Link

@@ -23,8 +23,10 @@ const instrumentSerif = Instrument_Serif({
 
 export const viewport: Viewport = {
   themeColor: "#0d0d0c",
-  colorScheme: "dark",
 };
+
+// Applies the saved theme before first paint so a light-theme visitor never sees a dark flash.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -110,8 +112,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-IN"
+      data-theme="dark"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <JsonLd data={siteJsonLd} />
         {children}

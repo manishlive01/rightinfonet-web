@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import styles from "./Header.module.css";
 import { NAV_LINKS } from "./data";
 import { siteConfig } from "@/lib/site-config";
+import ThemeToggle from "./ThemeToggle";
 
 function RollText({ text }: { text: string }) {
   return (
@@ -119,26 +120,29 @@ export default function Header() {
           })}
         </nav>
 
-        <Link href="/#contact" className={styles.cta}>
-          <RollText text="Start a project" />
-          <span className={styles.ctaIcon} aria-hidden="true">
-            &rarr;
-          </span>
-        </Link>
+        <div className={styles.actions}>
+          <ThemeToggle />
+          <Link href="/#contact" className={styles.cta}>
+            <RollText text="Start a project" />
+            <span className={styles.ctaIcon} aria-hidden="true">
+              &rarr;
+            </span>
+          </Link>
 
-        <button
-          type="button"
-          className={styles.menuBtn}
-          aria-expanded={open}
-          aria-controls="site-menu"
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span className={styles.srOnly}>{open ? "Close menu" : "Open menu"}</span>
-          <span className={`${styles.burger} ${open ? styles.burgerOpen : ""}`} aria-hidden="true">
-            <span />
-            <span />
-          </span>
-        </button>
+          <button
+            type="button"
+            className={styles.menuBtn}
+            aria-expanded={open}
+            aria-controls="site-menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className={styles.srOnly}>{open ? "Close menu" : "Open menu"}</span>
+            <span className={`${styles.burger} ${open ? styles.burgerOpen : ""}`} aria-hidden="true">
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
       </div>
 
       <div id="site-menu" className={`${styles.sheet} ${open ? styles.sheetOpen : ""}`} inert={!open}>

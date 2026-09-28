@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
-/* The site is dark-only; matching the page background avoids a white flash on overscroll. */
+/* Dark is the default; <html data-theme="light"> (set before paint by the inline script in
+   the root layout) switches to light. Matching the page background avoids overscroll flashes. */
 :root {
   --background: #0d0d0c;
   --foreground: #f2ede4;
   color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --background: #f3efe7;
+  --foreground: #161513;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -30,4 +37,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background 0.4s ease;
+}
+
+/* Theme switch: the new theme is revealed as a circle growing from the toggle button
+   (coordinates set by the toggle). Browsers without View Transitions just switch. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: theme-reveal 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+}
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 0));
+  }
 }

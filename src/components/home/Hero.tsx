@@ -232,6 +232,17 @@ export default function Hero() {
           >
             <div className={styles.phoneScreen}>
               <span className={styles.phoneNotch} />
+              <div className={styles.statusBar}>
+                <span>9:41</span>
+                <span className={styles.statusIcons}>
+                  <span style={{ height: "0.7cqw" }} />
+                  <span style={{ height: "1cqw" }} />
+                  <span style={{ height: "1.3cqw" }} />
+                  <span className={styles.battery}>
+                    <span />
+                  </span>
+                </span>
+              </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.4cqw", marginTop: "0.6cqw" }}>
                 <span style={{ fontSize: "1.5cqw", color: "#6f695f" }}>Order #48213</span>
                 <span style={{ fontSize: "2.7cqw", fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
@@ -239,6 +250,18 @@ export default function Hero() {
                 </span>
               </div>
               <div className={styles.mapArea}>
+                <span className={styles.road} style={{ top: "30%" }} />
+                <span className={styles.road} style={{ top: "57%" }} />
+                <span className={styles.road} style={{ top: "83%" }} />
+                <span className={styles.roadV} style={{ left: "8%" }} />
+                <span className={styles.roadV} style={{ left: "40%" }} />
+                <span className={styles.roadV} style={{ left: "78%" }} />
+                <span className={styles.park} />
+                <svg className={styles.route} viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M8 83 L8 57 L40 57 L40 30 L78 30" pathLength={1} />
+                </svg>
+                <span className={styles.pinPing} />
+                <span className={styles.pin} />
                 <span className={styles.riderDot}>
                   <span
                     style={{
@@ -260,6 +283,12 @@ export default function Hero() {
                 <span style={{ fontSize: "1.5cqw", color: "#6f695f", paddingBottom: "0.4cqw" }}>
                   by 4:26 PM
                 </span>
+              </div>
+              <div className={styles.progressSegs}>
+                <span className={styles.segOn} />
+                <span className={styles.segOn} />
+                <span className={`${styles.segOn} ${styles.segLive}`} />
+                <span />
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "1.2cqw", padding: "1.2cqw", borderRadius: "2cqw", background: "#fff" }}>
                 <span
@@ -283,6 +312,7 @@ export default function Hero() {
                   <span style={{ fontSize: "1.7cqw", fontWeight: 600 }}>Ravi Kumar</span>
                   <span style={{ fontSize: "1.3cqw", color: "#6f695f" }}>Rider &middot; 4.9 &#9733;</span>
                 </span>
+                <span className={styles.callBtn}>Call</span>
               </div>
               <span
                 style={{

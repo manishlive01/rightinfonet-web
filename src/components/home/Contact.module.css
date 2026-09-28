@@ -291,14 +291,14 @@ textarea.input {
   outline: none;
 }
 .input[aria-invalid="true"] {
-  border-bottom-color: #ff7a6b;
+  border-bottom-color: var(--err);
 }
 .error {
   position: absolute;
   left: 0;
   bottom: 0;
   font-size: 13px;
-  color: #ff9b8f;
+  color: var(--err);
   animation: errIn 0.4s var(--ease-out) both;
 }
 @keyframes errIn {
