@@ -6,7 +6,9 @@ import InView from "./motion/InView";
 import LocalTime from "./LocalTime";
 import { SERVICES } from "./data";
 import { SERVICE_DETAILS } from "../pages/content";
-import { siteConfig, socialLinks } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
+import SocialLinks from "./SocialLinks";
+import Logo from "./Logo";
 
 const COMPANY = [
   { href: "/work", label: "Work" },
@@ -56,21 +58,14 @@ export default function Footer() {
           <Link href="/#contact" className={styles.link}>
             Apply
           </Link>
-          {socialLinks.length > 0 && (
-            <>
-              <span className={`${styles.colLabel} ${styles.colLabelGap} ${home.mono}`}>Social</span>
-              {socialLinks.map((s) => (
-                <a key={s.label} href={s.href} className={styles.link} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              ))}
-            </>
-          )}
         </nav>
         <div className={styles.col}>
           <span className={`${styles.colLabel} ${home.mono}`}>Contact</span>
           <a href={`mailto:${siteConfig.email}`} className={styles.link}>
             {siteConfig.email}
+          </a>
+          <a href={`mailto:${siteConfig.supportEmail}`} className={styles.link}>
+            {siteConfig.supportEmail}
           </a>
           {siteConfig.phone && (
             <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className={styles.link}>
@@ -78,6 +73,7 @@ export default function Footer() {
             </a>
           )}
           <span className={styles.muted}>India &middot; Working worldwide</span>
+          <SocialLinks className={styles.social} />
           <span className={`${styles.clock} ${home.mono}`}>
             <span className={styles.clockDot} aria-hidden="true" />
             <LocalTime />
@@ -87,7 +83,7 @@ export default function Footer() {
 
       <InView className={styles.wordmark} aria-hidden="true">
         <span className={styles.ring}>
-          <span className={styles.dot} />
+          <Logo markOnly className={styles.ringLogo} />
         </span>
         {WORDMARK.split("").map((ch, i) => (
           <span key={i} className={styles.letter} style={{ "--i": i } as CSSProperties}>

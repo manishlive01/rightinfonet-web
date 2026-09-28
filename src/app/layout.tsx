@@ -66,7 +66,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    creator: siteConfig.twitterHandle,
   },
 };
 
@@ -81,6 +80,16 @@ const siteJsonLd = {
       name: siteConfig.name,
       url: siteConfig.url,
       description: siteConfig.description,
+      logo: {
+        "@type": "ImageObject",
+        "@id": `${siteConfig.url}/#logo`,
+        url: `${siteConfig.url}/brand/logo.png`,
+        contentUrl: `${siteConfig.url}/brand/logo.png`,
+        width: 1200,
+        height: 151,
+        caption: siteConfig.name,
+      },
+      image: { "@id": `${siteConfig.url}/#logo` },
       email: siteConfig.email,
       ...(siteConfig.phone && { telephone: siteConfig.phone }),
       address: {
@@ -89,12 +98,20 @@ const siteJsonLd = {
         ...(locality && { addressLocality: locality }),
         ...(region && { addressRegion: region }),
       },
-      contactPoint: {
-        "@type": "ContactPoint",
-        contactType: "sales",
-        email: siteConfig.email,
-        availableLanguage: ["English", "Hindi"],
-      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: siteConfig.email,
+          availableLanguage: ["English", "Hindi"],
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: siteConfig.supportEmail,
+          availableLanguage: ["English", "Hindi"],
+        },
+      ],
       ...(socialLinks.length > 0 && { sameAs: socialLinks.map((s) => s.href) }),
     },
     {

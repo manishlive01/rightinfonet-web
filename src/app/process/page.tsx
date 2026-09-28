@@ -7,22 +7,16 @@ import PageHero from "@/components/pages/PageHero";
 import PageLayout from "@/components/pages/PageLayout";
 import styles from "@/components/pages/Pages.module.css";
 import { ALWAYS_INCLUDED, PROCESS_QA, WEEK } from "@/components/pages/content";
-import { breadcrumbJsonLd } from "@/components/pages/seo";
-import { siteConfig } from "@/lib/site-config";
+import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
 
 const description =
   "How Bright Infonet builds software: discover, design, build and launch — with two-week sprints, a live demo every Friday and a weekly written update.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/process",
   title: "Process — How We Build Software, Week by Week",
-  description,
-  alternates: { canonical: "/process" },
-  openGraph: {
-    url: `${siteConfig.url}/process`,
-    title: `Process | ${siteConfig.name}`,
-    description,
-  },
-};
+  description: description,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

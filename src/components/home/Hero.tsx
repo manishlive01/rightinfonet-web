@@ -94,6 +94,8 @@ export default function Hero() {
             <span className={styles.heroEyebrow}>
               <span className={styles.kickerDash} />
               AI-first software development company &middot; India
+              {/* keeps the H1 readable as one sentence for search engines and screen readers */}
+              <span className={styles.srOnly}>: </span>
             </span>
             <SplitText
               trigger="load"

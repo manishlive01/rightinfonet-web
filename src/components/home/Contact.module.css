@@ -91,6 +91,19 @@
 .mail:hover::after {
   transform: scaleX(1);
 }
+.support {
+  margin: -8px 0 0;
+  font-size: 15px;
+  color: var(--mut);
+}
+.support a {
+  color: var(--fg);
+  border-bottom: 1px solid color-mix(in srgb, var(--acc) 60%, transparent);
+  transition: color 0.2s;
+}
+.support a:hover {
+  color: var(--acc);
+}
 .phone {
   font-size: 18px;
   color: var(--mut);

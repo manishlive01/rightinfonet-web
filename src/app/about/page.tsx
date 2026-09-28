@@ -10,18 +10,17 @@ import PageHero from "@/components/pages/PageHero";
 import PageLayout from "@/components/pages/PageLayout";
 import styles from "@/components/pages/Pages.module.css";
 import { VALUES } from "@/components/pages/content";
-import { breadcrumbJsonLd } from "@/components/pages/seo";
+import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
 import { siteConfig } from "@/lib/site-config";
 
 const description =
-  "Bright Infonet is an AI-first software development company in India: one senior team that designs, builds and validates web platforms, mobile apps, AI agents and regulated software.";
+  "Bright Infonet is an AI-first software company in India: one senior team that designs, builds and validates web platforms, mobile apps and AI agents.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/about",
   title: "About — An AI-First Software Studio in India",
-  description,
-  alternates: { canonical: "/about" },
-  openGraph: { url: `${siteConfig.url}/about`, title: `About | ${siteConfig.name}`, description },
-};
+  description: description,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

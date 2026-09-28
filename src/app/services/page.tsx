@@ -9,22 +9,17 @@ import PageHero from "@/components/pages/PageHero";
 import PageLayout from "@/components/pages/PageLayout";
 import styles from "@/components/pages/Pages.module.css";
 import { ENGAGEMENTS, SERVICE_DETAILS } from "@/components/pages/content";
-import { breadcrumbJsonLd } from "@/components/pages/seo";
+import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
 import { siteConfig } from "@/lib/site-config";
 
 const description =
   "Product & UX design, web platforms, Flutter mobile apps, AI agents and GxP-ready regulated software — built end to end by one senior team in India.";
 
-export const metadata: Metadata = {
-  title: "Services — Web, Mobile, AI Agents & Regulated Software",
-  description,
-  alternates: { canonical: "/services" },
-  openGraph: {
-    url: `${siteConfig.url}/services`,
-    title: `Services | ${siteConfig.name}`,
-    description,
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/services",
+  title: "Services — Web, Mobile, AI & Regulated Software",
+  description: description,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

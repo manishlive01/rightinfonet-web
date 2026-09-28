@@ -7,6 +7,7 @@ import Reveal from "./Reveal";
 import SplitText from "./motion/SplitText";
 import { CONTACT_BUDGETS, CONTACT_INTERESTS, CONTACT_STEPS } from "./data";
 import { siteConfig } from "@/lib/site-config";
+import SocialLinks from "./SocialLinks";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
@@ -145,6 +146,11 @@ export default function Contact() {
           <a href={`mailto:${siteConfig.email}`} className={`${styles.mail} ${home.serif}`}>
             {siteConfig.email}
           </a>
+          <p className={styles.support}>
+            Already a client? Write to{" "}
+            <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>
+          </p>
+          <SocialLinks />
           {siteConfig.phone && (
             <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className={styles.phone}>
               {siteConfig.phone}

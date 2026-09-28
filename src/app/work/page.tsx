@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
+import JsonLd from "@/lib/json-ld";
 import Link from "next/link";
 import styles from "@/components/home/Home.module.css";
 import work from "@/components/home/Work.module.css";
@@ -8,14 +10,12 @@ import Reveal from "@/components/home/Reveal";
 import WorkCard from "@/components/home/WorkCard";
 import { WORK } from "@/components/home/data";
 
-export const metadata: Metadata = {
-  title: "Work — Software, Mobile Apps & AI Agents We’ve Shipped",
+export const metadata: Metadata = pageMetadata({
+  path: "/work",
+  title: "Work — Web, Mobile & AI Projects We’ve Shipped",
   description:
     "Selected Bright Infonet projects: pharmacovigilance and LIMS platforms, a clinic booking app and an AI operations agent — built for regulated, real-world use.",
-  alternates: {
-    canonical: "/work",
-  },
-};
+});
 
 export default function WorkPage() {
   return (
@@ -23,6 +23,7 @@ export default function WorkPage() {
       <a href="#main" className={styles.skip}>
         Skip to content
       </a>
+      <JsonLd data={{ "@context": "https://schema.org", ...breadcrumbJsonLd("Work", "/work") }} />
       <Header />
       <main id="main" className={styles.pageTop}>
         <section className={styles.section} aria-labelledby="work-page-title">
@@ -37,8 +38,8 @@ export default function WorkPage() {
               </Reveal>
             </div>
             <Reveal as="p" className={styles.sectionLead} delay={0.2}>
-              Platforms for pharma, labs, clinics and ops teams &mdash; software that has to
-              survive an audit, not just a demo.
+              Platforms for pharma, labs, clinics and ops teams &mdash; software that has to survive
+              an audit, not just a demo.
             </Reveal>
           </div>
 

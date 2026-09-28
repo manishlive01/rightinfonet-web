@@ -9,22 +9,16 @@ import PageHero from "@/components/pages/PageHero";
 import PageLayout from "@/components/pages/PageLayout";
 import styles from "@/components/pages/Pages.module.css";
 import { INDUSTRY_DETAILS, STANDARDS } from "@/components/pages/content";
-import { breadcrumbJsonLd } from "@/components/pages/seo";
-import { siteConfig } from "@/lib/site-config";
+import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
 
 const description =
   "Software for pharma, diagnostic and QC labs, healthcare, SaaS and retail — built for audits, real-world operations and data protection from day one.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/industries",
   title: "Industries — Pharma, Labs, Healthcare, SaaS & Retail",
-  description,
-  alternates: { canonical: "/industries" },
-  openGraph: {
-    url: `${siteConfig.url}/industries`,
-    title: `Industries | ${siteConfig.name}`,
-    description,
-  },
-};
+  description: description,
+});
 
 const jsonLd = {
   "@context": "https://schema.org",

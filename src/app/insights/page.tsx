@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/components/pages/seo";
 import Link from "next/link";
 import home from "@/components/home/Home.module.css";
 import work from "@/components/home/Work.module.css";
@@ -14,19 +15,11 @@ import { siteConfig } from "@/lib/site-config";
 const description =
   "Practical guides from Bright Infonet’s engineers on 21 CFR Part 11, GAMP 5 validation, AI agents and mobile app development — written for teams building real software.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/insights",
   title: "Insights: Regulated Software, AI & App Guides",
-  description,
-  alternates: {
-    canonical: "/insights",
-  },
-  openGraph: {
-    type: "website",
-    url: `${siteConfig.url}/insights`,
-    title: `Insights | ${siteConfig.name}`,
-    description,
-  },
-};
+  description: description,
+});
 
 const blogJsonLd = {
   "@context": "https://schema.org",
@@ -69,8 +62,8 @@ export default function InsightsPage() {
               </Reveal>
             </div>
             <Reveal as="p" className={home.sectionLead} delay={0.2}>
-              Practical guides on regulated software, AI agents and app development &mdash;
-              written by the engineers who ship them.
+              Practical guides on regulated software, AI agents and app development &mdash; written
+              by the engineers who ship them.
             </Reveal>
           </div>
 
@@ -86,7 +79,8 @@ export default function InsightsPage() {
 
           <Reveal className={work.ctaBar}>
             <span className={`${work.ctaBarText} ${home.serif}`}>
-              A question we haven&rsquo;t covered? <span className={home.accentItalic}>Ask us.</span>
+              A question we haven&rsquo;t covered?{" "}
+              <span className={home.accentItalic}>Ask us.</span>
             </span>
             <Link href="/#contact" className={home.btnOutline}>
               Talk to an engineer <span className={home.btnArrow}>&rarr;</span>

@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import styles from "./Header.module.css";
 import { NAV_LINKS } from "./data";
+import SocialLinks from "./SocialLinks";
+import Logo from "./Logo";
 import { siteConfig } from "@/lib/site-config";
 import ThemeToggle from "./ThemeToggle";
 
@@ -101,10 +103,7 @@ export default function Header() {
       <span ref={progressRef} className={styles.progress} aria-hidden="true" />
       <div className={styles.bar}>
         <Link href="/#top" className={styles.brand} aria-label={`${siteConfig.name} — home`} onClick={close}>
-          <span className={styles.brandRing}>
-            <span className={styles.brandDot} />
-          </span>
-          <span>bright infonet</span>
+          <Logo className={styles.logo} />
         </Link>
 
         <nav aria-label="Primary" className={styles.nav}>
@@ -172,6 +171,7 @@ export default function Header() {
           <a href={`mailto:${siteConfig.email}`} className={styles.sheetMail}>
             {siteConfig.email}
           </a>
+          <SocialLinks />
         </div>
       </div>
     </header>

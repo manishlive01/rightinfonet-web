@@ -19,7 +19,10 @@ const serviceJsonLd = {
   name: siteConfig.name,
   url: siteConfig.url,
   description: siteConfig.description,
+  logo: `${siteConfig.url}/brand/logo.png`,
+  image: `${siteConfig.url}/brand/logo.png`,
   email: siteConfig.email,
+  parentOrganization: { "@id": `${siteConfig.url}/#organization` },
   address: { "@type": "PostalAddress", addressCountry: siteConfig.address.country },
   areaServed: "Worldwide",
   knowsAbout: [
