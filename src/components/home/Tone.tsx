@@ -6,7 +6,7 @@ export default function Tone({
   kind,
   children,
 }: {
-  kind: "raised" | "navy" | "ember";
+  kind: "raised" | "ember";
   children: ReactNode;
 }) {
   return <div className={styles[kind]}>{children}</div>;

@@ -27,9 +27,7 @@ export default function Home() {
           <Services />
         </Tone>
         <Work />
-        <Tone kind="navy">
-          <Industries />
-        </Tone>
+        <Industries />
         <Process />
         <Tone kind="raised">
           <About />
