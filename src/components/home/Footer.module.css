@@ -6,7 +6,7 @@
   background: #080807;
 }
 :global([data-theme="light"]) .footer {
-  background: #ebe4d8;
+  background: #f5f2ec;
 }
 /* brand hairline: orange into the logo's blue */
 .footer::before {

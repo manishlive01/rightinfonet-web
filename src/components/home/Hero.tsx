@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./Home.module.css";
+import HeroShapes from "./HeroShapes";
 import { BAR_HEIGHTS, TABS } from "./data";
 import SplitText from "./motion/SplitText";
 import { prefersReducedMotion } from "./motion/useInView";
@@ -88,6 +89,7 @@ export default function Hero() {
       <div className={styles.heroGlow} aria-hidden="true" />
       <div className={styles.heroGlowBlue} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />
+      <HeroShapes />
 
       <div className={styles.heroMain}>
         <div className={styles.heroCopy}>

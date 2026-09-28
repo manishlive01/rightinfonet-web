@@ -43,16 +43,17 @@
 
 /* light theme: set by the toggle on <html data-theme="light"> */
 :global([data-theme="light"]) .root {
-  --bg: #f3efe7;
+  --bg: #ffffff;
   --fg: #161513;
   --mut: #57524a;
   --dim: #6f695f;
-  --card: #fffdf9;
-  --dot: #ddd6c9;
-  --url: #f1ece3;
-  --stat: #f5f1e9;
-  --glass: rgba(255, 253, 249, 0.94);
-  --bub: #ece6da;
+  /* cards and inset surfaces a hair off-white, so they still read on the white page */
+  --card: #faf8f5;
+  --dot: #e2ddd4;
+  --url: #f3f0eb;
+  --stat: #f7f5f1;
+  --glass: rgba(255, 255, 255, 0.95);
+  --bub: #efebe4;
   --ok: #2c8a50;
   --sh1: rgba(60, 40, 15, 0.16);
   --sh2: rgba(60, 40, 15, 0.1);

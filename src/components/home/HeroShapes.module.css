@@ -1,0 +1,182 @@
+.layer {
+  --blue: #3b6fd4;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+:global([data-theme="light"]) .layer {
+  --blue: #2b5baa;
+}
+
+/* ---------- the logo's node network, large and faint ---------- */
+.network {
+  position: absolute;
+  right: -7vw;
+  top: 6vh;
+  width: min(48vw, 680px);
+  height: auto;
+  overflow: visible;
+  opacity: 0.11;
+  animation: drift 18s ease-in-out infinite;
+}
+.networkLinks {
+  stroke: var(--acc);
+  stroke-width: 0.5;
+  stroke-dasharray: 2 2.5;
+}
+.networkNodes {
+  fill: color-mix(in srgb, var(--acc) 10%, transparent);
+  stroke: var(--acc);
+  stroke-width: 0.6;
+}
+.networkNodes circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 6s ease-in-out infinite;
+}
+.networkNodes circle:nth-child(2) {
+  animation-delay: -1s;
+}
+.networkNodes circle:nth-child(3) {
+  animation-delay: -2s;
+}
+.networkNodes circle:nth-child(4) {
+  animation-delay: -3s;
+}
+.networkNodes circle:nth-child(5) {
+  animation-delay: -4s;
+}
+.networkNodes circle:nth-child(6) {
+  animation-delay: -5s;
+}
+:global([data-theme="light"]) .network {
+  opacity: 0.16;
+}
+
+/* ---------- concentric rings, bottom-left ---------- */
+.rings {
+  position: absolute;
+  left: -340px;
+  bottom: -380px;
+  width: 600px;
+  height: 600px;
+  fill: none;
+  stroke: color-mix(in srgb, var(--fg) 10%, transparent);
+  stroke-width: 1;
+  animation: spin 80s linear infinite;
+}
+.ringDashed {
+  stroke: color-mix(in srgb, var(--blue) 45%, transparent);
+  stroke-dasharray: 4 10;
+}
+.ringDot {
+  fill: var(--blue);
+  stroke: none;
+  opacity: 0.7;
+}
+
+/* ---------- small floating shapes ---------- */
+.shape {
+  position: absolute;
+  display: block;
+  animation: float 9s ease-in-out infinite;
+}
+.dotOrange {
+  left: 47%;
+  top: 17%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--acc);
+  opacity: 0.55;
+}
+.dotBlue {
+  right: 7%;
+  bottom: 14%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: 0.5;
+  animation-delay: -3s;
+}
+.ringSmall {
+  left: 53%;
+  bottom: 12%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--blue) 55%, transparent);
+  animation-delay: -5s;
+}
+.plus {
+  left: 40%;
+  bottom: 28%;
+  width: 16px;
+  height: 16px;
+  opacity: 0.45;
+  background:
+    linear-gradient(var(--acc), var(--acc)) center / 100% 2px no-repeat,
+    linear-gradient(var(--acc), var(--acc)) center / 2px 100% no-repeat;
+  animation-delay: -2s;
+}
+.square {
+  right: 38%;
+  top: 11%;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 2px solid color-mix(in srgb, var(--acc) 50%, transparent);
+  transform: rotate(18deg);
+  animation-delay: -6s;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-14px, 18px) rotate(4deg);
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -14px;
+  }
+}
+
+@media (max-width: 1039px) {
+  .network {
+    width: 80vw;
+    right: -30vw;
+    top: auto;
+    bottom: 4vh;
+    opacity: 0.1;
+  }
+  .dotOrange,
+  .square,
+  .plus {
+    display: none;
+  }
+}
