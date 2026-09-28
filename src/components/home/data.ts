@@ -124,6 +124,37 @@ export const WORK = [
     ],
     tags: ["Web platform", "GAMP 5 validation", "ISO 15189"],
   },
+  // PLACEHOLDER: the two projects below are sample showcases; replace with real client work.
+  {
+    id: "clinic",
+    n: "03",
+    name: "Clinic booking",
+    kind: "Mobile app · Healthcare",
+    headline: "Booking a doctor in three taps, with reminders patients actually see.",
+    description:
+      "A patient app and clinic dashboard for appointment booking, queues and reminders — one Flutter codebase on iOS and Android.",
+    highlights: [
+      { k: "Flutter", v: "One codebase for iOS and Android" },
+      { k: "Offline", v: "Works on patchy clinic Wi-Fi" },
+      { k: "Reminders", v: "Push, SMS and WhatsApp" },
+    ],
+    tags: ["Mobile app", "Flutter", "Healthcare"],
+  },
+  {
+    id: "ops-agent",
+    n: "04",
+    name: "Ops agent",
+    kind: "AI agents · Automation",
+    headline: "An AI agent that turns client emails into done tasks.",
+    description:
+      "Reads the inbox, updates the calendar and CRM, and tells the team on Slack — and asks a human before anything risky.",
+    highlights: [
+      { k: "Tool use", v: "Calendar, CRM and Slack wired in" },
+      { k: "Evals", v: "Tested against real past requests" },
+      { k: "Human in loop", v: "Approval for risky actions" },
+    ],
+    tags: ["AI agents", "RAG", "Evals"],
+  },
 ] as const;
 
 export const INDUSTRIES = [

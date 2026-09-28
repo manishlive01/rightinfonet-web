@@ -1,10 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import type { PointerEvent } from "react";
 import home from "./Home.module.css";
 import styles from "./Work.module.css";
 import InView from "./motion/InView";
-import { LimsVisual, PvVisual } from "./WorkVisuals";
+import { WORK_VISUALS } from "./WorkVisuals";
 import type { WORK } from "./data";
 
 type WorkItem = (typeof WORK)[number];
@@ -15,7 +16,19 @@ function trackPointer(e: PointerEvent<HTMLDivElement>) {
   e.currentTarget.style.setProperty("--y", `${e.clientY - r.top}px`);
 }
 
-export default function WorkCard({ item, total, flip }: { item: WorkItem; total: number; flip: boolean }) {
+export default function WorkCard({
+  item,
+  total,
+  flip,
+  headingLevel = "h3",
+}: {
+  item: WorkItem;
+  total: number;
+  flip: boolean;
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
+  const Visual = WORK_VISUALS[item.id];
   return (
     <InView
       as="article"
@@ -24,7 +37,9 @@ export default function WorkCard({ item, total, flip }: { item: WorkItem; total:
     >
       {/* PLACEHOLDER visual: swap for a real product screenshot or video when available. */}
       <div className={styles.visual} onPointerMove={trackPointer} aria-hidden="true">
-        <div className={styles.visualInner}>{item.id === "pvgenix" ? <PvVisual /> : <LimsVisual />}</div>
+        <div className={styles.visualInner}>
+          <Visual />
+        </div>
         <span className={styles.spot} />
         <span className={`${styles.kind} ${home.mono}`}>{item.kind}</span>
       </div>
@@ -33,9 +48,9 @@ export default function WorkCard({ item, total, flip }: { item: WorkItem; total:
         <span className={`${styles.index} ${home.mono}`}>
           {item.n} <span className={styles.indexTotal}>/ 0{total}</span>
         </span>
-        <h3 id={`work-${item.id}`} className={`${styles.name} ${home.serif}`}>
+        <Heading id={`work-${item.id}`} className={`${styles.name} ${home.serif}`}>
           {item.name}
-        </h3>
+        </Heading>
         <p className={styles.headline}>{item.headline}</p>
         <p className={styles.desc}>{item.description}</p>
 
@@ -56,12 +71,12 @@ export default function WorkCard({ item, total, flip }: { item: WorkItem; total:
               </li>
             ))}
           </ul>
-          <a href="#contact" className={styles.link}>
+          <Link href="/#contact" className={styles.link}>
             Request a walkthrough
             <span className={styles.linkIcon} aria-hidden="true">
               &#8599;
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </InView>

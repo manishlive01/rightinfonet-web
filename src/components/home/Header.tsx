@@ -85,7 +85,7 @@ export default function Header() {
     };
   }, [open]);
 
-  const current = pathname === "/academy" ? "academy" : sectionId;
+  const current = pathname === "/academy" ? "academy" : pathname === "/work" ? "work" : sectionId;
   const close = () => setOpen(false);
 
   return (
