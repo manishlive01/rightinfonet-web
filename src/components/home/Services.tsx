@@ -6,7 +6,8 @@ import ServiceVisuals from "./ServiceVisuals";
 import SectionHeading, { accent } from "./SectionHeading";
 import { SERVICES } from "./data";
 
-export default function Services() {
+/** `bare` drops the section heading, for pages that have their own H1. */
+export default function Services({ bare = false }: { bare?: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
   const blockRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -25,10 +26,7 @@ export default function Services() {
       setActive((prev) => (prev === a ? prev : a));
 
       const rect = sec.getBoundingClientRect();
-      const p = Math.min(
-        1,
-        Math.max(0, -rect.top / Math.max(1, rect.height - window.innerHeight)),
-      );
+      const p = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height - window.innerHeight)));
       if (barRef.current) barRef.current.style.transform = `scaleX(${p.toFixed(4)})`;
     };
     const onScroll = () => {
@@ -52,18 +50,25 @@ export default function Services() {
 
   return (
     <section id="services" className={styles.section} aria-labelledby="services-title">
-      <SectionHeading
-        kicker="(01) Services"
-        id="services-title"
-        title={["Software, ", accent("end to end.")]}
-        style={{ marginBottom: "clamp(20px,3vw,40px)" }}
-        lead={
-          <>
-            Product design, web platforms, mobile apps, AI agents and regulated software &mdash;
-            five disciplines, one team. Scroll to see what each one looks like when it ships.
-          </>
-        }
-      />
+      {bare && (
+        <h2 id="services-title" className={styles.srOnly}>
+          What we build
+        </h2>
+      )}
+      {!bare && (
+        <SectionHeading
+          kicker="(01) Services"
+          id="services-title"
+          title={["Software, ", accent("end to end.")]}
+          style={{ marginBottom: "clamp(20px,3vw,40px)" }}
+          lead={
+            <>
+              Product design, web platforms, mobile apps, AI agents and regulated software &mdash;
+              five disciplines, one team. Scroll to see what each one looks like when it ships.
+            </>
+          }
+        />
+      )}
 
       <div ref={sectionRef} className={styles.servicesGrid}>
         <div className={styles.stageSticky} aria-hidden="true">
@@ -79,7 +84,13 @@ export default function Services() {
                 <span style={{ color: "var(--acc)" }}>{activeService.n}</span>
                 <span>/ 05</span>
                 <span className={styles.stageTopDash} />
-                <span style={{ color: "var(--fg)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                <span
+                  style={{
+                    color: "var(--fg)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
                   {activeService.t}
                 </span>
               </span>

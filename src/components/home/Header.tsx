@@ -85,14 +85,11 @@ export default function Header() {
     };
   }, [open]);
 
+  // inner pages highlight their own link; the home page follows the section in view
   const current =
-    pathname === "/academy"
-      ? "academy"
-      : pathname === "/work"
-        ? "work"
-        : pathname.startsWith("/insights")
-          ? "insights"
-          : sectionId;
+    pathname === "/"
+      ? sectionId
+      : NAV_LINKS.find((l) => pathname === l.href || pathname.startsWith(`${l.href}/`))?.id;
   const close = () => setOpen(false);
 
   return (

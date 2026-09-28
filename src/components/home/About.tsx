@@ -11,7 +11,8 @@ import { ABOUT_POINTS, ABOUT_STATEMENT } from "./data";
 
 const WORDS = ABOUT_STATEMENT.split(" ");
 
-export default function About() {
+/** `bare` drops the section heading, for pages that have their own H1. */
+export default function About({ bare = false }: { bare?: boolean }) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const gridInView = useInView(gridRef, { once: false, rootMargin: "0px" });
@@ -49,15 +50,26 @@ export default function About() {
 
   return (
     <section id="about" className={home.section} aria-labelledby="about-title">
-      <SectionHeading
-        kicker="(05) The studio"
-        id="about-title"
-        title={["Why teams ", accent("choose us.")]}
-      />
+      {bare && (
+        <h2 id="about-title" className={home.srOnly}>
+          Why teams choose us
+        </h2>
+      )}
+      {!bare && (
+        <SectionHeading
+          kicker="(05) The studio"
+          id="about-title"
+          title={["Why teams ", accent("choose us.")]}
+        />
+      )}
 
       <p ref={textRef} className={`${styles.statement} ${home.serif}`}>
         {WORDS.map((word, i) => (
-          <span key={i} className={styles.word} style={{ "--w": i / WORDS.length } as CSSProperties}>
+          <span
+            key={i}
+            className={styles.word}
+            style={{ "--w": i / WORDS.length } as CSSProperties}
+          >
             {word}{" "}
           </span>
         ))}

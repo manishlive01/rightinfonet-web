@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 import SplitText from "./motion/SplitText";
 import { TRACKS } from "./data";
 
-export default function AcademyTeaser() {
+export default function AcademyTeaser({ kicker = "(06) Academy" }: { kicker?: string }) {
   return (
     <section id="academy" className={styles.outer} aria-labelledby="academy-title">
       <div className={styles.panel}>
@@ -26,7 +26,7 @@ export default function AcademyTeaser() {
             </span>
           </Reveal>
 
-          <span className={`${styles.kicker} ${home.mono}`}>(06) Academy</span>
+          <span className={`${styles.kicker} ${home.mono}`}>{kicker}</span>
           <SplitText
             as="h2"
             id="academy-title"

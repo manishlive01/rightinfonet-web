@@ -7,7 +7,8 @@ import Reveal from "./Reveal";
 import SectionHeading, { accent } from "./SectionHeading";
 import { INDUSTRIES } from "./data";
 
-export default function Industries() {
+/** `bare` drops the section heading, for pages that have their own H1. */
+export default function Industries({ bare = false }: { bare?: boolean }) {
   const [active, setActive] = useState(0);
 
   const hoverOpen = (i: number) => (e: PointerEvent) => {
@@ -16,12 +17,19 @@ export default function Industries() {
 
   return (
     <section id="industries" className={home.section} aria-labelledby="industries-title">
-      <SectionHeading
-        kicker="(03) Industries"
-        id="industries-title"
-        title={["Built for teams where ", accent("errors cost.")]}
-        lead="Deep experience where software meets regulation and real-world operations — and the same rigour for every other product we build."
-      />
+      {bare && (
+        <h2 id="industries-title" className={home.srOnly}>
+          Industries we serve
+        </h2>
+      )}
+      {!bare && (
+        <SectionHeading
+          kicker="(03) Industries"
+          id="industries-title"
+          title={["Built for teams where ", accent("errors cost.")]}
+          lead="Deep experience where software meets regulation and real-world operations — and the same rigour for every other product we build."
+        />
+      )}
 
       <Reveal className={styles.panels}>
         {INDUSTRIES.map((ind, i) => {

@@ -5,13 +5,14 @@ import styles from "./Footer.module.css";
 import InView from "./motion/InView";
 import LocalTime from "./LocalTime";
 import { SERVICES } from "./data";
+import { SERVICE_DETAILS } from "../pages/content";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 
 const COMPANY = [
-  { href: "/#work", label: "Work" },
-  { href: "/#industries", label: "Industries" },
-  { href: "/#process", label: "Process" },
-  { href: "/#about", label: "Studio" },
+  { href: "/work", label: "Work" },
+  { href: "/industries", label: "Industries" },
+  { href: "/process", label: "Process" },
+  { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -33,8 +34,8 @@ export default function Footer() {
       <div className={styles.grid}>
         <nav className={styles.col} aria-label="Services">
           <span className={`${styles.colLabel} ${home.mono}`}>Services</span>
-          {SERVICES.map((s) => (
-            <Link key={s.n} href="/#services" className={styles.link}>
+          {SERVICES.map((s, i) => (
+            <Link key={s.n} href={`/services#${SERVICE_DETAILS[i].slug}`} className={styles.link}>
               {s.t}
             </Link>
           ))}
