@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import About from "@/components/home/About";
 import AcademyTeaser from "@/components/home/AcademyTeaser";
+import Tone from "@/components/home/Tone";
 import home from "@/components/home/Home.module.css";
 import Proof from "@/components/home/Proof";
 import Reveal from "@/components/home/Reveal";
@@ -55,7 +56,9 @@ export default function AboutPage() {
         </Reveal>
       </PageHero>
 
-      <About bare />
+      <Tone kind="raised">
+        <About bare />
+      </Tone>
 
       <Proof />
 

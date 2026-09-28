@@ -11,6 +11,7 @@ import AcademyTeaser from "./AcademyTeaser";
 import InsightsTeaser from "./InsightsTeaser";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import Tone from "./Tone";
 
 export default function Home() {
   return (
@@ -22,14 +23,22 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Proof />
-        <Services />
+        <Tone kind="raised">
+          <Services />
+        </Tone>
         <Work />
-        <Industries />
+        <Tone kind="navy">
+          <Industries />
+        </Tone>
         <Process />
-        <About />
+        <Tone kind="raised">
+          <About />
+        </Tone>
         <AcademyTeaser />
         <InsightsTeaser />
-        <Contact />
+        <Tone kind="ember">
+          <Contact />
+        </Tone>
       </main>
       <Footer />
     </div>

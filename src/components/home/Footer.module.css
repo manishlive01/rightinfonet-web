@@ -1,8 +1,23 @@
 .footer {
   position: relative;
   padding: 0 var(--pad-x) clamp(28px, 4vw, 56px);
-  border-top: 1px solid var(--line);
   overflow: hidden;
+  margin-top: clamp(12px, 1.6vw, 24px);
+  background: #080807;
+}
+:global([data-theme="light"]) .footer {
+  background: #ebe4d8;
+}
+/* brand hairline: orange into the logo's blue */
+.footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--acc) 30%, #3b6fd4 70%, transparent);
+  opacity: 0.7;
 }
 
 .cta {

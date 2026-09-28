@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import home from "@/components/home/Home.module.css";
 import Industries from "@/components/home/Industries";
+import Tone from "@/components/home/Tone";
 import Reveal from "@/components/home/Reveal";
 import SectionHeading, { accent } from "@/components/home/SectionHeading";
 import { INDUSTRIES } from "@/components/home/data";
@@ -40,7 +41,9 @@ export default function IndustriesPage() {
         }))}
       />
 
-      <Industries bare />
+      <Tone kind="navy">
+        <Industries bare />
+      </Tone>
 
       <section className={styles.sectionPad} aria-labelledby="industry-detail-title">
         <SectionHeading

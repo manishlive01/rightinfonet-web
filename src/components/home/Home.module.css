@@ -306,6 +306,19 @@
   );
   animation: glow 8s ease-in-out infinite;
 }
+/* the logo's blue, balancing the orange glow on the other side */
+.heroGlowBlue {
+  position: absolute;
+  left: -18vw;
+  bottom: -10vh;
+  width: 60vw;
+  height: 70vh;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(59, 111, 212, 0.16), transparent);
+}
+:global([data-theme="light"]) .heroGlowBlue {
+  background: radial-gradient(closest-side, rgba(43, 91, 170, 0.1), transparent);
+}
 .grain {
   position: absolute;
   inset: 0;

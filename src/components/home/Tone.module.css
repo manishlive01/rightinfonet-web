@@ -1,0 +1,105 @@
+/* Section tones. A tone wraps a section in a rounded panel and redefines the theme tokens
+   (--bg, --card, --fg…) for everything inside, so the components need no changes.
+   Rhythm on the home page: base → raised → base → navy → base → raised → … → ember. */
+
+.raised,
+.navy,
+.ember {
+  position: relative;
+  isolation: isolate;
+  margin: clamp(12px, 1.6vw, 24px) clamp(8px, 1.2vw, 20px) 0;
+  padding-bottom: clamp(88px, 10vw, 150px);
+  border-radius: clamp(28px, 3.2vw, 52px);
+  background: var(--bg);
+  color: var(--fg);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--fg) 9%, transparent);
+  transition: background 0.4s ease;
+}
+/* decorative light inside the panel, kept within its rounded edges */
+.raised::before,
+.navy::before,
+.ember::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ---------- raised: one step lighter than the page ---------- */
+.raised {
+  --bg: #161513;
+  --card: #1e1c1a;
+  --stat: #252320;
+  --url: #292724;
+  --glass: rgba(38, 36, 33, 0.95);
+  --bub: #2f2c29;
+}
+.raised::before {
+  background:
+    radial-gradient(60% 40% at 100% 0%, color-mix(in oklch, var(--acc) 9%, transparent), transparent 70%),
+    radial-gradient(50% 35% at 0% 100%, rgba(59, 111, 212, 0.08), transparent 70%);
+}
+:global([data-theme="light"]) .raised {
+  --bg: #fdfbf7;
+  --card: #f5f0e7;
+  --stat: #f1ebe0;
+  --url: #efe9de;
+  --glass: rgba(253, 251, 247, 0.96);
+  --bub: #ebe4d7;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 30px 60px -40px rgba(60, 40, 15, 0.25);
+}
+
+/* ---------- navy: the logo's blue as a deep feature block ---------- */
+.navy {
+  --bg: #0b1631;
+  --fg: #eef2fb;
+  --mut: #b4c0dc;
+  --dim: #8793b4;
+  --card: #11214a;
+  --dot: #26365c;
+  --url: #16284f;
+  --stat: #142550;
+  --glass: rgba(17, 33, 74, 0.95);
+  --bub: #1a2d5a;
+  --ok: #7fd49b;
+  --sh1: rgba(0, 0, 0, 0.55);
+  --sh2: rgba(0, 0, 0, 0.4);
+  --line: color-mix(in srgb, var(--fg) 13%, transparent);
+}
+.navy::before {
+  background:
+    radial-gradient(55% 45% at 100% 0%, rgba(90, 140, 255, 0.22), transparent 70%),
+    radial-gradient(45% 40% at 0% 100%, color-mix(in oklch, var(--acc) 16%, transparent), transparent 70%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1.6px) 0 0 / 28px 28px;
+}
+
+/* ---------- ember: warm glow for the contact block ---------- */
+.ember {
+  padding-bottom: 0; /* the contact section brings its own bottom spacing */
+  --bg: #120c08;
+  --card: #1b1410;
+  --glass: rgba(30, 22, 17, 0.95);
+  --bub: #2a1f18;
+}
+.ember::before {
+  background:
+    radial-gradient(70% 55% at 85% 0%, color-mix(in oklch, var(--acc) 24%, transparent), transparent 70%),
+    radial-gradient(50% 45% at 0% 100%, rgba(59, 111, 212, 0.12), transparent 70%);
+}
+:global([data-theme="light"]) .ember {
+  --bg: #f8e9dc;
+  --card: #fffaf4;
+  --glass: rgba(255, 250, 244, 0.96);
+  --bub: #f0dccb;
+}
+
+/* sections that clip their own overflow follow the panel's rounded corners */
+.raised > section,
+.navy > section,
+.ember > section {
+  border-radius: inherit;
+}

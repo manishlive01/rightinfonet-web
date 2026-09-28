@@ -4,6 +4,7 @@ import home from "@/components/home/Home.module.css";
 import Reveal from "@/components/home/Reveal";
 import SectionHeading, { accent } from "@/components/home/SectionHeading";
 import Services from "@/components/home/Services";
+import Tone from "@/components/home/Tone";
 import { SERVICES } from "@/components/home/data";
 import PageHero from "@/components/pages/PageHero";
 import PageLayout from "@/components/pages/PageLayout";
@@ -59,7 +60,9 @@ export default function ServicesPage() {
         }))}
       />
 
-      <Services bare />
+      <Tone kind="raised">
+        <Services bare />
+      </Tone>
 
       <section className={styles.sectionPad} aria-labelledby="services-detail-title">
         <SectionHeading
