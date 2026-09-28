@@ -11,7 +11,7 @@ import { prefersReducedMotion } from "./useInView";
  * Sections without an element on the current page are skipped.
  */
 const STOPS = [
-  { id: "top", x: 0.42, y: 0.78, focus: 0, alpha: 1 },
+  { id: "top", x: 0.42, y: 0.66, focus: 0, alpha: 1 },
   { id: "services", x: 0.04, y: 0.95, focus: 0.9, alpha: 0.55 },
   { id: "work", x: 0.8, y: 0.5, focus: 0.82, alpha: 0.55 },
   { id: "industries", x: 0.03, y: 0.32, focus: 0.9, alpha: 0.5 },
@@ -29,8 +29,10 @@ attribute vec2 aPos;
 void main() { gl_Position = vec4(aPos, 0.0, 1.0); }
 `;
 
-// A family of parabolic light strands folding around an apex point. Distance to each
-// curve is approximated with |F| / |grad F|, and "focus" widens the glow to defocus it.
+// A bundle of light strands that all pass through one pinch point and fan out from it,
+// like the reference: a wide upper branch, a tighter lower branch. Each strand is a
+// parabola through the pinch; distance to it is approximated with |F| / |grad F|.
+// "focus" widens every strand's glow to defocus the whole bundle into an aurora.
 const FRAG = `
 precision highp float;
 uniform vec2 uRes;
@@ -43,6 +45,7 @@ uniform float uCount;
 const vec3 BG = vec3(0.051, 0.051, 0.047);
 const vec3 COL_A = vec3(0.941, 0.478, 0.227);
 const vec3 COL_B = vec3(1.0, 0.68, 0.37);
+const vec3 HOT = vec3(1.0, 0.9, 0.72);
 const vec3 WARM = vec3(1.0, 0.6, 0.36);
 const vec3 COL_C = vec3(0.37, 0.82, 0.77);
 
@@ -55,48 +58,77 @@ void main() {
   vec2 p = vec2(uv.x * aspect, 1.0 - uv.y);
   vec2 apex = vec2(uApex.x * aspect, uApex.y);
 
-  float w = mix(0.0016, 0.055, uFocus);
-  float gain = mix(0.5, 0.13, uFocus);
+  float w0 = mix(0.0011, 0.05, uFocus);
+  float gain = mix(0.42, 0.09, uFocus);
   vec3 col = vec3(0.0);
+  float lines = 0.0;
 
-  for (int i = 0; i < 32; i++) {
+  for (int i = 0; i < 64; i++) {
     float fi = float(i);
     if (fi >= uCount) break;
     float f = fi / (uCount - 1.0);
-    float s = f - 0.5;
+    float r1 = hash(fi + 1.0);
+    float r2 = hash(fi + 7.0);
+    float r3 = hash(fi + 13.0);
 
-    float k = 2.3 * (1.0 + s * 0.9);
+    // curvature sets how far a strand swings out; the lower branch bends ~2x tighter
+    float kUp = mix(0.2, 3.1, f) * (1.0 + 0.18 * (r1 - 0.5));
+    // a tiny per-strand offset keeps the pinch tight but not a single hard point
     vec2 a = apex + vec2(
-      abs(s) * 0.12 + 0.018 * sin(uTime * 0.55 + fi * 1.7),
-      s * 0.05 + 0.025 * sin(uTime * 0.37 + fi * 2.3)
+      0.006 * (r2 - 0.5) + 0.006 * sin(uTime * 0.5 + fi * 1.7),
+      0.008 * (r3 - 0.5) + 0.01 * sin(uTime * 0.33 + fi * 1.3)
     );
     float dy = p.y - a.y;
-    float wob = 0.022 * sin(dy * 5.5 - uTime * 0.8 + fi * 0.9) * smoothstep(0.0, 0.45, abs(dy));
+    float k = kUp * mix(1.0, 1.9, smoothstep(-0.04, 0.04, dy));
+    float wob = 0.014 * sin(dy * 7.0 - uTime * 0.9 + fi * 0.7) * smoothstep(0.02, 0.4, abs(dy));
     float F = (p.x - a.x) - k * dy * dy - wob;
     float d = abs(F) / length(vec2(1.0, 2.0 * k * dy));
 
+    // strands swell near the pinch so they fuse into one glowing band there
+    float r = length(p - a);
+    float w = w0 * (1.0 + 3.5 * exp(-r * 5.0));
     float g = w / (d + w);
     g *= g;
+    lines += g;
 
-    vec2 toApex = p - a;
-    float glow = exp(-dot(toApex, toApex) * mix(38.0, 7.0, uFocus));
-    float bright = (0.35 + 0.65 * hash(fi + 3.0)) * (1.0 + 2.4 * glow);
+    // bright at the pinch, dimmer along the branches; inner strands brighter than the fan's edge
+    float along = 0.28 + 1.7 * exp(-r * 2.4);
+    float inner = mix(1.0, 0.45, smoothstep(0.35, 1.0, abs(f - 0.3) * 1.6));
+    float bright = (0.3 + 0.7 * r1) * along * inner;
 
-    vec3 c = mix(COL_A, COL_B, f);
-    c = mix(c, COL_C, (0.5 + 0.5 * sin(dy * 3.0 + uTime * 0.3 + fi)) * 0.3);
+    vec3 c = mix(COL_A, COL_B, r2);
+    c = mix(c, HOT, exp(-r * 7.0) * 0.65);
+    c = mix(c, COL_C, smoothstep(0.55, 1.0, f) * 0.45 * (0.6 + 0.4 * sin(dy * 4.0 + uTime * 0.3)));
     col += c * g * gain * bright;
   }
 
-  // faint round dust that twinkles only while the strands are in focus
-  vec2 grid = gl_FragCoord.xy / 9.0;
+  // bloom around the pinch: a hot core and a wide, soft halo
+  vec2 ta = p - apex;
+  float ra = dot(ta, ta);
+  col += HOT * exp(-ra * mix(140.0, 14.0, uFocus)) * mix(0.85, 0.35, uFocus);
+  col += COL_A * exp(-ra * mix(9.0, 3.0, uFocus)) * 0.14;
+
+  // a few large out-of-focus bokeh discs drifting slowly, kept to the lower-right quarter
+  // so they never sit on the headline
+  for (int j = 0; j < 6; j++) {
+    float fj = float(j);
+    vec2 bp = vec2((0.5 + 0.5 * hash(fj * 3.1 + 2.0)) * aspect, 0.5 + 0.5 * hash(fj * 5.7 + 1.0));
+    bp += 0.03 * vec2(sin(uTime * 0.13 + fj), cos(uTime * 0.11 + fj * 2.0));
+    float br = 0.012 + 0.022 * hash(fj * 9.1);
+    float disc = smoothstep(br, br * 0.55, length(p - bp));
+    col += mix(COL_C, COL_B, hash(fj * 4.3)) * disc * 0.07;
+  }
+
+  // dust: faint everywhere, sparkling more inside the strands
+  vec2 grid = gl_FragCoord.xy / 7.0;
   float h = hash2(floor(grid));
-  float dotMask = 1.0 - smoothstep(0.08, 0.2, length(fract(grid) - 0.5));
-  float tw = step(0.9975, h) * dotMask * (0.5 + 0.5 * sin(uTime * (1.0 + h * 3.0) + h * 40.0));
-  col += vec3(1.0, 0.85, 0.7) * tw * 0.4 * (1.0 - uFocus);
+  float dotMask = 1.0 - smoothstep(0.08, 0.22, length(fract(grid) - 0.5));
+  float tw = step(0.995, h) * dotMask * (0.5 + 0.5 * sin(uTime * (1.0 + h * 3.0) + h * 40.0));
+  col += HOT * tw * (0.12 + 1.4 * min(1.0, lines * 3.0)) * (1.0 - uFocus);
 
   // overlapping defocused glows drift toward white; pull them back to a warm aurora
   col *= mix(vec3(1.0), WARM, uFocus * 0.55);
-  col = 1.0 - exp(-col * 1.35);
+  col = 1.0 - exp(-col * 1.3);
   gl_FragColor = vec4(BG + col * uAlpha, 1.0);
 }
 `;
@@ -196,7 +228,7 @@ export default function LightWave() {
 
     const small = window.matchMedia("(max-width: 760px)").matches;
     const reduce = prefersReducedMotion();
-    gl.uniform1f(u.count, small ? 20 : 30);
+    gl.uniform1f(u.count, small ? 28 : 56);
 
     // Rendered below device resolution: the glow is soft, so the upscale is invisible.
     const resize = () => {

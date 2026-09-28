@@ -84,12 +84,7 @@ export default function Hero() {
 
   return (
     <section id="top" ref={sectionRef} className={styles.heroSection}>
-      <div className={styles.bgGrid} aria-hidden="true">
-        <span className={styles.bgGridLine} />
-        <span className={styles.bgGridLine} />
-        <span className={styles.bgGridLine} />
-        <span className={styles.bgGridLine} />
-      </div>
+      <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />
 
       <div className={styles.heroMain}>
