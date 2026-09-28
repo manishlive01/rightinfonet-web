@@ -19,8 +19,9 @@ export const siteConfig = {
   title: "Bright Infonet | AI-First Software Development Company in India",
   description:
     "Bright Infonet is an AI-first software development company in India building web platforms, mobile apps, AI agents and GxP-ready software for pharma and labs.",
-  // Production domain; set NEXT_PUBLIC_SITE_URL to override (e.g. for a staging deploy).
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://brightinfonet.com").replace(/\/$/, ""),
+  // Live domain (brightinfonet.com redirects to www). NEXT_PUBLIC_SITE_URL overrides it,
+  // e.g. for a staging deploy.
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.brightinfonet.com").replace(/\/$/, ""),
   locale: "en_IN",
   /** new projects and general enquiries */
   email: "hello@brightinfonet.com",
