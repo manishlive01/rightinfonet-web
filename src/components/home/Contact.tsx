@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type CSSProperties, type FormEvent } from "react";
 import home from "./Home.module.css";
 import styles from "./Contact.module.css";
 import Reveal from "./Reveal";
@@ -63,6 +63,20 @@ function Field({
 export default function Contact() {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [open, setOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const openForm = (interest?: string) => {
+    if (interest) {
+      const box = formRef.current?.querySelector<HTMLInputElement>(
+        `input[name="interest"][value="${CSS.escape(interest)}"]`,
+      );
+      if (box) box.checked = true;
+    }
+    setOpen(true);
+    // move focus into the form once it has started to unfold, without jumping the page
+    setTimeout(() => formRef.current?.querySelector<HTMLElement>("input")?.focus({ preventScroll: true }), 450);
+  };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -149,7 +163,48 @@ export default function Contact() {
           </ol>
         </Reveal>
 
-        <Reveal className={styles.card} delay={0.1}>
+        <Reveal className={`${styles.card} ${open ? styles.cardOpen : ""}`} delay={0.1}>
+          <div className={styles.intro} inert={open}>
+            <div className={styles.collapse}>
+              <div className={styles.introInner}>
+                <span className={`${styles.introPill} ${home.mono}`}>
+                  <span className={styles.introDot} aria-hidden="true" />
+                  Takes about two minutes
+                </span>
+                <p className={`${styles.introTitle} ${home.serif}`}>
+                  Have something in mind? <span className={home.accentItalic}>Tell us about it.</span>
+                </p>
+                <p className={styles.introText}>
+                  Pick what you need, add a line about the project, and an engineer gets back to
+                  you. No long forms, no sales pitch.
+                </p>
+                <ul className={styles.ghostChips} aria-label="Start with a topic">
+                  {CONTACT_INTERESTS.map((item, i) => (
+                    <li key={item} style={{ "--k": i } as CSSProperties}>
+                      <button type="button" className={styles.ghostChip} onClick={() => openForm(item)}>
+                        {item}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  className={styles.submit}
+                  onClick={() => openForm()}
+                  aria-expanded={open}
+                  aria-controls="contact-panel"
+                >
+                  <span>Start your brief</span>
+                  <span className={styles.submitIcon} aria-hidden="true">
+                    &rarr;
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="contact-panel" className={styles.panel} inert={!open}>
+            <div className={styles.collapse}>
           {sent && (
             <div className={styles.sent} role="status">
               <span className={styles.sentIcon} aria-hidden="true">
@@ -168,6 +223,7 @@ export default function Contact() {
           )}
           {/* stays mounted while hidden so "Edit my message" keeps what was typed */}
           <form
+            ref={formRef}
             className={styles.form}
             hidden={sent}
             noValidate
@@ -224,6 +280,8 @@ export default function Contact() {
                 <span className={styles.hint}>Opens your email app with everything filled in.</span>
               </div>
           </form>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
