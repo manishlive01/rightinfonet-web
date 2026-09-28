@@ -11,7 +11,7 @@ import About from "./About";
 import AcademyTeaser from "./AcademyTeaser";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import WaveReveal from "./motion/WaveReveal";
+import LightWave from "./motion/LightWave";
 
 export default function Home() {
   return (
@@ -19,34 +19,19 @@ export default function Home() {
       <a href="#main" className={styles.skip}>
         Skip to content
       </a>
+      <LightWave />
       <Header />
       <main id="main">
         <Hero />
         <Marquee />
-        <WaveReveal>
-          <Proof />
-        </WaveReveal>
-        <WaveReveal>
-          <Services />
-        </WaveReveal>
-        <WaveReveal>
-          <Work />
-        </WaveReveal>
-        <WaveReveal>
-          <Industries />
-        </WaveReveal>
-        <WaveReveal>
-          <Process />
-        </WaveReveal>
-        <WaveReveal>
-          <About />
-        </WaveReveal>
-        <WaveReveal>
-          <AcademyTeaser />
-        </WaveReveal>
-        <WaveReveal>
-          <Contact />
-        </WaveReveal>
+        <Proof />
+        <Services />
+        <Work />
+        <Industries />
+        <Process />
+        <About />
+        <AcademyTeaser />
+        <Contact />
       </main>
       <Footer />
     </div>

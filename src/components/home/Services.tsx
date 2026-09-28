@@ -116,7 +116,8 @@ export default function Services() {
               }}
               className={styles.serviceBlock}
               style={{
-                opacity: active === i ? 1 : 0.16,
+                opacity: active === i ? 1 : 0.22,
+                filter: active === i ? "none" : "blur(4px)",
                 transform: active === i ? "none" : "translateY(12px)",
               }}
             >

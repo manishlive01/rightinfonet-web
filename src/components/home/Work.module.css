@@ -29,9 +29,10 @@
   border-radius: 28px;
   overflow: hidden;
   background:
-    radial-gradient(120% 90% at 15% 0%, color-mix(in oklch, var(--acc) 22%, var(--card)) 0%, transparent 55%),
-    radial-gradient(80% 70% at 100% 100%, color-mix(in oklch, var(--ok) 10%, var(--card)) 0%, transparent 60%),
-    var(--card);
+    radial-gradient(120% 90% at 15% 0%, color-mix(in oklch, var(--acc) 18%, transparent) 0%, transparent 55%),
+    var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   clip-path: inset(12% 8% 12% 8% round 28px);
   transition: clip-path 1.5s var(--ease-out);

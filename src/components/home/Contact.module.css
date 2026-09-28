@@ -3,27 +3,6 @@
   padding: clamp(120px, 14vw, 200px) var(--pad-x) clamp(80px, 10vw, 140px);
   overflow: hidden;
 }
-.glow {
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  width: 90vw;
-  height: 70vw;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  background: radial-gradient(closest-side, color-mix(in oklch, var(--acc) 16%, transparent), transparent);
-  animation: glow 8s ease-in-out infinite;
-}
-@keyframes glow {
-  0%,
-  100% {
-    opacity: 0.55;
-  }
-  50% {
-    opacity: 0.85;
-  }
-}
-
 .head {
   position: relative;
   display: flex;
@@ -131,8 +110,9 @@
   padding: clamp(24px, 3.4vw, 52px);
   border-radius: 30px;
   border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--card) 88%, transparent);
-  backdrop-filter: blur(12px);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 .form {
   display: flex;

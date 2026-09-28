@@ -3,6 +3,7 @@ import styles from "@/components/home/Home.module.css";
 import Header from "@/components/home/Header";
 import Academy from "@/components/home/Academy";
 import Footer from "@/components/home/Footer";
+import LightWave from "@/components/home/motion/LightWave";
 
 export const metadata: Metadata = {
   title: "Academy — Software Development & AI Courses in India",
@@ -19,6 +20,7 @@ export default function AcademyPage() {
       <a href="#main" className={styles.skip}>
         Skip to content
       </a>
+      <LightWave />
       <Header />
       <main id="main" className={styles.pageTop}>
         <Academy />

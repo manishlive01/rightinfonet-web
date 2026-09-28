@@ -107,7 +107,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className={styles.contact} aria-labelledby="contact-title">
-      <div className={styles.glow} aria-hidden="true" />
 
       <div className={styles.head}>
         <Reveal as="span" className={home.kicker}>

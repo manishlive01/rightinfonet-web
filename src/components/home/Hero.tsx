@@ -90,7 +90,6 @@ export default function Hero() {
         <span className={styles.bgGridLine} />
         <span className={styles.bgGridLine} />
       </div>
-      <div className={styles.heroGlow} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />
 
       <div className={styles.heroMain}>
