@@ -1,7 +1,6 @@
 import styles from "./Home.module.css";
 import Header from "./Header";
 import Hero from "./Hero";
-import Proof from "./Proof";
 import Services from "./Services";
 import Work from "./Work";
 import Industries from "./Industries";
@@ -22,7 +21,6 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <Proof />
         <Tone kind="raised">
           <Services />
         </Tone>

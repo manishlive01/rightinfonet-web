@@ -27,13 +27,6 @@ export const TABS = [
 ] as const;
 
 // PLACEHOLDER: replace with real, verifiable figures before launch.
-export const STATS = [
-  { value: 10, suffix: "+", label: "Products shipped to production" },
-  { value: 5, suffix: "", label: "Industries served, pharma to retail" },
-  { value: 24, suffix: "h", label: "To hear back from an engineer" },
-  { value: 100, suffix: "%", label: "In-house — nothing outsourced" },
-];
-
 export const SERVICES = [
   {
     n: "01",

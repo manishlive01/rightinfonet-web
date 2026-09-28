@@ -24,14 +24,6 @@
   background: radial-gradient(closest-side, rgba(240, 122, 58, 0.26), rgba(240, 122, 58, 0));
   animation: auroraA 22s ease-in-out infinite;
 }
-.blobBlue {
-  left: -16vw;
-  bottom: -26vh;
-  width: 58vw;
-  height: 70vh;
-  background: radial-gradient(closest-side, rgba(70, 120, 230, 0.22), rgba(70, 120, 230, 0));
-  animation: auroraB 26s ease-in-out infinite;
-}
 .blobPeach {
   left: 30vw;
   top: 20vh;
@@ -42,9 +34,6 @@
 }
 :global([data-theme="light"]) .blobOrange {
   background: radial-gradient(closest-side, rgba(240, 122, 58, 0.2), rgba(240, 122, 58, 0));
-}
-:global([data-theme="light"]) .blobBlue {
-  background: radial-gradient(closest-side, rgba(43, 91, 170, 0.14), rgba(43, 91, 170, 0));
 }
 :global([data-theme="light"]) .blobPeach {
   background: radial-gradient(closest-side, rgba(255, 160, 110, 0.16), rgba(255, 160, 110, 0));
@@ -59,15 +48,6 @@
   }
   66% {
     transform: translate(-3vw, -4vh) scale(0.94);
-  }
-}
-@keyframes auroraB {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(10vw, -12vh) scale(1.15);
   }
 }
 @keyframes auroraC {

@@ -4,7 +4,6 @@ import About from "@/components/home/About";
 import AcademyTeaser from "@/components/home/AcademyTeaser";
 import Tone from "@/components/home/Tone";
 import home from "@/components/home/Home.module.css";
-import Proof from "@/components/home/Proof";
 import Reveal from "@/components/home/Reveal";
 import SectionHeading, { accent } from "@/components/home/SectionHeading";
 import PageHero from "@/components/pages/PageHero";
@@ -59,8 +58,6 @@ export default function AboutPage() {
       <Tone kind="raised">
         <About bare />
       </Tone>
-
-      <Proof />
 
       <section className={styles.sectionPad} aria-labelledby="values-title">
         <SectionHeading

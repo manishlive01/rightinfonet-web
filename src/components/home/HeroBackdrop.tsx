@@ -331,7 +331,6 @@ export default function HeroBackdrop() {
     <div className={styles.backdrop} aria-hidden="true">
       <div className={styles.aurora}>
         <span className={styles.blobOrange} />
-        <span className={styles.blobBlue} />
         <span className={styles.blobPeach} />
       </div>
       <canvas ref={canvasRef} className={styles.canvas} />
