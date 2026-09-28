@@ -293,33 +293,6 @@
   mask-image: radial-gradient(120% 90% at 10% 10%, #000 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(120% 90% at 10% 10%, #000 20%, transparent 70%);
 }
-.heroGlow {
-  position: absolute;
-  right: -10vw;
-  top: 10vh;
-  width: 70vw;
-  height: 80vh;
-  pointer-events: none;
-  background: radial-gradient(
-    closest-side,
-    color-mix(in oklch, var(--acc) 22%, transparent),
-    transparent
-  );
-  animation: glow 8s ease-in-out infinite;
-}
-/* the logo's blue, balancing the orange glow on the other side */
-.heroGlowBlue {
-  position: absolute;
-  left: -18vw;
-  bottom: -10vh;
-  width: 60vw;
-  height: 70vh;
-  pointer-events: none;
-  background: radial-gradient(closest-side, rgba(59, 111, 212, 0.16), transparent);
-}
-:global([data-theme="light"]) .heroGlowBlue {
-  background: radial-gradient(closest-side, rgba(43, 91, 170, 0.1), transparent);
-}
 .grain {
   position: absolute;
   inset: 0;
