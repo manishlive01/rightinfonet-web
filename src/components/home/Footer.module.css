@@ -118,7 +118,7 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-  font-size: clamp(48px, 12.4vw, 252px);
+  font-size: clamp(48px, 12.4vw, 190px);
   line-height: 0.82;
   letter-spacing: -0.055em;
   white-space: nowrap;

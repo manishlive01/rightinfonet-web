@@ -34,7 +34,7 @@
 .headline {
   margin: 0;
   font-weight: 400;
-  font-size: clamp(64px, 10.5vw, 196px);
+  font-size: clamp(64px, 10.5vw, 168px);
   line-height: 0.88;
   letter-spacing: -0.035em;
 }

@@ -1,5 +1,5 @@
 .outer {
-  padding: clamp(96px, 12vw, 168px) clamp(12px, 2vw, 32px) 0;
+  padding: clamp(96px, 12vw, 168px) var(--pad-wide) 0;
 }
 .panel {
   position: relative;
