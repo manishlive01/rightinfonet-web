@@ -1,27 +1,36 @@
-"use client";
-
 import styles from "./Home.module.css";
+import Header from "./Header";
 import Hero from "./Hero";
 import Marquee from "./Marquee";
-import Work from "./Work";
+import Proof from "./Proof";
 import Services from "./Services";
+import Work from "./Work";
+import Industries from "./Industries";
 import Process from "./Process";
-import Academy from "./Academy";
 import About from "./About";
+import AcademyTeaser from "./AcademyTeaser";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
 export default function Home() {
   return (
     <div className={styles.root}>
-      <Hero />
-      <Marquee />
-      <Work />
-      <Services />
-      <Process />
-      <Academy />
-      <About />
-      <Contact />
+      <a href="#main" className={styles.skip}>
+        Skip to content
+      </a>
+      <Header />
+      <main id="main">
+        <Hero />
+        <Marquee />
+        <Proof />
+        <Services />
+        <Work />
+        <Industries />
+        <Process />
+        <About />
+        <AcademyTeaser />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

@@ -1,10 +1,28 @@
+type SocialLink = { label: string; href: string };
+
+// Leave phone, address and social hrefs empty until real values exist; empty fields are hidden
+// on the site and left out of structured data.
+const social: SocialLink[] = [
+  { label: "LinkedIn", href: "" },
+  { label: "Instagram", href: "" },
+  { label: "GitHub", href: "" },
+];
+
 export const siteConfig = {
   name: "Bright Infonet",
-  title: "Bright Infonet — Software Development & IT Solutions",
+  title: "Bright Infonet — Software Development Company in India | Web, Mobile & AI",
   description:
-    "Bright Infonet builds custom software, web applications, and IT solutions for businesses. Explore our services and get in touch to discuss your project.",
+    "Bright Infonet is an AI-first software development company in India. We design and build web platforms, mobile apps, AI agents and GxP-ready software for pharma and labs.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ogImage: "/og-image.png",
-  locale: "en_US",
+  locale: "en_IN",
+  email: "hello@brightinfonet.com",
+  phone: "",
+  address: {
+    locality: "",
+    region: "",
+    country: "IN",
+  },
   twitterHandle: "@brightinfonet",
-} as const;
+};
+
+export const socialLinks = social.filter((link) => link.href);

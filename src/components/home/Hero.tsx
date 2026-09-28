@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Home.module.css";
 import { BAR_HEIGHTS, TABS } from "./data";
+import SplitText from "./motion/SplitText";
+import { prefersReducedMotion } from "./motion/useInView";
 
 function useInterval(callback: () => void, delayMs: number) {
   const savedCallback = useRef(callback);
@@ -15,9 +17,51 @@ function useInterval(callback: () => void, delayMs: number) {
   }, [delayMs]);
 }
 
+function useStageTilt() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const tiltRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const tilt = tiltRef.current;
+    if (!section || !tilt) return;
+    if (!window.matchMedia("(pointer: fine)").matches || prefersReducedMotion()) return;
+
+    let raf = 0;
+    let x = 0;
+    let y = 0;
+    const apply = () => {
+      raf = 0;
+      tilt.style.setProperty("--mx", x.toFixed(3));
+      tilt.style.setProperty("--my", y.toFixed(3));
+    };
+    const onMove = (e: PointerEvent) => {
+      const r = section.getBoundingClientRect();
+      x = (e.clientX - r.left) / r.width - 0.5;
+      y = (e.clientY - r.top) / r.height - 0.5;
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    const onLeave = () => {
+      x = 0;
+      y = 0;
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    section.addEventListener("pointermove", onMove);
+    section.addEventListener("pointerleave", onLeave);
+    return () => {
+      section.removeEventListener("pointermove", onMove);
+      section.removeEventListener("pointerleave", onLeave);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return { sectionRef, tiltRef };
+}
+
 export default function Hero() {
   const [active, setActive] = useState(0);
   const [chatStep, setChatStep] = useState(0);
+  const { sectionRef, tiltRef } = useStageTilt();
 
   useInterval(() => setActive((a) => (a + 1) % 3), 6000);
   useInterval(() => setChatStep((s) => (s + 1) % 8), 1100);
@@ -39,7 +83,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="top" className={styles.heroSection}>
+    <section id="top" ref={sectionRef} className={styles.heroSection}>
       <div className={styles.bgGrid} aria-hidden="true">
         <span className={styles.bgGridLine} />
         <span className={styles.bgGridLine} />
@@ -49,43 +93,19 @@ export default function Hero() {
       <div className={styles.heroGlow} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />
 
-      <nav className={styles.nav}>
-        <a href="#top" className={styles.brand}>
-          <span className={styles.brandRing}>
-            <span className={styles.brandDot} />
-          </span>
-          <span>bright infonet</span>
-        </a>
-        <div className={styles.navLinks}>
-          <a href="#work" className={styles.navLink}>
-            Work
-          </a>
-          <a href="#services" className={styles.navLink}>
-            Services
-          </a>
-          <a href="#process" className={styles.navLink}>
-            Process
-          </a>
-          <a href="#academy" className={`${styles.navLink} ${styles.navBadge}`}>
-            Academy <span className={styles.newPill}>New</span>
-          </a>
-          <a href="#about" className={styles.navLink}>
-            About
-          </a>
-        </div>
-        <a href="#contact" className={styles.navCta}>
-          Start a project <span>&rarr;</span>
-        </a>
-      </nav>
-
-      <main className={styles.heroMain}>
+      <div className={styles.heroMain}>
         <div className={styles.heroCopy}>
-          <div className={styles.heroEyebrow}>
-            <span className={styles.kickerDash} />
-            AI-first product studio &middot; India
-          </div>
-          <h1 className={`${styles.h1} ${styles.serif}`}>
-            We build software that <span className={styles.accentItalic}>thinks.</span>
+          <h1 className={styles.heroTitle}>
+            <span className={styles.heroEyebrow}>
+              <span className={styles.kickerDash} />
+              AI-first software development company &middot; India
+            </span>
+            <SplitText
+              trigger="load"
+              delay={0.15}
+              className={`${styles.h1} ${styles.serif}`}
+              parts={["We build software that ", { text: "thinks.", className: styles.accentItalic }]}
+            />
           </h1>
           <p className={styles.heroLead}>
             Web platforms, mobile apps and AI agents &mdash; designed, built and shipped by
@@ -93,7 +113,7 @@ export default function Hero() {
           </p>
           <div className={styles.heroActions}>
             <a href="#contact" className={styles.btnPrimary}>
-              Start a project <span>&rarr;</span>
+              Start a project <span className={styles.btnArrow}>&rarr;</span>
             </a>
             <a href="#work" className={styles.linkUnderline}>
               See our work
@@ -106,6 +126,7 @@ export default function Hero() {
                 key={tab.n}
                 type="button"
                 className={styles.tabBtn}
+                aria-pressed={active === i}
                 onClick={() => setActive(i)}
               >
                 <span className={styles.tabBar}>
@@ -131,7 +152,8 @@ export default function Hero() {
           <p className={styles.heroTabDesc}>{TABS[active].d}</p>
         </div>
 
-        <div className={styles.stage}>
+        <div className={styles.stage} aria-hidden="true">
+          <div ref={tiltRef} className={styles.stageTilt}>
           {/* Web dashboard panel */}
           <div className={`${styles.stagePanel} ${styles.webPanel}`} style={panelState(0, 1)}>
             <div className={styles.chromeBar}>
@@ -324,8 +346,20 @@ export default function Hero() {
               </div>
             )}
           </div>
+          </div>
         </div>
-      </main>
+      </div>
+
+      <div className={styles.heroFoot}>
+        <a href="#services" className={styles.scrollCue}>
+          <span className={styles.scrollCueLine} aria-hidden="true" />
+          Scroll to explore
+        </a>
+        <span className={styles.availability}>
+          <span className={styles.availabilityDot} aria-hidden="true" />
+          Taking on new projects
+        </span>
+      </div>
     </section>
   );
 }

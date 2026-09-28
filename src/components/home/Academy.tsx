@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import styles from "./Home.module.css";
 import Reveal from "./Reveal";
@@ -28,7 +29,7 @@ export default function Academy() {
           </span>
         </Reveal>
 
-        <Reveal as="h2" className={`${styles.academyHeadline} ${styles.serif}`}>
+        <Reveal as="h1" className={`${styles.academyHeadline} ${styles.serif}`}>
           Learn where the <span style={{ fontStyle: "italic", color: "var(--aem)" }}>real work</span> happens.
         </Reveal>
 
@@ -39,12 +40,9 @@ export default function Academy() {
             projects.
           </p>
           <div className={styles.academyActions}>
-            <a href="#" className={styles.btnDark}>
+            <Link href="/#contact" className={styles.btnDark}>
               Apply for next cohort <span>&rarr;</span>
-            </a>
-            <a href="#" className={styles.linkUnderlineDark}>
-              Download syllabus
-            </a>
+            </Link>
           </div>
         </Reveal>
 
@@ -120,9 +118,9 @@ export default function Academy() {
                 <span className={`${styles.shipLabel} ${styles.mono}`}>You&rsquo;ll ship</span>
                 <span style={{ fontSize: 17, lineHeight: 1.45, fontWeight: 500 }}>{track.cap}</span>
               </span>
-              <a href="#" className={styles.applyTrackBtn}>
+              <Link href="/#contact" className={styles.applyTrackBtn}>
                 Apply to this track &rarr;
-              </a>
+              </Link>
             </div>
           </div>
         </Reveal>

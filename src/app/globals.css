@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+/* The site is dark-only; matching the page background avoids a white flash on overscroll. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d0d0c;
+  --foreground: #f2ede4;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -12,15 +14,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  /* keeps anchor targets clear of the fixed header */
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

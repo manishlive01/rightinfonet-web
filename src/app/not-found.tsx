@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
@@ -10,13 +11,18 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 bg-zinc-50 px-6 text-center font-sans dark:bg-black">
-      <h1 className="text-3xl font-semibold text-black dark:text-zinc-50">
-        Page not found
-      </h1>
-      <p className="max-w-md text-lg text-zinc-600 dark:text-zinc-400">
+    <main className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-32 text-center">
+      <p className="font-mono text-xs uppercase tracking-widest text-[#f07a3a]">Error 404</p>
+      <h1 className="text-4xl font-semibold tracking-tight">Page not found</h1>
+      <p className="max-w-md text-lg text-[#bdb7ac]">
         The page you are looking for does not exist or has been moved.
       </p>
+      <Link
+        href="/"
+        className="rounded-full bg-[#f07a3a] px-6 py-3 font-semibold text-[#0d0d0c] transition hover:-translate-y-0.5"
+      >
+        Back to home &rarr;
+      </Link>
     </main>
   );
 }

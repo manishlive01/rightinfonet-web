@@ -1,0 +1,424 @@
+.contact {
+  position: relative;
+  padding: clamp(120px, 14vw, 200px) var(--pad-x) clamp(80px, 10vw, 140px);
+  overflow: hidden;
+}
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 90vw;
+  height: 70vw;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in oklch, var(--acc) 16%, transparent), transparent);
+  animation: glow 8s ease-in-out infinite;
+}
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: clamp(48px, 6vw, 96px);
+}
+.headline {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(64px, 10.5vw, 196px);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 88px);
+  align-items: start;
+}
+@media (min-width: 1040px) {
+  .grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+}
+
+/* ---------- info column ---------- */
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+.lead {
+  margin: 0;
+  max-width: 440px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--mut);
+  text-wrap: pretty;
+}
+.mail {
+  position: relative;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  word-break: break-word;
+}
+.mail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: var(--acc);
+  transform: scaleX(0.25);
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease-out);
+}
+.mail:hover::after {
+  transform: scaleX(1);
+}
+.phone {
+  font-size: 18px;
+  color: var(--mut);
+}
+.steps {
+  width: 100%;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.step {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.stepNum {
+  padding-top: 3px;
+  font-size: 12px;
+  color: var(--acc);
+}
+.stepTitle {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.stepDesc {
+  display: block;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--mut);
+}
+
+/* ---------- form card ---------- */
+.card {
+  position: relative;
+  padding: clamp(24px, 3.4vw, 52px);
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  backdrop-filter: blur(12px);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.form[hidden] {
+  display: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.legend {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 0;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.chip {
+  position: relative;
+  cursor: pointer;
+}
+.chipInput {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.chipLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+  font-size: 14px;
+  color: var(--mut);
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s,
+    transform 0.3s var(--ease-out);
+}
+.chipLabel::before {
+  content: "";
+  width: 0;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  transition:
+    width 0.3s var(--ease-out),
+    margin 0.3s var(--ease-out);
+  margin-right: -8px;
+}
+.chip:hover .chipLabel {
+  border-color: color-mix(in srgb, var(--fg) 40%, transparent);
+  color: var(--fg);
+}
+.chipInput:checked + .chipLabel {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #0d0d0c;
+}
+.chipInput:checked + .chipLabel::before {
+  width: 6px;
+  margin-right: 0;
+}
+.chipInput:focus-visible + .chipLabel {
+  outline: 2px solid var(--acc);
+  outline-offset: 3px;
+}
+.chip:active .chipLabel {
+  transform: scale(0.96);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px 28px;
+}
+@media (min-width: 640px) {
+  .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.field {
+  position: relative;
+  padding-bottom: 20px;
+}
+.fieldWide {
+  grid-column: 1 / -1;
+}
+.input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 28px 0 12px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--fg) 20%, transparent);
+  border-radius: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: 18px;
+  outline: none;
+  resize: vertical;
+}
+textarea.input {
+  min-height: 120px;
+}
+.label {
+  position: absolute;
+  left: 0;
+  top: 28px;
+  font-size: 18px;
+  color: var(--dim);
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    transform 0.4s var(--ease-out),
+    color 0.3s;
+}
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  transform: translateY(-24px) scale(0.72);
+  color: var(--mut);
+}
+.input:focus + .label {
+  color: var(--acc);
+}
+.fieldLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  height: 1px;
+  background: var(--acc);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s var(--ease-out);
+}
+.input:focus ~ .fieldLine {
+  transform: scaleX(1);
+}
+/* the animated accent underline is the focus indicator for text fields */
+.card .input:focus-visible {
+  outline: none;
+}
+.input[aria-invalid="true"] {
+  border-bottom-color: #ff7a6b;
+}
+.error {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 13px;
+  color: #ff9b8f;
+  animation: errIn 0.4s var(--ease-out) both;
+}
+@keyframes errIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 8px 8px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--acc);
+  color: #0d0d0c;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out);
+}
+.submit:hover {
+  transform: translateY(-2px);
+}
+.submit:active {
+  transform: scale(0.97);
+}
+.submitIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0d0c;
+  color: var(--acc);
+  transition: transform 0.6s var(--ease-out);
+}
+.submit:hover .submitIcon {
+  transform: rotate(-45deg);
+}
+.hint {
+  font-size: 13px;
+  color: var(--dim);
+}
+
+/* ---------- sent state ---------- */
+.sent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: clamp(12px, 3vw, 40px) 0;
+  animation: sentIn 0.8s var(--ease-out) both;
+}
+@keyframes sentIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+.sentIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ok);
+  color: #0d0d0c;
+  font-size: 26px;
+  font-weight: 700;
+  animation: pop 0.7s var(--ease-out) 0.15s both;
+}
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+}
+.sentTitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(40px, 4vw, 64px);
+  line-height: 1;
+}
+.sentText {
+  margin: 0;
+  max-width: 480px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--mut);
+}
+.sentText a {
+  color: var(--fg);
+  border-bottom: 1px solid var(--acc);
+}
+.reset {
+  padding: 12px 20px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--fg) 22%, transparent);
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.reset:hover {
+  background: var(--fg);
+  color: var(--bg);
+}

@@ -1,0 +1,149 @@
+.track {
+  --p: 0;
+  position: relative;
+}
+
+/* vertical on mobile, horizontal from 900px; fill is driven by --p (scroll progress) */
+.line {
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+.lineFill {
+  position: absolute;
+  inset: 0;
+  background: var(--acc);
+  transform: scaleY(var(--p));
+  transform-origin: top center;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 56px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.step {
+  position: relative;
+  padding-left: 44px;
+}
+
+@media (min-width: 900px) {
+  .line {
+    left: 0;
+    right: 0;
+    top: 7px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .lineFill {
+    transform: scaleX(var(--p));
+    transform-origin: left center;
+  }
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+  }
+  .step {
+    padding: 48px 32px 0 0;
+  }
+}
+
+.node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid color-mix(in srgb, var(--fg) 30%, transparent);
+  transition:
+    background 0.5s,
+    border-color 0.5s,
+    box-shadow 0.5s;
+}
+.stepOn .node {
+  background: var(--acc);
+  border-color: var(--acc);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--acc) 18%, transparent);
+}
+
+.num {
+  display: block;
+  margin-bottom: 22px;
+  font-size: clamp(88px, 8vw, 132px);
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--fg) 18%, transparent);
+  transition:
+    -webkit-text-stroke-color 0.6s,
+    transform 1s var(--ease-out);
+  transform: translateY(12px);
+}
+.stepOn .num {
+  -webkit-text-stroke-color: var(--acc);
+  transform: none;
+}
+
+.content {
+  opacity: 0.32;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s ease,
+    transform 1s var(--ease-out);
+}
+.stepOn .content {
+  opacity: 1;
+  transform: none;
+}
+.title {
+  margin: 0 0 12px;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.desc {
+  margin: 0 0 20px;
+  max-width: 300px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--mut);
+  text-wrap: pretty;
+}
+.out {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: var(--mut);
+}
+.out li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.out li::before {
+  content: "";
+  width: 14px;
+  height: 1px;
+  background: var(--acc);
+}
+.time {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent);
+  font-size: 12px;
+  color: var(--mut);
+}

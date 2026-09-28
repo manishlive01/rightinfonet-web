@@ -9,6 +9,7 @@ export default function Marquee() {
         {items.map((word, i) => (
           <span
             key={i}
+            aria-hidden={i >= MARQUEE_WORDS.length ? "true" : undefined}
             className={`${styles.marqueeItem} ${styles.serif}`}
             style={{
               fontStyle: i % 2 ? "italic" : "normal",

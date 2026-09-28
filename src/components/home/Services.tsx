@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./Home.module.css";
-import Reveal from "./Reveal";
 import ServiceVisuals from "./ServiceVisuals";
+import SectionHeading, { accent } from "./SectionHeading";
 import { SERVICES } from "./data";
 
 export default function Services() {
@@ -51,24 +51,22 @@ export default function Services() {
   const activeService = SERVICES[active];
 
   return (
-    <section id="services" className={styles.section}>
-      <Reveal className={styles.sectionHeader} style={{ marginBottom: "clamp(20px,3vw,40px)" }}>
-        <div className={styles.sectionHeaderLead}>
-          <span className={styles.kicker}>
-            <span className={styles.kickerDash} />
-            (02) Services
-          </span>
-          <h2 className={`${styles.h2} ${styles.serif}`}>
-            What we <span className={styles.accentItalic}>make.</span>
-          </h2>
-        </div>
-        <p className={styles.sectionLead}>
-          Five disciplines, one team. Scroll to see what each one looks like when it ships.
-        </p>
-      </Reveal>
+    <section id="services" className={styles.section} aria-labelledby="services-title">
+      <SectionHeading
+        kicker="(01) Services"
+        id="services-title"
+        title={["Software, ", accent("end to end.")]}
+        style={{ marginBottom: "clamp(20px,3vw,40px)" }}
+        lead={
+          <>
+            Product design, web platforms, mobile apps, AI agents and regulated software &mdash;
+            five disciplines, one team. Scroll to see what each one looks like when it ships.
+          </>
+        }
+      />
 
       <div ref={sectionRef} className={styles.servicesGrid}>
-        <div className={styles.stageSticky}>
+        <div className={styles.stageSticky} aria-hidden="true">
           <div className={styles.stageCard}>
             <div className={styles.stageGridBg} aria-hidden="true" />
             <div className={styles.stageGlow} aria-hidden="true" />

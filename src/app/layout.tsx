@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, socialLinks } from "@/lib/site-config";
+import JsonLd from "@/lib/json-ld";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,6 +21,11 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0d0d0c",
+  colorScheme: "dark",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -27,9 +33,11 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Bright Infonet", "software development", "web development", "IT solutions"],
+  applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "technology",
   alternates: {
     canonical: "/",
   },
@@ -51,43 +59,61 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     locale: siteConfig.locale,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
     creator: siteConfig.twitterHandle,
   },
 };
 
-const organizationJsonLd = {
+const { locality, region, country } = siteConfig.address;
+
+const siteJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  description: siteConfig.description,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      email: siteConfig.email,
+      ...(siteConfig.phone && { telephone: siteConfig.phone }),
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: country,
+        ...(locality && { addressLocality: locality }),
+        ...(region && { addressRegion: region }),
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: siteConfig.email,
+        availableLanguage: ["English", "Hindi"],
+      },
+      ...(socialLinks.length > 0 && { sameAs: socialLinks.map((s) => s.href) }),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      inLanguage: "en-IN",
+      publisher: { "@id": `${siteConfig.url}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        <JsonLd data={siteJsonLd} />
         {children}
       </body>
     </html>
