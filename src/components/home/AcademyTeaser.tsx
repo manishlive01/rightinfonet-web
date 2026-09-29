@@ -4,13 +4,23 @@ import styles from "./AcademyTeaser.module.css";
 import Reveal from "./Reveal";
 import SplitText from "./motion/SplitText";
 import { TRACKS } from "./data";
+import { FxLayer } from "./SectionFx";
 
-export default function AcademyTeaser({ kicker = "(06) Academy" }: { kicker?: string }) {
+export default function AcademyTeaser({
+  kicker = "(06) Academy",
+}: {
+  kicker?: string;
+}) {
   return (
-    <section id="academy" className={styles.outer} aria-labelledby="academy-title">
+    <section
+      id="academy"
+      className={styles.outer}
+      aria-labelledby="academy-title"
+    >
       <div className={styles.panel}>
         <span className={styles.ringA} aria-hidden="true" />
         <span className={styles.ringB} aria-hidden="true" />
+        <FxLayer kind="stars" inline />
 
         <div className={styles.copy}>
           <Reveal className={styles.topRow}>
@@ -31,15 +41,21 @@ export default function AcademyTeaser({ kicker = "(06) Academy" }: { kicker?: st
             as="h2"
             id="academy-title"
             className={`${styles.headline} ${home.serif}`}
-            parts={["Learn where the ", { text: "real work", className: styles.em }, " happens."]}
+            parts={[
+              "Learn where the ",
+              { text: "real work", className: styles.em },
+              " happens.",
+            ]}
           />
           <Reveal as="p" className={styles.lead} delay={0.15}>
-            The training arm of our studio. Small cohorts learn from the engineers who ship our
-            client work &mdash; and graduate with a portfolio of real, code-reviewed projects.
+            The training arm of our studio. Small cohorts learn from the
+            engineers who ship our client work &mdash; and graduate with a
+            portfolio of real, code-reviewed projects.
           </Reveal>
           <Reveal delay={0.25}>
             <Link href="/academy" className={styles.cta}>
-              Explore the Academy <span className={styles.ctaArrow}>&rarr;</span>
+              Explore the Academy{" "}
+              <span className={styles.ctaArrow}>&rarr;</span>
             </Link>
           </Reveal>
         </div>
@@ -48,7 +64,9 @@ export default function AcademyTeaser({ kicker = "(06) Academy" }: { kicker?: st
           {TRACKS.map((track, i) => (
             <Reveal as="li" key={track.n} delay={0.1 + i * 0.08}>
               <Link href="/academy" className={styles.track}>
-                <span className={`${styles.trackNum} ${home.mono}`}>{track.n}</span>
+                <span className={`${styles.trackNum} ${home.mono}`}>
+                  {track.n}
+                </span>
                 <span className={styles.trackMain}>
                   <span className={styles.trackTitle}>{track.t}</span>
                   <span className={styles.trackStack}>{track.stack}</span>

@@ -1,0 +1,30 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import LandingView from "@/components/pages/LandingView";
+import { landingMetadata } from "@/components/pages/landing-seo";
+import { ACADEMY_PAGES, landingBySlug, slugOf } from "@/content/landing";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return ACADEMY_PAGES.map((p) => ({ slug: slugOf(p) }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const page = landingBySlug(ACADEMY_PAGES, (await params).slug);
+  return page ? landingMetadata(page) : {};
+}
+
+export default async function AcademyLandingPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const page = landingBySlug(ACADEMY_PAGES, (await params).slug);
+  if (!page) notFound();
+  return <LandingView page={page} />;
+}

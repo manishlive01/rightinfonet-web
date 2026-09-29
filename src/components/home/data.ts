@@ -5,7 +5,7 @@ export const NAV_LINKS = [
   { id: "process", href: "/process", label: "Process" },
   { id: "about", href: "/about", label: "About" },
   { id: "insights", href: "/insights", label: "Insights" },
-  { id: "academy", href: "/academy", label: "Academy", badge: "New" },
+  { id: "academy", href: "/academy", label: "Academy" },
 ] as const;
 
 export const TABS = [
@@ -93,7 +93,8 @@ export const WORK = [
     n: "01",
     name: "PVgenix",
     kind: "SaaS · Pharmacovigilance",
-    headline: "Drug-safety case processing, with AI that reads every case first.",
+    headline:
+      "Drug-safety case processing, with AI that reads every case first.",
     description:
       "Case intake, coding and regulatory reporting for pharmacovigilance teams — AI pre-reads each case so reviewers never start from zero.",
     highlights: [
@@ -108,7 +109,8 @@ export const WORK = [
     n: "02",
     name: "LIMS",
     kind: "Lab software · GxP",
-    headline: "From sample registration to signed report — in one traceable flow.",
+    headline:
+      "From sample registration to signed report — in one traceable flow.",
     description:
       "Audit trails, e-signatures and instrument data built in for NABL-accredited diagnostic labs and pharma QC labs.",
     highlights: [
@@ -124,7 +126,8 @@ export const WORK = [
     n: "03",
     name: "Clinic booking",
     kind: "Mobile app · Healthcare",
-    headline: "Booking a doctor in three taps, with reminders patients actually see.",
+    headline:
+      "Booking a doctor in three taps, with reminders patients actually see.",
     description:
       "A patient app and clinic dashboard for appointment booking, queues and reminders — one Flutter codebase on iOS and Android.",
     highlights: [
@@ -156,35 +159,55 @@ export const INDUSTRIES = [
     n: "01",
     t: "Pharma & life sciences",
     d: "Pharmacovigilance, QA and regulated workflows that have to stand up in an inspection — not just a demo.",
-    builds: ["Drug-safety case systems", "QA & document workflows", "Validated web platforms"],
+    builds: [
+      "Drug-safety case systems",
+      "QA & document workflows",
+      "Validated web platforms",
+    ],
     tags: ["GxP", "21 CFR Part 11", "EU Annex 11"],
   },
   {
     n: "02",
     t: "Diagnostic & QC labs",
     d: "LIMS and lab tools that follow every sample from registration to a signed, traceable report.",
-    builds: ["LIMS & sample tracking", "Instrument integration", "Patient report portals"],
+    builds: [
+      "LIMS & sample tracking",
+      "Instrument integration",
+      "Patient report portals",
+    ],
     tags: ["NABL", "ISO 15189", "GAMP 5"],
   },
   {
     n: "03",
     t: "Healthcare",
     d: "Patient-facing apps and clinic tools that feel simple for patients and stay careful with their data.",
-    builds: ["Appointment & booking apps", "Clinic dashboards", "Care-team workflows"],
+    builds: [
+      "Appointment & booking apps",
+      "Clinic dashboards",
+      "Care-team workflows",
+    ],
     tags: ["Mobile", "Privacy by design", "Integrations"],
   },
   {
     n: "04",
     t: "SaaS & startups",
     d: "From a first MVP to a multi-tenant platform — without a rewrite in between.",
-    builds: ["MVPs that can grow", "Multi-tenant SaaS", "Billing, admin & analytics"],
+    builds: [
+      "MVPs that can grow",
+      "Multi-tenant SaaS",
+      "Billing, admin & analytics",
+    ],
     tags: ["Next.js", "PostgreSQL", "Cloud"],
   },
   {
     n: "05",
     t: "Retail & logistics",
     d: "Ordering, tracking and operations tools that stay fast on the busiest day of the year.",
-    builds: ["Order & delivery tracking", "Ops dashboards", "AI support agents"],
+    builds: [
+      "Order & delivery tracking",
+      "Ops dashboards",
+      "AI support agents",
+    ],
     tags: ["Real-time", "Mobile", "AI agents"],
   },
 ] as const;
@@ -216,7 +239,11 @@ export const PROCESS_STEPS = [
     t: "Launch & grow",
     d: "Deploy, validate, monitor — and keep improving after go-live.",
     time: "Ongoing",
-    out: ["Deploy & monitor", "Validation docs for GxP", "Continuous improvement"],
+    out: [
+      "Deploy & monitor",
+      "Validation docs for GxP",
+      "Continuous improvement",
+    ],
   },
 ] as const;
 
@@ -286,7 +313,12 @@ export const TRACKS = [
     mods: [
       { t: "LLM fundamentals", d: "Prompting, tokens, APIs", a: 1, b: 2 },
       { t: "Retrieval (RAG)", d: "Embeddings, vector search", a: 3, b: 5 },
-      { t: "Tool-using agents", d: "Function calls, memory, guardrails", a: 6, b: 8 },
+      {
+        t: "Tool-using agents",
+        d: "Function calls, memory, guardrails",
+        a: 6,
+        b: 8,
+      },
       { t: "Evaluate & deploy", d: "Evals, cost, monitoring", a: 9, b: 10 },
     ],
   },
@@ -302,9 +334,19 @@ export const TRACKS = [
     cap: "A complete validation pack — URS to summary report — for a real LIMS.",
     mods: [
       { t: "GxP & GAMP 5", d: "Categories, lifecycle, roles", a: 1, b: 2 },
-      { t: "URS, risk & RTM", d: "Requirements, FMEA, traceability", a: 3, b: 4 },
+      {
+        t: "URS, risk & RTM",
+        d: "Requirements, FMEA, traceability",
+        a: 3,
+        b: 4,
+      },
       { t: "IQ / OQ / PQ", d: "Protocols, scripts, execution", a: 5, b: 6 },
-      { t: "Part 11 & data integrity", d: "ALCOA+, audit trails, VSR", a: 7, b: 8 },
+      {
+        t: "Part 11 & data integrity",
+        d: "ALCOA+, audit trails, VSR",
+        a: 7,
+        b: 8,
+      },
     ],
   },
 ] as const;
@@ -346,9 +388,18 @@ export const CONTACT_BUDGETS = [
 ] as const;
 
 export const CONTACT_STEPS = [
-  { t: "We reply", d: "An engineer reads your brief and replies within one working day." },
-  { t: "30-minute call", d: "We talk through goals, users, risks and timelines." },
-  { t: "Written plan", d: "You get scope, milestones and an estimate in writing." },
+  {
+    t: "We reply",
+    d: "An engineer reads your brief and replies within one working day.",
+  },
+  {
+    t: "30-minute call",
+    d: "We talk through goals, users, risks and timelines.",
+  },
+  {
+    t: "Written plan",
+    d: "You get scope, milestones and an estimate in writing.",
+  },
 ] as const;
 
 export const BAR_HEIGHTS = [38, 52, 45, 66, 58, 72, 64, 80, 70, 88, 76, 94];

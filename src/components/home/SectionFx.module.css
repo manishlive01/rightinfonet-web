@@ -1,0 +1,253 @@
+/* Ambient section backgrounds. All motion is slow and faint on purpose: the section
+   content is the focus, the background only keeps the page from feeling static. */
+
+.wrap {
+  position: relative;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  /* soft top/bottom edges so neighbouring sections blend into each other */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* inside a panel with its own background: normal stacking, no edge fade */
+.inline {
+  z-index: auto;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.layer>span {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* ---------- lines: vertical rules with light sliding down a few of them (Work) ---------- */
+.lines {
+  background-image: repeating-linear-gradient(to right,
+      color-mix(in srgb, var(--fg) 5%, transparent) 0 1px,
+      transparent 1px 120px);
+}
+
+.beam {
+  top: 0;
+  width: 1px;
+  height: 22%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--acc) 55%, transparent), transparent);
+  animation: beamDown 15s linear infinite;
+}
+
+@keyframes beamDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(460%);
+  }
+}
+
+/* ---------- orbits: concentric rings slowly turning, a satellite on each (Industries) ---------- */
+.orbit {
+  right: calc(var(--s) / -2 + 6vw);
+  top: 50%;
+  width: var(--s);
+  height: var(--s);
+  margin-top: calc(var(--s) / -2);
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--fg) 7%, transparent);
+  animation: orbitSpin 90s linear infinite;
+}
+
+.orbit::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--acc) 70%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--acc) 40%, transparent);
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- flow: horizontal tracks with light travelling along them (Process) ---------- */
+.flow {
+  background-image: repeating-linear-gradient(to bottom,
+      transparent 0 179px,
+      color-mix(in srgb, var(--fg) 5%, transparent) 179px 180px,
+      transparent 180px 270px);
+}
+
+.streak {
+  left: 0;
+  width: 18%;
+  height: 1px;
+  margin-top: -1px;
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--acc) 50%, transparent), transparent);
+  animation: streakRight 18s linear infinite;
+}
+
+@keyframes streakRight {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(560%);
+  }
+}
+
+/* ---------- grid: square grid with a warm spotlight wandering across it (About) ---------- */
+.grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--fg) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--fg) 5%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.gridWarm {
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--acc) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--acc) 30%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
+  mask-image: radial-gradient(closest-side, #000, transparent);
+  -webkit-mask-size: 46% 60%;
+  mask-size: 46% 60%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: spotWander 40s ease-in-out infinite;
+}
+
+@keyframes spotWander {
+
+  0%,
+  100% {
+    -webkit-mask-position: 85% 15%;
+    mask-position: 85% 15%;
+  }
+
+  33% {
+    -webkit-mask-position: 20% 45%;
+    mask-position: 20% 45%;
+  }
+
+  66% {
+    -webkit-mask-position: 70% 90%;
+    mask-position: 70% 90%;
+  }
+}
+
+/* ---------- stars: scattered points twinkling out of sync (Academy) ---------- */
+.star {
+  width: 3px;
+  height: 3px;
+  margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, currentColor 60%, transparent);
+  opacity: 0.1;
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+.star:nth-child(3n) {
+  background: color-mix(in srgb, var(--acc) 80%, transparent);
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.08;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.2);
+  }
+}
+
+/* ---------- contours: topographic rings slowly expanding (Insights) ---------- */
+.rings {
+  left: 40%;
+  top: -40%;
+  width: 120%;
+  height: 180%;
+  background: repeating-radial-gradient(circle at 50% 50%,
+      transparent 0 46px,
+      color-mix(in srgb, var(--fg) 6%, transparent) 46px 47px);
+  -webkit-mask-image: radial-gradient(closest-side, #000 30%, transparent);
+  mask-image: radial-gradient(closest-side, #000 30%, transparent);
+  transform-origin: 50% 50%;
+  animation: ringsBreathe 24s ease-in-out infinite;
+}
+
+@keyframes ringsBreathe {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(6deg);
+  }
+}
+
+/* ---------- embers: tiny warm particles rising slowly and fading (Contact) ---------- */
+.ember {
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--acc);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--acc) 50%, transparent);
+  opacity: 0;
+  animation: emberRise 26s linear infinite;
+}
+
+@keyframes emberRise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+
+  15% {
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translate(14px, -450px);
+  }
+
+  85% {
+    opacity: 0.25;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-6px, -900px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer>span {
+    animation: none;
+  }
+}

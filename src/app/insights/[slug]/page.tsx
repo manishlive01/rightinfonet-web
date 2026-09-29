@@ -12,6 +12,7 @@ import styles from "@/components/insights/Insights.module.css";
 import { POSTS, formatDate, getPost, relatedPosts } from "@/content/insights";
 import JsonLd from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
+import { faqJsonLd } from "@/components/pages/seo";
 
 export const dynamicParams = false;
 
@@ -54,7 +55,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function InsightPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function InsightPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
@@ -82,11 +87,22 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         publisher: { "@id": `${siteConfig.url}/#organization` },
         isPartOf: { "@id": `${siteConfig.url}/insights#blog` },
       },
+      ...(post.faqs?.length ? [faqJsonLd(post.faqs, url)] : []),
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-          { "@type": "ListItem", position: 2, name: "Insights", item: `${siteConfig.url}/insights` },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Insights",
+            item: `${siteConfig.url}/insights`,
+          },
           { "@type": "ListItem", position: 3, name: post.title, item: url },
         ],
       },
@@ -116,7 +132,9 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
             </nav>
             <div className={`${styles.heroMeta} ${home.mono}`}>
               <span className={styles.catPill}>{post.category}</span>
-              <time dateTime={post.published}>{formatDate(post.published)}</time>
+              <time dateTime={post.published}>
+                {formatDate(post.published)}
+              </time>
               <span aria-hidden="true">&middot;</span>
               <span>{post.readingMinutes} min read</span>
             </div>
@@ -131,7 +149,8 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
                 <span className={styles.bylineSub}>
                   {post.updated ? (
                     <>
-                      Updated <time dateTime={updated}>{formatDate(updated)}</time>
+                      Updated{" "}
+                      <time dateTime={updated}>{formatDate(updated)}</time>
                     </>
                   ) : (
                     "Written by the team that builds these systems"
@@ -146,12 +165,19 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
 
           <div className={styles.layout}>
             <aside className={styles.aside}>
-              <Toc items={post.sections.map(({ id, title }) => ({ id, title }))} />
+              <Toc
+                items={[
+                  ...post.sections.map(({ id, title }) => ({ id, title })),
+                  ...(post.faqs?.length ? [{ id: "faq", title: "FAQ" }] : []),
+                ]}
+              />
             </aside>
 
             <div className={styles.content}>
               <div className={styles.takeaways}>
-                <span className={`${styles.takeawaysTitle} ${home.mono}`}>Key takeaways</span>
+                <span className={`${styles.takeawaysTitle} ${home.mono}`}>
+                  Key takeaways
+                </span>
                 <ul>
                   {post.takeaways.map((t) => (
                     <li key={t}>{t}</li>
@@ -167,15 +193,27 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
                     {section.body}
                   </section>
                 ))}
+                {post.faqs && post.faqs.length > 0 && (
+                  <section aria-labelledby="faq">
+                    <h2 id="faq">Frequently asked questions</h2>
+                    {post.faqs.map((f) => (
+                      <div key={f.q}>
+                        <h3>{f.q}</h3>
+                        <p>{f.a}</p>
+                      </div>
+                    ))}
+                  </section>
+                )}
               </div>
 
               <aside className={styles.endCta} aria-label="Work with us">
                 <p className={`${styles.endCtaTitle} ${home.serif}`}>
-                  Building something <span className={home.accentItalic}>like this?</span>
+                  Building something{" "}
+                  <span className={home.accentItalic}>like this?</span>
                 </p>
                 <p className={styles.endCtaText}>
-                  Tell us what you&rsquo;re working on. An engineer &mdash; not a sales rep &mdash;
-                  will reply within one working day.
+                  Tell us what you&rsquo;re working on. An engineer &mdash; not
+                  a sales rep &mdash; will reply within one working day.
                 </p>
                 <Link href="/#contact" className={home.btnPrimary}>
                   Start a project <span className={home.btnArrow}>&rarr;</span>

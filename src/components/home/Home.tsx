@@ -11,6 +11,7 @@ import InsightsTeaser from "./InsightsTeaser";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Tone from "./Tone";
+import SectionFx from "./SectionFx";
 
 export default function Home() {
   return (
@@ -21,19 +22,31 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <Tone kind="raised">
+        <Tone kind="raised" dots>
           <Services />
         </Tone>
-        <Work />
-        <Industries />
-        <Process />
+        <SectionFx kind="lines">
+          <Work />
+        </SectionFx>
+        <SectionFx kind="orbits">
+          <Industries />
+        </SectionFx>
+        <SectionFx kind="flow">
+          <Process />
+        </SectionFx>
         <Tone kind="raised">
-          <About />
+          <SectionFx kind="grid">
+            <About />
+          </SectionFx>
         </Tone>
         <AcademyTeaser />
-        <InsightsTeaser />
+        <SectionFx kind="contours">
+          <InsightsTeaser />
+        </SectionFx>
         <Tone kind="ember">
-          <Contact />
+          <SectionFx kind="embers">
+            <Contact />
+          </SectionFx>
         </Tone>
       </main>
       <Footer />

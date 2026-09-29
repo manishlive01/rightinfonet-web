@@ -9,6 +9,8 @@ export type PostSection = {
   body: ReactNode;
 };
 
+export type Faq = { q: string; a: string };
+
 export type Post = {
   slug: string;
   /** the on-page H1 */
@@ -29,4 +31,6 @@ export type Post = {
   takeaways: string[];
   intro: ReactNode;
   sections: PostSection[];
+  /** rendered after the article and emitted as FAQPage structured data; plain-text answers */
+  faqs?: Faq[];
 };

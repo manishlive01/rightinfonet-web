@@ -10,6 +10,7 @@ export type HeroIndexItem = { href: string; n: string; label: string };
 /** Inner-page hero: breadcrumb, kicker, animated H1, lead and an optional jump list. */
 export default function PageHero({
   crumb,
+  parent,
   kicker,
   title,
   lead,
@@ -17,6 +18,8 @@ export default function PageHero({
   children,
 }: {
   crumb: string;
+  /** optional breadcrumb level between Home and the current page */
+  parent?: { name: string; path: string };
   kicker: string;
   title: SplitPart[];
   lead: ReactNode;
@@ -33,6 +36,11 @@ export default function PageHero({
           <li>
             <Link href="/">Home</Link>
           </li>
+          {parent && (
+            <li>
+              <Link href={parent.path}>{parent.name}</Link>
+            </li>
+          )}
           <li aria-current="page">{crumb}</li>
         </ol>
       </nav>
@@ -56,13 +64,22 @@ export default function PageHero({
         </div>
 
         {index && (
-          <Reveal as="nav" className={styles.heroIndex} aria-label="On this page" delay={0.35}>
-            <span className={`${styles.heroIndexLabel} ${home.mono}`}>On this page</span>
+          <Reveal
+            as="nav"
+            className={styles.heroIndex}
+            aria-label="On this page"
+            delay={0.35}
+          >
+            <span className={`${styles.heroIndexLabel} ${home.mono}`}>
+              On this page
+            </span>
             <ol>
               {index.map((item) => (
                 <li key={item.href}>
                   <a href={item.href} className={styles.heroIndexLink}>
-                    <span className={`${styles.heroIndexNum} ${home.mono}`}>{item.n}</span>
+                    <span className={`${styles.heroIndexNum} ${home.mono}`}>
+                      {item.n}
+                    </span>
                     <span>{item.label}</span>
                     <span className={styles.heroIndexArrow} aria-hidden="true">
                       &darr;

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 import JsonLd from "@/lib/json-ld";
+import { areaServedJsonLd, postalAddressJsonLd } from "@/components/pages/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -69,13 +70,12 @@ export const metadata: Metadata = {
   },
 };
 
-const { locality, region, country } = siteConfig.address;
-
 const siteJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      // ProfessionalService is a LocalBusiness subtype, which is what local search reads.
+      "@type": ["Organization", "ProfessionalService"],
       "@id": `${siteConfig.url}/#organization`,
       name: siteConfig.name,
       url: siteConfig.url,
@@ -92,17 +92,25 @@ const siteJsonLd = {
       image: { "@id": `${siteConfig.url}/#logo` },
       email: siteConfig.email,
       ...(siteConfig.phone && { telephone: siteConfig.phone }),
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: country,
-        ...(locality && { addressLocality: locality }),
-        ...(region && { addressRegion: region }),
-      },
+      address: postalAddressJsonLd(),
+      areaServed: areaServedJsonLd(),
+      knowsAbout: [
+        "Mobile app development",
+        "Flutter",
+        "Web application development",
+        "AI agents",
+        "LIMS",
+        "Pharmacovigilance software",
+        "GxP computer system validation",
+        "Software training",
+      ],
+      department: { "@id": `${siteConfig.url}/academy#academy` },
       contactPoint: [
         {
           "@type": "ContactPoint",
           contactType: "sales",
           email: siteConfig.email,
+          ...(siteConfig.phone && { telephone: siteConfig.phone }),
           availableLanguage: ["English", "Hindi"],
         },
         {

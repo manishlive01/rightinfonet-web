@@ -36,7 +36,7 @@ const jsonLd = {
           "@type": "Service",
           name: s.t,
           description: s.d,
-          url: `${siteConfig.url}/services#${SERVICE_DETAILS[i].slug}`,
+          url: `${siteConfig.url}/services/${SERVICE_DETAILS[i].slug}`,
           provider: { "@id": `${siteConfig.url}/#organization` },
           areaServed: "IN",
         },
@@ -51,7 +51,10 @@ export default function ServicesPage() {
       <PageHero
         crumb="Services"
         kicker="Services"
-        title={["Software, ", { text: "end to end.", className: home.accentItalic }]}
+        title={[
+          "Software, ",
+          { text: "end to end.", className: home.accentItalic },
+        ]}
         lead="Product design, web platforms, mobile apps, AI agents and regulated software — five disciplines, one senior team, from the first sketch to production and beyond."
         index={SERVICES.map((s, i) => ({
           href: `#${SERVICE_DETAILS[i].slug}`,
@@ -64,7 +67,10 @@ export default function ServicesPage() {
         <Services bare />
       </Tone>
 
-      <section className={styles.sectionPad} aria-labelledby="services-detail-title">
+      <section
+        className={styles.sectionPad}
+        aria-labelledby="services-detail-title"
+      >
         <SectionHeading
           kicker="In detail"
           id="services-detail-title"
@@ -85,7 +91,10 @@ export default function ServicesPage() {
                   <span className={`${styles.detailNum} ${home.mono}`}>
                     {service.n} / 0{SERVICES.length}
                   </span>
-                  <h3 id={`${detail.slug}-title`} className={`${styles.detailTitle} ${home.serif}`}>
+                  <h3
+                    id={`${detail.slug}-title`}
+                    className={`${styles.detailTitle} ${home.serif}`}
+                  >
                     {service.t}
                   </h3>
                   <p className={styles.detailDesc}>{service.d}</p>
@@ -93,16 +102,26 @@ export default function ServicesPage() {
                     <span className={styles.chipDot} />
                     {detail.timeline}
                   </span>
+                  <Link
+                    href={`/services/${detail.slug}`}
+                    className={styles.related}
+                  >
+                    Full details: {service.t}{" "}
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
                   {detail.related && (
                     <Link href={detail.related.href} className={styles.related}>
-                      Read: {detail.related.label} <span aria-hidden="true">&rarr;</span>
+                      Read: {detail.related.label}{" "}
+                      <span aria-hidden="true">&rarr;</span>
                     </Link>
                   )}
                 </Reveal>
 
                 <div className={styles.detailCards}>
                   <Reveal className={styles.panel} delay={0.05}>
-                    <span className={`${styles.monoLabel} ${home.mono}`}>A good fit if</span>
+                    <span className={`${styles.monoLabel} ${home.mono}`}>
+                      A good fit if
+                    </span>
                     <ul className={styles.checks}>
                       {detail.fit.map((f) => (
                         <li key={f}>{f}</li>
@@ -110,23 +129,30 @@ export default function ServicesPage() {
                     </ul>
                   </Reveal>
                   <Reveal className={styles.panel} delay={0.12}>
-                    <span className={`${styles.monoLabel} ${home.mono}`}>What you get</span>
+                    <span className={`${styles.monoLabel} ${home.mono}`}>
+                      What you get
+                    </span>
                     <ul className={styles.dots}>
                       {service.get.map((g) => (
                         <li key={g}>{g}</li>
                       ))}
                     </ul>
                   </Reveal>
-                  <Reveal className={`${styles.panel} ${styles.panelWide}`} delay={0.18}>
+                  <Reveal
+                    className={`${styles.panel} ${styles.panelWide}`}
+                    delay={0.18}
+                  >
                     <span className={`${styles.monoLabel} ${home.mono}`}>
                       Tools &amp; standards
                     </span>
                     <ul className={home.tagRow}>
-                      {[...new Set([...service.tags, ...detail.stack])].map((tag) => (
-                        <li key={tag} className={home.tagPill}>
-                          {tag}
-                        </li>
-                      ))}
+                      {[...new Set([...service.tags, ...detail.stack])].map(
+                        (tag) => (
+                          <li key={tag} className={home.tagPill}>
+                            {tag}
+                          </li>
+                        ),
+                      )}
                     </ul>
                   </Reveal>
                 </div>
@@ -145,7 +171,12 @@ export default function ServicesPage() {
         />
         <div className={styles.cards3}>
           {ENGAGEMENTS.map((e, i) => (
-            <Reveal key={e.n} as="article" className={styles.card} delay={i * 0.08}>
+            <Reveal
+              key={e.n}
+              as="article"
+              className={styles.card}
+              delay={i * 0.08}
+            >
               <span className={`${styles.cardNum} ${home.mono}`}>{e.n}</span>
               <h3 className={`${styles.cardTitle} ${home.serif}`}>{e.t}</h3>
               <p className={styles.cardText}>{e.d}</p>

@@ -76,7 +76,13 @@ export default function Contact() {
     }
     setOpen(true);
     // move focus into the form once it has started to unfold, without jumping the page
-    setTimeout(() => formRef.current?.querySelector<HTMLElement>("input")?.focus({ preventScroll: true }), 450);
+    setTimeout(
+      () =>
+        formRef.current
+          ?.querySelector<HTMLElement>("input")
+          ?.focus({ preventScroll: true }),
+      450,
+    );
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -93,8 +99,10 @@ export default function Contact() {
 
     const next: Errors = {};
     if (!name) next.name = "Please tell us your name.";
-    if (!EMAIL_RE.test(email)) next.email = "Please enter a valid email address.";
-    if (message.length < 10) next.message = "A line or two about the project helps us reply properly.";
+    if (!EMAIL_RE.test(email))
+      next.email = "Please enter a valid email address.";
+    if (message.length < 10)
+      next.message = "A line or two about the project helps us reply properly.";
     setErrors(next);
 
     const firstInvalid = Object.keys(next)[0];
@@ -121,7 +129,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className={styles.contact} aria-labelledby="contact-title">
+    <section
+      id="contact"
+      className={styles.contact}
+      aria-labelledby="contact-title"
+    >
       <div className={styles.glow} aria-hidden="true" />
 
       <div className={styles.head}>
@@ -133,33 +145,56 @@ export default function Contact() {
           as="h2"
           id="contact-title"
           className={`${styles.headline} ${home.serif}`}
-          parts={["Got an idea? ", { text: "Let’s ship it.", className: home.accentItalic }]}
+          parts={[
+            "Got an idea? ",
+            { text: "Let’s ship it.", className: home.accentItalic },
+          ]}
         />
       </div>
 
       <div className={styles.grid}>
         <Reveal className={styles.info}>
           <p className={styles.lead}>
-            Tell us what you&rsquo;re building. You&rsquo;ll hear back from an engineer &mdash;
-            not a sales rep &mdash; within one working day.
+            Tell us what you&rsquo;re building. You&rsquo;ll hear back from an
+            engineer &mdash; not a sales rep &mdash; within one working day.
           </p>
-          <a href={`mailto:${siteConfig.email}`} className={`${styles.mail} ${home.serif}`}>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className={`${styles.mail} ${home.serif}`}
+          >
             {siteConfig.email}
           </a>
           <p className={styles.support}>
             Already a client? Write to{" "}
-            <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>
+            <a href={`mailto:${siteConfig.supportEmail}`}>
+              {siteConfig.supportEmail}
+            </a>
           </p>
           <SocialLinks />
           {siteConfig.phone && (
-            <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className={styles.phone}>
+            <a
+              href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+              className={styles.phone}
+            >
               {siteConfig.phone}
+            </a>
+          )}
+          {siteConfig.whatsapp && (
+            <a
+              href={`https://wa.me/${siteConfig.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.phone}
+            >
+              WhatsApp &rarr;
             </a>
           )}
           <ol className={styles.steps}>
             {CONTACT_STEPS.map((step, i) => (
               <li key={step.t} className={styles.step}>
-                <span className={`${styles.stepNum} ${home.mono}`}>0{i + 1}</span>
+                <span className={`${styles.stepNum} ${home.mono}`}>
+                  0{i + 1}
+                </span>
                 <span>
                   <span className={styles.stepTitle}>{step.t}</span>
                   <span className={styles.stepDesc}>{step.d}</span>
@@ -169,7 +204,10 @@ export default function Contact() {
           </ol>
         </Reveal>
 
-        <Reveal className={`${styles.card} ${open ? styles.cardOpen : ""}`} delay={0.1}>
+        <Reveal
+          className={`${styles.card} ${open ? styles.cardOpen : ""}`}
+          delay={0.1}
+        >
           <div className={styles.intro} inert={open}>
             <div className={styles.collapse}>
               <div className={styles.introInner}>
@@ -178,16 +216,24 @@ export default function Contact() {
                   Takes about two minutes
                 </span>
                 <p className={`${styles.introTitle} ${home.serif}`}>
-                  Have something in mind? <span className={home.accentItalic}>Tell us about it.</span>
+                  Have something in mind?{" "}
+                  <span className={home.accentItalic}>Tell us about it.</span>
                 </p>
                 <p className={styles.introText}>
-                  Pick what you need, add a line about the project, and an engineer gets back to
-                  you. No long forms, no sales pitch.
+                  Pick what you need, add a line about the project, and an
+                  engineer gets back to you. No long forms, no sales pitch.
                 </p>
-                <ul className={styles.ghostChips} aria-label="Start with a topic">
+                <ul
+                  className={styles.ghostChips}
+                  aria-label="Start with a topic"
+                >
                   {CONTACT_INTERESTS.map((item, i) => (
                     <li key={item} style={{ "--k": i } as CSSProperties}>
-                      <button type="button" className={styles.ghostChip} onClick={() => openForm(item)}>
+                      <button
+                        type="button"
+                        className={styles.ghostChip}
+                        onClick={() => openForm(item)}
+                      >
                         {item}
                       </button>
                     </li>
@@ -211,81 +257,116 @@ export default function Contact() {
 
           <div id="contact-panel" className={styles.panel} inert={!open}>
             <div className={styles.collapse}>
-          {sent && (
-            <div className={styles.sent} role="status">
-              <span className={styles.sentIcon} aria-hidden="true">
-                &#10003;
-              </span>
-              <h3 className={`${styles.sentTitle} ${home.serif}`}>Almost there.</h3>
-              <p className={styles.sentText}>
-                Your email app should have opened with your message ready to send. If it
-                didn&rsquo;t, write to us at{" "}
-                <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
-              </p>
-              <button type="button" className={styles.reset} onClick={() => setSent(false)}>
-                Edit my message
-              </button>
-            </div>
-          )}
-          {/* stays mounted while hidden so "Edit my message" keeps what was typed */}
-          <form
-            ref={formRef}
-            className={styles.form}
-            hidden={sent}
-            noValidate
-            onSubmit={onSubmit}
-            onInput={(e) => clearError(e.target)}
-          >
-              <fieldset className={styles.chips}>
-                <legend className={`${styles.legend} ${home.mono}`}>I&rsquo;m interested in</legend>
-                {CONTACT_INTERESTS.map((item) => (
-                  <label key={item} className={styles.chip}>
-                    <input type="checkbox" name="interest" value={item} className={styles.chipInput} />
-                    <span className={styles.chipLabel}>{item}</span>
-                  </label>
-                ))}
-              </fieldset>
-
-              <div className={styles.fields}>
-                <Field name="name" label="Your name" autoComplete="name" error={errors.name} required />
-                <Field
-                  name="email"
-                  label="Work email"
-                  type="email"
-                  autoComplete="email"
-                  error={errors.email}
-                  required
-                />
-                <Field name="company" label="Company (optional)" autoComplete="organization" />
-                <Field
-                  name="message"
-                  label="Tell us about the project"
-                  error={errors.message}
-                  multiline
-                  required
-                />
-              </div>
-
-              <fieldset className={styles.chips}>
-                <legend className={`${styles.legend} ${home.mono}`}>Budget</legend>
-                {CONTACT_BUDGETS.map((item) => (
-                  <label key={item} className={styles.chip}>
-                    <input type="radio" name="budget" value={item} className={styles.chipInput} />
-                    <span className={styles.chipLabel}>{item}</span>
-                  </label>
-                ))}
-              </fieldset>
-
-              <div className={styles.submitRow}>
-                <button type="submit" className={styles.submit}>
-                  <span>Send enquiry</span>
-                  <span className={styles.submitIcon} aria-hidden="true">
-                    &rarr;
+              {sent && (
+                <div className={styles.sent} role="status">
+                  <span className={styles.sentIcon} aria-hidden="true">
+                    &#10003;
                   </span>
-                </button>
-                <span className={styles.hint}>Opens your email app with everything filled in.</span>
-              </div>
-          </form>
+                  <h3 className={`${styles.sentTitle} ${home.serif}`}>
+                    Almost there.
+                  </h3>
+                  <p className={styles.sentText}>
+                    Your email app should have opened with your message ready to
+                    send. If it didn&rsquo;t, write to us at{" "}
+                    <a href={`mailto:${siteConfig.email}`}>
+                      {siteConfig.email}
+                    </a>
+                    .
+                  </p>
+                  <button
+                    type="button"
+                    className={styles.reset}
+                    onClick={() => setSent(false)}
+                  >
+                    Edit my message
+                  </button>
+                </div>
+              )}
+              {/* stays mounted while hidden so "Edit my message" keeps what was typed */}
+              <form
+                ref={formRef}
+                className={styles.form}
+                hidden={sent}
+                noValidate
+                onSubmit={onSubmit}
+                onInput={(e) => clearError(e.target)}
+              >
+                <fieldset className={styles.chips}>
+                  <legend className={`${styles.legend} ${home.mono}`}>
+                    I&rsquo;m interested in
+                  </legend>
+                  {CONTACT_INTERESTS.map((item) => (
+                    <label key={item} className={styles.chip}>
+                      <input
+                        type="checkbox"
+                        name="interest"
+                        value={item}
+                        className={styles.chipInput}
+                      />
+                      <span className={styles.chipLabel}>{item}</span>
+                    </label>
+                  ))}
+                </fieldset>
+
+                <div className={styles.fields}>
+                  <Field
+                    name="name"
+                    label="Your name"
+                    autoComplete="name"
+                    error={errors.name}
+                    required
+                  />
+                  <Field
+                    name="email"
+                    label="Work email"
+                    type="email"
+                    autoComplete="email"
+                    error={errors.email}
+                    required
+                  />
+                  <Field
+                    name="company"
+                    label="Company (optional)"
+                    autoComplete="organization"
+                  />
+                  <Field
+                    name="message"
+                    label="Tell us about the project"
+                    error={errors.message}
+                    multiline
+                    required
+                  />
+                </div>
+
+                <fieldset className={styles.chips}>
+                  <legend className={`${styles.legend} ${home.mono}`}>
+                    Budget
+                  </legend>
+                  {CONTACT_BUDGETS.map((item) => (
+                    <label key={item} className={styles.chip}>
+                      <input
+                        type="radio"
+                        name="budget"
+                        value={item}
+                        className={styles.chipInput}
+                      />
+                      <span className={styles.chipLabel}>{item}</span>
+                    </label>
+                  ))}
+                </fieldset>
+
+                <div className={styles.submitRow}>
+                  <button type="submit" className={styles.submit}>
+                    <span>Send enquiry</span>
+                    <span className={styles.submitIcon} aria-hidden="true">
+                      &rarr;
+                    </span>
+                  </button>
+                  <span className={styles.hint}>
+                    Opens your email app with everything filled in.
+                  </span>
+                </div>
+              </form>
             </div>
           </div>
         </Reveal>

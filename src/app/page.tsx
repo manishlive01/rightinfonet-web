@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
 import JsonLd from "@/lib/json-ld";
+import { areaServedJsonLd, postalAddressJsonLd } from "@/components/pages/seo";
 import Home from "@/components/home/Home";
 import { INDUSTRIES, SERVICES } from "@/components/home/data";
 
@@ -23,8 +24,9 @@ const serviceJsonLd = {
   image: `${siteConfig.url}/brand/logo.png`,
   email: siteConfig.email,
   parentOrganization: { "@id": `${siteConfig.url}/#organization` },
-  address: { "@type": "PostalAddress", addressCountry: siteConfig.address.country },
-  areaServed: "Worldwide",
+  ...(siteConfig.phone && { telephone: siteConfig.phone }),
+  address: postalAddressJsonLd(),
+  areaServed: areaServedJsonLd(),
   knowsAbout: [
     "Custom software development",
     "Web application development",
@@ -34,7 +36,10 @@ const serviceJsonLd = {
     "Pharmacovigilance software",
     "GxP computer system validation",
   ],
-  audience: INDUSTRIES.map((i) => ({ "@type": "BusinessAudience", audienceType: i.t })),
+  audience: INDUSTRIES.map((i) => ({
+    "@type": "BusinessAudience",
+    audienceType: i.t,
+  })),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Software development services",

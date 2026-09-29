@@ -18,12 +18,45 @@ const COMPANY = [
   { href: "/#contact", label: "Contact" },
 ];
 
+const AREAS = [
+  {
+    href: "/mobile-app-development-panchkula",
+    label: "App development, Panchkula",
+  },
+  {
+    href: "/mobile-app-development-chandigarh",
+    label: "App development, Chandigarh",
+  },
+  { href: "/mobile-app-development-mohali", label: "App development, Mohali" },
+  {
+    href: "/web-development-company-panchkula",
+    label: "Web development, Panchkula",
+  },
+  {
+    href: "/web-development-company-chandigarh",
+    label: "Web development, Chandigarh",
+  },
+  {
+    href: "/software-development-company-mohali",
+    label: "Software company, Mohali",
+  },
+  {
+    href: "/ai-development-company-chandigarh",
+    label: "AI development, Chandigarh",
+  },
+  { href: "/hire-flutter-developers-india", label: "Hire Flutter developers" },
+  { href: "/gxp-software-development-india", label: "GxP software, India" },
+];
+
+const { street, locality, region, postalCode } = siteConfig.address;
+
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.cta}>
         <p className={`${styles.ctaText} ${home.serif}`}>
-          Have a product in mind? <span className={home.accentItalic}>Let&rsquo;s talk.</span>
+          Have a product in mind?{" "}
+          <span className={home.accentItalic}>Let&rsquo;s talk.</span>
         </p>
         <Link href="/#contact" className={styles.ctaBtn}>
           Start a project <span aria-hidden="true">&rarr;</span>
@@ -34,7 +67,11 @@ export default function Footer() {
         <nav className={styles.col} aria-label="Services">
           <span className={`${styles.colLabel} ${home.mono}`}>Services</span>
           {SERVICES.map((s, i) => (
-            <Link key={s.n} href={`/services#${SERVICE_DETAILS[i].slug}`} className={styles.link}>
+            <Link
+              key={s.n}
+              href={`/services/${SERVICE_DETAILS[i].slug}`}
+              className={styles.link}
+            >
               {s.t}
             </Link>
           ))}
@@ -52,24 +89,77 @@ export default function Footer() {
           <Link href="/academy" className={styles.link}>
             Tracks &amp; syllabus
           </Link>
+          <Link
+            href="/academy/full-stack-web-development-course"
+            className={styles.link}
+          >
+            Full-stack course
+          </Link>
+          <Link
+            href="/academy/flutter-app-development-course"
+            className={styles.link}
+          >
+            Flutter course
+          </Link>
+          <Link href="/academy/ai-agents-course" className={styles.link}>
+            AI agents course
+          </Link>
+          <Link
+            href="/academy/industrial-training-chandigarh"
+            className={styles.link}
+          >
+            Industrial training
+          </Link>
           <Link href="/#contact" className={styles.link}>
             Apply
           </Link>
         </nav>
+        <nav className={styles.col} aria-label="Areas we serve">
+          <span className={`${styles.colLabel} ${home.mono}`}>
+            Areas we serve
+          </span>
+          {AREAS.map((l) => (
+            <Link key={l.href} href={l.href} className={styles.link}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
         <div className={styles.col}>
           <span className={`${styles.colLabel} ${home.mono}`}>Contact</span>
-          <a href={`mailto:${siteConfig.email}`} className={styles.link}>
-            {siteConfig.email}
-          </a>
           <a href={`mailto:${siteConfig.supportEmail}`} className={styles.link}>
             {siteConfig.supportEmail}
           </a>
           {siteConfig.phone && (
-            <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className={styles.link}>
+            <a
+              href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+              className={styles.link}
+            >
               {siteConfig.phone}
             </a>
           )}
-          <span className={styles.muted}>India &middot; Working worldwide</span>
+          {siteConfig.whatsapp && (
+            <a
+              href={`https://wa.me/${siteConfig.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              WhatsApp us
+            </a>
+          )}
+          <address className={styles.muted} style={{ fontStyle: "normal" }}>
+            {[
+              street,
+              [locality, region].filter(Boolean).join(", "),
+              postalCode,
+              "India",
+            ]
+              .filter(Boolean)
+              .join(" · ")}
+            <br />
+            Serving Panchkula, Mohali &amp; Chandigarh &middot; Working
+            worldwide
+          </address>
           <SocialLinks className={styles.social} />
           <span className={`${styles.clock} ${home.mono}`}>
             <span className={styles.clockDot} aria-hidden="true" />

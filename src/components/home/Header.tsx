@@ -91,7 +91,9 @@ export default function Header() {
   const current =
     pathname === "/"
       ? sectionId
-      : NAV_LINKS.find((l) => pathname === l.href || pathname.startsWith(`${l.href}/`))?.id;
+      : NAV_LINKS.find(
+          (l) => pathname === l.href || pathname.startsWith(`${l.href}/`),
+        )?.id;
   const close = () => setOpen(false);
 
   return (
@@ -102,7 +104,12 @@ export default function Header() {
     >
       <span ref={progressRef} className={styles.progress} aria-hidden="true" />
       <div className={styles.bar}>
-        <Link href="/#top" className={styles.brand} aria-label={`${siteConfig.name} — home`} onClick={close}>
+        <Link
+          href="/#top"
+          className={styles.brand}
+          aria-label={`${siteConfig.name} — home`}
+          onClick={close}
+        >
           <Logo className={styles.logo} />
         </Link>
 
@@ -117,7 +124,6 @@ export default function Header() {
                 aria-current={isActive ? "location" : undefined}
               >
                 <RollText text={link.label} />
-                {"badge" in link && <span className={styles.badge}>{link.badge}</span>}
               </Link>
             );
           })}
@@ -139,8 +145,13 @@ export default function Header() {
             aria-controls="site-menu"
             onClick={() => setOpen((o) => !o)}
           >
-            <span className={styles.srOnly}>{open ? "Close menu" : "Open menu"}</span>
-            <span className={`${styles.burger} ${open ? styles.burgerOpen : ""}`} aria-hidden="true">
+            <span className={styles.srOnly}>
+              {open ? "Close menu" : "Open menu"}
+            </span>
+            <span
+              className={`${styles.burger} ${open ? styles.burgerOpen : ""}`}
+              aria-hidden="true"
+            >
               <span />
               <span />
             </span>
@@ -148,7 +159,11 @@ export default function Header() {
         </div>
       </div>
 
-      <div id="site-menu" className={`${styles.sheet} ${open ? styles.sheetOpen : ""}`} inert={!open}>
+      <div
+        id="site-menu"
+        className={`${styles.sheet} ${open ? styles.sheetOpen : ""}`}
+        inert={!open}
+      >
         <nav aria-label="Mobile" className={styles.sheetNav}>
           {NAV_LINKS.map((link, i) => (
             <Link
@@ -160,7 +175,6 @@ export default function Header() {
             >
               <span className={styles.sheetNum}>0{i + 1}</span>
               <span className={styles.sheetLabel}>{link.label}</span>
-              {"badge" in link && <span className={styles.badge}>{link.badge}</span>}
             </Link>
           ))}
         </nav>
