@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 import JsonLd from "@/lib/json-ld";
+import FloatingContact from "@/components/FloatingContact";
 import { areaServedJsonLd, postalAddressJsonLd } from "@/components/pages/seo";
 import "./globals.css";
 
@@ -153,6 +154,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <JsonLd data={siteJsonLd} />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );
