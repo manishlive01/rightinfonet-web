@@ -3,6 +3,8 @@ import type { Landing } from "./types";
 const ACADEMY = { name: "Academy", path: "/academy" };
 const CTA = "Apply for the next cohort";
 
+
+
 /** Academy course pages and city training pages, served under /academy/…. */
 export const ACADEMY_PAGES: Landing[] = [
   // ─── Course pages ────────────────────────────────────────────────
