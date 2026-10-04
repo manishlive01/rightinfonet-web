@@ -1,7 +1,15 @@
 {
   "task_id": "task-seo-complete",
   "task_description": "Complete every [Code] item and the code half of every [Dono] item in SEO-CHECKLIST.md for the Bright Infonet Next.js 16 site (technical SEO, scheduled publishing, owner-gated trust/analytics components, 14 new landing pages, 23 scheduled articles + updates, calculator, lead magnet, llms.txt), then tick only verified items and write an owner to-do report. Work in place, never commit/push. Full plan: .agents/tasks/seo-plan-impl.md.",
-  "status": "pending",
-  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005", "FEAT-006", "FEAT-007"],
+  "status": "completed",
+  "feature_order": [
+    "FEAT-001",
+    "FEAT-002",
+    "FEAT-003",
+    "FEAT-004",
+    "FEAT-005",
+    "FEAT-006",
+    "FEAT-007"
+  ],
   "blocked_reason": null
 }

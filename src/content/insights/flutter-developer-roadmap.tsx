@@ -14,6 +14,7 @@ export const flutterDeveloperRoadmap: Post = {
   pillar: "academy",
   cover: "phones",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "Flutter developer roadmap 2026",
@@ -310,7 +311,15 @@ export const flutterDeveloperRoadmap: Post = {
           <p>
             In interviews, expect to walk through your code: why you structured
             state the way you did, how you handled errors, and what you’d
-            improve. Practise saying it out loud.
+            improve. Practise saying it out loud. Our{" "}
+            <Link href="/insights/skills-for-placement-btech-bca-mca">
+              placement skills guide
+            </Link>{" "}
+            covers the rest of the interview checklist, and{" "}
+            <Link href="/insights/software-developer-career-chandigarh-tricity">
+              software developer careers in the Tricity
+            </Link>{" "}
+            shows where mobile roles sit among the jobs companies hire for.
           </p>
         </>
       ),

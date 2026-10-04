@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
 export const mvpDevelopmentCostTimeline: Post = {
@@ -14,6 +15,7 @@ export const mvpDevelopmentCostTimeline: Post = {
   pillar: "cost",
   cover: "phones",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "MVP development cost",
@@ -176,7 +178,9 @@ export const mvpDevelopmentCostTimeline: Post = {
             Phases overlap: design continues during the build, and testing runs
             throughout. A very small MVP can launch in 6–8 weeks; one with
             payments, several roles or compliance needs often takes 14 weeks or
-            more.
+            more. If your scope is tight, our{" "}
+            <PostLink slug="mvp-in-8-weeks">8-week MVP plan</PostLink> breaks
+            the shorter route down week by week.
           </p>
         </>
       ),
@@ -219,7 +223,11 @@ export const mvpDevelopmentCostTimeline: Post = {
             <Link href="/insights/app-development-cost-india">
               how much app development costs in India
             </Link>
-            .
+            , or use our{" "}
+            <Link href="/tools/app-development-cost-calculator">
+              cost calculator
+            </Link>{" "}
+            to see which MVP range fits your idea.
           </p>
         </>
       ),

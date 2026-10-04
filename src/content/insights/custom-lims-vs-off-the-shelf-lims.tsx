@@ -8,7 +8,7 @@ export const customLimsVsOffTheShelfLims: Post = {
   title: "Custom LIMS vs off-the-shelf LIMS: how to choose for your lab",
   metaTitle: "Custom LIMS vs Off-the-Shelf LIMS: How to Choose",
   description:
-    "Custom LIMS vs off-the-shelf LIMS compared: process fit, time to go-live, validation effort, upgrades, ownership and cost of ownership, plus a decision checklist.",
+    "Custom LIMS vs off-the-shelf LIMS compared: process fit, time to go-live, validation effort, upgrades, ownership and running costs, plus a decision checklist.",
   excerpt:
     "A side-by-side comparison of custom and off-the-shelf LIMS: fit, validation, upgrades, ownership and running costs, and the questions that usually decide it.",
   category: "Regulated software",
@@ -19,7 +19,7 @@ export const customLimsVsOffTheShelfLims: Post = {
   },
   cover: "audit",
   published: "2026-10-23",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "custom LIMS vs off-the-shelf",
     "custom LIMS development",
@@ -151,8 +151,8 @@ export const customLimsVsOffTheShelfLims: Post = {
             ]}
           />
           <p>
-            In those cases, building custom software may spend money on
-            problems a product has already solved.
+            In those cases, building custom software may spend money on problems
+            a product has already solved.
           </p>
         </>
       ),
@@ -187,9 +187,7 @@ export const customLimsVsOffTheShelfLims: Post = {
       title: "Hybrid approaches",
       body: (
         <>
-          <p>
-            The choice is rarely all or nothing. Common middle paths are:
-          </p>
+          <p>The choice is rarely all or nothing. Common middle paths are:</p>
           <ul>
             <li>
               A configured product for the core sample lifecycle, with custom
@@ -207,6 +205,33 @@ export const customLimsVsOffTheShelfLims: Post = {
           <p>
             Each part still gets the validation its category and risk require,
             tied together by one traceability matrix.
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "validation-compared",
+      title: "How the validation work compares",
+      body: (
+        <>
+          <p>
+            With an off-the-shelf LIMS, much of the functional testing can be
+            leveraged from the supplier after an assessment. Your effort goes
+            into the configuration specification, master data, interfaces and
+            testing your own workflows, and then into every upgrade: release
+            notes reviewed, impact assessed, regression tests repeated.
+          </p>
+          <p>
+            With a custom LIMS, you or your build partner own the whole life
+            cycle: functional and design specifications, code review, developer
+            and integration testing, then the same user testing. The work is
+            front-loaded, but later changes happen only when you decide, and the
+            validation evidence can be produced sprint by sprint alongside the
+            code instead of in one block at the end.
+          </p>
+          <p>
+            Either way, the audit trail, signatures, access control and release
+            calculations are high-risk functions and get scripted tests.
           </p>
         </>
       ),
@@ -241,6 +266,66 @@ export const customLimsVsOffTheShelfLims: Post = {
       ),
     },
     {
+      id: "questions-to-ask",
+      title: "Questions to ask each type of supplier",
+      body: (
+        <>
+          <h3>Off-the-shelf LIMS vendors</h3>
+          <ul>
+            <li>
+              Which of our URS requirements are met by standard configuration,
+              which need scripting, and which are not met at all?
+            </li>
+            <li>
+              How often do you release new versions, how long is each version
+              supported, and what does an upgrade usually involve for customers
+              in regulated labs?
+            </li>
+            <li>
+              What validation documentation do you supply, and can we audit your
+              quality system and development process?
+            </li>
+            <li>
+              How are our data exported if we leave, and in which formats, with
+              audit trails included?
+            </li>
+            <li>
+              For SaaS: where is the data hosted, who can access it, and how are
+              releases communicated before they reach our tenant?
+            </li>
+          </ul>
+          <h3>Custom LIMS developers</h3>
+          <ul>
+            <li>
+              Have you built GxP systems before, and can you show the kind of
+              validation documents you produce?
+            </li>
+            <li>
+              How do you keep requirements, design, code and tests traceable
+              during sprints?
+            </li>
+            <li>
+              Who owns the source code and the data model, and how is source
+              access handled if the relationship ends?
+            </li>
+            <li>
+              How are audit trails, electronic signatures and access control
+              designed, and how will you test them?
+            </li>
+            <li>
+              What support and maintenance do you offer after go-live, and how
+              are changes controlled?
+            </li>
+          </ul>
+          <p>
+            Good answers are specific and come with examples. Vague answers to
+            the validation and ownership questions are a warning sign on either
+            route.
+          </p>
+        </>
+      ),
+    },
+    {
       id: "decision-checklist",
       title: "A checklist for the selection meeting",
       body: (
@@ -259,9 +344,7 @@ export const customLimsVsOffTheShelfLims: Post = {
               Count the gaps: requirements met by configuration, by scripting,
               by custom work, or not at all.
             </li>
-            <li>
-              Compare the validation evidence each supplier can provide.
-            </li>
+            <li>Compare the validation evidence each supplier can provide.</li>
             <li>
               Compare the cost of ownership over the same multi-year period.
             </li>
@@ -271,8 +354,8 @@ export const customLimsVsOffTheShelfLims: Post = {
             </li>
           </ol>
           <p>
-            We build custom LIMS for pharma QC and diagnostic labs and will
-            tell you if a product looks like the better fit. See our{" "}
+            We build custom LIMS for pharma QC and diagnostic labs and will tell
+            you if a product looks like the better fit. See our{" "}
             <Link href="/services/lims-software-development">
               LIMS development service
             </Link>{" "}

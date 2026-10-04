@@ -17,7 +17,7 @@ export const gamp5Guide: Post = {
   cover: "vmodel",
   published: "2026-09-28",
   updated: "2026-10-04",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "GAMP 5",
     "computer system validation",

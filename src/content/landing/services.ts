@@ -454,11 +454,15 @@ export const SERVICE_PAGES: Landing[] = [
       },
       {
         href: "/insights/flutter-vs-native-app-development",
-        label: "Flutter vs native: how to choose",
+        label: "Flutter vs React Native vs native",
       },
       {
         href: "/insights/app-development-cost-india",
         label: "App development cost in India",
+      },
+      {
+        href: "/tools/app-development-cost-calculator",
+        label: "App development cost calculator",
       },
       {
         href: "/insights/outsourcing-app-development-to-india",
@@ -944,6 +948,7 @@ export const SERVICE_PAGES: Landing[] = [
         href: "/insights/21-cfr-part-11-compliance-checklist-lims",
         label: "Part 11 checklist for LIMS",
       },
+      { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
       { href: "/work", label: "Our LIMS and PVgenix" },
     ],
   },
@@ -1253,6 +1258,7 @@ export const SERVICE_PAGES: Landing[] = [
         href: "/academy/software-validation-gamp5-course",
         label: "Software Validation course",
       },
+      { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
     ],
   },
   {

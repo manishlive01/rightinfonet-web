@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
 export const aiAgentsGuide: Post = {
@@ -16,7 +17,8 @@ export const aiAgentsGuide: Post = {
   pillarHub: true,
   cover: "agent",
   published: "2026-09-28",
-  readingMinutes: 6,
+  updated: "2026-10-04",
+  readingMinutes: 8,
   keywords: [
     "AI agents for business",
     "AI agent development",
@@ -35,17 +37,20 @@ export const aiAgentsGuide: Post = {
   intro: (
     <>
       <p>
-        “AI agent” has become the most stretched term in software. It is used
-        for chatbots, for scripts that call an AI model once, and for systems
-        that plan and act on their own. The confusion makes it hard to judge
-        what an agent could do for your business — and what it would cost to run
-        one safely.
+        AI agents work best on high-volume, text-heavy business tasks with a
+        clear way to check the result: triaging inboxes, reading documents,
+        updating systems and answering from your own files. They fail on
+        irreversible, high-stakes actions without review. Ship one safely with
+        evals from real cases and a human approving risky steps.
       </p>
       <p>
-        This guide is for founders and operations leaders who want a clear
-        picture. It defines agents in practical terms, shows where they earn
-        their keep and where they don’t, and lays out the steps we follow to
-        take one from demo to production.
+        “AI agent” has become the most stretched term in software. It is used
+        for chatbots, for scripts that call an AI model once, and for systems
+        that plan and act on their own. This guide is for founders and
+        operations leaders who want a clear picture. It defines agents in
+        practical terms, shows where they earn their keep and where they don’t,
+        lays out the steps we follow to take one from demo to production, and
+        links to deeper guides on each topic.
       </p>
     </>
   ),
@@ -91,6 +96,15 @@ export const aiAgentsGuide: Post = {
             and easier to test than a free-roaming agent. Reach for an agent
             when the path genuinely varies from case to case.
           </p>
+          <p>
+            An agent is also different from a customer-facing chatbot. A chatbot
+            talks: it answers questions and hands over to a person. An agent
+            acts inside your systems. Our comparison of an{" "}
+            <PostLink slug="ai-agent-vs-chatbot">
+              AI agent vs a chatbot
+            </PostLink>{" "}
+            sets the two side by side.
+          </p>
         </>
       ),
     },
@@ -127,6 +141,13 @@ export const aiAgentsGuide: Post = {
               report preparation, data clean-up.
             </li>
           </ul>
+          <p>
+            For sector examples, with the lines AI should not cross in each, see{" "}
+            <PostLink slug="ai-automation-clinics-labs-retail">
+              AI automation for clinics, labs and retail
+            </PostLink>
+            .
+          </p>
           <Callout title="A useful test">
             <p>
               If you can’t write down how a person would check the agent’s work,
@@ -251,7 +272,12 @@ export const aiAgentsGuide: Post = {
           </ol>
           <p>
             With evals in place you can also switch to a cheaper or faster model
-            with confidence, because you can measure what you would lose.
+            with confidence, because you can measure what you would lose. Our
+            guide on{" "}
+            <PostLink slug="how-to-evaluate-ai-agents">
+              how to evaluate AI agents
+            </PostLink>{" "}
+            covers metrics, grading and monitoring in depth.
           </p>
         </>
       ),
@@ -300,6 +326,12 @@ export const aiAgentsGuide: Post = {
             model on each task, and how many steps the agent takes. Keep them in
             check by trimming context to what is needed, caching repeated
             content, and using smaller models for simple steps such as routing.
+            Build costs depend more on integrations, evaluation and review
+            screens than on the model; our guide to{" "}
+            <PostLink slug="ai-agent-development-cost-india">
+              AI agent development cost in India
+            </PostLink>{" "}
+            gives indicative ranges and a way to estimate running costs.
           </p>
           <p>
             Data protection needs design attention from day one. Decide which
@@ -309,15 +341,158 @@ export const aiAgentsGuide: Post = {
             obligations for handling personal data that apply to AI systems like
             any other software.
           </p>
+        </>
+      ),
+    },
+    {
+      id: "first-use-case",
+      title: "Choosing your first use case",
+      body: (
+        <>
           <p>
-            We design, build and evaluate AI agents and AI-powered workflows —
-            with tool use, RAG, evals and human approval built in. If you have a
-            process in mind, <Link href="/#contact">tell us about it</Link> and
-            we’ll tell you honestly whether an agent, a simpler workflow or no
-            AI at all is the right fit.
+            The first agent sets the tone for everything after it, so pick a
+            task that can succeed visibly and safely:
+          </p>
+          <DataTable
+            caption="Scoring a first AI agent use case"
+            head={["Question", "Good sign", "Warning sign"]}
+            rows={[
+              [
+                "How often does it happen?",
+                "Many times a day",
+                "A few times a month",
+              ],
+              [
+                "Can a person check the result?",
+                "Clear, written acceptance criteria",
+                "“It depends” every time",
+              ],
+              [
+                "What if it goes wrong?",
+                "Easy to spot and undo",
+                "Money, health or customer trust at stake",
+              ],
+              [
+                "Is the data ready?",
+                "Current documents and systems with APIs",
+                "Knowledge lives only in people’s heads",
+              ],
+              [
+                "Do you have examples?",
+                "Dozens of real past cases with outcomes",
+                "No history to test against",
+              ],
+            ]}
+          />
+          <p>
+            A task that scores well on all five is a good pilot. Run it in
+            shadow mode first, measure it, and only then widen its scope.
           </p>
         </>
       ),
+    },
+    {
+      id: "deeper-guides",
+      title: "Deeper guides in this series",
+      body: (
+        <>
+          <p>
+            This article is the hub of our AI agents series. Each guide below
+            goes deeper on one question:
+          </p>
+          <DataTable
+            caption="AI agents guides by question"
+            head={["Your question", "Guide"]}
+            rows={[
+              [
+                "Do I need a chatbot or an agent?",
+                <PostLink key="vs" slug="ai-agent-vs-chatbot">
+                  AI agent vs chatbot
+                </PostLink>,
+              ],
+              [
+                "How does an agent answer from our documents?",
+                <PostLink key="rag" slug="rag-for-business">
+                  RAG for business
+                </PostLink>,
+              ],
+              [
+                "What could it do in my sector?",
+                <PostLink key="sector" slug="ai-automation-clinics-labs-retail">
+                  AI automation for clinics, labs and retail
+                </PostLink>,
+              ],
+              [
+                "What will it cost?",
+                <PostLink key="cost" slug="ai-agent-development-cost-india">
+                  AI agent development cost in India
+                </PostLink>,
+              ],
+              [
+                "How do we know it works?",
+                <PostLink key="evals" slug="how-to-evaluate-ai-agents">
+                  How to evaluate AI agents
+                </PostLink>,
+              ],
+              [
+                "How do we pick a partner?",
+                <Link
+                  key="choose"
+                  href="/insights/how-to-choose-ai-development-company-india"
+                >
+                  How to choose an AI development company in India
+                </Link>,
+              ],
+            ]}
+          />
+        </>
+      ),
+    },
+    {
+      id: "work-with-us",
+      title: "Working with us",
+      body: (
+        <>
+          <p>
+            We design, build and evaluate AI agents and AI-powered workflows,
+            with tool use, RAG, evals and human approval built in; see{" "}
+            <Link href="/services/ai-agents">AI agent development</Link>. For
+            customer-facing chat on your website or WhatsApp, see{" "}
+            <Link href="/services/ai-chatbot-development-india">
+              AI chatbot development
+            </Link>
+            . If you have a process in mind, tell us about it and we’ll tell you
+            honestly whether an agent, a simpler workflow or no AI at all is the
+            right fit.
+          </p>
+        </>
+      ),
+    },
+  ],
+  faqs: [
+    {
+      q: "What is an AI agent in business?",
+      a: "A system where a language model decides, step by step, which tools to use to finish a task, such as reading an email, looking up a record, updating a system or drafting a reply, and hands over to a person when it needs to.",
+    },
+    {
+      q: "Which business tasks are best for AI agents?",
+      a: "High-volume, text-heavy tasks with a clear way to check the result: inbox and ticket triage, document intake, keeping systems in sync, answering from your own documents and routine internal operations.",
+    },
+    {
+      q: "When should a business not use an AI agent?",
+      a: "When actions are irreversible and high-stakes with no review step, when exact answers are needed and no tool supplies them, when the data is poor, or when a simple rule would do the job.",
+    },
+    {
+      q: "How do you make an AI agent safe?",
+      a: "Give it access only to what its job needs, require human approval for risky actions, log every step, treat inputs as data rather than instructions, and test it with evals built from real past cases.",
+    },
+    {
+      q: "What is the difference between an AI agent and a chatbot?",
+      a: "A chatbot holds a conversation and mainly answers, collects details and routes to a person. An agent carries out tasks inside your systems, such as updating records or processing documents.",
+    },
+    {
+      q: "How long does it take to roll out an AI agent?",
+      a: "It depends on the task and integrations. A pilot on real data usually runs in weeks rather than months, followed by shadow mode, human approval and then autonomy only for low-risk cases.",
     },
   ],
 };

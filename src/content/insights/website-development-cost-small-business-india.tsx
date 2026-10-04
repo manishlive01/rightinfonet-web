@@ -15,6 +15,7 @@ export const websiteDevelopmentCostSmallBusinessIndia: Post = {
   cta: { href: "/services/web-platforms", label: "Web platform development" },
   cover: "phones",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "website development cost India",
@@ -129,7 +130,11 @@ export const websiteDevelopmentCostSmallBusinessIndia: Post = {
             The lower end of each range usually means a template or standard
             theme and content you supply. The upper end means custom design,
             more pages or features, integrations and content help. Where you
-            land depends on those choices more than on page count.
+            land depends on those choices more than on page count. Our{" "}
+            <Link href="/tools/app-development-cost-calculator">
+              cost calculator
+            </Link>{" "}
+            shows which of these ranges fits what your site needs to do.
           </p>
           <Callout title="Beware the very cheap website">
             <p>

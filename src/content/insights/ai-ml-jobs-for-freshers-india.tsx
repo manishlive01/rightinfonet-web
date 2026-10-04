@@ -14,6 +14,7 @@ export const aiMlJobsForFreshersIndia: Post = {
   pillar: "academy",
   cover: "agent",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "AI ML jobs for freshers India",
@@ -143,7 +144,12 @@ export const aiMlJobsForFreshersIndia: Post = {
           <p>
             Pay for AI roles varies widely by company, city and skill. Treat any
             figure you see online as indicative only, and compare offers on the
-            work and learning, not just the title.
+            work and learning, not just the title. For the wider picture of
+            roles and indicative pay bands in the region, see our guide to{" "}
+            <Link href="/insights/software-developer-career-chandigarh-tricity">
+              software developer careers in the Chandigarh Tricity
+            </Link>
+            .
           </p>
         </>
       ),
@@ -224,7 +230,11 @@ export const aiMlJobsForFreshersIndia: Post = {
             <li>
               <strong>A small agent</strong> that uses two or three tools
               (search, a database, a calendar) with guardrails and logs of every
-              action.
+              action. Our guide to{" "}
+              <Link href="/insights/ai-agents-for-business-operations">
+                AI agents for business operations
+              </Link>{" "}
+              shows how companies decide what an agent should and shouldn’t do.
             </li>
             <li>
               <strong>A classic ML project</strong> on a real dataset, with

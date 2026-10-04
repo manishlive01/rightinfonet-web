@@ -17,7 +17,7 @@ export const part11Checklist: Post = {
   cover: "audit",
   published: "2026-09-28",
   updated: "2026-10-04",
-  readingMinutes: 9,
+  readingMinutes: 8,
   keywords: [
     "21 CFR Part 11",
     "Part 11 compliance checklist",

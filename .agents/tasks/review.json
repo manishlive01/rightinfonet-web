@@ -1,9 +1,5 @@
 {
   "verdict": "APPROVED",
-  "findings": [
-    "Non-blocking: the Hero.tsx eyebrow copy change is unrelated to the mobile work. Commit it separately or confirm it is intended.",
-    "Non-blocking: the insights rail reveal for the off-screen third card has not been checked in a browser. Spot-check swiping on a device.",
-    "Non-blocking: phone styles were not checked in the light theme or on real iOS Safari (safe-area insets, no zoom on input focus)."
-  ],
-  "reviewDoc": "d:\\Bright infonet web\\brightinfonet-web/.agents/tasks/mobile-home-review.md"
+  "findings": [],
+  "summary": "This pass re-reviewed the three findings from the previous pass, and all three are fixed. (1) SEO-CHECKLIST.md: the existing-article audit item is now [~]. Its note says 20 posts still have article bodies under 1,500 words, and SEO-OWNER-TODO.md and SEO-PLAN.md say the same. No post text or updated date was changed. (2) gamp-5-category-4-vs-category-5 (publishes 2026-10-13) now links to gxp-software-validation-guide (2026-10-06), so 3 of its in-body links are live on its publish day. (3) sitemap.ts no longer sets lastModified on non-post entries. Posts keep updated ?? published, and /insights takes the newest live post date. Since the last review only these files, the skill log and the crawler report changed. Checks run: npm run lint (0 errors, 2 pre-existing <img> warnings) and npm run build (pass, ISR 1h on every listed route). The built sitemap has 72 <loc> and 27 <lastmod> entries, /insights is dated 2026-10-04, and the scheduled GAMP post is not in it. The served crawls were not re-run in this pass; FEAT-007 iteration 2 recorded them as 72 pages 0/0/1 (normal build) and 95 pages 0/0/1 (CONTENT_NOW=2026-12-31). The GA4, lead-form and AuthorBox paths have still not been run with real values. Review doc: .agents/tasks/2026-10-04-195500-review.md."
 }

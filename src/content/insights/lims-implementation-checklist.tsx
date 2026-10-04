@@ -8,7 +8,7 @@ export const limsImplementationChecklist: Post = {
   title: "LIMS implementation checklist: from kick-off to go-live and beyond",
   metaTitle: "LIMS Implementation Checklist: Kick-off to Go-live",
   description:
-    "A phase-by-phase LIMS implementation checklist: governance, requirements, configuration, data migration, interfaces, validation, training, cut-over and hypercare.",
+    "A phase-by-phase LIMS implementation checklist: governance, requirements, configuration, data migration, interfaces, validation, training and go-live.",
   excerpt:
     "Every phase of a LIMS roll-out as a checklist: who owns what, the deliverables for each phase, and the steps that most often get missed before go-live.",
   category: "Regulated software",
@@ -19,7 +19,7 @@ export const limsImplementationChecklist: Post = {
   },
   cover: "vmodel",
   published: "2026-10-27",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "LIMS implementation checklist",
     "LIMS implementation plan",
@@ -135,10 +135,9 @@ export const limsImplementationChecklist: Post = {
             ]}
           />
           <p>
-            Our{" "}
-            <PostLink slug="lims-urs-template">LIMS URS template</PostLink> is a
-            practical starting point. If you have not decided between a product
-            and a custom build yet, read{" "}
+            Our <PostLink slug="lims-urs-template">LIMS URS template</PostLink>{" "}
+            is a practical starting point. If you have not decided between a
+            product and a custom build yet, read{" "}
             <PostLink slug="custom-lims-vs-off-the-shelf-lims">
               custom vs off-the-shelf LIMS
             </PostLink>{" "}
@@ -161,6 +160,29 @@ export const limsImplementationChecklist: Post = {
             "Hold regular demos with analysts so problems surface before formal testing.",
           ]}
         />
+      ),
+    },
+    {
+      id: "environments",
+      title: "Environments: keep testing and production apart",
+      body: (
+        <>
+          <p>
+            Plan the environments before the build starts. Most regulated
+            projects use at least three: development, where the supplier or team
+            builds and configures; a controlled test or validation environment
+            that mirrors production, where formal testing runs; and production,
+            used only for real GxP work.
+          </p>
+          <Checklist
+            items={[
+              "Record the versions and configuration of each environment, so test results can be trusted for production.",
+              "Move configuration and code between environments by a controlled, repeatable process.",
+              "Never test with live patient or batch data unless it has been approved and protected.",
+              "Keep a test environment after go-live for changes and upgrades.",
+            ]}
+          />
+        </>
       ),
     },
     {
@@ -232,10 +254,81 @@ export const limsImplementationChecklist: Post = {
             ]}
           />
           <p>
-            After go-live the system is only as validated as its change
-            control. Every patch, new instrument or new test method goes through
-            impact assessment before release.
+            After go-live the system is only as validated as its change control.
+            Every patch, new instrument or new test method goes through impact
+            assessment before release.
           </p>
+        </>
+      ),
+    },
+    {
+      id: "roles",
+      title: "Who you need on the team",
+      body: (
+        <>
+          <p>
+            Small labs combine some of these roles, but each responsibility
+            should have a named person:
+          </p>
+          <ul>
+            <li>
+              <strong>Process owner</strong> — usually the lab head; owns the
+              requirements, makes process decisions and accepts the system.
+            </li>
+            <li>
+              <strong>QA owner</strong> — approves the validation plan, URS and
+              summary report, and decides whether deviations are acceptable.
+            </li>
+            <li>
+              <strong>Project manager</strong> — runs the plan, the risks and
+              the issue log, and keeps decisions recorded.
+            </li>
+            <li>
+              <strong>Key users</strong> — experienced analysts and reviewers
+              who help design workflows, check master data and run PQ.
+            </li>
+            <li>
+              <strong>System owner and IT</strong> — infrastructure, security,
+              backups, user administration and the environments.
+            </li>
+            <li>
+              <strong>Validation lead</strong> — writes or coordinates the
+              validation documents and the traceability matrix.
+            </li>
+            <li>
+              <strong>Supplier or development team</strong> — delivers the
+              configured or custom system, specifications and developer
+              evidence.
+            </li>
+          </ul>
+          <p>
+            The roles that are most often left empty are key users and the
+            system owner. Without key users the workflows are designed from
+            assumptions; without a system owner nobody runs access reviews,
+            backups or periodic reviews after go-live.
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "instruments-and-interfaces",
+      title: "Instruments and interfaces",
+      body: (
+        <>
+          <p>
+            Interfaces deserve their own checklist, because each one is a small
+            project with its own risks:
+          </p>
+          <Checklist
+            items={[
+              "List every instrument and data system, with its software version and what it can output.",
+              "Decide for each one: direct interface, file import, or controlled manual entry with a second-person check.",
+              "Collect real output files early and test parsing against them, including error cases.",
+              "Make sure the raw data stays linked to the result in the LIMS.",
+              "Agree what happens when an import fails or a value is out of range.",
+              "Include interface changes, such as instrument software upgrades, in change control.",
+            ]}
+          />
         </>
       ),
     },
@@ -246,8 +339,12 @@ export const limsImplementationChecklist: Post = {
         <>
           <ul>
             <li>Analysts are not released from routine work to help design.</li>
-            <li>Master data turns out to be inconsistent across sites or teams.</li>
-            <li>Instrument outputs differ from what the specification assumed.</li>
+            <li>
+              Master data turns out to be inconsistent across sites or teams.
+            </li>
+            <li>
+              Instrument outputs differ from what the specification assumed.
+            </li>
             <li>The URS changes late without going through change control.</li>
             <li>Validation starts after the build instead of alongside it.</li>
           </ul>

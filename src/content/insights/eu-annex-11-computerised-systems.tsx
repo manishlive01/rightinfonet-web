@@ -5,8 +5,7 @@ import type { Post } from "./types";
 
 export const euAnnex11ComputerisedSystems: Post = {
   slug: "eu-annex-11-computerised-systems",
-  title:
-    "EU GMP Annex 11 explained: computerised systems, section by section",
+  title: "EU GMP Annex 11 explained: computerised systems, section by section",
   metaTitle: "EU GMP Annex 11 Computerised Systems Explained",
   description:
     "EU GMP Annex 11 in plain English: what each section asks of computerised systems, how it compares with 21 CFR Part 11, and what to check in your software.",
@@ -20,7 +19,7 @@ export const euAnnex11ComputerisedSystems: Post = {
   },
   cover: "audit",
   published: "2026-10-16",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "EU GMP Annex 11",
     "Annex 11 computerised systems",
@@ -74,10 +73,9 @@ export const euAnnex11ComputerisedSystems: Post = {
             which covers records whatever medium they are kept in.
           </p>
           <p>
-            The principle is short: when a computerised system replaces a
-            manual operation, there should be no loss of product quality,
-            process control or quality assurance, and no increase in overall
-            risk.
+            The principle is short: when a computerised system replaces a manual
+            operation, there should be no loss of product quality, process
+            control or quality assurance, and no increase in overall risk.
           </p>
         </>
       ),
@@ -201,8 +199,8 @@ export const euAnnex11ComputerisedSystems: Post = {
             ]}
           />
           <p>
-            None of that is unique to the EU. It is the same life cycle described
-            in our{" "}
+            None of that is unique to the EU. It is the same life cycle
+            described in our{" "}
             <PostLink slug="gxp-software-validation-guide">
               GxP software validation guide
             </PostLink>
@@ -303,8 +301,8 @@ export const euAnnex11ComputerisedSystems: Post = {
           <p>
             In July 2025 the European Commission and PIC/S released a revised
             draft of Annex 11 for public consultation, together with a revised
-            Chapter 4 and a new Annex 22 on artificial intelligence. The draft is
-            much longer than the 2011 text and goes further on topics such as
+            Chapter 4 and a new Annex 22 on artificial intelligence. The draft
+            is much longer than the 2011 text and goes further on topics such as
             life-cycle quality risk management, cloud and service providers,
             audit-trail review and identity and access management.
           </p>
@@ -320,12 +318,33 @@ export const euAnnex11ComputerisedSystems: Post = {
       ),
     },
     {
+      id: "cloud-and-saas",
+      title: "Cloud and SaaS systems under Annex 11",
+      body: (
+        <>
+          <p>
+            Annex 11 does not mention the cloud by name, but section 3 already
+            covers it: when a service provider hosts or runs a GMP system, there
+            should be a formal agreement setting out responsibilities, and the
+            competence and reliability of the provider should be assessed based
+            on risk. In practice that means a supplier assessment or audit, a
+            quality agreement, clear rules on releases and change notification,
+            backup and restore responsibilities, data location, and how data are
+            returned at the end of the contract. The regulated company remains
+            responsible for the system, wherever it runs.
+          </p>
+        </>
+      ),
+    },
+    {
       id: "what-to-ask",
       title: "Questions to ask a software supplier",
       body: (
         <>
           <ul>
-            <li>Can you map each Annex 11 section to a feature or a document?</li>
+            <li>
+              Can you map each Annex 11 section to a feature or a document?
+            </li>
             <li>How is the audit trail stored, and can anyone change it?</li>
             <li>How do backup and restore work, and how were they tested?</li>
             <li>What does a quality or service agreement with you cover?</li>

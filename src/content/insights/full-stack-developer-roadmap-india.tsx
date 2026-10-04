@@ -15,6 +15,7 @@ export const fullStackDeveloperRoadmapIndia: Post = {
   pillar: "academy",
   cover: "phones",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "full stack developer roadmap 2026",
@@ -306,6 +307,18 @@ export const fullStackDeveloperRoadmapIndia: Post = {
               Do mock interviews where you explain your own code and trade-offs.
             </li>
           </ul>
+          <p>
+            Our{" "}
+            <Link href="/insights/skills-for-placement-btech-bca-mca">
+              placement skills guide
+            </Link>{" "}
+            lists what campus and off-campus interviews check, and{" "}
+            <Link href="/insights/software-developer-career-chandigarh-tricity">
+              software developer careers in the Chandigarh Tricity
+            </Link>{" "}
+            explains the roles full-stack freshers usually start in and how they
+            progress.
+          </p>
           <p>
             If you want this roadmap with structure and feedback, our{" "}
             <Link href="/academy/full-stack-web-development-course">

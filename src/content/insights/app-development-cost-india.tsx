@@ -15,6 +15,7 @@ export const appDevelopmentCostIndia: Post = {
   pillarHub: true,
   cover: "phones",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "app development cost in India",
@@ -97,7 +98,12 @@ export const appDevelopmentCostIndia: Post = {
             <Link href="/insights/flutter-vs-native-app-development">
               Flutter vs native guide
             </Link>{" "}
-            covers when that extra cost is worth it.
+            covers when that extra cost is worth it. To see which band your own
+            scope falls into, try our{" "}
+            <Link href="/tools/app-development-cost-calculator">
+              app development cost calculator
+            </Link>
+            .
           </p>
           <Callout title="Why quotes for the “same app” vary so much">
             <p>

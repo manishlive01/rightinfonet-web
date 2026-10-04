@@ -21,7 +21,7 @@ export const gxpSoftwareValidationGuide: Post = {
   },
   cover: "vmodel",
   published: "2026-10-06",
-  readingMinutes: 9,
+  readingMinutes: 7,
   keywords: [
     "GxP software validation",
     "computer system validation guide",
@@ -182,9 +182,9 @@ export const gxpSoftwareValidationGuide: Post = {
           <p>
             Start with a GxP impact assessment for each system rather than a
             blanket rule. A system needs validating when it creates, changes,
-            stores or uses records that a GxP rule requires, or when it
-            controls a process that affects product quality or patient safety.
-            Typical examples:
+            stores or uses records that a GxP rule requires, or when it controls
+            a process that affects product quality or patient safety. Typical
+            examples:
           </p>
           <Checklist
             items={[
@@ -233,8 +233,8 @@ export const gxpSoftwareValidationGuide: Post = {
             <li>
               <strong>Write the user requirements (URS).</strong> Testable
               statements, each with an ID. Our{" "}
-              <PostLink slug="lims-urs-template">LIMS URS template</PostLink>{" "}
-              is a practical starting point.
+              <PostLink slug="lims-urs-template">LIMS URS template</PostLink> is
+              a practical starting point.
             </li>
             <li>
               <strong>Assess the supplier and the risks.</strong> Decide what
@@ -273,8 +273,8 @@ export const gxpSoftwareValidationGuide: Post = {
       body: (
         <>
           <p>
-            Data-integrity guidance from FDA, MHRA, WHO and PIC/S uses the ALCOA+
-            idea: records must be attributable, legible, contemporaneous,
+            Data-integrity guidance from FDA, MHRA, WHO and PIC/S uses the
+            ALCOA+ idea: records must be attributable, legible, contemporaneous,
             original and accurate, and also complete, consistent, enduring and
             available. In software, that turns into a short list of controls:
           </p>

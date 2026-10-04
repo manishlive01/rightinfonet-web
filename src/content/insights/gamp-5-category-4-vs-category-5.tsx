@@ -20,7 +20,7 @@ export const gamp5Category4VsCategory5: Post = {
   },
   cover: "vmodel",
   published: "2026-10-13",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "GAMP 5 category 4 vs 5",
     "GAMP 5 software categories",
@@ -39,17 +39,17 @@ export const gamp5Category4VsCategory5: Post = {
   intro: (
     <>
       <p>
-        In GAMP 5, Category 4 covers configured products: standard software
-        such as a commercial LIMS or QMS that you set up for your process
-        without changing its code. Category 5 covers custom applications
-        written for you. Category 5 needs more of the life cycle documented and
-        tested by you, because no other customers have used that code.
+        In GAMP 5, Category 4 covers configured products: standard software such
+        as a commercial LIMS or QMS that you set up for your process without
+        changing its code. Category 5 covers custom applications written for
+        you. Category 5 needs more of the life cycle documented and tested by
+        you, because no other customers have used that code.
       </p>
       <p>
         The difference sounds tidy on paper. In real projects the line between
         configuration and customisation is where most arguments start. This
-        article explains both categories, where the line sits, and what each
-        one means for your validation work.
+        article explains both categories, where the line sits, and what each one
+        means for your validation work.
       </p>
     </>
   ),
@@ -62,10 +62,10 @@ export const gamp5Category4VsCategory5: Post = {
           <p>
             GAMP 5 groups software by how much of it is unique to you. Category
             1 is infrastructure such as operating systems and databases.
-            Category 3 is software used as supplied, with only settings
-            changed. Category 4 is a configured product. Category 5 is custom
-            code. There is no Category 2; it covered firmware in earlier GAMP
-            versions and was dropped. Our{" "}
+            Category 3 is software used as supplied, with only settings changed.
+            Category 4 is a configured product. Category 5 is custom code. There
+            is no Category 2; it covered firmware in earlier GAMP versions and
+            was dropped. Our{" "}
             <PostLink slug="gamp-5-software-validation-guide">
               GAMP 5 validation guide
             </PostLink>{" "}
@@ -75,6 +75,14 @@ export const gamp5Category4VsCategory5: Post = {
             The second edition of GAMP 5, published in 2022, keeps the
             categories but stresses that they are a starting point for thinking
             about risk, not a rule that decides the testing on its own.
+          </p>
+          <p>
+            The second edition also puts more weight on critical thinking,
+            involving suppliers early, iterative and agile development, and
+            using tools and automated testing as evidence. For the Category 4 vs
+            5 question that matters: a well-run custom build can produce its
+            evidence continuously, and a configured product still needs people
+            who understand the process to decide what to test.
           </p>
         </>
       ),
@@ -149,23 +157,34 @@ export const gamp5Category4VsCategory5: Post = {
           <h3>Usually Category 4 (configuration)</h3>
           <ul>
             <li>Choosing options, picklists and units in admin screens.</li>
-            <li>Defining roles, permissions and approval steps with built-in tools.</li>
-            <li>Entering specifications, test methods and limits as master data.</li>
+            <li>
+              Defining roles, permissions and approval steps with built-in
+              tools.
+            </li>
+            <li>
+              Entering specifications, test methods and limits as master data.
+            </li>
             <li>Using standard report templates with your logo and fields.</li>
           </ul>
           <h3>Usually Category 5 (custom), even inside a product</h3>
           <ul>
-            <li>Scripts or macros written in the product’s scripting language.</li>
-            <li>Custom calculations that are not standard product functions.</li>
+            <li>
+              Scripts or macros written in the product’s scripting language.
+            </li>
+            <li>
+              Custom calculations that are not standard product functions.
+            </li>
             <li>Bespoke reports built with a query or report designer.</li>
-            <li>Interfaces to instruments, ERP or other systems built for you.</li>
+            <li>
+              Interfaces to instruments, ERP or other systems built for you.
+            </li>
           </ul>
           <Callout title="Configuration still needs testing">
             <p>
               Calling something configuration does not mean it is low risk. A
               mistyped specification limit or a missing approval step can do as
-              much harm as a coding bug. Category 4 work moves the testing
-              focus to your configuration; it does not remove it.
+              much harm as a coding bug. Category 4 work moves the testing focus
+              to your configuration; it does not remove it.
             </p>
           </Callout>
         </>
@@ -177,8 +196,8 @@ export const gamp5Category4VsCategory5: Post = {
       body: (
         <>
           <p>
-            Almost every lab or quality system is a mix. A typical LIMS
-            project might look like this:
+            Almost every lab or quality system is a mix. A typical LIMS project
+            might look like this:
           </p>
           <ul>
             <li>Database and operating system: Category 1.</li>
@@ -188,12 +207,17 @@ export const gamp5Category4VsCategory5: Post = {
             <li>A barcode printer driver used as supplied: Category 3.</li>
           </ul>
           <p>
-            Assess each component, record its category in the validation plan
-            or risk assessment, and plan the work to match. The custom parts get
+            Assess each component, record its category in the validation plan or
+            risk assessment, and plan the work to match. The custom parts get
             functional and design specifications, code review and developer
             testing; the configured core gets a configuration specification and
             testing of your workflows. One traceability matrix then ties it
-            together.
+            together. Our{" "}
+            <PostLink slug="gxp-software-validation-guide">
+              GxP software validation guide
+            </PostLink>{" "}
+            walks through the full life cycle, from the validation plan to the
+            summary report.
           </p>
         </>
       ),
@@ -254,6 +278,47 @@ export const gamp5Category4VsCategory5: Post = {
             </Link>{" "}
             prepares the validation deliverables; sign-off stays with your QA.
           </p>
+        </>
+      ),
+    },
+    {
+      id: "common-mistakes",
+      title: "Common mistakes when categorising software",
+      body: (
+        <>
+          <Checklist
+            items={[
+              <>
+                <strong>Calling everything Category 4</strong> to reduce the
+                work, while scripts and custom reports go untested.
+              </>,
+              <>
+                <strong>Treating the category as the risk.</strong> A configured
+                function that calculates a release result is high risk; a custom
+                dashboard may not be.
+              </>,
+              <>
+                <strong>Not recording the rationale.</strong> An auditor will
+                ask why a component was placed in a category; the answer should
+                be written down.
+              </>,
+              <>
+                <strong>Forgetting infrastructure.</strong> Category 1 software
+                still needs qualified, controlled environments and recorded
+                versions.
+              </>,
+              <>
+                <strong>Assuming SaaS means less work.</strong> Cloud products
+                are usually Category 4, but vendor-controlled releases need a
+                plan for impact assessment and regression testing.
+              </>,
+              <>
+                <strong>Re-categorising nothing after changes.</strong> When a
+                configured product gains custom scripts over time, the
+                validation approach for those parts has to change too.
+              </>,
+            ]}
+          />
         </>
       ),
     },

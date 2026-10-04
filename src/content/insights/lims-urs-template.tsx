@@ -5,11 +5,10 @@ import type { Post } from "./types";
 
 export const limsUrsTemplate: Post = {
   slug: "lims-urs-template",
-  title:
-    "LIMS URS template: how to write user requirements for a lab system",
+  title: "LIMS URS template: how to write user requirements for a lab system",
   metaTitle: "LIMS URS Template: Writing Lab User Requirements",
   description:
-    "How to write a LIMS user requirements specification: the sections, testable GxP and business requirements, priorities and traceability, with a free URS template.",
+    "How to write a LIMS user requirements specification: the sections, testable GxP and business requirements, priority and traceability, plus a free URS template.",
   excerpt:
     "The sections of a LIMS URS, how to write requirements that can be tested, which GxP requirements belong in it, and a free spreadsheet template to start from.",
   category: "Regulated software",
@@ -20,7 +19,7 @@ export const limsUrsTemplate: Post = {
   },
   cover: "vmodel",
   published: "2026-10-20",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "LIMS URS template",
     "user requirements specification LIMS",
@@ -64,8 +63,7 @@ export const limsUrsTemplate: Post = {
             In the GAMP 5 life cycle the URS sits at the top left of the
             V-model. Everything else hangs off it: the functional and
             configuration specifications explain how each requirement will be
-            met, the risk assessment rates each one, and the tests prove it.
-            Our{" "}
+            met, the risk assessment rates each one, and the tests prove it. Our{" "}
             <PostLink slug="gxp-software-validation-guide">
               GxP validation guide
             </PostLink>{" "}
@@ -254,7 +252,9 @@ export const limsUrsTemplate: Post = {
             and the most expensive to add later:
           </p>
           <ul>
-            <li>Unique user accounts, role-based access and access-change logs.</li>
+            <li>
+              Unique user accounts, role-based access and access-change logs.
+            </li>
             <li>
               A secure audit trail with old value, new value and reason; see{" "}
               <PostLink slug="21-cfr-part-11-audit-trail-requirements">
@@ -266,8 +266,12 @@ export const limsUrsTemplate: Post = {
             <li>Segregation of duties between entry, review and approval.</li>
             <li>Server-controlled time stamps with time zone.</li>
             <li>Controlled calculations, verified in the system.</li>
-            <li>Backup, restore and archive retrieval for the retention period.</li>
-            <li>Readable export of records with their audit trail for inspectors.</li>
+            <li>
+              Backup, restore and archive retrieval for the retention period.
+            </li>
+            <li>
+              Readable export of records with their audit trail for inspectors.
+            </li>
           </ul>
           <Callout title="Avoid copying a vendor’s feature list">
             <p>
@@ -305,6 +309,29 @@ export const limsUrsTemplate: Post = {
       ),
     },
     {
+      id: "product-vs-custom",
+      title: "A URS for a product selection vs a custom build",
+      body: (
+        <>
+          <p>
+            The same URS format works for both routes, with a different
+            emphasis. For a product selection, the URS is a scoring tool:
+            suppliers state for each row whether it is met by standard function,
+            configuration, scripting or not at all, and you compare the gaps.
+            For a custom build, the URS becomes the starting backlog, and the
+            functional and design specifications are written against it during
+            the project.
+          </p>
+          <p>
+            In both cases, resist writing the URS around one product or one
+            developer’s proposal. A requirement that only one supplier can meet
+            should be there because the lab needs it, not because it appeared in
+            a demo.
+          </p>
+        </>
+      ),
+    },
+    {
       id: "using-the-template",
       title: "How to use the free template",
       body: (
@@ -314,7 +341,9 @@ export const limsUrsTemplate: Post = {
             <li>Delete the example rows that do not apply to your lab.</li>
             <li>Add your own process, sample types, methods and interfaces.</li>
             <li>Mark each row GxP or business, and set its priority.</li>
-            <li>Review it with analysts, QA and IT, then route it for approval.</li>
+            <li>
+              Review it with analysts, QA and IT, then route it for approval.
+            </li>
           </ol>
           <p>
             The example rows are generic and only a starting point; your

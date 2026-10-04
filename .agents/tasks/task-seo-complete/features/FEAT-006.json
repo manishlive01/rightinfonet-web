@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "feat",
   "description": "Pillar 3 (AI agents) and Pillar 4 (Academy) content, existing-article audit, and Phase 8 GEO wrap-up (plan items 12 and 13 minus the crawler part done in FEAT-001): scheduled posts #11-#18, expansion of ai-agents-for-business-operations, audit/fix of all 26 existing posts against the article rules, llms.txt NAP + pillar-grouped published guides + tools/resources, schema coverage sweep. Depends on FEAT-001..FEAT-005.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create schedule #11-#18 posts (exact slugs/dates from the D5 table; #11-#13 pillar 'academy', #14-#18 pillar 'ai') following the article rules. Salary post (#11): indicative ranges only, phrased as typical ranges with 'varies; check current job listings', name public sources generally without inventing figures or surveys; no placement stats. AI posts link /services/ai-agents, /services/ai-chatbot-development-india, /ai-development-company-chandigarh, /academy/ai-agents-course as relevant; AI agent cost post uses indicative ranges + 'get a written quote' and avoids numbers not already used on the site unless clearly labelled as indicative ranges. Register in index.ts.",
     "Expand src/content/insights/ai-agents-business.tsx (slug ai-agents-for-business-operations, pillar hub) to the article rules; updated = real edit date.",
@@ -26,5 +26,85 @@
     "curl.exe -s http://localhost:3100/llms.txt"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": {
+    "summary": "All 6 steps done and verified on built + served site (next start -p 3100) in both modes. 8 scheduled posts (#11-#18) written and registered, AI hub expanded, 26 existing posts audited (4 fixed in this FEAT, 6 fixed in FEAT-004/005, 16 pass unchanged), llms.txt rebuilt with NAP + pillar-grouped guides, schema sweep clean (no fix needed). Final state = normal production build (110 static pages, no env vars), server stopped, temp QA scripts/reports deleted, no commits.",
+    "files": {
+      "new": "src/content/insights/{fresher-software-developer-salary-chandigarh,what-to-do-after-bca-mca,industrial-training-certificate-guide,ai-agent-vs-chatbot,rag-for-business,ai-automation-clinics-labs-retail,ai-agent-development-cost-india,how-to-evaluate-ai-agents}.tsx",
+      "changed": "src/content/insights/index.ts (8 imports + POSTS entries), ai-agents-business.tsx (hub expansion, updated 2026-10-04), ai-ml-jobs-for-freshers-india.tsx / flutter-developer-roadmap.tsx / full-stack-developer-roadmap-india.tsx (+2 in-body links each, updated 2026-10-04), src/app/llms.txt/route.ts (NAP line, optional pricing line, Guides grouped by pillar with hub first), .agents/seo-audit-2026-10-04.md (normal-build crawler report)."
+    },
+    "new_posts": {
+      "dates": "Exact D5 dates: #11 fresher-software-developer-salary-chandigarh 2026-11-10, #12 what-to-do-after-bca-mca 2026-11-13, #13 industrial-training-certificate-guide 2026-11-17 (pillar academy); #14 ai-agent-vs-chatbot 2026-11-20, #15 rag-for-business 2026-11-24, #16 ai-automation-clinics-labs-retail 2026-11-27, #17 ai-agent-development-cost-india 2026-12-01, #18 how-to-evaluate-ai-agents 2026-12-04 (pillar ai). Existing published dates untouched.",
+      "word_counts (article = takeaways + intro + sections incl. tables/callouts + visible FAQ, i.e. <article> minus hero, TOC, PillarNav, end CTA; crawler = <main>, CONTENT_NOW build)": {
+        "fresher-software-developer-salary-chandigarh": "article 1678 | crawler 2172 | answer 52 words | 3 tables | 6 FAQs | 5 body links | readingMinutes 8",
+        "what-to-do-after-bca-mca": "article 1546 | crawler 2036 | answer 55 | 2 tables | 6 FAQs | 5 body links | 7",
+        "industrial-training-certificate-guide": "article 1540 | crawler 2048 | answer 53 | 2 tables | 6 FAQs | 4 body links | 7 | cta /academy/industrial-training-chandigarh",
+        "ai-agent-vs-chatbot": "article 1532 | crawler 1986 | answer 55 | 2 tables | 6 FAQs | 5 body links | 7",
+        "rag-for-business": "article 1532 | crawler 1977 | answer 47 | 2 tables | 6 FAQs | 5 body links | 7",
+        "ai-automation-clinics-labs-retail": "article 1523 | crawler 1964 | answer 45 | 2 tables | 6 FAQs | 5 body links | 7",
+        "ai-agent-development-cost-india": "article 1531 | crawler 1986 | answer 49 | 2 tables | 6 FAQs | 5 body links | 7",
+        "how-to-evaluate-ai-agents": "article 1529 | crawler 1983 | answer 49 | 2 tables | 6 FAQs | 4 body links | 7"
+      },
+      "rules_check": "Every new post: answer-first first paragraph 45-55 words; >= 2 DataTables; 6 FAQs (visible + FAQPage); 4-5 in-body links; links to not-yet-live posts go through PostLink, and every post has >= 3 links to content that is already live on its own publish day; metaTitles 47-53 chars (rendered without suffix when branded > 60); descriptions 150-155 chars; default pillar CTA (/academy, /services/ai-agents) except #13 (industrial training page). AI posts link /services/ai-agents (cost, evals, RAG, vs-chatbot), /services/ai-chatbot-development-india (vs-chatbot, RAG), /ai-development-company-chandigarh (automation), /academy/ai-agents-course (RAG, evals), /industries/healthcare-app-development, /industries/diagnostic-lab-software, /services/ecommerce-development-chandigarh (automation).",
+      "claims": "No new figures. Salary post reuses only the bands already published in the academy hub (fresher roughly ₹2.5–6 lakh, 2–4 yrs ₹5–12 lakh, 5+ yrs ₹12 lakh+), every mention labelled indicative with 'varies… check current job listings'; public sources named generally (Naukri, LinkedIn Jobs, Indeed, Glassdoor, AmbitionBox, college placement reports) with warnings that self-reported data is rough; no surveys, no placement stats, no averages; CTC breakup described without rates or tax figures. AI agent cost post reuses only published bands (MVP with AI features ₹10–25 lakh+ / about $12k–30k+ from mvp-development-cost-timeline; complex platform ₹25 lakh–₹1 crore+ / about $30k–120k+ from app-development-cost-india), labelled indicative + 'get a written quote'; running cost shown as a method (tasks × text × steps × current price), no token prices. BCA/MCA post: MCA 'usually two years', teaching 'eligibility such as UGC NET or a PhD… check current rules', no fees. Industrial-training post: no university-specific rules, 'share your college’s requirements… we’ll tell you exactly what we can provide' (existing site wording). Clinics/labs post: AI does not diagnose, interpret results or release reports; DPDP Act 2023 'take advice'. Capability wording reuses existing site claims (pilot 'in weeks rather than months', eval suite from real cases, WhatsApp via approved provider, English/Hindi/Hinglish, Academy run by studio engineers, no job guarantees)."
+    },
+    "ai_hub_expansion": "ai-agents-for-business-operations: published 2026-09-28 kept, updated 2026-10-04 (byline <time> 2026-10-04 verified on served HTML). New answer-first first paragraph (51 words); old intro folded into paragraph 2; new sections 'Choosing your first use case' (DataTable) and 'Deeper guides in this series' (DataTable linking all 5 new AI clusters via PostLink + how-to-choose-ai-development-company-india), 'Working with us' (links /services/ai-agents + /services/ai-chatbot-development-india; the old /#contact link removed); PostLinks to vs-chatbot, automation, evals and cost in context; 6 FAQs (FAQPage now emitted, it had none before); 3 DataTables; readingMinutes 6 -> 8. Article 1,844 words; crawler 2,243 (normal) / 2,324 (CONTENT_NOW). Body links 3 in the normal build (the 5 cluster links render as plain text until their dates), 12 in CONTENT_NOW (hub exception, same as the regulated hub).",
+    "existing_post_audit": {
+      "method": "Source read per file (answer paragraph words, DataTables, FAQ count, pillar) + crawler Words/Body links columns (CONTENT_NOW build) + article-body word count from served HTML. Words rule measured with the crawler Words column as the plan specifies (all 26 >= 1,581 and <= 2,494). 'Fixed earlier' = updated 2026-10-04 by FEAT-004/FEAT-005.",
+      "table": [
+        "slug | pillar | crawler words | article words | answer words | tables | FAQs | body links | result",
+        "21-cfr-part-11-compliance-checklist-lims | regulated | 2289 | 1788 | 53 | 1 | 5 | 5 | PASS (fixed earlier in FEAT-004, updated 2026-10-04)",
+        "ai-agents-for-business-operations | ai (hub) | 2324 | 1844 | 51 | 3 | 6 | 12 (3 live today) | FIXED in FEAT-006: answer-first intro, +2 tables, +6 FAQs, cluster + service links; updated 2026-10-04",
+        "ai-ml-jobs-for-freshers-india | academy | 1868 | 1369 | 57 | 2 | 6 | 4 | FIXED in FEAT-006: body links 2 -> 4 (career hub, AI agents hub); updated 2026-10-04",
+        "app-development-cost-india | cost (hub) | 1996 | 1493 | 58 | 2 | 6 | 6 | PASS (fixed earlier in FEAT-005, updated 2026-10-04); 6 links incl. /#contact, above 3-5 guideline, kept",
+        "best-it-training-institute-chandigarh-mohali-panchkula | academy | 1862 | 1366 | 52 | 1 | 6 | 12 | PASS, unchanged; 12 links (course/training pages), above guideline, kept",
+        "best-programming-language-to-learn-india | academy | 1629 | 1134 | 56 | 1 | 6 | 4 | PASS, unchanged",
+        "csv-vs-csa-computer-software-assurance | regulated | 1970 | 1478 | 54 | 2 | 6 | 5 | PASS, unchanged",
+        "custom-software-vs-saas | cost | 1842 | 1343 | 56 | 2 | 5 | 3 | PASS, unchanged",
+        "flutter-developer-hiring-models | cost | 1620 | 1132 | 57 | 1 | 6 | 4 | PASS, unchanged",
+        "flutter-developer-roadmap | academy | 2153 | 1642 | 55 | 1 | 6 | 4 | FIXED in FEAT-006: body links 2 -> 4 (placement skills, career hub); updated 2026-10-04",
+        "flutter-vs-native-app-development | cost | 2494 | 1982 | 55 | 2 | 6 | 5 | PASS (rewritten in FEAT-005, updated 2026-10-04)",
+        "full-stack-developer-roadmap-india | academy | 1924 | 1414 | 54 | 1 | 6 | 4 | FIXED in FEAT-006: body links 2 -> 4 (placement skills, career hub); updated 2026-10-04",
+        "gamp-5-software-validation-guide | regulated | 1984 | 1471 | 51 | 1 | 5 | 5 | PASS (fixed earlier in FEAT-004, updated 2026-10-04)",
+        "how-to-choose-ai-development-company-india | ai | 2022 | 1557 | 54 | 2 | 6 | 5 | PASS, unchanged",
+        "how-to-choose-app-development-company-chandigarh | cost | 2104 | 1589 | 57 | 2 | 6 | 8 | PASS, unchanged; 8 links, above guideline, kept",
+        "how-to-choose-software-development-company-india | cost | 1778 | 1273 | 59 | 1 | 6 | 4 | PASS, unchanged",
+        "lims-software-development-cost-india | regulated | 1782 | 1299 | 58 | 2 | 5 | 6 | PASS, unchanged; 6 links, kept",
+        "mvp-development-cost-timeline | cost | 1706 | 1206 | 50 | 2 | 6 | 6 | PASS (fixed earlier in FEAT-005, updated 2026-10-04); 6 links, kept",
+        "online-vs-offline-coding-course | academy | 1851 | 1341 | 50 | 2 | 5 | 11 | PASS, unchanged; 11 links (course pages), above guideline, kept",
+        "outsourcing-app-development-to-india | cost | 1806 | 1309 | 56 | 3 | 6 | 3 | PASS, unchanged",
+        "pharmacovigilance-software-build-vs-buy | regulated | 1946 | 1467 | 54 | 2 | 5 | 6 | PASS, unchanged; 6 links, kept",
+        "six-months-industrial-training-chandigarh | academy | 1918 | 1412 | 53 | 2 | 6 | 7 | PASS, unchanged; 7 links, kept",
+        "skills-for-placement-btech-bca-mca | academy | 1679 | 1192 | 55 | 2 | 6 | 3 | PASS, unchanged",
+        "software-developer-career-chandigarh-tricity | academy (hub) | 1863 | 1362 | 50 | 2 | 6 | 10 | PASS, unchanged (hub links its clusters)",
+        "website-development-cost-small-business-india | cost | 1715 | 1212 | 53 | 2 | 6 | 4 | PASS (fixed earlier in FEAT-005, updated 2026-10-04)",
+        "why-local-businesses-need-a-mobile-app | cost | 1825 | 1324 | 56 | 1 | 6 | 8 | PASS, unchanged; 8 links, kept"
+      ],
+      "totals": "26 audited: 4 fixed in FEAT-006 (updated 2026-10-04), 6 fixed earlier (FEAT-004/005), 16 pass unchanged (no `updated` added). All 26: pillar set, answer-first first paragraph 50-59 words, >= 1 DataTable, >= 5 FAQs, >= 3 in-body links, crawler words 1,581-2,494.",
+      "judgement_calls": [
+        "Upper bound of the 3-5 link rule: 10 posts have 6-12 in-body links (crawler counts /#contact and course/service links). Not trimmed: the extra links are contextual, removing internal links is not a gap fix, and trimming would need `updated` on posts that otherwise pass. Owner/editor can trim later if wanted.",
+        "Words rule: by the crawler Words column (the plan's audit measure) all 26 pass. Measured as article body only, 20 existing posts are below 1,500 (lowest: flutter-developer-hiring-models 1,132, best-programming-language-to-learn-india 1,134, skills-for-placement-btech-bca-mca 1,192, mvp-development-cost-timeline 1,206, website-development-cost-small-business-india 1,212). They were not expanded in this FEAT (would be rewrites of passing posts); listed here as an optional content backlog. New posts #11-#18 all meet 1,500+ on the stricter article measure."
+      ]
+    },
+    "llms_txt": "Normal build /llms.txt: 'Contact (NAP): Bright Infonet · Panchkula, Haryana, India · +91 79738 47707 · support@brightinfonet.com · WhatsApp https://wa.me/917973847707' (street/PIN empty -> left out, 0 empty-separator matches for '· ·', ', ,', trailing '·'); 'Enquiries' and 'Careers and internships' lines; no Pricing line (PRICING empty; when filled, one line 'Pricing (starting prices; … get a written quote): <crumb> from <from>; …' appears). Sections: Services, Industries (hub + 3 pages), Local and India-wide services, Academy, Tools & resources (calculator + LIMS URS template), Guides with ### Regulated software / App & software cost and hiring / AI agents / Academy & careers (live posts only, hub first and tagged '(pillar guide)'; the regulated hub is not live until 2026-10-06 so that group has no tag yet; empty pillars are omitted), Company. 26 /insights/ links = the 26 live posts; 0 of the 8 FEAT-006 scheduled slugs (and 0 of the FEAT-004/005 scheduled slugs). CONTENT_NOW build: same headings with the new posts in their pillar groups.",
+    "schema_sweep": "Normal-build crawler (72 pages) schema column: Service on all 12 /services/*, 3 /industries/*, 13 local/India-wide pages; BlogPosting + FAQPage + BreadcrumbList on all 26 posts (ai-agents hub was the only post without FAQPage before this FEAT); Course + CourseInstance on the 4 course pages and /academy; FAQPage on every page that renders FaqSection (landing pages, /academy, resource page, calculator) and no FaqSection on pages without FAQPage (home, /services, /industries, /process, /about, /work, /insights); BreadcrumbList on every non-home page; 0 Review/AggregateRating anywhere (TESTIMONIALS empty). City training pages use WebPage + ItemList (not courses; unchanged). Nothing missing, so no schema code changed.",
+    "evidence": {
+      "lint": "npm run lint: 0 errors, 2 pre-existing no-img-element warnings (the two opengraph-image.tsx files).",
+      "build_content_now": "CONTENT_NOW=2026-12-31 build passes, 156 static pages (140 + 8 posts + 8 OG images).",
+      "crawler_content_now": "Server also started with CONTENT_NOW: 95 pages | Errors 0 | Warnings 0 | Info 1 (CSV file not in sitemap, intentional since FEAT-004). All 8 new posts 200 with BlogPosting + FAQPage + BreadcrumbList; 0 orphans; 0 'fewer than 3 in-article links' warnings across all 49 posts (the 4 FEAT-001 WARNs are gone).",
+      "build_normal": "npm run build passes, 110 static pages (unchanged count: new posts are not prerendered).",
+      "crawler_normal": "72 pages | Errors 0 | Warnings 0 | Info 1. Report: .agents/seo-audit-2026-10-04.md.",
+      "served_normal": "All 8 new slugs and their /opengraph-image return 404; scheduled-slug count 0 in /insights, /sitemap.xml, /llms.txt, /, the AI hub, ai-ml-jobs, the career hub, how-to-choose-ai, /services/ai-agents and /academy/ai-agents-course. On the AI hub the PostLink texts ('AI agent vs chatbot', 'RAG for business', 'How to evaluate AI agents') render as plain text; 'Last updated' <time dateTime=2026-10-04>; FAQPage present; no Review/AggregateRating.",
+      "final_state": "Server on 3100 stopped (0 listeners), final normal build done after the last server run, temp files .agents/tmp-post-audit.mjs, tmp-wc.mjs, tmp-hidden-check.mjs and tmp-audit-content-now.md deleted, no commits."
+    },
+    "for_later_feats": [
+      "FEAT-007 checklist: items 12 and 13 are code-done and verified (normal + CONTENT_NOW). Owner should proofread the salary (#11) and AI cost (#17) posts before 2026-11-10 / 2026-12-01; both reuse only already-published bands.",
+      "Once a real author exists in src/content/authors.ts, set `author` on posts #11-#18 too.",
+      "Optional backlog: 20 existing posts are under 1,500 words measured as article body only (see existing_post_audit.judgement_calls); 10 have more than 5 in-body links.",
+      "llms.txt Pricing line appears automatically once PRICING in src/content/trust.ts has entries (uses each landing page's crumb)."
+    ],
+    "gotchas": [
+      "The workspace formatter re-wraps lines after edits; re-read before a second str_replace in the same file (hit twice in this FEAT).",
+      "Links inside <Callout> are in an <aside>, which the crawler's body-link count strips; put counted links in normal paragraphs."
+    ]
+  }
 }

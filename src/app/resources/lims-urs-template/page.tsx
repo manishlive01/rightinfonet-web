@@ -23,7 +23,7 @@ export const revalidate = 3600;
 const PATH = "/resources/lims-urs-template";
 const FILE = "/downloads/lims-urs-template.csv";
 const description =
-  "Free LIMS URS template as a CSV spreadsheet: generic user requirements with ID, type, priority, Part 11 and Annex 11 references and a verification method column.";
+  "Free LIMS URS template as a CSV spreadsheet: generic user requirements with ID, type, priority, Part 11 and Annex 11 references and a verification column.";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
@@ -116,25 +116,22 @@ export default function LimsUrsTemplatePage() {
           <Reveal as="p" className={`${landing.answerLead} ${home.serif}`}>
             This free LIMS URS template is a CSV spreadsheet of example user
             requirements for laboratory software, each with an ID, a GxP or
-            business type, a priority, a Part 11 or Annex 11 reference where
-            one applies, and a verification method, so you can adapt it and
-            trace it through validation.
+            business type, a priority, a Part 11 or Annex 11 reference where one
+            applies, and a verification method, so you can adapt it and trace it
+            through validation.
           </Reveal>
           <Reveal className={landing.answerBody} delay={0.1}>
             <p>
-              A URS is the baseline every specification and test traces back
-              to, and a weak one is a common reason LIMS projects slip or
-              struggle in validation. The template gives you a structured
-              starting point, written from a lab process rather than a product
-              brochure.
+              A URS is the baseline every specification and test traces back to,
+              and a weak one is a common reason LIMS projects slip or struggle
+              in validation. The template gives you a structured starting point,
+              written from a lab process rather than a product brochure.
             </p>
             <p>
-              The rows are generic examples, not requirements for your lab.
-              Your process, your risk assessment and your QA decide the final
+              The rows are generic examples, not requirements for your lab. Your
+              process, your risk assessment and your QA decide the final
               content. For how to write and approve a URS, read our guide to{" "}
-              <PostLink slug="lims-urs-template">
-                writing a LIMS URS
-              </PostLink>{" "}
+              <PostLink slug="lims-urs-template">writing a LIMS URS</PostLink>{" "}
               and the{" "}
               <Link href="/insights/21-cfr-part-11-compliance-checklist-lims">
                 Part 11 checklist for LIMS

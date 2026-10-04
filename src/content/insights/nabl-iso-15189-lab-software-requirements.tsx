@@ -9,7 +9,7 @@ export const nablIso15189LabSoftwareRequirements: Post = {
     "NABL and ISO 15189 software requirements for diagnostic labs, explained",
   metaTitle: "NABL & ISO 15189 Lab Software Requirements",
   description:
-    "What ISO 15189 and NABL accreditation expect from lab software: sample traceability, validated interfaces, report content, authorised release, security and downtime.",
+    "What ISO 15189 and NABL expect from lab software: sample traceability, validated interfaces, report content, authorised release, security and downtime plans.",
   excerpt:
     "What an ISO 15189 assessor looks for in your LIS or LIMS: traceability, validated interfaces, report content, authorised release, access control and downtime plans.",
   category: "Regulated software",
@@ -20,7 +20,7 @@ export const nablIso15189LabSoftwareRequirements: Post = {
   },
   cover: "audit",
   published: "2026-10-30",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "NABL software requirements",
     "ISO 15189 LIS requirements",
@@ -287,6 +287,61 @@ export const nablIso15189LabSoftwareRequirements: Post = {
             </PostLink>{" "}
             shows the extra controls Part 11 adds, such as its detailed
             electronic-signature rules.
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "report-delivery",
+      title: "Delivering reports to patients and clinicians",
+      body: (
+        <>
+          <p>
+            Many labs now send reports by email, SMS link, WhatsApp or a patient
+            portal. The same controls apply to these channels as to printed
+            reports:
+          </p>
+          <ul>
+            <li>Only authorised, released reports are sent, never drafts.</li>
+            <li>The delivered file is the same version that was released.</li>
+            <li>Links are secure and time-limited, and access is logged.</li>
+            <li>Amended reports are sent as new versions, clearly marked.</li>
+            <li>
+              Patient contact details and consent are recorded and kept current.
+            </li>
+          </ul>
+          <p>
+            Build the delivery channel into the validated system, rather than
+            exporting PDFs to a separate tool by hand.
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "common-gaps",
+      title: "Common gaps in diagnostic lab software",
+      body: (
+        <>
+          <p>
+            These are the issues that tend to surface during internal audits and
+            assessments of lab information systems:
+          </p>
+          <Checklist
+            items={[
+              "Results retyped from analyser printouts because no interface exists, with no second check.",
+              "Shared logins at reception or at instrument PCs, so entries cannot be attributed.",
+              "Released reports edited in place, with no amended version and no record of the original.",
+              "Critical results phoned through, but no record in the system of who was told and when.",
+              "Reference intervals changed without version history, so old reports cannot be explained.",
+              "Backups taken but never restored, and no tested downtime procedure.",
+              "Home-collection or patient apps holding data outside the controlled system.",
+            ]}
+          />
+          <p>
+            Each of these has a software fix, but most also need a procedure:
+            who checks manual entries, who reviews amended reports, how critical
+            calls are documented. Fixing the software without the SOP rarely
+            closes the finding.
           </p>
         </>
       ),

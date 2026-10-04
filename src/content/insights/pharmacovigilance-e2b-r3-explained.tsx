@@ -20,7 +20,7 @@ export const pharmacovigilanceE2bR3Explained: Post = {
   },
   cover: "audit",
   published: "2026-11-03",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "E2B(R3)",
     "ICH E2B R3 explained",
@@ -42,8 +42,8 @@ export const pharmacovigilanceE2bR3Explained: Post = {
         ICH E2B(R3) is the international standard for sending individual case
         safety reports (ICSRs) electronically between companies and regulators.
         It defines the data elements of a case and the XML message that carries
-        them, based on the ISO/HL7 ICSR standard. EudraVigilance has required
-        it since 30 June 2022.
+        them, based on the ISO/HL7 ICSR standard. EudraVigilance has required it
+        since 30 June 2022.
       </p>
       <p>
         For a pharmacovigilance team, E2B(R3) shapes how cases are captured,
@@ -72,6 +72,13 @@ export const pharmacovigilanceE2bR3Explained: Post = {
             rules, extra fields, gateways and acknowledgement handling. The EU’s
             guide for EudraVigilance is the most widely used example. Before
             submitting anywhere, read the current guide for that destination.
+          </p>
+          <p>
+            E2B(R3) defines how a case is exchanged, not how it is processed.
+            Timelines, seriousness rules and who must report what still come
+            from each region’s pharmacovigilance legislation and guidance, so
+            the PV system has to combine the exchange standard with regional
+            rules.
           </p>
           <Callout title="Where E2B(R3) is required">
             <p>
@@ -211,8 +218,9 @@ export const pharmacovigilanceE2bR3Explained: Post = {
             <li>Record which MedDRA version each case was coded with.</li>
             <li>Plan for MedDRA version upgrades and recoding rules.</li>
             <li>
-              Remember that MedDRA and drug dictionaries need their own licences,
-              held by the marketing authorisation holder or its provider.
+              Remember that MedDRA and drug dictionaries need their own
+              licences, held by the marketing authorisation holder or its
+              provider.
             </li>
           </ul>
         </>
@@ -239,13 +247,76 @@ export const pharmacovigilanceE2bR3Explained: Post = {
             ]}
           />
           <p>
-            Every one of these steps changes GxP records, so the case history and
-            audit trail must show who did what and when; our deep dive on{" "}
+            Every one of these steps changes GxP records, so the case history
+            and audit trail must show who did what and when; our deep dive on{" "}
             <PostLink slug="21-cfr-part-11-audit-trail-requirements">
               audit trail requirements
             </PostLink>{" "}
             applies here too.
           </p>
+        </>
+      ),
+    },
+    {
+      id: "common-rejections",
+      title: "Common reasons ICSRs are rejected",
+      body: (
+        <>
+          <p>
+            Most rejections come from a small set of problems that good software
+            can catch before sending:
+          </p>
+          <Checklist
+            items={[
+              "Mandatory elements missing, or left blank where a null flavour was required.",
+              "A null flavour used that the business rules do not allow for that field.",
+              "Code values outside the allowed list, such as an invalid route, dose form or unit.",
+              "MedDRA terms from a version the receiver no longer accepts, or terms that are not at the expected level.",
+              "Follow-up reports whose identifiers do not match the original case, creating duplicates.",
+              "Dates in the wrong format or precision, or dates that contradict each other.",
+              "XML that does not validate against the schema, often after a manual edit.",
+            ]}
+          />
+          <p>
+            Running the same business-rule checks inside the PV system, at data
+            entry and before export, turns most of these into warnings a case
+            processor can fix in minutes instead of a rejection found days
+            later.
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "moving-from-r2",
+      title: "Moving from R2 to R3",
+      body: (
+        <>
+          <p>
+            Teams still working with R2-era systems or partners face a
+            migration, not a format switch. The practical steps are:
+          </p>
+          <ol>
+            <li>
+              Map your case data model to R3 elements, including the new
+              repeatable fields and null flavours.
+            </li>
+            <li>
+              Decide how legacy cases will be converted, following the ICH
+              mapping guidance, and how converted cases are verified.
+            </li>
+            <li>
+              Update case-entry screens so the data R3 needs is captured at
+              source, not guessed at export.
+            </li>
+            <li>
+              Agree exchange formats with licensing partners and service
+              providers, and update safety data exchange agreements if needed.
+            </li>
+            <li>
+              Test submissions in the regulator’s test environment before going
+              live, and validate the changed system.
+            </li>
+          </ol>
         </>
       ),
     },

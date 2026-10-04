@@ -18,15 +18,21 @@ Note: #1 ranking ki guarantee koi nahi de sakta. "Best X in Panchkula" wale sear
 - [x] Academy: `EducationalOrganization` schema, aur 4 `Course` schemas (duration, mode, level). Fees jaan-boojh kar nahi daali.
 - [x] Home ke title aur description me location: "Software & App Development Company, Chandigarh Tricity".
 - [x] Footer me address line, "Serving Panchkula, Mohali & Chandigarh", "Areas we serve" column (9 local pages), aur Academy course links.
-- [ ] Footer me Google Map embed: Google Business Profile banne ke baad.
+- [~] Footer me Google Map embed: code ready (`MapEmbed`), `siteConfig.mapEmbedUrl` bharne par dikhega (Google Business Profile banne ke baad).
 - [x] Har service, local, course aur training page par visible FAQ aur `FAQPage` schema. Saare 26 blogs par bhi FAQ.
 - [x] 5 alag service pages: `/services/product-design`, `/web-platforms`, `/mobile-apps`, `/ai-agents`, `/regulated-software`. `/services` aur footer ab inhe link karte hain.
 - [x] 4 alag course pages (syllabus ke saath). Neeche table dekho.
 - [x] Internal links: har blog se service, course ya local pages, aur har landing page par "Related pages".
-- [ ] Case studies (`/work`) me client ki city, results aur numbers: asli data chahiye.
-- [ ] Testimonials aur `Review` schema: sirf asli reviews ke saath.
+- [~] Case studies (`/work`) me client ki city, results aur numbers: slot ready (`CASE_STUDY_PROOF` in `src/content/trust.ts`), asli data chahiye.
+- [~] Testimonials aur `Review` schema: component + schema ready (`TESTIMONIALS` in `trust.ts`), sirf asli reviews ke saath bharna.
 - [x] `/llms.txt` bana diya. Isme saari services, local pages, courses aur guides apne aap aa jaate hain.
-- [x] Sitemap me saare naye pages hain (56 URLs).
+- [x] Sitemap me saare live pages hain (2026-10-04: 72 URLs; scheduled posts apni date par apne aap judte hain).
+- [x] robots.txt me AI bots (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Bingbot) explicit allow.
+- [x] Regulated software home, services aur footer me sabse upar.
+- [~] GA4 + events, Calendly button, Search Console/Bing meta, IndexNow: code ready, env values aapko deni hain (`SEO-OWNER-TODO.md`).
+- [ ] Core Web Vitals: mobile LCP abhi ~3.6–4.2s (Lighthouse simulated), target 2.5s. Deploy ke baad PageSpeed field data dekhna.
+
+Naye pages (2026-10-04): 14 landing pages (neeche table me, LIMS se Shimla tak), `/tools/app-development-cost-calculator` aur `/resources/lims-urs-template` (+ `/downloads/lims-urs-template.csv`).
 
 ## 3. Local aur landing pages (sab live)
 
@@ -99,15 +105,63 @@ Chaar list-type topics badle gaye hain. Competitors ki ranking ya rates likhne s
 - [x] How to choose an AI development company in India ("Top AI companies" list ki jagah)
 - [x] MVP development cost and timeline
 - [x] Custom software vs SaaS
-- [ ] AI agents for small business: existing post ka expansion (baad me)
-- [ ] Flutter vs React Native 2026: existing post ka update (baad me)
+- [x] AI agents for business operations: hub post expand kiya (answer-first, 3 tables, 6 FAQs, cluster links; updated 2026-10-04)
+- [x] Flutter vs React Native: existing post update kiya (Pillar 2 section dekho)
 
 **Pharma**
 
 - [x] CSV vs CSA: FDA Computer Software Assurance
 - [x] LIMS software cost in India
 - [x] Pharmacovigilance software: build vs buy
-- [ ] Part 11 post expansion (baad me)
+- [x] Part 11 checklist post expansion (FAQ, answer-first intro, 5 body links; updated 2026-10-04)
+- [x] GAMP 5 validation guide: FAQ + links add kiye, CSA final (Sept 2025) fix kiya (updated 2026-10-04)
+
+**Pillar 1: Regulated software (scheduled, apne date par apne aap live hote hain)**
+
+| Date       | Post                                                 |
+| ---------- | ---------------------------------------------------- |
+| 2026-10-06 | /insights/gxp-software-validation-guide (pillar hub) |
+| 2026-10-09 | /insights/21-cfr-part-11-audit-trail-requirements    |
+| 2026-10-13 | /insights/gamp-5-category-4-vs-category-5            |
+| 2026-10-16 | /insights/eu-annex-11-computerised-systems           |
+| 2026-10-20 | /insights/lims-urs-template                          |
+| 2026-10-23 | /insights/custom-lims-vs-off-the-shelf-lims          |
+| 2026-10-27 | /insights/lims-implementation-checklist              |
+| 2026-10-30 | /insights/nabl-iso-15189-lab-software-requirements   |
+| 2026-11-03 | /insights/pharmacovigilance-e2b-r3-explained         |
+| 2026-11-06 | /insights/what-is-a-validation-package               |
+
+Lead magnet (live): `/resources/lims-urs-template` + `/downloads/lims-urs-template.csv`. Email form tabhi dikhega jab `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` (https form backend, jaise Formspree) set karke rebuild karoge; tab tak sirf download button.
+
+**Pillar 2: Cost, hiring aur comparisons (scheduled)**
+
+| Date       | Post                                                        |
+| ---------- | ----------------------------------------------------------- |
+| 2026-12-08 | /insights/app-development-cost-chandigarh                   |
+| 2026-12-11 | /insights/mvp-in-8-weeks                                    |
+| 2026-12-15 | /insights/how-to-write-software-rfp                         |
+| 2026-12-18 | /insights/nextjs-vs-wordpress-business-website (comparison) |
+| 2026-12-22 | /insights/in-house-vs-outsourcing-software-development      |
+
+- [x] Flutter vs native post ko "Flutter vs React Native vs native for startups" me update kiya (same URL, updated 2026-10-04)
+- [x] Cost calculator (live): `/tools/app-development-cost-calculator`. Ranges `src/content/cost-calculator.ts` me hain, sirf pehle se published cost articles ke indicative figures. **OWNER CONFIRM: ek baar ranges check kar lo**; badlo to article me bhi badlo.
+
+**Pillar 4: Academy aur Pillar 3: AI agents (scheduled)**
+
+| Date       | Post                                                   | Pillar  |
+| ---------- | ------------------------------------------------------ | ------- |
+| 2026-11-10 | /insights/fresher-software-developer-salary-chandigarh | academy |
+| 2026-11-13 | /insights/what-to-do-after-bca-mca                     | academy |
+| 2026-11-17 | /insights/industrial-training-certificate-guide        | academy |
+| 2026-11-20 | /insights/ai-agent-vs-chatbot                          | ai      |
+| 2026-11-24 | /insights/rag-for-business                             | ai      |
+| 2026-11-27 | /insights/ai-automation-clinics-labs-retail            | ai      |
+| 2026-12-01 | /insights/ai-agent-development-cost-india              | ai      |
+| 2026-12-04 | /insights/how-to-evaluate-ai-agents                    | ai      |
+
+Pillar hubs: regulated = `gxp-software-validation-guide` (2026-10-06 se), cost = `app-development-cost-india`, ai = `ai-agents-for-business-operations`, academy = `software-developer-career-chandigarh-tricity`. Har post par PillarNav ("Part of" hub link + same pillar ke live posts) apne aap.
+
+Existing 26 posts audit (2026-10-04): 10 fix hue (updated 2026-10-04), 16 baaki rules par theek (date nahi badli). Pending (checklist `[~]`): 20 posts ki article body 1,500 words se kam hai, expand karna baaki; 10 posts me 5 se zyada in-body links.
 
 Blog ke numbers (cost, salary) sab "indicative" likhe hain aur "written quote lo" bolte hain. Publish karne se pehle ek baar khud padh lena, khaaskar cost aur CSA wale posts. Author ka naam abhi "Bright Infonet Engineering" hai. Asli author name aur bio doge to E-E-A-T behtar hoga.
 
@@ -120,17 +174,27 @@ Blog ke numbers (cost, salary) sab "indicative" likhe hain aur "written quote lo
 - [ ] **Community**: LinkedIn, Quora aur Reddit (r/Chandigarh, r/developersIndia) par jawab do, aur relevant blog link karo.
 - [ ] **Search Console aur Bing Webmaster Tools** me `https://www.brightinfonet.com/sitemap.xml` submit karo, aur naye pages ke liye "Request indexing" karo.
 
+## Hosting note (scheduled posts)
+
+Scheduled posts ISR (`revalidate = 3600`) se apni date (IST) par apne aap live hote hain. Iske liye site `next start` (Node server) ya Vercel jaise ISR wale host par chalni chahiye. Static export ya bina ISR wale host par roz ~00:30 IST ek rebuild + deploy (cron/CI) chahiye, warna naye posts live nahi honge. `CONTENT_NOW` sirf local QA ke liye hai, production me kabhi set mat karna.
+
 ## Pending (aapse chahiye)
 
-- Street address aur PIN code (`src/lib/site-config.ts` → `address.street`, `address.postalCode`). Locality "Panchkula" maan li gayi hai, galat ho to badal dena.
-- Office timings (`openingHours` ke liye) aur map location
-- Course fees aur batch dates (abhi FAQ me "contact us" likha hai)
-- Asli client/student testimonials, case study results
-- Blog author ka naam aur bio
+Poori list file + key ke saath `SEO-OWNER-TODO.md` me hai. Short me:
+
+- Street address aur PIN code (`src/lib/site-config.ts` → `address.street`, `address.postalCode`), `geo`, `openingHours`, `mapEmbedUrl`, `googleBusinessUrl`. Locality "Panchkula" maan li gayi hai, galat ho to badal dena. Ambala aur Shimla `areaServed` me add kiye, confirm karo.
+- Env: `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CALENDLY_URL`, `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`, `INDEXNOW_KEY`, `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` (set karke rebuild).
+- Authors aur founder (`src/content/authors.ts`), testimonials, client logos, proof numbers, case-study data, pricing (`src/content/trust.ts`), sab sirf asli aur permission ke saath.
+- Calculator ranges confirm (`src/content/cost-calculator.ts`).
+- Privacy policy page (email capture se pehle zaroori).
+- Course fees aur batch dates (abhi FAQ me "contact us" likha hai), placement stats.
+- Scheduled cost/salary/regulatory posts apni date se pehle proofread.
 
 ## Code me kahan kya hai
 
-- Landing page content: `src/content/landing/` (`services.ts`, `local.ts`, `academy.ts`)
-- Blogs: `src/content/insights/*.tsx`, register in `index.ts`
+- Landing page content: `src/content/landing/` (`services.ts`, `local.ts`, `academy.ts`, `industries.ts`)
+- Blogs: `src/content/insights/*.tsx`, register in `index.ts`; schedule logic `schedule.ts` (`todayIST()`, `CONTENT_NOW`); post links ke liye `PostLink`
+- Trust/owner data: `src/content/trust.ts`, `src/content/authors.ts`, `src/content/cost-calculator.ts`, `src/lib/site-config.ts`
 - Page template: `src/components/pages/LandingView.tsx`; schema: `landing-seo.ts`, `seo.ts`
-- Routes: `src/app/[slug]` (local pages), `src/app/services/[slug]`, `src/app/academy/[slug]`, `src/app/llms.txt`
+- Routes: `src/app/[slug]` (local pages), `src/app/services/[slug]`, `src/app/industries/[slug]`, `src/app/academy/[slug]`, `src/app/tools/app-development-cost-calculator`, `src/app/resources/lims-urs-template`, `src/app/about/founder`, `src/app/llms.txt`, `src/app/indexnow.txt`
+- IndexNow submit (owner-run): `scripts/indexnow-submit.mjs`

@@ -9,7 +9,7 @@ export const whatIsAValidationPackage: Post = {
     "What is a validation package? The documents behind a validated system",
   metaTitle: "What Is a Validation Package? Documents Explained",
   description:
-    "What a computer system validation package contains, from validation plan and URS to test evidence, traceability matrix and summary report, and who signs each one.",
+    "What a computer system validation package contains, from validation plan and URS to test evidence, traceability matrix and summary report, and who signs each.",
   excerpt:
     "Every document in a computer system validation package, what it proves, who usually writes and approves it, and how to scale the package to risk.",
   category: "Regulated software",
@@ -20,7 +20,7 @@ export const whatIsAValidationPackage: Post = {
   },
   cover: "vmodel",
   published: "2026-11-06",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "validation package",
     "computer system validation documents",
@@ -49,8 +49,8 @@ export const whatIsAValidationPackage: Post = {
       <p>
         Auditors ask for it by name, suppliers promise to deliver it, and the
         contents vary more than most people expect. This guide lists each
-        document, what it proves, who usually writes and approves it, and how
-        to keep the package in proportion to the system’s risk.
+        document, what it proves, who usually writes and approves it, and how to
+        keep the package in proportion to the system’s risk.
       </p>
     </>
   ),
@@ -61,7 +61,12 @@ export const whatIsAValidationPackage: Post = {
       body: (
         <DataTable
           caption="Documents in a computer system validation package"
-          head={["Document", "What it proves", "Usually written by", "Approved by"]}
+          head={[
+            "Document",
+            "What it proves",
+            "Usually written by",
+            "Approved by",
+          ]}
           rows={[
             [
               "Validation plan",
@@ -147,9 +152,9 @@ export const whatIsAValidationPackage: Post = {
           </p>
           <p>
             The <strong>GxP impact assessment</strong> records why the system is
-            in scope. The <strong>supplier assessment</strong> — a questionnaire,
-            a document review or an audit, depending on risk — decides how much
-            supplier evidence you can leverage.
+            in scope. The <strong>supplier assessment</strong> — a
+            questionnaire, a document review or an audit, depending on risk —
+            decides how much supplier evidence you can leverage.
           </p>
         </>
       ),
@@ -169,11 +174,11 @@ export const whatIsAValidationPackage: Post = {
             follows.
           </p>
           <p>
-            <strong>Specifications</strong> depend on the category. A
-            configured product needs a configuration specification that records
-            every setting that matters. Custom software adds functional and
-            design specifications and evidence of code review and developer
-            testing, as explained in{" "}
+            <strong>Specifications</strong> depend on the category. A configured
+            product needs a configuration specification that records every
+            setting that matters. Custom software adds functional and design
+            specifications and evidence of code review and developer testing, as
+            explained in{" "}
             <PostLink slug="gamp-5-category-4-vs-category-5">
               GAMP 5 Category 4 vs 5
             </PostLink>
@@ -239,9 +244,9 @@ export const whatIsAValidationPackage: Post = {
           <p>
             The <strong>validation summary report</strong> closes the work. It
             summarises what was done against the plan, lists deviations and
-            their outcome, records any open items with justification, and
-            states whether the system is fit for its intended use. When QA
-            approves it, the system can be released for GxP use.
+            their outcome, records any open items with justification, and states
+            whether the system is fit for its intended use. When QA approves it,
+            the system can be released for GxP use.
           </p>
         </>
       ),
@@ -265,6 +270,35 @@ export const whatIsAValidationPackage: Post = {
               "A retirement or archive plan when the system is replaced.",
             ]}
           />
+        </>
+      ),
+    },
+    {
+      id: "what-auditors-check",
+      title: "What auditors look at first",
+      body: (
+        <>
+          <p>
+            Auditors rarely read a package from front to back. They sample it,
+            looking for signs that the process was real rather than paperwork
+            added at the end:
+          </p>
+          <Checklist
+            items={[
+              "Approval dates: were the plan, URS and protocols approved before testing started?",
+              "Traceability: pick a high-risk requirement and follow it to its risk rating, specification and test.",
+              "Executed evidence: do results, signatures and dates look contemporaneous, with corrections explained?",
+              "Deviations: are they all closed or justified, and was the root cause addressed?",
+              "Versions: does the validated version match what is running in production today?",
+              "Data integrity: were the audit trail, access control and backup restore actually tested?",
+              "After go-live: are change control records and periodic reviews up to date?",
+            ]}
+          />
+          <p>
+            A short package that passes these checks is stronger than a long one
+            that fails them. Consistency between documents matters more than the
+            number of pages.
+          </p>
         </>
       ),
     },
@@ -293,6 +327,26 @@ export const whatIsAValidationPackage: Post = {
               GxP validation guide
             </PostLink>{" "}
             shows where each document fits in the life cycle.
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "paper-or-electronic",
+      title: "Paper or electronic packages",
+      body: (
+        <>
+          <p>
+            Packages can be kept on paper, as signed PDFs or in a validation
+            management tool. Electronic packages make traceability and change
+            control much easier, and automated test results can be attached
+            directly as evidence.
+          </p>
+          <p>
+            Remember that validation records are GxP records themselves. If you
+            write, execute and sign them electronically, the tool you use needs
+            the same controls as any other GxP system: unique logins, audit
+            trail, compliant electronic signatures and its own validation.
           </p>
         </>
       ),

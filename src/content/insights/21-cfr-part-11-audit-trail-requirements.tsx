@@ -20,7 +20,7 @@ export const part11AuditTrailRequirements: Post = {
   },
   cover: "audit",
   published: "2026-10-09",
-  readingMinutes: 8,
+  readingMinutes: 7,
   keywords: [
     "21 CFR Part 11 audit trail",
     "audit trail requirements FDA",
@@ -41,9 +41,9 @@ export const part11AuditTrailRequirements: Post = {
       <p>
         Under 21 CFR 11.10(e), a system holding regulated electronic records
         needs a secure, computer-generated, time-stamped audit trail that
-        independently records who created, changed or deleted a record and
-        when. Changes must not hide earlier values, and the trail must be kept
-        as long as the record and be available to the FDA.
+        independently records who created, changed or deleted a record and when.
+        Changes must not hide earlier values, and the trail must be kept as long
+        as the record and be available to the FDA.
       </p>
       <p>
         That one sentence of regulation drives a lot of design work. This
@@ -51,8 +51,8 @@ export const part11AuditTrailRequirements: Post = {
         <PostLink slug="21-cfr-part-11-compliance-checklist-lims">
           Part 11 checklist
         </PostLink>
-        : what to capture, how to build a trail that cannot be quietly
-        altered, how QA should review it, and how to test it during validation.
+        : what to capture, how to build a trail that cannot be quietly altered,
+        how QA should review it, and how to test it during validation.
       </p>
     </>
   ),
@@ -63,14 +63,14 @@ export const part11AuditTrailRequirements: Post = {
       body: (
         <>
           <p>
-            Part 11 is short on detail. Section 11.10(e) gives four
-            requirements for closed systems:
+            Part 11 is short on detail. Section 11.10(e) gives four requirements
+            for closed systems:
           </p>
           <ul>
             <li>
-              The trail is <strong>secure, computer-generated and
-              time-stamped</strong>, and records operator entries and actions
-              independently of the user.
+              The trail is{" "}
+              <strong>secure, computer-generated and time-stamped</strong>, and
+              records operator entries and actions independently of the user.
             </li>
             <li>
               It covers actions that <strong>create, modify or delete</strong>{" "}
@@ -189,9 +189,7 @@ export const part11AuditTrailRequirements: Post = {
       title: "Designing a trail that cannot be quietly altered",
       body: (
         <>
-          <p>
-            “Secure” is the word that shapes the architecture. In practice:
-          </p>
+          <p>“Secure” is the word that shapes the architecture. In practice:</p>
           <ul>
             <li>
               <strong>Append-only storage.</strong> Entries are inserted, never
@@ -204,9 +202,8 @@ export const part11AuditTrailRequirements: Post = {
               call cannot bypass the trail.
             </li>
             <li>
-              <strong>Cannot be switched off</strong> for GxP data. If a
-              product allows it, the setting itself must be controlled and
-              trailed.
+              <strong>Cannot be switched off</strong> for GxP data. If a product
+              allows it, the setting itself must be controlled and trailed.
             </li>
             <li>
               <strong>Tamper-evident.</strong> Chaining a hash of each entry
@@ -228,9 +225,7 @@ export const part11AuditTrailRequirements: Post = {
             Retrofitting this into a system that was not designed for it is
             expensive, which is why we design the audit trail into the data
             model on day one of a{" "}
-            <Link href="/services/lims-software-development">
-              LIMS build
-            </Link>{" "}
+            <Link href="/services/lims-software-development">LIMS build</Link>{" "}
             and every other regulated system.
           </p>
         </>
@@ -299,6 +294,35 @@ export const part11AuditTrailRequirements: Post = {
               EU Annex 11 guide
             </PostLink>
             .
+          </p>
+        </>
+      ),
+    },
+    {
+      id: "legacy-systems",
+      title: "Legacy systems without a proper audit trail",
+      body: (
+        <>
+          <p>
+            Many labs run older instruments or software whose audit trail is
+            missing, incomplete or easy to switch off. Replacing them is not
+            always possible straight away. Interim measures usually combine:
+          </p>
+          <ul>
+            <li>A documented risk assessment of what the gap allows.</li>
+            <li>Restricted access, with no shared accounts.</li>
+            <li>
+              Procedural controls such as logbooks or second-person checks.
+            </li>
+            <li>
+              Moving the GxP record of truth into a system that does have a
+              compliant trail.
+            </li>
+            <li>A dated plan to upgrade or replace the system.</li>
+          </ul>
+          <p>
+            Inspectors generally accept interim controls only when the gap is
+            recognised, assessed and on a path to closure.
           </p>
         </>
       ),

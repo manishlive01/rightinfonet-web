@@ -80,6 +80,7 @@ const REGULATED = [
     label: "Diagnostic lab software",
   },
   { href: "/gxp-software-development-india", label: "GxP software, India" },
+  { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
   {
     href: "/academy/software-validation-gamp5-course",
     label: "GAMP 5 validation course",
@@ -104,6 +105,10 @@ const MORE_SERVICES = [
   {
     href: "/industries/healthcare-app-development",
     label: "Healthcare apps",
+  },
+  {
+    href: "/tools/app-development-cost-calculator",
+    label: "App cost calculator",
   },
 ];
 

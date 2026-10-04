@@ -35,6 +35,21 @@ import { limsImplementationChecklist } from "./lims-implementation-checklist";
 import { nablIso15189LabSoftwareRequirements } from "./nabl-iso-15189-lab-software-requirements";
 import { pharmacovigilanceE2bR3Explained } from "./pharmacovigilance-e2b-r3-explained";
 import { whatIsAValidationPackage } from "./what-is-a-validation-package";
+// Pillar 2 (cost, hiring, comparisons), scheduled Dec 2026
+import { appDevelopmentCostChandigarh } from "./app-development-cost-chandigarh";
+import { mvpIn8Weeks } from "./mvp-in-8-weeks";
+import { howToWriteSoftwareRfp } from "./how-to-write-software-rfp";
+import { nextjsVsWordpressBusinessWebsite } from "./nextjs-vs-wordpress-business-website";
+import { inHouseVsOutsourcingSoftwareDevelopment } from "./in-house-vs-outsourcing-software-development";
+// Pillar 4 (academy) and Pillar 3 (AI agents), scheduled Nov–Dec 2026
+import { fresherSoftwareDeveloperSalaryChandigarh } from "./fresher-software-developer-salary-chandigarh";
+import { whatToDoAfterBcaMca } from "./what-to-do-after-bca-mca";
+import { industrialTrainingCertificateGuide } from "./industrial-training-certificate-guide";
+import { aiAgentVsChatbot } from "./ai-agent-vs-chatbot";
+import { ragForBusiness } from "./rag-for-business";
+import { aiAutomationClinicsLabsRetail } from "./ai-automation-clinics-labs-retail";
+import { aiAgentDevelopmentCostIndia } from "./ai-agent-development-cost-india";
+import { howToEvaluateAiAgents } from "./how-to-evaluate-ai-agents";
 import { isPublished, todayIST } from "./schedule";
 import type { Pillar, Post } from "./types";
 
@@ -49,6 +64,19 @@ export { todayIST } from "./schedule";
  * Newest first; posts with the same date keep this order (the first one is featured).
  */
 const POSTS: Post[] = [
+  inHouseVsOutsourcingSoftwareDevelopment,
+  nextjsVsWordpressBusinessWebsite,
+  howToWriteSoftwareRfp,
+  mvpIn8Weeks,
+  appDevelopmentCostChandigarh,
+  howToEvaluateAiAgents,
+  aiAgentDevelopmentCostIndia,
+  aiAutomationClinicsLabsRetail,
+  ragForBusiness,
+  aiAgentVsChatbot,
+  industrialTrainingCertificateGuide,
+  whatToDoAfterBcaMca,
+  fresherSoftwareDeveloperSalaryChandigarh,
   whatIsAValidationPackage,
   pharmacovigilanceE2bR3Explained,
   nablIso15189LabSoftwareRequirements,

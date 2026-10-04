@@ -627,6 +627,10 @@ export const LOCAL_PAGES: Landing[] = [
         href: "/insights/website-development-cost-small-business-india",
         label: "Website cost for small businesses",
       },
+      {
+        href: "/web-development-company-shimla",
+        label: "Web development in Shimla",
+      },
     ],
   },
   {
@@ -784,6 +788,10 @@ export const LOCAL_PAGES: Landing[] = [
         href: "/insights/mvp-development-cost-timeline",
         label: "MVP cost and timeline",
       },
+      {
+        href: "/software-development-company-ambala",
+        label: "Software development in Ambala",
+      },
     ],
   },
   {
@@ -939,6 +947,10 @@ export const LOCAL_PAGES: Landing[] = [
       {
         href: "/insights/how-to-choose-software-development-company-india",
         label: "Choosing a software development company",
+      },
+      {
+        href: "/software-development-company-kharar",
+        label: "Software development in Kharar",
       },
     ],
   },

@@ -2,7 +2,7 @@
   "id": "FEAT-007",
   "type": "docs",
   "description": "Plan item 14: tick SEO-CHECKLIST.md honestly from verified evidence, update SEO-PLAN.md and the seo-audit skill (project map + learnings log), write the Hinglish owner to-do report SEO-OWNER-TODO.md, and save the final crawler report. Depends on all previous FEATs (reads their findings).",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Run a final normal npm run lint + npm run build, serve on 3100, run the crawler to .agents/seo-audit-2026-10-04.md; note error/warning/info counts vs the baseline (56 pages, 0/25/2).",
     "Read findings in FEAT-001..FEAT-006. In SEO-CHECKLIST.md mark [x] only items verified on the built/served site, [~] for code-done-but-owner-data-pending (GA4, Calendly, verification meta, IndexNow key, author box, founder page, testimonials, logos, proof slots, pricing, geo/hours/map, lead magnet endpoint, calculator ranges) with a one-line note on what is pending, [ ] for anything not done or not verifiable (e.g. CWV if Lighthouse could not run). Scheduled posts: mark the code/content item done but note go-live dates.",
@@ -22,5 +22,44 @@
     "npx next start -p 3100 (background) then node .kiro/skills/seo-audit/scripts/audit.mjs http://localhost:3100 --out .agents/seo-audit-2026-10-04.md"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": {
+    "summary": "Final verification on a normal production build served with next start -p 3100: lint 0 errors (2 pre-existing no-img-element warnings in opengraph-image files), build pass (110 static pages, ISR 1h on /, /[slug], /academy/[slug], /industries/[slug], /insights, /insights/[slug] + OG, /llms.txt, /resources/lims-urs-template, /services/[slug], /sitemap.xml, /tools/app-development-cost-calculator), crawler 72 pages | Errors 0 | Warnings 0 | Info 1 (CSV download not in sitemap, intentional) vs baseline 56 pages 0/25/2. Report saved to .agents/seo-audit-2026-10-04.md. Server stopped (0 listeners on 3100). No commits.",
+    "served_spot_checks": "robots.txt lists all 7 AI bots + Sitemap; sitemap 72 <loc>; home meta description 158 chars; googletagmanager 0, verification meta 0, data-track=calendly 0 (env unset); /indexnow.txt 404, /about/founder 404, /insights/gxp-software-validation-guide 404 (scheduled 2026-10-06); llms.txt NAP line without empty fields + sections Services, Industries, Local and India-wide services, Academy, Tools & resources, Guides, Company.",
+    "checklist": "SEO-CHECKLIST.md: [x] only for items with evidence in FEAT-001..006 findings or this run; [~] for code-done owner-data items (author box/founder, Calendly, GA4, verification meta, IndexNow, all Phase 2 trust/proof/pricing/geo items, lead-magnet email, calculator ranges, priority + schedule decisions) and for hub-and-spoke (/insights listing not grouped by pillar); [ ] for CWV (Lighthouse simulated mobile LCP 3.6-4.2s), photos, placement stats, local clients, survey data, Phase 9 off-page, sameAs. Scheduled posts ticked with their go-live dates (verified in CONTENT_NOW build by FEAT-004/005/006).",
+    "docs": "SEO-PLAN.md: on-page status lines, new pages note, Pillar 3/4 schedule table (Pillar 1/2 tables already there), hubs + audit summary, hosting/ISR note, pending owner list, code map. SKILL.md: project map (industries route, blog API, schedule.ts + CONTENT_NOW, PostLink/PillarNav/AuthorBox, trust.ts/authors.ts/cost-calculator.ts, tools/resources/founder routes, indexnow route + script, footer lists, port 3100 + CONTENT_NOW recipe), crawler description, Learnings log entry 2026-10-04. SEO-OWNER-TODO.md (Hinglish): done summary, env var table, config file keys, privacy policy, Search Console/Bing/IndexNow steps, hosting rebuild note, proofread list with dates, Phase 9 off-page, owner decisions.",
+    "not_verified": "GA4 and lead-form paths with real IDs/endpoints (only test values or not exercised, per FEAT-002/004); AuthorBox with a real author entry.",
+    "fixer iteration 1": {
+      "mode": "First SEO fixer iteration. .agents/tasks/review.json existed but belongs to the earlier mobile-home workflow (written 15:06, before FEAT-001 started; reviewDoc = mobile-home-review.md; findings about Hero.tsx eyebrow and mobile swipe/iOS checks, none about SEO). Treated as stale and ran the first-iteration cross-FEAT integration verification. review.json not touched.",
+      "verified": [
+        "npm run lint: 0 errors, 2 pre-existing no-img-element warnings (opengraph-image files).",
+        "CONTENT_NOW=2026-12-31 build: 156 static pages; served crawl 95 pages | Errors 0 | Warnings 0 | Info 1 (CSV not in sitemap, intentional). Sitemap 95 <loc>, llms.txt 49 /insights/ links, /about/founder and /indexnow.txt 404 (owner data unset).",
+        "Normal build: 110 static pages, ISR 1h on the listed routes; served crawl 72 pages | Errors 0 | Warnings 0 | Info 1 (report .agents/seo-audit-2026-10-04.md).",
+        "Scheduled-post seams (normal build): 0 URLs of the 23 future slugs anywhere in the 72 sitemap pages + /llms.txt + /robots.txt (hrefs, JSON-LD, text URLs); future post pages and their /opengraph-image return 404, a live post's OG returns 200; regulated posts show 'More on regulated software' (no link to the unpublished hub).",
+        "Dates: no `published` line changed in any tracked post (git diff); `updated: 2026-10-04` only on the 10 existing posts that were really edited; the 23 scheduled dates match the D5 table exactly, no duplicate dates.",
+        "Schema: BlogPosting with author, datePublished, dateModified on all 26 live posts (served JSON-LD).",
+        "Wiring: all 16 new URLs (14 landing + calculator + resource) are in the footer, sitemap and llms.txt; env vars in code = .env.local.example = SEO-OWNER-TODO.md; SEO-PLAN.md lists every new route and every scheduled slug + date; SKILL.md has CONTENT_NOW, port 3100, industries route, schedule.ts and the 2026-10-04 learnings entry.",
+        "Checklist ticks re-read against evidence: no owner-data item is [x]; the existing-post audit [x] uses the plan's crawler Words measure and already discloses the article-body backlog (FEAT-006 judgement call), so it was left as is."
+      ],
+      "fixed": [
+        "Thin internal linking found by counting in-<main> inbound links (footer/header excluded): Kharar, Ambala and Shimla had 2 in-content inbound links each, /resources/lims-urs-template only 1. Added related links on existing published pages: /software-development-company-mohali -> Kharar, /web-development-company-chandigarh -> Ambala, /web-development-company-panchkula -> Shimla (src/content/landing/local.ts); /services/computer-system-validation -> URS template (services.ts); /industries/diagnostic-lab-software -> URS template (industries.ts). After rebuild every sitemap page except /about (header nav + footer) has >= 3 in-content inbound links."
+      ],
+      "final_state": "Re-ran lint, CONTENT_NOW build + crawl (95 | 0/0/1) and ended on a normal build + crawl (72 | 0/0/1). Server on 3100 stopped (0 listeners), temp scripts and the CONTENT_NOW report deleted, no commits."
+    },
+    "fixer iteration 2": {
+      "mode": "Fixed all 3 findings in .agents/tasks/review.json (CHANGES_REQUESTED, 1 major + 2 minor). review.json not touched.",
+      "fixed": [
+        "major, SEO-CHECKLIST.md: the Phase 3 existing-articles audit item changed from [x] to [~]. The note now says the audit was done (10 fixed, 16 already fine on the other rules) and that 20 posts still have an article body under 1,500 words (served <article> 1,379-1,429 vs crawler <main> 1,581+), so expanding them is pending. Mirrored in SEO-OWNER-TODO.md section 1 and SEO-PLAN.md. No post text was expanded and no `updated` date was changed.",
+        "minor, gamp-5-category-4-vs-category-5.tsx (publishes 2026-10-13): added an in-body PostLink to gxp-software-validation-guide (2026-10-06) in the 'Mixed systems' section. The sentence describes only what that guide covers (life cycle from validation plan to summary report). The post is unpublished, so no `updated` date was set.",
+        "minor, src/app/sitemap.ts: static, landing, hub, tool and resource entries no longer send lastModified (with ISR 1h, new Date() refreshed it every hour). Posts keep `updated ?? published`. /insights takes the newest live post date, which comes from the data rather than a made-up value. This changes only the <lastmod> tags in sitemap.xml, so visitors see no difference.",
+        "SKILL.md learnings log: added a review-fix entry with two gotchas. A CONTENT_NOW crawl hides link-timing gaps, so count live links per post on its own publish date. For the 1,500-word rule, count the <article> body, not the crawler's Words column."
+      ],
+      "verified": [
+        "npm run lint: 0 errors, 2 pre-existing no-img-element warnings.",
+        "Source-level link-timing check (temp script, deleted): every one of the 23 queued posts has >= 3 in-body links that are live on its own publish date. gamp-5-category-4-vs-category-5 now has 3 (was 2). Under-3 count: 0.",
+        "CONTENT_NOW=2026-12-31 build passed. Served crawl: 95 pages | 0/0/1. Sitemap: 95 <loc> and 50 <lastmod> (49 posts + /insights 2026-12-22).",
+        "Normal build passed (110 static pages, ISR 1h on /insights, /sitemap.xml and the other listed routes). Served crawl: 72 pages | 0/0/1, report at .agents/seo-audit-2026-10-04.md. Sitemap: 72 <loc> and 27 <lastmod> (26 live posts + /insights 2026-10-04). gxp-software-validation-guide is absent from the sitemap, and both it and gamp-5-category-4-vs-category-5 return 404 (scheduled)."
+      ],
+      "final_state": "Ended on a normal build. Server on 3100 stopped (0 listeners). Temp script and CONTENT_NOW report deleted. No commits."
+    }
+  }
 }

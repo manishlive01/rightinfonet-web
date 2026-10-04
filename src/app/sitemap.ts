@@ -13,16 +13,24 @@ import {
 export const revalidate = 3600;
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getPublishedPosts();
+  const postDate = (post: (typeof posts)[number]) =>
+    post.updated ?? post.published;
+
+  // No lastModified on static/landing pages: with hourly ISR, new Date() would
+  // report a fresh lastmod every hour for unchanged pages. Only dated content
+  // (posts, and /insights via its newest post) carries a lastmod.
   const page = (
     path: string,
     priority: number,
     changeFrequency: "weekly" | "monthly",
   ) => ({
     url: `${siteConfig.url}${path}`,
-    lastModified: new Date(),
     changeFrequency,
     priority,
   });
+
+  const latestPostDate = posts.map(postDate).sort().at(-1);
 
   return [
     page("", 1, "weekly"),
@@ -37,10 +45,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // founder profile only once the owner has filled it in (src/content/authors.ts)
     ...(FOUNDER?.name.trim() ? [page("/about/founder", 0.6, "monthly")] : []),
     page("/work", 0.8, "monthly"),
-    page("/insights", 0.8, "weekly"),
-    ...getPublishedPosts().map((post) => ({
+    page("/resources/lims-urs-template", 0.7, "monthly"),
+    page("/tools/app-development-cost-calculator", 0.7, "monthly"),
+    {
+      ...page("/insights", 0.8, "weekly"),
+      ...(latestPostDate ? { lastModified: new Date(latestPostDate) } : {}),
+    },
+    ...posts.map((post) => ({
       url: `${siteConfig.url}/insights/${post.slug}`,
-      lastModified: new Date(post.updated ?? post.published),
+      lastModified: new Date(postDate(post)),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
