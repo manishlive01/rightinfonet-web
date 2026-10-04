@@ -129,6 +129,9 @@ export default function Footer() {
           <a href={`mailto:${siteConfig.supportEmail}`} className={styles.link}>
             {siteConfig.supportEmail}
           </a>
+          <a href={`mailto:${siteConfig.hrEmail}`} className={styles.link}>
+            {siteConfig.hrEmail} <span className={styles.muted}>(careers)</span>
+          </a>
           {siteConfig.phone && (
             <a
               href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}

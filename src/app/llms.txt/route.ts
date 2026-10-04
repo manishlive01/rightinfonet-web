@@ -1,11 +1,17 @@
 import { POSTS } from "@/content/insights";
-import { ACADEMY_PAGES, LOCAL_PAGES, SERVICE_PAGES, type Landing } from "@/content/landing";
+import {
+  ACADEMY_PAGES,
+  LOCAL_PAGES,
+  SERVICE_PAGES,
+  type Landing,
+} from "@/content/landing";
 import { siteConfig } from "@/lib/site-config";
 
 // A plain-text summary for AI assistants and crawlers (https://llmstxt.org). Built at compile time.
 export const dynamic = "force-static";
 
-const line = (p: Landing) => `- [${p.metaTitle}](${siteConfig.url}${p.path}): ${p.answer}`;
+const line = (p: Landing) =>
+  `- [${p.metaTitle}](${siteConfig.url}${p.path}): ${p.answer}`;
 
 export function GET() {
   const { locality, region } = siteConfig.address;
@@ -16,6 +22,7 @@ export function GET() {
 ${siteConfig.name} is an AI-first software studio${locality ? ` based in ${locality}${region ? `, ${region}` : ""}` : ""}, India. It serves businesses and students across ${siteConfig.areaServed.join(", ")} and clients worldwide. One senior team designs, builds and launches web platforms, Flutter mobile apps, AI agents and GxP-ready regulated software (LIMS, pharmacovigilance). Its Academy trains developers in full-stack web, Flutter, applied AI and software validation.
 
 Contact: ${siteConfig.email}${siteConfig.phone ? ` · ${siteConfig.phone}` : ""} · ${siteConfig.url}/#contact
+Careers and internships: ${siteConfig.hrEmail}
 
 ## Services
 ${SERVICE_PAGES.map(line).join("\n")}
@@ -34,5 +41,7 @@ ${POSTS.map((p) => `- [${p.title}](${siteConfig.url}/insights/${p.slug}): ${p.de
 - [Process](${siteConfig.url}/process): how projects run week by week
 - [About](${siteConfig.url}/about)
 `;
-  return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+  return new Response(body, {
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
 }

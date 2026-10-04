@@ -165,10 +165,8 @@ export default function Contact() {
             {siteConfig.email}
           </a>
           <p className={styles.support}>
-            Already a client? Write to{" "}
-            <a href={`mailto:${siteConfig.supportEmail}`}>
-              {siteConfig.supportEmail}
-            </a>
+            Careers or internships? Write to{" "}
+            <a href={`mailto:${siteConfig.hrEmail}`}>{siteConfig.hrEmail}</a>
           </p>
           <SocialLinks />
           {siteConfig.phone && (

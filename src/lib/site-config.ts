@@ -38,10 +38,12 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.brightinfonet.com"
   ).replace(/\/$/, ""),
   locale: "en_IN",
-  /** new projects and general enquiries */
-  email: "hello@brightinfonet.com",
-  /** existing clients */
+  /** new projects, general enquiries and Academy admissions */
+  email: "support@brightinfonet.com",
+  /** existing clients (same inbox as general enquiries) */
   supportEmail: "support@brightinfonet.com",
+  /** careers, hiring and internships */
+  hrEmail: "hr@brightinfonet.com",
   /** shown as typed; the tel: link strips the spaces */
   phone: "+91 79738 47707",
   /** WhatsApp number in international format, digits only (used for wa.me links) */

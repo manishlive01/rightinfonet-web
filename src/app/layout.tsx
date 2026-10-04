@@ -119,6 +119,12 @@ const siteJsonLd = {
           email: siteConfig.supportEmail,
           availableLanguage: ["English", "Hindi"],
         },
+        {
+          "@type": "ContactPoint",
+          contactType: "human resources",
+          email: siteConfig.hrEmail,
+          availableLanguage: ["English", "Hindi"],
+        },
       ],
       ...(socialLinks.length > 0 && { sameAs: socialLinks.map((s) => s.href) }),
     },
