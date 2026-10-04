@@ -19,7 +19,7 @@ export const nablIso15189LabSoftwareRequirements: Post = {
     label: "Diagnostic lab software",
   },
   cover: "audit",
-  published: "2026-10-30",
+  published: "2026-08-11",
   readingMinutes: 7,
   keywords: [
     "NABL software requirements",

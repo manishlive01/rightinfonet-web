@@ -14,7 +14,7 @@ export const appDevelopmentCostChandigarh: Post = {
   category: "Mobile apps",
   pillar: "cost",
   cover: "phones",
-  published: "2026-12-08",
+  published: "2026-09-18",
   readingMinutes: 8,
   keywords: [
     "app development cost Chandigarh",

@@ -11,7 +11,7 @@ Date: 2026-10-04. Status ka detail `SEO-CHECKLIST.md` me hai, plan `SEO-PLAN.md`
 - 14 naye pages live: 7 services (LIMS, pharmacovigilance, CSV, SaaS, AI chatbot, dedicated developers, e-commerce Chandigarh), 3 industries (pharma, diagnostic lab, healthcare app), 4 cities (Zirakpur, Kharar, Ambala, Shimla). Har page unique, FAQ + schema ke saath.
 - Cost calculator live: `/tools/app-development-cost-calculator`.
 - Free LIMS URS template live: `/resources/lims-urs-template` (CSV download).
-- 23 naye articles likh kar schedule kiye (2/week, Tue + Fri, 2026-10-06 se 2026-12-22). Apni date par apne aap live honge. Purani dates nahi badli (no backdating).
+- 23 naye articles abhi live hain (aapke decision par staggered past dates, 2/week, Tue + Fri, 2026-07-17 se 2026-10-02). Har ek par `dateModified` = publish date. 26 purane articles ki dates nahi badli.
 - 26 purane articles audit: 10 improve kiye (unpar "Last updated 2026-10-04"), 16 baaki rules par pehle se theek. Aadha: 20 posts ki article body abhi 1,500 words se kam hai, unko expand karna pending hai (checklist me `[~]`).
 - Har article par "Last updated", pillar links, end me service CTA. `llms.txt` me NAP aur pillar-wise guides.
 - Ye sab code me ready hai par aapke data ke bina hidden hai (fake kuch nahi dikhta): GA4, Calendly button, Search Console/Bing meta, IndexNow, author box, founder page, testimonials, client logos, proof numbers, pricing, map, office timings, email form.
@@ -79,15 +79,15 @@ Missing page: Privacy policy. Email form chalu karne (`NEXT_PUBLIC_LEAD_FORM_END
 
 ## 5. Hosting: scheduled posts ke liye
 
-Naye articles apni date par tabhi live honge jab site `next start` (Node server) ya Vercel jaise ISR wale host par chale (har ghante refresh). Agar host static export hai ya ISR support nahi karta, to roz ~00:30 IST ek rebuild + redeploy (cron/CI) lagana padega.
+Abhi koi post future-dated nahi hai, saare 49 articles live hain, isliye in posts ke liye daily rebuild ya ISR ki zaroorat nahi. Scheduling code rakha hai: aage koi post future date ke saath daaloge, tabhi site `next start` / Vercel jaise ISR host par chalni chahiye, warna roz ~00:30 IST ek rebuild + redeploy (cron/CI).
 
 ## 6. Publish se pehle padhna (proofread)
 
-Ye posts apni date se pehle ek baar khud padh lo (numbers aur regulatory baatein):
+Ye posts ab live hain, isliye jaldi ek baar khud padh lo (numbers aur regulatory baatein). Bracket me publish date:
 
-- Regulated (2026-10-06 se 2026-11-06): GxP validation guide, Part 11 audit trail, GAMP 5 Cat 4 vs 5, EU Annex 11, LIMS URS template, custom vs off-the-shelf LIMS, LIMS checklist, NABL ISO 15189, E2B(R3), validation package. QA/regulatory expert se ek nazar dalwa lo to aur achha.
-- Salary: fresher software developer salary Chandigarh (2026-11-10).
-- Cost: AI agent cost India (2026-12-01), app development cost Chandigarh (2026-12-08), MVP in 8 weeks (2026-12-11), RFP (2026-12-15), Next.js vs WordPress (2026-12-18), in-house vs outsourcing (2026-12-22).
+- Regulated (2026-07-17 se 2026-08-18): GxP validation guide, Part 11 audit trail, GAMP 5 Cat 4 vs 5, EU Annex 11, LIMS URS template, custom vs off-the-shelf LIMS, LIMS checklist, NABL ISO 15189, E2B(R3), validation package. QA/regulatory expert se ek nazar dalwa lo to aur achha.
+- Salary: fresher software developer salary Chandigarh (2026-08-21).
+- Cost: AI agent cost India (2026-09-11), app development cost Chandigarh (2026-09-18), MVP in 8 weeks (2026-09-22), RFP (2026-09-25), Next.js vs WordPress (2026-09-29), in-house vs outsourcing (2026-10-02).
 - Saare cost/salary figures "indicative" likhe hain aur pehle se published ranges hi use hui hain. Galat lage to batao.
 
 ## 7. Website ke bahar ka kaam (Phase 9)
@@ -102,7 +102,7 @@ Ye posts apni date se pehle ek baar khud padh lo (numbers aur regulatory baatein
 
 ## 8. Decisions / data jo sirf aap de sakte ho
 
-- Priority order (Regulated → Academy → Flutter + AI) aur article schedule (purani dates same, naye 2/week): confirm karo.
+- Priority order (Regulated → Academy → Flutter + AI) confirm karo. Article dates decide ho gayi (23 naye posts past Tue/Fri dates par live). Aage se naye posts 2/week, alag dates.
 - Course fees, batch dates, student projects, placement stats (sirf asli).
 - Real office/team photos.
 - "India software cost survey 2026": sirf tab jab asli survey karo; bina data ke ye page nahi banega.

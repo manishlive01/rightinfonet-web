@@ -24,7 +24,7 @@ import { skillsForPlacementBtechBcaMca } from "./skills-for-placement-btech-bca-
 import { softwareDeveloperCareerChandigarhTricity } from "./software-developer-career-chandigarh-tricity";
 import { websiteDevelopmentCostSmallBusinessIndia } from "./website-development-cost-small-business-india";
 import { whyLocalBusinessesNeedAMobileApp } from "./why-local-businesses-need-a-mobile-app";
-// Pillar 1 (regulated software), scheduled Oct–Nov 2026
+// Pillar 1 (regulated software), published Jul–Aug 2026 (Tue/Fri)
 import { gxpSoftwareValidationGuide } from "./gxp-software-validation-guide";
 import { part11AuditTrailRequirements } from "./21-cfr-part-11-audit-trail-requirements";
 import { gamp5Category4VsCategory5 } from "./gamp-5-category-4-vs-category-5";
@@ -35,13 +35,13 @@ import { limsImplementationChecklist } from "./lims-implementation-checklist";
 import { nablIso15189LabSoftwareRequirements } from "./nabl-iso-15189-lab-software-requirements";
 import { pharmacovigilanceE2bR3Explained } from "./pharmacovigilance-e2b-r3-explained";
 import { whatIsAValidationPackage } from "./what-is-a-validation-package";
-// Pillar 2 (cost, hiring, comparisons), scheduled Dec 2026
+// Pillar 2 (cost, hiring, comparisons), published Sep–Oct 2026
 import { appDevelopmentCostChandigarh } from "./app-development-cost-chandigarh";
 import { mvpIn8Weeks } from "./mvp-in-8-weeks";
 import { howToWriteSoftwareRfp } from "./how-to-write-software-rfp";
 import { nextjsVsWordpressBusinessWebsite } from "./nextjs-vs-wordpress-business-website";
 import { inHouseVsOutsourcingSoftwareDevelopment } from "./in-house-vs-outsourcing-software-development";
-// Pillar 4 (academy) and Pillar 3 (AI agents), scheduled Nov–Dec 2026
+// Pillar 4 (academy) and Pillar 3 (AI agents), published Aug–Sep 2026
 import { fresherSoftwareDeveloperSalaryChandigarh } from "./fresher-software-developer-salary-chandigarh";
 import { whatToDoAfterBcaMca } from "./what-to-do-after-bca-mca";
 import { industrialTrainingCertificateGuide } from "./industrial-training-certificate-guide";

@@ -26,7 +26,7 @@ Note: #1 ranking ki guarantee koi nahi de sakta. "Best X in Panchkula" wale sear
 - [~] Case studies (`/work`) me client ki city, results aur numbers: slot ready (`CASE_STUDY_PROOF` in `src/content/trust.ts`), asli data chahiye.
 - [~] Testimonials aur `Review` schema: component + schema ready (`TESTIMONIALS` in `trust.ts`), sirf asli reviews ke saath bharna.
 - [x] `/llms.txt` bana diya. Isme saari services, local pages, courses aur guides apne aap aa jaate hain.
-- [x] Sitemap me saare live pages hain (2026-10-04: 72 URLs; scheduled posts apni date par apne aap judte hain).
+- [x] Sitemap me saare live pages hain (2026-10-04: saare 49 posts sitemap me, crawler 95 pages; abhi koi post scheduled nahi).
 - [x] robots.txt me AI bots (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Bingbot) explicit allow.
 - [x] Regulated software home, services aur footer me sabse upar.
 - [~] GA4 + events, Calendly button, Search Console/Bing meta, IndexNow: code ready, env values aapko deni hain (`SEO-OWNER-TODO.md`).
@@ -116,50 +116,50 @@ Chaar list-type topics badle gaye hain. Competitors ki ranking ya rates likhne s
 - [x] Part 11 checklist post expansion (FAQ, answer-first intro, 5 body links; updated 2026-10-04)
 - [x] GAMP 5 validation guide: FAQ + links add kiye, CSA final (Sept 2025) fix kiya (updated 2026-10-04)
 
-**Pillar 1: Regulated software (scheduled, apne date par apne aap live hote hain)**
+**Pillar 1: Regulated software (live; owner decision 2026-10-04: staggered past dates, Tue + Fri)**
 
 | Date       | Post                                                 |
 | ---------- | ---------------------------------------------------- |
-| 2026-10-06 | /insights/gxp-software-validation-guide (pillar hub) |
-| 2026-10-09 | /insights/21-cfr-part-11-audit-trail-requirements    |
-| 2026-10-13 | /insights/gamp-5-category-4-vs-category-5            |
-| 2026-10-16 | /insights/eu-annex-11-computerised-systems           |
-| 2026-10-20 | /insights/lims-urs-template                          |
-| 2026-10-23 | /insights/custom-lims-vs-off-the-shelf-lims          |
-| 2026-10-27 | /insights/lims-implementation-checklist              |
-| 2026-10-30 | /insights/nabl-iso-15189-lab-software-requirements   |
-| 2026-11-03 | /insights/pharmacovigilance-e2b-r3-explained         |
-| 2026-11-06 | /insights/what-is-a-validation-package               |
+| 2026-07-17 | /insights/gxp-software-validation-guide (pillar hub) |
+| 2026-07-21 | /insights/21-cfr-part-11-audit-trail-requirements    |
+| 2026-07-24 | /insights/gamp-5-category-4-vs-category-5            |
+| 2026-07-28 | /insights/eu-annex-11-computerised-systems           |
+| 2026-07-31 | /insights/lims-urs-template                          |
+| 2026-08-04 | /insights/custom-lims-vs-off-the-shelf-lims          |
+| 2026-08-07 | /insights/lims-implementation-checklist              |
+| 2026-08-11 | /insights/nabl-iso-15189-lab-software-requirements   |
+| 2026-08-14 | /insights/pharmacovigilance-e2b-r3-explained         |
+| 2026-08-18 | /insights/what-is-a-validation-package               |
 
 Lead magnet (live): `/resources/lims-urs-template` + `/downloads/lims-urs-template.csv`. Email form tabhi dikhega jab `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` (https form backend, jaise Formspree) set karke rebuild karoge; tab tak sirf download button.
 
-**Pillar 2: Cost, hiring aur comparisons (scheduled)**
+**Pillar 2: Cost, hiring aur comparisons (live)**
 
 | Date       | Post                                                        |
 | ---------- | ----------------------------------------------------------- |
-| 2026-12-08 | /insights/app-development-cost-chandigarh                   |
-| 2026-12-11 | /insights/mvp-in-8-weeks                                    |
-| 2026-12-15 | /insights/how-to-write-software-rfp                         |
-| 2026-12-18 | /insights/nextjs-vs-wordpress-business-website (comparison) |
-| 2026-12-22 | /insights/in-house-vs-outsourcing-software-development      |
+| 2026-09-18 | /insights/app-development-cost-chandigarh                   |
+| 2026-09-22 | /insights/mvp-in-8-weeks                                    |
+| 2026-09-25 | /insights/how-to-write-software-rfp                         |
+| 2026-09-29 | /insights/nextjs-vs-wordpress-business-website (comparison) |
+| 2026-10-02 | /insights/in-house-vs-outsourcing-software-development      |
 
 - [x] Flutter vs native post ko "Flutter vs React Native vs native for startups" me update kiya (same URL, updated 2026-10-04)
 - [x] Cost calculator (live): `/tools/app-development-cost-calculator`. Ranges `src/content/cost-calculator.ts` me hain, sirf pehle se published cost articles ke indicative figures. **OWNER CONFIRM: ek baar ranges check kar lo**; badlo to article me bhi badlo.
 
-**Pillar 4: Academy aur Pillar 3: AI agents (scheduled)**
+**Pillar 4: Academy aur Pillar 3: AI agents (live)**
 
 | Date       | Post                                                   | Pillar  |
 | ---------- | ------------------------------------------------------ | ------- |
-| 2026-11-10 | /insights/fresher-software-developer-salary-chandigarh | academy |
-| 2026-11-13 | /insights/what-to-do-after-bca-mca                     | academy |
-| 2026-11-17 | /insights/industrial-training-certificate-guide        | academy |
-| 2026-11-20 | /insights/ai-agent-vs-chatbot                          | ai      |
-| 2026-11-24 | /insights/rag-for-business                             | ai      |
-| 2026-11-27 | /insights/ai-automation-clinics-labs-retail            | ai      |
-| 2026-12-01 | /insights/ai-agent-development-cost-india              | ai      |
-| 2026-12-04 | /insights/how-to-evaluate-ai-agents                    | ai      |
+| 2026-08-21 | /insights/fresher-software-developer-salary-chandigarh | academy |
+| 2026-08-25 | /insights/what-to-do-after-bca-mca                     | academy |
+| 2026-08-28 | /insights/industrial-training-certificate-guide        | academy |
+| 2026-09-01 | /insights/ai-agent-vs-chatbot                          | ai      |
+| 2026-09-04 | /insights/rag-for-business                             | ai      |
+| 2026-09-08 | /insights/ai-automation-clinics-labs-retail            | ai      |
+| 2026-09-11 | /insights/ai-agent-development-cost-india              | ai      |
+| 2026-09-15 | /insights/how-to-evaluate-ai-agents                    | ai      |
 
-Pillar hubs: regulated = `gxp-software-validation-guide` (2026-10-06 se), cost = `app-development-cost-india`, ai = `ai-agents-for-business-operations`, academy = `software-developer-career-chandigarh-tricity`. Har post par PillarNav ("Part of" hub link + same pillar ke live posts) apne aap.
+Pillar hubs: regulated = `gxp-software-validation-guide` (2026-07-17 se), cost = `app-development-cost-india`, ai = `ai-agents-for-business-operations`, academy = `software-developer-career-chandigarh-tricity`. Har post par PillarNav ("Part of" hub link + same pillar ke live posts) apne aap.
 
 Existing 26 posts audit (2026-10-04): 10 fix hue (updated 2026-10-04), 16 baaki rules par theek (date nahi badli). Pending (checklist `[~]`): 20 posts ki article body 1,500 words se kam hai, expand karna baaki; 10 posts me 5 se zyada in-body links.
 
@@ -176,7 +176,7 @@ Blog ke numbers (cost, salary) sab "indicative" likhe hain aur "written quote lo
 
 ## Hosting note (scheduled posts)
 
-Scheduled posts ISR (`revalidate = 3600`) se apni date (IST) par apne aap live hote hain. Iske liye site `next start` (Node server) ya Vercel jaise ISR wale host par chalni chahiye. Static export ya bina ISR wale host par roz ~00:30 IST ek rebuild + deploy (cron/CI) chahiye, warna naye posts live nahi honge. `CONTENT_NOW` sirf local QA ke liye hai, production me kabhi set mat karna.
+Abhi koi post future-dated nahi (23 naye posts 2026-07-17 se 2026-10-02 ki dates par live), isliye abhi daily rebuild ki zaroorat nahi. Scheduling code aage ke posts ke liye rakha hai: future `published` date wala post ISR (`revalidate = 3600`) se apni date (IST) par apne aap live hota hai. Iske liye site `next start` (Node server) ya Vercel jaise ISR wale host par chalni chahiye. Static export ya bina ISR wale host par roz ~00:30 IST ek rebuild + deploy (cron/CI) chahiye, warna naye posts live nahi honge. `CONTENT_NOW` sirf local QA ke liye hai, production me kabhi set mat karna.
 
 ## Pending (aapse chahiye)
 
@@ -188,7 +188,7 @@ Poori list file + key ke saath `SEO-OWNER-TODO.md` me hai. Short me:
 - Calculator ranges confirm (`src/content/cost-calculator.ts`).
 - Privacy policy page (email capture se pehle zaroori).
 - Course fees aur batch dates (abhi FAQ me "contact us" likha hai), placement stats.
-- Scheduled cost/salary/regulatory posts apni date se pehle proofread.
+- Naye (ab live) cost/salary/regulatory posts proofread.
 
 ## Code me kahan kya hai
 

@@ -14,7 +14,7 @@ export const aiAgentVsChatbot: Post = {
   category: "AI agents",
   pillar: "ai",
   cover: "agent",
-  published: "2026-11-20",
+  published: "2026-09-01",
   readingMinutes: 7,
   keywords: [
     "AI agent vs chatbot",

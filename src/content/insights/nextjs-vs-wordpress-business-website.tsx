@@ -15,7 +15,7 @@ export const nextjsVsWordpressBusinessWebsite: Post = {
   pillar: "cost",
   cta: { href: "/services/web-platforms", label: "Web platform development" },
   cover: "phones",
-  published: "2026-12-18",
+  published: "2026-09-29",
   readingMinutes: 7,
   keywords: [
     "Next.js vs WordPress",

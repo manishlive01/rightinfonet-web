@@ -18,7 +18,7 @@ export const customLimsVsOffTheShelfLims: Post = {
     label: "LIMS software development",
   },
   cover: "audit",
-  published: "2026-10-23",
+  published: "2026-08-04",
   readingMinutes: 7,
   keywords: [
     "custom LIMS vs off-the-shelf",

@@ -18,7 +18,7 @@ export const euAnnex11ComputerisedSystems: Post = {
     label: "Computer system validation service",
   },
   cover: "audit",
-  published: "2026-10-16",
+  published: "2026-07-28",
   readingMinutes: 7,
   keywords: [
     "EU GMP Annex 11",

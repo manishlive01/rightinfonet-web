@@ -15,7 +15,7 @@ export const aiAgentDevelopmentCostIndia: Post = {
   category: "AI agents",
   pillar: "ai",
   cover: "agent",
-  published: "2026-12-01",
+  published: "2026-09-11",
   readingMinutes: 7,
   keywords: [
     "AI agent development cost India",

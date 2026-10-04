@@ -19,7 +19,7 @@ export const industrialTrainingCertificateGuide: Post = {
     label: "Industrial training in Chandigarh",
   },
   cover: "phones",
-  published: "2026-11-17",
+  published: "2026-08-28",
   readingMinutes: 7,
   keywords: [
     "industrial training certificate",

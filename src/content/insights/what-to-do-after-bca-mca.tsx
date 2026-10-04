@@ -14,7 +14,7 @@ export const whatToDoAfterBcaMca: Post = {
   category: "Careers & training",
   pillar: "academy",
   cover: "phones",
-  published: "2026-11-13",
+  published: "2026-08-25",
   readingMinutes: 7,
   keywords: [
     "what to do after BCA",

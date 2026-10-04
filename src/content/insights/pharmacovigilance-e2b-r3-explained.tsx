@@ -19,7 +19,7 @@ export const pharmacovigilanceE2bR3Explained: Post = {
     label: "Pharmacovigilance software",
   },
   cover: "audit",
-  published: "2026-11-03",
+  published: "2026-08-14",
   readingMinutes: 7,
   keywords: [
     "E2B(R3)",

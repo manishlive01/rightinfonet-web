@@ -17,7 +17,7 @@ export const inHouseVsOutsourcingSoftwareDevelopment: Post = {
     label: "Hire dedicated developers",
   },
   cover: "phones",
-  published: "2026-12-22",
+  published: "2026-10-02",
   readingMinutes: 7,
   keywords: [
     "in-house vs outsourcing software development",

@@ -19,7 +19,7 @@ export const whatIsAValidationPackage: Post = {
     label: "Computer system validation service",
   },
   cover: "vmodel",
-  published: "2026-11-06",
+  published: "2026-08-18",
   readingMinutes: 7,
   keywords: [
     "validation package",

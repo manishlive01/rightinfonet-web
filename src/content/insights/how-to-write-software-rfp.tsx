@@ -15,7 +15,7 @@ export const howToWriteSoftwareRfp: Post = {
   pillar: "cost",
   cta: { href: "/services/web-platforms", label: "Web platform development" },
   cover: "phones",
-  published: "2026-12-15",
+  published: "2026-09-25",
   readingMinutes: 7,
   keywords: [
     "how to write an RFP for software",

@@ -18,7 +18,7 @@ export const limsImplementationChecklist: Post = {
     label: "LIMS software development",
   },
   cover: "vmodel",
-  published: "2026-10-27",
+  published: "2026-08-07",
   readingMinutes: 7,
   keywords: [
     "LIMS implementation checklist",

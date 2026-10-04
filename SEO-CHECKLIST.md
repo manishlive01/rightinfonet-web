@@ -45,8 +45,8 @@ Saare components code me ready hain aur khali data par kuch nahi dikhate (no fak
 
 ## Phase 3: Article dates aur publishing
 
-- [~] **[Aap decide]** Abhi saare articles Sept 28, 2026 ke hain. Purani dates daalna (backdating) galat signal hai, isliye: kuch articles unpublish karke 2/week schedule par release karo, ya jo hain wahi rakho aur aage se 2/week. Option choose karo. _Code me option 2 lagaya: purani dates same, 23 naye posts 2/week (Tue + Fri, 2026-10-06 se 2026-12-22). Aap confirm karo._
-- [x] **[Code]** Scheduled publish support (future `datePublished` wale posts sitemap/listing me tab tak na dikhein). _Normal build: future posts 404, /insights, sitemap, llms.txt, home, related links me nahi; `CONTENT_NOW=2026-12-31` build me sab render. ISR 1h. Host ko ISR (next start / Vercel) chahiye, warna daily rebuild._
+- [~] **[Aap decide]** Abhi saare articles Sept 28, 2026 ke hain. Purani dates daalna (backdating) galat signal hai, isliye: kuch articles unpublish karke 2/week schedule par release karo, ya jo hain wahi rakho aur aage se 2/week. Option choose karo. _Owner decision (2026-10-04): 23 naye posts abhi live, staggered past dates par (Tue + Fri, 2026-07-17 se 2026-10-02, 2/week). `dateModified` = `datePublished` (koi fake edit date nahi). 26 purane posts ki dates same (2026-09-28; 10 par `updated: 2026-10-04`). Ab koi post future-dated nahi._
+- [x] **[Code]** Scheduled publish support (future `datePublished` wale posts sitemap/listing me tab tak na dikhein). _Code rakha hai aage ke posts ke liye; abhi koi post scheduled nahi. Normal build: future posts 404, /insights, sitemap, llms.txt, home, related links me nahi. ISR 1h. Future-dated post daaloge tabhi host ko ISR (next start / Vercel) ya daily rebuild chahiye._
 - [x] **[Code]** Har article par visible "Last updated" + `dateModified` sirf asli edit par badle. _Sirf edit kiye posts par `updated: 2026-10-04`._
 - [~] **[Code]** Existing articles ko article rules ke hisaab se audit: 1,500–2,500 words, answer pehle, comparison table, FAQ, author box, 3–5 internal links, end CTA. _Audit ho gaya: 26 me se 10 fix kiye, 16 baaki rules (answer pehle, table, FAQ, links, CTA) par pehle se theek. Author box data ke bina hidden. Baaki: 20 posts ki article body abhi 1,500 words se kam hai (served `<article>` me jaise 1,379–1,429; crawler ka page Words 1,581+ poora `<main>` ginta hai). In posts ko expand karna abhi pending hai; expand karne par hi `updated` date lagegi._
 
@@ -79,52 +79,52 @@ Har page unique (local context, nearby areas, local examples). Template copy-pas
 ## Phase 6: Comparison / decision pages
 
 - [x] **[Code]** Flutter vs React Native for startups (existing post update + merge, cannibalisation se bacho) _Same URL `/insights/flutter-vs-native-app-development`, updated 2026-10-04._
-- [x] **[Code]** Custom LIMS vs off-the-shelf LIMS _Scheduled, live 2026-10-23._
-- [x] **[Code]** Next.js vs WordPress for business site _Scheduled, live 2026-12-18._
-- [x] **[Code]** In-house vs outsourcing software development _Scheduled, live 2026-12-22._
+- [x] **[Code]** Custom LIMS vs off-the-shelf LIMS _Live, published 2026-08-04._
+- [x] **[Code]** Next.js vs WordPress for business site _Live, published 2026-09-29._
+- [x] **[Code]** In-house vs outsourcing software development _Live, published 2026-10-02._
 
 ## Phase 7: Pillar + cluster content
 
 Article rules: 1,500–2,500 words, answer pehle, comparison table, FAQ, author box, last updated, 3–5 internal links, end me service CTA. 2 articles/week, alag dates.
 
-Scheduled posts content + code done hain aur `CONTENT_NOW=2026-12-31` build me verify hue (crawler 95 pages, 0 errors, 0 warnings). Ye apni date par apne aap live honge.
+23 naye posts live hain (dates 2026-07-17 se 2026-10-02, Tue + Fri). Normal build (bina `CONTENT_NOW`) 2026-10-04: crawler 95 pages, 0 errors, 0 warnings; sab 23 URLs 200, /insights, sitemap.xml aur llms.txt me.
 
 **Pillar 1: Regulated software**
 
-- [x] **[Code]** Pillar: Complete guide to GxP software validation (saare cluster isse link) _live 2026-10-06_
-- [x] **[Code]** GAMP 5 Category 4 vs 5 _live 2026-10-13_
-- [x] **[Code]** Part 11 audit trail requirements _live 2026-10-09_
-- [x] **[Code]** EU Annex 11 _live 2026-10-16_
+- [x] **[Code]** Pillar: Complete guide to GxP software validation (saare cluster isse link) _live 2026-07-17_
+- [x] **[Code]** GAMP 5 Category 4 vs 5 _live 2026-07-24_
+- [x] **[Code]** Part 11 audit trail requirements _live 2026-07-21_
+- [x] **[Code]** EU Annex 11 _live 2026-07-28_
 - [x] CSV vs CSA (hai, pillar se link karna)
-- [x] **[Code]** LIMS URS template (downloadable) _article live 2026-10-20; CSV download + `/resources/lims-urs-template` abhi live_
-- [x] **[Code]** LIMS implementation checklist _live 2026-10-27_
-- [x] **[Code]** NABL / ISO 15189 software requirements _live 2026-10-30_
-- [x] **[Code]** Pharmacovigilance E2B(R3) explained _live 2026-11-03_
-- [x] **[Code]** Validation package kya hota hai _live 2026-11-06_
+- [x] **[Code]** LIMS URS template (downloadable) _article live 2026-07-31; CSV download + `/resources/lims-urs-template` abhi live_
+- [x] **[Code]** LIMS implementation checklist _live 2026-08-07_
+- [x] **[Code]** NABL / ISO 15189 software requirements _live 2026-08-11_
+- [x] **[Code]** Pharmacovigilance E2B(R3) explained _live 2026-08-14_
+- [x] **[Code]** Validation package kya hota hai _live 2026-08-18_
 - [x] **[Code]** Part 11 post expansion (pending from SEO-PLAN) _updated 2026-10-04_
 - [~] **[Dono]** Lead magnet: free URS / validation template download + email capture (email tool aap choose karo) _Download live; email form `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` ke bina hidden. Privacy policy page bhi chahiye._
 
 **Pillar 2: Cost aur hiring**
 
 - [~] **[Code]** Interactive app/software cost calculator (indicative ranges aap confirm karo) _Live `/tools/app-development-cost-calculator`, browser me test kiya; ranges `src/content/cost-calculator.ts` confirm karni hain._
-- [x] **[Code]** App development cost in Chandigarh _live 2026-12-08_
-- [x] **[Code]** MVP in 8 weeks _live 2026-12-11_
-- [x] **[Code]** How to write an RFP for software _live 2026-12-15_
+- [x] **[Code]** App development cost in Chandigarh _live 2026-09-18_
+- [x] **[Code]** MVP in 8 weeks _live 2026-09-22_
+- [x] **[Code]** How to write an RFP for software _live 2026-09-25_
 
 **Pillar 3: AI agents**
 
-- [x] **[Code]** AI agent vs chatbot _live 2026-11-20_
-- [x] **[Code]** RAG kya hai business ke liye _live 2026-11-24_
-- [x] **[Code]** AI automation for clinics / labs / retail _live 2026-11-27_
-- [x] **[Code]** AI agent cost India _live 2026-12-01_
-- [x] **[Code]** AI agent evals kaise karein _live 2026-12-04_
+- [x] **[Code]** AI agent vs chatbot _live 2026-09-01_
+- [x] **[Code]** RAG kya hai business ke liye _live 2026-09-04_
+- [x] **[Code]** AI automation for clinics / labs / retail _live 2026-09-08_
+- [x] **[Code]** AI agent cost India _live 2026-09-11_
+- [x] **[Code]** AI agent evals kaise karein _live 2026-09-15_
 - [x] **[Code]** AI agents for small business expansion (pending from SEO-PLAN) _updated 2026-10-04_
 
 **Pillar 4: Academy**
 
-- [x] **[Code]** Fresher software developer salary Chandigarh (indicative, sources ke saath) _live 2026-11-10_
-- [x] **[Code]** BCA/MCA ke baad kya karein _live 2026-11-13_
-- [x] **[Code]** Industrial training certificate kaise lein _live 2026-11-17_
+- [x] **[Code]** Fresher software developer salary Chandigarh (indicative, sources ke saath) _live 2026-08-21_
+- [x] **[Code]** BCA/MCA ke baad kya karein _live 2026-08-25_
+- [x] **[Code]** Industrial training certificate kaise lein _live 2026-08-28_
 - [ ] **[Aap]** Student projects + placement stats page ke liye data
 
 **Hub-and-spoke**

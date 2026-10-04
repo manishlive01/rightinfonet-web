@@ -19,7 +19,7 @@ export const part11AuditTrailRequirements: Post = {
     label: "Regulated software service",
   },
   cover: "audit",
-  published: "2026-10-09",
+  published: "2026-07-21",
   readingMinutes: 7,
   keywords: [
     "21 CFR Part 11 audit trail",

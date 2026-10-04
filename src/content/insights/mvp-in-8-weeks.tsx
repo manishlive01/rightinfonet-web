@@ -13,7 +13,7 @@ export const mvpIn8Weeks: Post = {
   category: "Choosing a partner",
   pillar: "cost",
   cover: "phones",
-  published: "2026-12-11",
+  published: "2026-09-22",
   readingMinutes: 8,
   keywords: [
     "MVP in 8 weeks",

@@ -18,7 +18,7 @@ export const limsUrsTemplate: Post = {
     label: "LIMS software development",
   },
   cover: "vmodel",
-  published: "2026-10-20",
+  published: "2026-07-31",
   readingMinutes: 7,
   keywords: [
     "LIMS URS template",

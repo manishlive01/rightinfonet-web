@@ -19,7 +19,7 @@ export const gamp5Category4VsCategory5: Post = {
     label: "Computer system validation service",
   },
   cover: "vmodel",
-  published: "2026-10-13",
+  published: "2026-07-24",
   readingMinutes: 7,
   keywords: [
     "GAMP 5 category 4 vs 5",

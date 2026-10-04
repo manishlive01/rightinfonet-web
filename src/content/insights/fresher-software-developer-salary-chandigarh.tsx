@@ -14,7 +14,7 @@ export const fresherSoftwareDeveloperSalaryChandigarh: Post = {
   category: "Careers & training",
   pillar: "academy",
   cover: "phones",
-  published: "2026-11-10",
+  published: "2026-08-21",
   readingMinutes: 8,
   keywords: [
     "fresher software developer salary Chandigarh",

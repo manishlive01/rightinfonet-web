@@ -20,7 +20,7 @@ export const gxpSoftwareValidationGuide: Post = {
     label: "Computer system validation service",
   },
   cover: "vmodel",
-  published: "2026-10-06",
+  published: "2026-07-17",
   readingMinutes: 7,
   keywords: [
     "GxP software validation",

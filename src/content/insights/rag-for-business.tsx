@@ -15,7 +15,7 @@ export const ragForBusiness: Post = {
   category: "AI agents",
   pillar: "ai",
   cover: "agent",
-  published: "2026-11-24",
+  published: "2026-09-04",
   readingMinutes: 7,
   keywords: [
     "RAG for business",

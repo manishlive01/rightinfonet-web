@@ -15,7 +15,7 @@ export const aiAutomationClinicsLabsRetail: Post = {
   category: "AI agents",
   pillar: "ai",
   cover: "agent",
-  published: "2026-11-27",
+  published: "2026-09-08",
   readingMinutes: 7,
   keywords: [
     "AI automation for clinics",
