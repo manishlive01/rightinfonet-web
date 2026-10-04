@@ -12,6 +12,7 @@
   width: 1px;
   background: var(--line);
 }
+
 .lineFill {
   position: absolute;
   inset: 0;
@@ -28,6 +29,7 @@
   padding: 0;
   list-style: none;
 }
+
 .step {
   position: relative;
   padding-left: 44px;
@@ -42,14 +44,17 @@
     width: auto;
     height: 1px;
   }
+
   .lineFill {
     transform: scaleX(var(--p));
     transform-origin: left center;
   }
+
   .steps {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
   }
+
   .step {
     padding: 48px 32px 0 0;
   }
@@ -70,6 +75,7 @@
     border-color 0.5s,
     box-shadow 0.5s;
 }
+
 .stepOn .node {
   background: var(--acc);
   border-color: var(--acc);
@@ -88,6 +94,7 @@
     transform 1s var(--ease-out);
   transform: translateY(12px);
 }
+
 .stepOn .num {
   -webkit-text-stroke-color: var(--acc);
   transform: none;
@@ -103,17 +110,20 @@
     filter 0.7s ease,
     transform 1s var(--ease-out);
 }
+
 .stepOn .content {
   opacity: 1;
   filter: none;
   transform: none;
 }
+
 .title {
   margin: 0 0 12px;
   font-size: 26px;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
+
 .desc {
   margin: 0 0 20px;
   max-width: 300px;
@@ -122,6 +132,7 @@
   color: var(--mut);
   text-wrap: pretty;
 }
+
 .out {
   display: flex;
   flex-direction: column;
@@ -132,17 +143,20 @@
   font-size: 14px;
   color: var(--mut);
 }
+
 .out li {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .out li::before {
   content: "";
   width: 14px;
   height: 1px;
   background: var(--acc);
 }
+
 .time {
   display: inline-block;
   padding: 7px 12px;
@@ -150,4 +164,39 @@
   border: 1px solid color-mix(in srgb, var(--fg) 14%, transparent);
   font-size: 12px;
   color: var(--mut);
+}
+
+/* phones: tighter timeline; upcoming steps dim but stay sharp */
+@media (max-width: 767px) {
+  .steps {
+    gap: 36px;
+  }
+
+  .step {
+    padding-left: 36px;
+  }
+
+  .num {
+    font-size: 56px;
+    margin-bottom: 12px;
+  }
+
+  .title {
+    font-size: 21px;
+    margin-bottom: 8px;
+  }
+
+  .desc {
+    font-size: 15px;
+    max-width: none;
+    margin-bottom: 14px;
+  }
+
+  .out {
+    margin-bottom: 16px;
+  }
+
+  .content {
+    filter: none;
+  }
 }

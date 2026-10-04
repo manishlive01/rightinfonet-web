@@ -19,9 +19,22 @@ function useStep(on: boolean, count: number, ms: number) {
 }
 
 /** Entrance wrapper: rises into place with a stagger when its visual becomes active. */
-function Pop({ d, className = "", style, children }: { d: number; className?: string; style?: CSSProperties; children: ReactNode }) {
+function Pop({
+  d,
+  className = "",
+  style,
+  children,
+}: {
+  d: number;
+  className?: string;
+  style?: CSSProperties;
+  children: ReactNode;
+}) {
   return (
-    <div className={`${s.pop} ${className}`} style={{ ...style, "--d": `${d}s` } as CSSProperties}>
+    <div
+      className={`${s.pop} ${className}`}
+      style={{ ...style, "--d": `${d}s` } as CSSProperties}
+    >
       {children}
     </div>
   );
@@ -36,7 +49,9 @@ function DesignVisual({ on }: VisualProps) {
   return (
     <>
       <Pop d={0.05} className={s.dFrame}>
-        <span className={`${s.caption} ${home.mono}`}>Onboarding · 390 × 844</span>
+        <span className={`${s.caption} ${home.mono}`}>
+          Onboarding · 390 × 844
+        </span>
         <div className={s.dScreen}>
           <span className={s.dBar} />
           <span className={`${s.dTitle} ${home.serif}`}>
@@ -65,7 +80,11 @@ function DesignVisual({ on }: VisualProps) {
           <span className={`${s.label} ${home.mono}`}>Fill</span>
           <div className={s.swatches}>
             {SWATCHES.map((c, i) => (
-              <span key={c} className={`${s.swatch} ${i === pick ? s.swatchOn : ""}`} style={{ background: c }} />
+              <span
+                key={c}
+                className={`${s.swatch} ${i === pick ? s.swatchOn : ""}`}
+                style={{ background: c }}
+              />
             ))}
             <span className={`${s.swatch} ${s.swatchEmpty}`} />
           </div>
@@ -78,10 +97,18 @@ function DesignVisual({ on }: VisualProps) {
           </span>
         </div>
         <div className={`${s.props} ${home.mono}`}>
-          <span><span className={s.dim}>W </span>312</span>
-          <span><span className={s.dim}>H </span>52</span>
-          <span><span className={s.dim}>R </span>999</span>
-          <span><span className={s.dim}>Gap </span>16</span>
+          <span>
+            <span className={s.dim}>W </span>312
+          </span>
+          <span>
+            <span className={s.dim}>H </span>52
+          </span>
+          <span>
+            <span className={s.dim}>R </span>999
+          </span>
+          <span>
+            <span className={s.dim}>Gap </span>16
+          </span>
         </div>
       </Pop>
 
@@ -117,7 +144,9 @@ function WebVisual({ on }: VisualProps) {
   // every tick a newer order lands on top of the table
   const tick = useStep(on, ORDERS.length, 2200);
   const newest = (2 + tick) % ORDERS.length;
-  const rows = [0, 1, 2].map((j) => ORDERS[(newest - j + ORDERS.length) % ORDERS.length]);
+  const rows = [0, 1, 2].map(
+    (j) => ORDERS[(newest - j + ORDERS.length) % ORDERS.length],
+  );
 
   return (
     <>
@@ -126,7 +155,9 @@ function WebVisual({ on }: VisualProps) {
           <span className={s.chromeDot} />
           <span className={s.chromeDot} />
           <span className={s.chromeDot} />
-          <span className={`${s.url} ${home.mono}`}>admin.clientco.in/orders</span>
+          <span className={`${s.url} ${home.mono}`}>
+            admin.clientco.in/orders
+          </span>
         </div>
         <div className={s.wBody}>
           <div className={s.wSide}>
@@ -150,7 +181,10 @@ function WebVisual({ on }: VisualProps) {
             </div>
             <div className={s.chart}>
               <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                <path className={s.chartFill} d="M0 32 L10 28 L20 30 L30 22 L40 24 L50 16 L60 19 L70 11 L80 13 L90 6 L100 8 L100 40 L0 40 Z" />
+                <path
+                  className={s.chartFill}
+                  d="M0 32 L10 28 L20 30 L30 22 L40 24 L50 16 L60 19 L70 11 L80 13 L90 6 L100 8 L100 40 L0 40 Z"
+                />
                 <path
                   className={s.chartLine}
                   d="M0 32 L10 28 L20 30 L30 22 L40 24 L50 16 L60 19 L70 11 L80 13 L90 6 L100 8"
@@ -161,11 +195,16 @@ function WebVisual({ on }: VisualProps) {
             </div>
             <div className={s.table}>
               {rows.map((r, i) => (
-                <div key={r.id} className={`${s.tRow} ${home.mono} ${i === 0 && tick > 0 ? s.tRowNew : ""}`}>
+                <div
+                  key={r.id}
+                  className={`${s.tRow} ${home.mono} ${i === 0 && tick > 0 ? s.tRowNew : ""}`}
+                >
                   <span className={s.dim}>{r.id}</span>
                   <span>{r.name}</span>
                   <span>{r.amt}</span>
-                  <span className={r.paid ? s.pillOk : s.pillAcc}>{r.paid ? "Paid" : "Pending"}</span>
+                  <span className={r.paid ? s.pillOk : s.pillAcc}>
+                    {r.paid ? "Paid" : "Pending"}
+                  </span>
                 </div>
               ))}
             </div>
@@ -197,7 +236,12 @@ function WebVisual({ on }: VisualProps) {
             <span
               key={i}
               className={`${s.latBar} ${i === 5 ? s.latBarAcc : ""}`}
-              style={{ height: `${h}%`, animationDelay: `${-i * 0.37}s` } as CSSProperties}
+              style={
+                {
+                  height: `${h}%`,
+                  animationDelay: `${-i * 0.37}s`,
+                } as CSSProperties
+              }
             />
           ))}
         </div>
@@ -236,7 +280,11 @@ function MobileVisual({ on }: VisualProps) {
                 ["Salary", "Mon", "+₹42k", "#cfdcc0"],
                 ["Metro card", "Sun", "−₹200", "#e7e0d3"],
               ].map(([t, d, a, c], i) => (
-                <div key={t} className={s.txn} style={{ "--i": i } as CSSProperties}>
+                <div
+                  key={t}
+                  className={s.txn}
+                  style={{ "--i": i } as CSSProperties}
+                >
                   <span className={s.txnIcon} style={{ background: c }} />
                   <span className={s.txnText}>
                     <span className={s.strong}>{t}</span>
@@ -275,7 +323,10 @@ function MobileVisual({ on }: VisualProps) {
               </div>
               <div className={s.slots}>
                 {SLOTS.map((t, i) => (
-                  <span key={t} className={`${s.slot} ${i === pick % SLOTS.length ? s.slotOn : ""}`}>
+                  <span
+                    key={t}
+                    className={`${s.slot} ${i === pick % SLOTS.length ? s.slotOn : ""}`}
+                  >
                     {t}
                   </span>
                 ))}
@@ -304,7 +355,12 @@ const TOOLS = [
   { tool: "calendar.book", detail: "Fri 4:00 PM, 3 guests" },
   { tool: "slack.notify", detail: "#sales channel updated" },
 ];
-const FLOWS = ["M25 31 L36 31", "M54 31 C58 31 58 11 62 11", "M54 31 L62 31", "M54 31 C58 31 58 51 62 51"];
+const FLOWS = [
+  "M25 31 L36 31",
+  "M54 31 C58 31 58 11 62 11",
+  "M54 31 L62 31",
+  "M54 31 C58 31 58 51 62 51",
+];
 
 function AiVisual({ on }: VisualProps) {
   // 0: reading, 1..3: tools run one by one, 4-5: all done (hold), then repeat
@@ -313,12 +369,22 @@ function AiVisual({ on }: VisualProps) {
     <>
       <svg className={s.flows} viewBox="0 0 90 75" preserveAspectRatio="none">
         {FLOWS.map((d) => (
-          <path key={d} d={d} className={s.flow} vectorEffect="non-scaling-stroke" />
+          <path
+            key={d}
+            d={d}
+            className={s.flow}
+            vectorEffect="non-scaling-stroke"
+          />
         ))}
         {on &&
           FLOWS.map((d, i) => (
             <circle key={d} r="0.9" className={s.pulse}>
-              <animateMotion dur="1.8s" begin={`${i === 0 ? 0 : 0.6 + i * 0.25}s`} repeatCount="indefinite" path={d} />
+              <animateMotion
+                dur="1.8s"
+                begin={`${i === 0 ? 0 : 0.6 + i * 0.25}s`}
+                repeatCount="indefinite"
+                path={d}
+              />
             </circle>
           ))}
       </svg>
@@ -338,7 +404,11 @@ function AiVisual({ on }: VisualProps) {
         <span className={`${s.orb} ${home.mono}`}>AI</span>
         <span className={s.coreLabel}>
           <span className={s.strong}>Ops Agent</span>
-          <span className={`${s.dim} ${home.mono}`}>{step === 0 ? "reading email…" : `${Math.min(step, 3)} / 3 tools · 1.4s`}</span>
+          <span className={`${s.dim} ${home.mono}`}>
+            {step === 0
+              ? "reading email…"
+              : `${Math.min(step, 3)} / 3 tools · 1.4s`}
+          </span>
         </span>
       </Pop>
 
@@ -346,9 +416,18 @@ function AiVisual({ on }: VisualProps) {
         const done = step > i + 1 || step >= 4;
         const running = step === i + 1;
         return (
-          <Pop key={t.tool} d={0.16 + i * 0.07} className={s.aTool} style={{ top: `${4 + i * 20}cqw` }}>
+          <Pop
+            key={t.tool}
+            d={0.16 + i * 0.07}
+            className={s.aTool}
+            style={{ top: `${4 + i * 20}cqw` }}
+          >
             <span className={`${home.mono} ${s.toolName}`}>
-              <span className={`${s.toolState} ${done ? s.toolDone : running ? s.toolRun : ""}`}>{done ? "✓" : ""}</span>
+              <span
+                className={`${s.toolState} ${done ? s.toolDone : running ? s.toolRun : ""}`}
+              >
+                {done ? "✓" : ""}
+              </span>
               {t.tool}
             </span>
             <span className={s.dim}>{t.detail}</span>
@@ -370,9 +449,21 @@ function AiVisual({ on }: VisualProps) {
 /* ---------------------------------------------------------------- 05 regulated */
 
 const LOG = [
-  { time: "10:42:07", who: "A. Mehta edited result", note: "Reason: transcription error" },
-  { time: "10:44:51", who: "R. Iyer reviewed batch QC-118", note: "Second-person review" },
-  { time: "10:46:12", who: "System locked record", note: "Pending e-signature" },
+  {
+    time: "10:42:07",
+    who: "A. Mehta edited result",
+    note: "Reason: transcription error",
+  },
+  {
+    time: "10:44:51",
+    who: "R. Iyer reviewed batch QC-118",
+    note: "Second-person review",
+  },
+  {
+    time: "10:46:12",
+    who: "System locked record",
+    note: "Pending e-signature",
+  },
   { time: "10:47:30", who: "R. Iyer signed report", note: "Meaning: Approved" },
 ];
 
@@ -384,13 +475,22 @@ function RegulatedVisual({ on }: VisualProps) {
     <>
       <Pop d={0.05} className={s.rSteps}>
         <span className={s.rTrack}>
-          <span className={s.rTrackFill} style={{ transform: `scaleX(${done / (VALIDATION_STEPS.length - 1)})` }} />
+          <span
+            className={s.rTrackFill}
+            style={{
+              transform: `scaleX(${done / (VALIDATION_STEPS.length - 1)})`,
+            }}
+          />
         </span>
         {VALIDATION_STEPS.map((label, i) => {
           const ok = i < done;
           return (
             <span key={label} className={s.rStep}>
-              <span className={`${s.rNode} ${ok ? s.rNodeOk : i === done ? s.rNodeNow : ""}`}>{ok ? "✓" : "•"}</span>
+              <span
+                className={`${s.rNode} ${ok ? s.rNodeOk : i === done ? s.rNodeNow : ""}`}
+              >
+                {ok ? "✓" : "•"}
+              </span>
               <span className={`${s.dim} ${home.mono}`}>{label}</span>
             </span>
           );
@@ -403,7 +503,11 @@ function RegulatedVisual({ on }: VisualProps) {
           <span className={`${s.badge} ${home.mono}`}>Immutable · SHA-256</span>
         </div>
         {LOG.map((e, i) => (
-          <div key={e.time} className={s.logRow} style={{ "--i": i } as CSSProperties}>
+          <div
+            key={e.time}
+            className={s.logRow}
+            style={{ "--i": i } as CSSProperties}
+          >
             <span className={`${s.dim} ${home.mono}`}>{e.time}</span>
             <span className={s.col}>
               <span className={s.strong}>{e.who}</span>
@@ -414,7 +518,9 @@ function RegulatedVisual({ on }: VisualProps) {
       </Pop>
 
       <Pop d={0.26} className={s.rSign}>
-        <span className={`${s.signLabel} ${home.mono}`}>Electronic signature</span>
+        <span className={`${s.signLabel} ${home.mono}`}>
+          Electronic signature
+        </span>
         <span className={s.col}>
           <span className={s.strong}>Dr. R. Iyer</span>
           <span className={s.signSub}>QA Manager</span>
@@ -437,7 +543,14 @@ function RegulatedVisual({ on }: VisualProps) {
   );
 }
 
-const VISUALS = [DesignVisual, WebVisual, MobileVisual, AiVisual, RegulatedVisual];
+// Same order as SERVICES in ./data.ts (regulated software first); `active` is a SERVICES index.
+const VISUALS = [
+  RegulatedVisual,
+  DesignVisual,
+  WebVisual,
+  MobileVisual,
+  AiVisual,
+];
 
 export default function ServiceVisuals({ active }: { active: number }) {
   return (
@@ -451,7 +564,11 @@ export default function ServiceVisuals({ active }: { active: number }) {
             data-on={on}
             style={{
               opacity: on ? 1 : 0,
-              transform: on ? "none" : i < active ? "translateY(-5cqw) scale(.97)" : "translateY(5cqw) scale(.97)",
+              transform: on
+                ? "none"
+                : i < active
+                  ? "translateY(-5cqw) scale(.97)"
+                  : "translateY(5cqw) scale(.97)",
             }}
           >
             {/* remounting on activation restarts each visual's live sequence from the top */}

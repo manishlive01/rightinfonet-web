@@ -10,13 +10,25 @@ import PageLayout from "./PageLayout";
 import styles from "./Pages.module.css";
 import landing from "./Landing.module.css";
 import { landingJsonLd } from "./landing-seo";
+import ClientLogos from "../trust/ClientLogos";
+import PricingBlock from "../trust/PricingBlock";
+import ProofSlot from "../trust/ProofSlot";
+import Testimonials from "../trust/Testimonials";
+import { isPostSlugPublished } from "@/content/insights";
 import type { Landing } from "@/content/landing/types";
 
 /** Renders any keyword landing page (service, local, course or city training page). */
 export default function LandingView({ page }: { page: Landing }) {
-  const track = page.trackIndex !== undefined ? TRACKS[page.trackIndex] : undefined;
+  const track =
+    page.trackIndex !== undefined ? TRACKS[page.trackIndex] : undefined;
   const isAcademy = page.kind === "course" || page.kind === "training";
-  const cta = page.cta ?? (isAcademy ? "Apply or ask a question" : "Start a project");
+  const cta =
+    page.cta ?? (isAcademy ? "Apply or ask a question" : "Start a project");
+  // Links to blog posts that are still scheduled are dropped until the post goes live.
+  const related = page.related.filter((r) => {
+    const slug = r.href.match(/^\/insights\/([^/?#]+)/)?.[1];
+    return !slug || isPostSlugPublished(slug);
+  });
 
   return (
     <PageLayout jsonLd={landingJsonLd(page)}>
@@ -24,14 +36,20 @@ export default function LandingView({ page }: { page: Landing }) {
         crumb={page.crumb}
         parent={page.parent}
         kicker={page.kicker}
-        title={[`${page.title} `, { text: page.titleAccent, className: home.accentItalic }]}
+        title={[
+          `${page.title} `,
+          { text: page.titleAccent, className: home.accentItalic },
+        ]}
         lead={page.lead}
       >
         <div className={styles.heroActions}>
           <Link href="/#contact" className={home.btnPrimary}>
             {cta} <span className={home.btnArrow}>&rarr;</span>
           </Link>
-          <Link href={isAcademy ? "/academy" : "/work"} className={home.btnOutline}>
+          <Link
+            href={isAcademy ? "/academy" : "/work"}
+            className={home.btnOutline}
+          >
             {isAcademy ? "All Academy tracks" : "See our work"}
           </Link>
         </div>
@@ -60,8 +78,16 @@ export default function LandingView({ page }: { page: Landing }) {
         </div>
       </section>
 
+      {/* owner-gated: render nothing until src/content/trust.ts has entries for this path */}
+      <ProofSlot path={page.path} />
+      <PricingBlock path={page.path} />
+
       {track && (
-        <section id="syllabus" className={styles.sectionPad} aria-labelledby="syllabus-title">
+        <section
+          id="syllabus"
+          className={styles.sectionPad}
+          aria-labelledby="syllabus-title"
+        >
           <SectionHeading
             kicker={`${track.wk} weeks · ${track.format} · ${track.level}`}
             id="syllabus-title"
@@ -74,7 +100,9 @@ export default function LandingView({ page }: { page: Landing }) {
                 <span className={`${landing.moduleWeeks} ${home.mono}`}>
                   {m.a === m.b ? `Week ${m.a}` : `Weeks ${m.a}–${m.b}`}
                 </span>
-                <h3 className={`${landing.moduleTitle} ${home.serif}`}>{m.t}</h3>
+                <h3 className={`${landing.moduleTitle} ${home.serif}`}>
+                  {m.t}
+                </h3>
                 <p className={landing.moduleDesc}>{m.d}</p>
               </li>
             ))}
@@ -86,7 +114,12 @@ export default function LandingView({ page }: { page: Landing }) {
       )}
 
       {page.sections.map((s) => (
-        <section key={s.id} id={s.id} className={styles.sectionPad} aria-labelledby={`${s.id}-title`}>
+        <section
+          key={s.id}
+          id={s.id}
+          className={styles.sectionPad}
+          aria-labelledby={`${s.id}-title`}
+        >
           <SectionHeading
             kicker={s.kicker}
             id={`${s.id}-title`}
@@ -129,9 +162,12 @@ export default function LandingView({ page }: { page: Landing }) {
         </section>
       )}
 
+      <Testimonials path={page.path} className={styles.sectionPad} />
+      <ClientLogos className={styles.sectionPad} />
+
       <FaqSection faqs={page.faqs} />
 
-      {page.related.length > 0 && (
+      {related.length > 0 && (
         <section className={styles.sectionPad} aria-labelledby="related-title">
           <SectionHeading
             kicker="Keep reading"
@@ -139,7 +175,7 @@ export default function LandingView({ page }: { page: Landing }) {
             title={["Related ", accent("pages.")]}
           />
           <ul className={landing.relatedList}>
-            {page.related.map((r) => (
+            {related.map((r) => (
               <li key={r.href}>
                 <Link href={r.href}>
                   <span>{r.label}</span>
@@ -155,7 +191,9 @@ export default function LandingView({ page }: { page: Landing }) {
         <Reveal className={work.ctaBar}>
           <span className={`${work.ctaBarText} ${home.serif}`}>
             {isAcademy ? "Ready to start " : "Have a project in "}
-            <span className={home.accentItalic}>{isAcademy ? "learning?" : "mind?"}</span>
+            <span className={home.accentItalic}>
+              {isAcademy ? "learning?" : "mind?"}
+            </span>
           </span>
           <Link href="/#contact" className={home.btnOutline}>
             {isAcademy ? "Talk to a mentor" : "Talk to an engineer"}{" "}

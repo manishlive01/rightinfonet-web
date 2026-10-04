@@ -10,6 +10,21 @@ export const SERVICE_DETAILS: {
   timeline: string;
   related?: RelatedLink;
 }[] = [
+  // same order as SERVICES in ../home/data.ts (regulated software first)
+  {
+    slug: "regulated-software",
+    fit: [
+      "A pharma, QC or diagnostic lab is moving off paper and spreadsheets.",
+      "Your system has to pass audits and regulatory inspections.",
+      "An existing system needs to be brought into a validated state.",
+    ],
+    stack: ["GAMP 5", "21 CFR Part 11", "EU Annex 11", "ALCOA+"],
+    timeline: "Validation pack delivered with the code",
+    related: {
+      href: "/insights/21-cfr-part-11-compliance-checklist-lims",
+      label: "Part 11 checklist for LIMS",
+    },
+  },
   {
     slug: "product-design",
     fit: [
@@ -58,20 +73,6 @@ export const SERVICE_DETAILS: {
       label: "AI agents: where they work and fail",
     },
   },
-  {
-    slug: "regulated-software",
-    fit: [
-      "A pharma, QC or diagnostic lab is moving off paper and spreadsheets.",
-      "Your system has to pass audits and regulatory inspections.",
-      "An existing system needs to be brought into a validated state.",
-    ],
-    stack: ["GAMP 5", "21 CFR Part 11", "EU Annex 11", "ALCOA+"],
-    timeline: "Validation pack delivered with the code",
-    related: {
-      href: "/insights/21-cfr-part-11-compliance-checklist-lims",
-      label: "Part 11 checklist for LIMS",
-    },
-  },
 ];
 
 export const ENGAGEMENTS = [
@@ -95,9 +96,16 @@ export const ENGAGEMENTS = [
   },
 ] as const;
 
-export const INDUSTRY_DETAILS: { slug: string; hard: string[]; related?: RelatedLink }[] = [
+export const INDUSTRY_DETAILS: {
+  slug: string;
+  hard: string[];
+  /** the industry's own landing page (/industries/…) or closest service page */
+  page?: RelatedLink;
+  related?: RelatedLink;
+}[] = [
   {
     slug: "pharma",
+    page: { href: "/industries/pharma-software", label: "Software for pharma" },
     hard: [
       "Every change to a record has to be traceable and signed.",
       "Inspectors ask for evidence, not promises.",
@@ -110,6 +118,10 @@ export const INDUSTRY_DETAILS: { slug: string; hard: string[]; related?: Related
   },
   {
     slug: "labs",
+    page: {
+      href: "/industries/diagnostic-lab-software",
+      label: "Diagnostic lab software",
+    },
     hard: [
       "Samples move across people, instruments and shifts.",
       "Results retyped from instrument screens by hand.",
@@ -122,6 +134,10 @@ export const INDUSTRY_DETAILS: { slug: string; hard: string[]; related?: Related
   },
   {
     slug: "healthcare",
+    page: {
+      href: "/industries/healthcare-app-development",
+      label: "Healthcare app development",
+    },
     hard: [
       "Patients drop off when booking takes too many steps.",
       "Clinic Wi-Fi that can’t be relied on.",
@@ -134,6 +150,10 @@ export const INDUSTRY_DETAILS: { slug: string; hard: string[]; related?: Related
   },
   {
     slug: "saas",
+    page: {
+      href: "/services/saas-development-company-india",
+      label: "SaaS product development",
+    },
     hard: [
       "MVP code that can’t carry the next stage of growth.",
       "Customer data that must never leak between tenants.",
@@ -142,6 +162,10 @@ export const INDUSTRY_DETAILS: { slug: string; hard: string[]; related?: Related
   },
   {
     slug: "retail",
+    page: {
+      href: "/services/ecommerce-development-chandigarh",
+      label: "E-commerce development",
+    },
     hard: [
       "Peak-day traffic that breaks slow systems.",
       "“Where is my order?” questions all day long.",
@@ -164,17 +188,38 @@ export const STANDARDS = [
 ] as const;
 
 export const WEEK = [
-  { d: "Mon", t: "Plan", x: "Agree the week’s goals from the backlog, together." },
+  {
+    d: "Mon",
+    t: "Plan",
+    x: "Agree the week’s goals from the backlog, together.",
+  },
   { d: "Tue", t: "Build", x: "Design and code in small, reviewed changes." },
-  { d: "Wed", t: "Review", x: "Every change is code-reviewed and tested before it merges." },
+  {
+    d: "Wed",
+    t: "Review",
+    x: "Every change is code-reviewed and tested before it merges.",
+  },
   { d: "Thu", t: "Test", x: "QA on a staging link; fixes go in the same day." },
-  { d: "Fri", t: "Demo", x: "A live demo on a real link, plus a short written update." },
+  {
+    d: "Fri",
+    t: "Demo",
+    x: "A live demo on a real link, plus a short written update.",
+  },
 ] as const;
 
 export const ALWAYS_INCLUDED = [
-  { t: "A live demo every Friday", d: "Working software on a real link — not slides." },
-  { t: "A weekly written update", d: "What shipped, what’s next, and any risks, in plain words." },
-  { t: "A board you can see", d: "The same task board our engineers use, open to you." },
+  {
+    t: "A live demo every Friday",
+    d: "Working software on a real link — not slides.",
+  },
+  {
+    t: "A weekly written update",
+    d: "What shipped, what’s next, and any risks, in plain words.",
+  },
+  {
+    t: "A board you can see",
+    d: "The same task board our engineers use, open to you.",
+  },
   {
     t: "Review and tests on every change",
     d: "Nothing merges without a second pair of eyes and passing checks.",
@@ -183,7 +228,10 @@ export const ALWAYS_INCLUDED = [
     t: "Documentation as we go",
     d: "Decisions and set-up notes written down while they’re fresh.",
   },
-  { t: "One point of contact", d: "A tech lead who knows your product and answers directly." },
+  {
+    t: "One point of contact",
+    d: "A tech lead who knows your product and answers directly.",
+  },
 ] as const;
 
 export const PROCESS_QA = [

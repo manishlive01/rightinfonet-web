@@ -11,6 +11,7 @@ export const limsSoftwareDevelopmentCostIndia: Post = {
   excerpt:
     "Buying, configuring or building a LIMS in India? The factors that move the price, broad indicative ranges, how much validation adds, and what upkeep costs each year.",
   category: "Regulated software",
+  pillar: "regulated",
   cover: "vmodel",
   published: "2026-09-28",
   readingMinutes: 8,

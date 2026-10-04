@@ -11,6 +11,8 @@ export const appDevelopmentCostIndia: Post = {
   excerpt:
     "What an app really costs to build in India in 2026 — indicative ranges by complexity, the factors that move the number, the costs people forget, and how to get a quote you can trust.",
   category: "Mobile apps",
+  pillar: "cost",
+  pillarHub: true,
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,
@@ -33,16 +35,18 @@ export const appDevelopmentCostIndia: Post = {
   intro: (
     <>
       <p>
-        In India, building a mobile app typically costs around <strong>₹3–8 lakh</strong> for a
-        simple app, <strong>₹8–25 lakh</strong> for a medium-complexity app, and{" "}
-        <strong>₹25 lakh or more</strong> for a complex platform. These are indicative ranges;
-        the real figure depends on user roles, backend, integrations, design depth and who builds
-        it. A written, scoped quote is the only reliable number.
+        In India, building a mobile app typically costs around{" "}
+        <strong>₹3–8 lakh</strong> for a simple app, <strong>₹8–25 lakh</strong>{" "}
+        for a medium-complexity app, and <strong>₹25 lakh or more</strong> for a
+        complex platform. These are indicative ranges; the real figure depends
+        on user roles, backend, integrations, design depth and who builds it. A
+        written, scoped quote is the only reliable number.
       </p>
       <p>
-        This guide explains what sits behind those ranges, the costs that don’t show up in a
-        headline price, what upkeep looks like after launch, and how to brief a team so the quote
-        you get is one you can actually plan around.
+        This guide explains what sits behind those ranges, the costs that don’t
+        show up in a headline price, what upkeep looks like after launch, and
+        how to brief a team so the quote you get is one you can actually plan
+        around.
       </p>
     </>
   ),
@@ -53,13 +57,18 @@ export const appDevelopmentCostIndia: Post = {
       body: (
         <>
           <p>
-            Most apps fall into one of three broad bands. Treat these as a starting point for a
-            conversation, not a price list — they vary by scope, city, team seniority and how much
-            already exists.
+            Most apps fall into one of three broad bands. Treat these as a
+            starting point for a conversation, not a price list — they vary by
+            scope, city, team seniority and how much already exists.
           </p>
           <DataTable
             caption="Indicative app development cost in India, 2026 (varies by scope; get a written quote)"
-            head={["Complexity", "Typical scope", "Indicative cost", "Typical timeline"]}
+            head={[
+              "Complexity",
+              "Typical scope",
+              "Indicative cost",
+              "Typical timeline",
+            ]}
             rows={[
               [
                 "Simple",
@@ -82,17 +91,20 @@ export const appDevelopmentCostIndia: Post = {
             ]}
           />
           <p>
-            Figures assume one cross-platform codebase (for example Flutter) for iOS and Android.
-            Building two separate native apps usually costs more, because the UI and app logic are
-            written twice. Our{" "}
-            <Link href="/insights/flutter-vs-native-app-development">Flutter vs native guide</Link>{" "}
+            Figures assume one cross-platform codebase (for example Flutter) for
+            iOS and Android. Building two separate native apps usually costs
+            more, because the UI and app logic are written twice. Our{" "}
+            <Link href="/insights/flutter-vs-native-app-development">
+              Flutter vs native guide
+            </Link>{" "}
             covers when that extra cost is worth it.
           </p>
           <Callout title="Why quotes for the “same app” vary so much">
             <p>
-              Two quotes can differ several times over because they describe different products.
-              One may include design, an admin panel, testing and store release; another may be
-              screens only. Always compare what is in scope, not just the total.
+              Two quotes can differ several times over because they describe
+              different products. One may include design, an admin panel,
+              testing and store release; another may be screens only. Always
+              compare what is in scope, not just the total.
             </p>
           </Callout>
         </>
@@ -106,37 +118,40 @@ export const appDevelopmentCostIndia: Post = {
           <p>The biggest factors, roughly in order of impact:</p>
           <h3>User roles and flows</h3>
           <p>
-            A customer app, a staff or driver app and an admin panel are three products that share a
-            backend. Each role adds screens, permissions and testing. Counting roles is the fastest
-            way to estimate size.
+            A customer app, a staff or driver app and an admin panel are three
+            products that share a backend. Each role adds screens, permissions
+            and testing. Counting roles is the fastest way to estimate size.
           </p>
           <h3>Backend and integrations</h3>
           <p>
-            Payments, maps, SMS or WhatsApp messaging, email, ERP or CRM connections and
-            third-party APIs each bring setup, error handling and testing. Poorly documented
-            external systems are a common source of overruns.
+            Payments, maps, SMS or WhatsApp messaging, email, ERP or CRM
+            connections and third-party APIs each bring setup, error handling
+            and testing. Poorly documented external systems are a common source
+            of overruns.
           </p>
           <h3>Offline support and sync</h3>
           <p>
-            Apps for field teams often need to work without a network and sync later. Handling
-            conflicts and partial data is one of the most underestimated pieces of work in mobile.
+            Apps for field teams often need to work without a network and sync
+            later. Handling conflicts and partial data is one of the most
+            underestimated pieces of work in mobile.
           </p>
           <h3>Design depth</h3>
           <p>
-            A clean app built on a standard component kit costs less than a custom design system
-            with illustration and motion. Both are valid; the right choice depends on your brand
-            and audience.
+            A clean app built on a standard component kit costs less than a
+            custom design system with illustration and motion. Both are valid;
+            the right choice depends on your brand and audience.
           </p>
           <h3>Security and compliance</h3>
           <p>
-            Health, finance or regulated data needs extra design, audit trails, testing and
-            documentation. If that applies to you, it should be scoped from day one, not added
-            before launch.
+            Health, finance or regulated data needs extra design, audit trails,
+            testing and documentation. If that applies to you, it should be
+            scoped from day one, not added before launch.
           </p>
           <h3>AI features</h3>
           <p>
-            Chat assistants, document reading or recommendations add model costs, evaluation work
-            and guardrails. They are often worth it, but they are a scope item of their own.
+            Chat assistants, document reading or recommendations add model
+            costs, evaluation work and guardrails. They are often worth it, but
+            they are a scope item of their own.
           </p>
         </>
       ),
@@ -147,24 +162,50 @@ export const appDevelopmentCostIndia: Post = {
       body: (
         <>
           <p>
-            A headline price often covers “the app” and little else. Check whether your quote
-            includes these:
+            A headline price often covers “the app” and little else. Check
+            whether your quote includes these:
           </p>
           <Checklist
             items={[
-              <><strong>Product and UX design</strong> — wireframes, prototypes and a design system before code.</>,
-              <><strong>Admin panel or back office</strong> — someone has to manage users, content and orders.</>,
-              <><strong>Testing on real devices</strong> — a range of Android phones and iPhones, not just an emulator.</>,
-              <><strong>Store accounts and release</strong> — Apple Developer Program and Google Play fees, listings, screenshots, review fixes.</>,
-              <><strong>Hosting and cloud</strong> — servers, database, file storage, backups; monthly, not one-off.</>,
-              <><strong>Third-party services</strong> — SMS, email, maps, payment gateway fees, push notifications, AI model usage.</>,
-              <><strong>Analytics and crash reporting</strong> — so you know what users do and what breaks.</>,
-              <><strong>Content</strong> — copy, images, product data and translations that someone has to prepare.</>,
+              <>
+                <strong>Product and UX design</strong> — wireframes, prototypes
+                and a design system before code.
+              </>,
+              <>
+                <strong>Admin panel or back office</strong> — someone has to
+                manage users, content and orders.
+              </>,
+              <>
+                <strong>Testing on real devices</strong> — a range of Android
+                phones and iPhones, not just an emulator.
+              </>,
+              <>
+                <strong>Store accounts and release</strong> — Apple Developer
+                Program and Google Play fees, listings, screenshots, review
+                fixes.
+              </>,
+              <>
+                <strong>Hosting and cloud</strong> — servers, database, file
+                storage, backups; monthly, not one-off.
+              </>,
+              <>
+                <strong>Third-party services</strong> — SMS, email, maps,
+                payment gateway fees, push notifications, AI model usage.
+              </>,
+              <>
+                <strong>Analytics and crash reporting</strong> — so you know
+                what users do and what breaks.
+              </>,
+              <>
+                <strong>Content</strong> — copy, images, product data and
+                translations that someone has to prepare.
+              </>,
             ]}
           />
           <p>
-            None of these are optional for a real product. If a quote leaves them out, the cost
-            hasn’t gone away — it has moved to later, usually at a worse time.
+            None of these are optional for a real product. If a quote leaves
+            them out, the cost hasn’t gone away — it has moved to later, usually
+            at a worse time.
           </p>
         </>
       ),
@@ -175,24 +216,46 @@ export const appDevelopmentCostIndia: Post = {
       body: (
         <>
           <p>
-            An app needs regular care to stay in the stores and keep working. A common planning
-            figure is <strong>15–25% of the original build cost per year</strong> (indicative), plus
-            running costs for hosting and third-party services.
+            An app needs regular care to stay in the stores and keep working. A
+            common planning figure is{" "}
+            <strong>15–25% of the original build cost per year</strong>{" "}
+            (indicative), plus running costs for hosting and third-party
+            services.
           </p>
           <DataTable
             caption="Typical yearly upkeep items (indicative)"
             head={["Item", "Why it’s needed", "How often"]}
             rows={[
-              ["OS and device updates", "New iOS and Android versions can break layouts or permissions", "Yearly, plus minor fixes"],
-              ["Store policy changes", "Privacy labels, target SDK rules and permission policies change", "Several times a year"],
-              ["Library and security updates", "Framework and package updates, including security fixes", "Monthly to quarterly"],
-              ["Hosting and services", "Servers, database, storage, SMS, email, maps", "Monthly"],
-              ["Small improvements", "Fixes and changes from real user feedback", "Ongoing"],
+              [
+                "OS and device updates",
+                "New iOS and Android versions can break layouts or permissions",
+                "Yearly, plus minor fixes",
+              ],
+              [
+                "Store policy changes",
+                "Privacy labels, target SDK rules and permission policies change",
+                "Several times a year",
+              ],
+              [
+                "Library and security updates",
+                "Framework and package updates, including security fixes",
+                "Monthly to quarterly",
+              ],
+              [
+                "Hosting and services",
+                "Servers, database, storage, SMS, email, maps",
+                "Monthly",
+              ],
+              [
+                "Small improvements",
+                "Fixes and changes from real user feedback",
+                "Ongoing",
+              ],
             ]}
           />
           <p>
-            New features are separate from upkeep. Most teams budget them as small releases every
-            few weeks once the app is live.
+            New features are separate from upkeep. Most teams budget them as
+            small releases every few weeks once the app is live.
           </p>
         </>
       ),
@@ -203,15 +266,35 @@ export const appDevelopmentCostIndia: Post = {
       body: (
         <>
           <ul>
-            <li><strong>Start with a focused first release.</strong> Ship the one flow that proves value, then add the rest. Our <Link href="/insights/mvp-development-cost-timeline">MVP guide</Link> covers what to cut.</li>
-            <li><strong>Use one cross-platform codebase</strong> unless your features genuinely need native.</li>
-            <li><strong>Use proven services</strong> for auth, payments, messaging and maps instead of building them.</li>
-            <li><strong>Design once, with a system.</strong> A small set of reusable components keeps later screens cheap.</li>
-            <li><strong>Decide quickly.</strong> Slow feedback and changing priorities cost more than almost any technical choice.</li>
+            <li>
+              <strong>Start with a focused first release.</strong> Ship the one
+              flow that proves value, then add the rest. Our{" "}
+              <Link href="/insights/mvp-development-cost-timeline">
+                MVP guide
+              </Link>{" "}
+              covers what to cut.
+            </li>
+            <li>
+              <strong>Use one cross-platform codebase</strong> unless your
+              features genuinely need native.
+            </li>
+            <li>
+              <strong>Use proven services</strong> for auth, payments, messaging
+              and maps instead of building them.
+            </li>
+            <li>
+              <strong>Design once, with a system.</strong> A small set of
+              reusable components keeps later screens cheap.
+            </li>
+            <li>
+              <strong>Decide quickly.</strong> Slow feedback and changing
+              priorities cost more than almost any technical choice.
+            </li>
           </ul>
           <p>
-            What doesn’t save money in the long run: skipping testing, skipping code review, or
-            choosing the cheapest quote without checking what it includes.
+            What doesn’t save money in the long run: skipping testing, skipping
+            code review, or choosing the cheapest quote without checking what it
+            includes.
           </p>
         </>
       ),
@@ -221,14 +304,21 @@ export const appDevelopmentCostIndia: Post = {
       title: "How to get an accurate quote",
       body: (
         <>
-          <p>A good brief gets you a quote you can plan around. Before you contact teams, write down:</p>
+          <p>
+            A good brief gets you a quote you can plan around. Before you
+            contact teams, write down:
+          </p>
           <ol>
             <li>Who the users are, and every role (customer, staff, admin).</li>
             <li>The three to five key flows, step by step.</li>
-            <li>Integrations: payments, ERP, CRM, messaging, existing databases.</li>
+            <li>
+              Integrations: payments, ERP, CRM, messaging, existing databases.
+            </li>
             <li>Platforms: iOS, Android, web, or all three.</li>
             <li>Any compliance, data-location or security needs.</li>
-            <li>Your target launch date and a budget range, even a rough one.</li>
+            <li>
+              Your target launch date and a budget range, even a rough one.
+            </li>
           </ol>
           <p>Then ask each team for:</p>
           <Checklist
@@ -256,17 +346,19 @@ export const appDevelopmentCostIndia: Post = {
       body: (
         <>
           <p>
-            We’re an AI-first software studio working with businesses across Panchkula, Mohali and
-            Chandigarh and clients worldwide. One small senior team handles design, build and
-            launch, with a live demo every Friday and a written update every week, so you see
-            where the budget is going.
+            We’re an AI-first software studio working with businesses across
+            Panchkula, Mohali and Chandigarh and clients worldwide. One small
+            senior team handles design, build and launch, with a live demo every
+            Friday and a written update every week, so you see where the budget
+            is going.
           </p>
           <p>
-            We build mobile apps in Flutter for iOS and Android, including offline sync and store
-            release, and we quote in phases so the first release stays focused. See our{" "}
+            We build mobile apps in Flutter for iOS and Android, including
+            offline sync and store release, and we quote in phases so the first
+            release stays focused. See our{" "}
             <Link href="/services/mobile-apps">mobile app service</Link> or{" "}
-            <Link href="/#contact">tell us what you’re building</Link> for a written, scoped
-            estimate.
+            <Link href="/#contact">tell us what you’re building</Link> for a
+            written, scoped estimate.
           </p>
         </>
       ),

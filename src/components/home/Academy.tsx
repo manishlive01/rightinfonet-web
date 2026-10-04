@@ -30,14 +30,18 @@ export default function Academy() {
         </Reveal>
 
         <Reveal as="h1" className={`${styles.academyHeadline} ${styles.serif}`}>
-          Learn where the <span style={{ fontStyle: "italic", color: "var(--aem)" }}>real work</span> happens.
+          Learn where the{" "}
+          <span style={{ fontStyle: "italic", color: "var(--aem)" }}>
+            real work
+          </span>{" "}
+          happens.
         </Reveal>
 
         <Reveal className={styles.academyIntroRow}>
           <p className={styles.academyIntroText}>
-            The training arm of our studio. Small cohorts learn from the engineers who ship
-            our client work &mdash; and graduate with a portfolio of real, code-reviewed
-            projects.
+            The training arm of our studio. Small cohorts learn from the
+            engineers who ship our client work &mdash; and graduate with a
+            portfolio of real, code-reviewed projects.
           </p>
           <div className={styles.academyActions}>
             <Link href="/#contact" className={styles.btnDark}>
@@ -48,7 +52,9 @@ export default function Academy() {
 
         <Reveal className={styles.academyGrid}>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <span className={`${styles.trackListLabel} ${styles.mono}`}>Choose a track</span>
+            <h2 className={`${styles.trackListLabel} ${styles.mono}`}>
+              Choose a track
+            </h2>
             {TRACKS.map((t, i) => {
               const on = trackIndex === i;
               return (
@@ -60,14 +66,26 @@ export default function Academy() {
                   onMouseEnter={() => setTrackIndex(i)}
                   style={{ opacity: on ? 1 : 0.5, paddingLeft: on ? 14 : 0 }}
                 >
-                  <span className={`${styles.trackBtnNum} ${styles.mono}`} style={{ color: on ? "var(--aem)" : "inherit" }}>
+                  <span
+                    className={`${styles.trackBtnNum} ${styles.mono}`}
+                    style={{ color: on ? "var(--aem)" : "inherit" }}
+                  >
                     {t.n}
                   </span>
-                  <span style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+                  <span
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                      minWidth: 0,
+                    }}
+                  >
                     <span className={styles.trackBtnTitle}>{t.t}</span>
                     <span className={styles.trackBtnStack}>{t.stack}</span>
                   </span>
-                  <span className={`${styles.trackBtnWeeks} ${styles.mono}`}>{t.wk} wks</span>
+                  <span className={`${styles.trackBtnWeeks} ${styles.mono}`}>
+                    {t.wk} wks
+                  </span>
                 </button>
               );
             })}
@@ -76,11 +94,19 @@ export default function Academy() {
           <div className={styles.trackCard}>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <div className={styles.trackPillRow}>
-                <span className={`${styles.trackPillDark} ${styles.mono}`}>{track.wk} weeks</span>
-                <span className={`${styles.trackPillOutline} ${styles.mono}`}>{track.format}</span>
-                <span className={`${styles.trackPillOutline} ${styles.mono}`}>{track.level}</span>
+                <span className={`${styles.trackPillDark} ${styles.mono}`}>
+                  {track.wk} weeks
+                </span>
+                <span className={`${styles.trackPillOutline} ${styles.mono}`}>
+                  {track.format}
+                </span>
+                <span className={`${styles.trackPillOutline} ${styles.mono}`}>
+                  {track.level}
+                </span>
               </div>
-              <h3 className={`${styles.trackCardTitle} ${styles.serif}`}>{track.t}</h3>
+              <h3 className={`${styles.trackCardTitle} ${styles.serif}`}>
+                {track.t}
+              </h3>
               <p className={styles.trackCardPitch}>{track.pitch}</p>
             </div>
 
@@ -91,11 +117,20 @@ export default function Academy() {
               </div>
               {track.mods.map((mod) => (
                 <div key={mod.t} className={styles.moduleRow}>
-                  <span style={{ display: "flex", flexDirection: "column", gap: 3, minWidth: 0 }}>
+                  <span
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 3,
+                      minWidth: 0,
+                    }}
+                  >
                     <span className={styles.moduleTitle}>{mod.t}</span>
                     <span className={styles.moduleDesc}>{mod.d}</span>
                   </span>
-                  <span style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span
+                    style={{ display: "flex", flexDirection: "column", gap: 6 }}
+                  >
                     <span className={styles.moduleBarTrack}>
                       <span
                         className={styles.moduleBarFill}
@@ -114,9 +149,23 @@ export default function Academy() {
             </div>
 
             <div className={styles.shipRow}>
-              <span style={{ display: "flex", flexDirection: "column", gap: 6, minWidth: 0, flex: "1 1 260px" }}>
-                <span className={`${styles.shipLabel} ${styles.mono}`}>You&rsquo;ll ship</span>
-                <span style={{ fontSize: 17, lineHeight: 1.45, fontWeight: 500 }}>{track.cap}</span>
+              <span
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 6,
+                  minWidth: 0,
+                  flex: "1 1 260px",
+                }}
+              >
+                <span className={`${styles.shipLabel} ${styles.mono}`}>
+                  You&rsquo;ll ship
+                </span>
+                <span
+                  style={{ fontSize: 17, lineHeight: 1.45, fontWeight: 500 }}
+                >
+                  {track.cap}
+                </span>
               </span>
               <Link href="/#contact" className={styles.applyTrackBtn}>
                 Apply to this track &rarr;
@@ -127,8 +176,13 @@ export default function Academy() {
 
         <Reveal className={styles.academyPillarsGrid}>
           {ACADEMY_PILLARS.map((pillar) => (
-            <div key={pillar.letter} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <span className={`${styles.pillarLetter} ${styles.mono}`}>{pillar.letter}</span>
+            <div
+              key={pillar.letter}
+              style={{ display: "flex", flexDirection: "column", gap: 12 }}
+            >
+              <span className={`${styles.pillarLetter} ${styles.mono}`}>
+                {pillar.letter}
+              </span>
               <span className={styles.pillarTitle}>{pillar.t}</span>
               <span className={styles.pillarDesc}>{pillar.d}</span>
             </div>

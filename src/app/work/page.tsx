@@ -9,6 +9,7 @@ import Footer from "@/components/home/Footer";
 import Reveal from "@/components/home/Reveal";
 import WorkCard from "@/components/home/WorkCard";
 import { WORK } from "@/components/home/data";
+import CaseStudyProof from "@/components/trust/CaseStudyProof";
 
 export const metadata: Metadata = pageMetadata({
   path: "/work",
@@ -23,7 +24,12 @@ export default function WorkPage() {
       <a href="#main" className={styles.skip}>
         Skip to content
       </a>
-      <JsonLd data={{ "@context": "https://schema.org", ...breadcrumbJsonLd("Work", "/work") }} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          ...breadcrumbJsonLd("Work", "/work"),
+        }}
+      />
       <Header />
       <main id="main" className={styles.pageTop}>
         <section className={styles.section} aria-labelledby="work-page-title">
@@ -33,13 +39,18 @@ export default function WorkPage() {
                 <span className={styles.kickerDash} />
                 Selected work
               </Reveal>
-              <Reveal as="h1" id="work-page-title" className={`${styles.h1} ${styles.serif}`}>
-                Software we&rsquo;ve <span className={styles.accentItalic}>put live.</span>
+              <Reveal
+                as="h1"
+                id="work-page-title"
+                className={`${styles.h1} ${styles.serif}`}
+              >
+                Software we&rsquo;ve{" "}
+                <span className={styles.accentItalic}>put live.</span>
               </Reveal>
             </div>
             <Reveal as="p" className={styles.sectionLead} delay={0.2}>
-              Platforms for pharma, labs, clinics and ops teams &mdash; software that has to survive
-              an audit, not just a demo.
+              Platforms for pharma, labs, clinics and ops teams &mdash; software
+              that has to survive an audit, not just a demo.
             </Reveal>
           </div>
 
@@ -51,13 +62,15 @@ export default function WorkPage() {
                 total={WORK.length}
                 flip={i % 2 === 1}
                 headingLevel="h2"
+                proof={<CaseStudyProof id={item.id} />}
               />
             ))}
           </div>
 
           <Reveal className={work.ctaBar}>
             <span className={`${work.ctaBarText} ${styles.serif}`}>
-              Your product could be <span className={styles.accentItalic}>next.</span>
+              Your product could be{" "}
+              <span className={styles.accentItalic}>next.</span>
             </span>
             <Link href="/#contact" className={styles.btnOutline}>
               Start a project <span className={styles.btnArrow}>&rarr;</span>

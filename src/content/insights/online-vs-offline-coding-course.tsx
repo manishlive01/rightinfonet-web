@@ -11,6 +11,7 @@ export const onlineVsOfflineCodingCourse: Post = {
   excerpt:
     "Online, offline or hybrid? A clear comparison of coding course formats — discipline, feedback, projects, cost and flexibility — and which one suits beginners, students, working professionals and career switchers.",
   category: "Careers & training",
+  pillar: "academy",
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 7,

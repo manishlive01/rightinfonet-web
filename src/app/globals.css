@@ -33,6 +33,13 @@ html {
   }
 }
 
+/* phones: shorter fixed header */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 68px;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -47,13 +54,16 @@ body {
   animation: none;
   mix-blend-mode: normal;
 }
+
 ::view-transition-new(root) {
   animation: theme-reveal 0.7s cubic-bezier(0.7, 0, 0.3, 1);
 }
+
 @keyframes theme-reveal {
   from {
     clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0));
   }
+
   to {
     clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 0));
   }

@@ -43,6 +43,20 @@ Har page ka content alag likha gaya hai, sirf city ka naam nahi badla. Har page 
 | /ai-development-company-chandigarh              | AI development company Chandigarh            |
 | /hire-flutter-developers-india                  | hire Flutter developers India                |
 | /gxp-software-development-india                 | GxP / CSV software company India             |
+| /app-development-company-zirakpur               | app development company Zirakpur             |
+| /software-development-company-kharar            | software development company Kharar          |
+| /software-development-company-ambala            | software development company Ambala          |
+| /web-development-company-shimla                 | web development company Shimla               |
+| /services/lims-software-development             | LIMS software development                    |
+| /services/pharmacovigilance-software            | pharmacovigilance software                   |
+| /services/computer-system-validation            | computer system validation services          |
+| /services/saas-development-company-india        | SaaS development company India               |
+| /services/ai-chatbot-development-india          | AI chatbot development India                 |
+| /services/hire-dedicated-developers-india       | hire dedicated developers India              |
+| /services/ecommerce-development-chandigarh      | ecommerce website development Chandigarh     |
+| /industries/pharma-software                     | pharma software development                  |
+| /industries/diagnostic-lab-software             | diagnostic / pathology lab software          |
+| /industries/healthcare-app-development          | healthcare app development India             |
 | /academy/software-training-institute-panchkula  | IT training institute in Panchkula           |
 | /academy/software-training-institute-chandigarh | software training institute Chandigarh       |
 | /academy/it-training-institute-mohali           | IT training institute Mohali                 |

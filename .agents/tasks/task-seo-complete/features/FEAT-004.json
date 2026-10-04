@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Pillar 1 regulated-software content + lead magnet (plan item 10): scheduled posts #1-#10 from the D5 table (GxP validation pillar, Part 11 audit trail, GAMP 5 Cat 4 vs 5, EU Annex 11, LIMS URS template, Custom vs off-the-shelf LIMS comparison, LIMS implementation checklist, NABL/ISO 15189 software requirements, PV E2B(R3), validation package), expansion of the existing Part 11 checklist post (and GAMP 5 guide if below the article rules), downloadable URS template CSV + /resources/lims-urs-template page with env-gated email capture. Depends on FEAT-001 (schedule, PostLink, pillars) and FEAT-002 (analytics trackEvent).",
+  "status": "pending",
+  "steps": [
+    "For each of schedule #1-#10 create src/content/insights/<slug>.tsx (exact slugs and dates from the D5 table in .agents/tasks/seo-plan-impl.md, pillar 'regulated', #1 pillarHub true) following the article rules in D5: 1,500-2,500 words, 40-60 word direct answer first, >= 1 DataTable, >= 5 FAQs, 3-5 in-body internal links (PostLink for posts; services like /services/lims-software-development, /services/computer-system-validation, /services/pharmacovigilance-software, /academy/software-validation-gamp5-course), cta set, readingMinutes ~ words/220, metaTitle <= 60. Model the structure on src/content/insights/csv-vs-csa-computer-software-assurance.tsx and part-11-lims-checklist.tsx. State regulations accurately and generally (21 CFR Part 11, EU GMP Annex 11, GAMP 5 2nd ed., ICH E2B(R3), ISO 15189/NABL); no invented statistics; note that validation sign-off stays with the client QA. Register all in src/content/insights/index.ts.",
+    "Expand src/content/insights/part-11-lims-checklist.tsx (slug 21-cfr-part-11-compliance-checklist-lims) to the article rules; set updated to the real edit date; keep published. Check gamp-5-validation-guide.tsx against the rules via crawler words/table/FAQ and bring it up only if it fails (then set updated).",
+    "Create public/downloads/lims-urs-template.csv (columns: ID, Section, Requirement, Type (GxP/Business), Priority, Regulatory reference, Verification method, Notes; generic example rows only).",
+    "Create src/components/LeadCaptureForm.tsx (client; posts name/email/company to NEXT_PUBLIC_LEAD_FORM_ENDPOINT; validation, labels, aria-live status, consent line; trackEvent('generate_lead',{form:'urs_template'}); when env unset render only the download button) and src/app/resources/lims-urs-template/page.tsx (PageLayout, pageMetadata, breadcrumb, direct answer, what's inside, FAQ + faqJsonLd, download + form, PostLink to lims-urs-template article, revalidate 3600). Add the page to sitemap.ts, llms.txt and the footer Regulated column; link it from /services/lims-software-development.",
+    "Verify with a normal build (all 10 new posts 404 + hidden; resource page live) and a CONTENT_NOW=2026-12-31 build (all render, crawler clean, word counts in range); record word counts per post in findings."
+  ],
+  "acceptance_criteria": [
+    "npm run lint and npm run build pass",
+    "Normal build: the 10 new slugs return 404 and are absent from /insights, /sitemap.xml, /llms.txt and related links; existing posts unaffected",
+    "CONTENT_NOW=2026-12-31 build: all 10 render, crawler 0 errors, no broken links, each new post 1,500-2,500 words in the crawler Words column, FAQ schema matches visible text",
+    "Pillar post links to every regulated cluster (published ones as links, unpublished as plain text in a normal build)",
+    "/resources/lims-urs-template returns 200, offers the CSV download (200 at /downloads/lims-urs-template.csv), and shows no email form when NEXT_PUBLIC_LEAD_FORM_ENDPOINT is unset",
+    "Part 11 checklist post has updated date set and meets the article rules; no invented statistics or claims"
+  ],
+  "verification": [
+    "npm run lint",
+    "npm run build",
+    "$env:CONTENT_NOW=\"2026-12-31\"; npm run build; Remove-Item Env:CONTENT_NOW",
+    "npx next start -p 3100 (background) then node .kiro/skills/seo-audit/scripts/audit.mjs http://localhost:3100 --out .agents/seo-audit-2026-10-04.md"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

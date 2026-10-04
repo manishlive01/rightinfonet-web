@@ -11,6 +11,7 @@ export const csvVsCsa: Post = {
   excerpt:
     "Computer Software Assurance shifts validation from documenting everything to testing what matters. What CSA changes, what it doesn’t, and how it fits with GAMP 5 and Part 11.",
   category: "Regulated software",
+  pillar: "regulated",
   cover: "audit",
   published: "2026-09-28",
   readingMinutes: 8,
@@ -33,16 +34,21 @@ export const csvVsCsa: Post = {
   intro: (
     <>
       <p>
-        Computer system validation (CSV) is the long-standing practice of proving software works
-        for its intended use, often through heavy scripted testing and documentation. Computer
-        Software Assurance (CSA) is FDA’s risk-based approach to the same goal: focus testing on
-        high-risk features, use unscripted testing where risk is lower, and keep only records that
-        add value.
+        Computer system validation (CSV) is the long-standing practice of
+        proving software works for its intended use, often through heavy
+        scripted testing and documentation. Computer Software Assurance (CSA) is
+        FDA’s risk-based approach to the same goal: focus testing on high-risk
+        features, use unscripted testing where risk is lower, and keep only
+        records that add value.
       </p>
       <p>
-        FDA issued its final guidance, <em>Computer Software Assurance for Production and Quality
-        System Software</em>, in September 2025, after a draft in 2022. This article explains what
-        CSA changes in practice, what stays the same, and how it relates to GAMP 5 and Part 11.
+        FDA issued its final guidance,{" "}
+        <em>
+          Computer Software Assurance for Production and Quality System Software
+        </em>
+        , in September 2025, after a draft in 2022. This article explains what
+        CSA changes in practice, what stays the same, and how it relates to GAMP
+        5 and Part 11.
       </p>
     </>
   ),
@@ -53,25 +59,27 @@ export const csvVsCsa: Post = {
       body: (
         <>
           <p>
-            For years, many companies treated validation as a documentation exercise. Every
-            screen got a scripted test, every step got a screenshot, and every deviation in a
-            low-risk test triggered paperwork. The result was large validation packages, slow
-            releases and a reluctance to adopt new tools — without necessarily making systems
-            safer.
+            For years, many companies treated validation as a documentation
+            exercise. Every screen got a scripted test, every step got a
+            screenshot, and every deviation in a low-risk test triggered
+            paperwork. The result was large validation packages, slow releases
+            and a reluctance to adopt new tools — without necessarily making
+            systems safer.
           </p>
           <p>
-            FDA and industry recognised that this burden was holding back modern software,
-            automation and continuous improvement. CSA was developed to redirect effort: spend
-            time where a failure could hurt product quality or patients, and less where it
-            couldn’t.
+            FDA and industry recognised that this burden was holding back modern
+            software, automation and continuous improvement. CSA was developed
+            to redirect effort: spend time where a failure could hurt product
+            quality or patients, and less where it couldn’t.
           </p>
           <Callout title="Scope, stated carefully">
             <p>
-              FDA’s CSA guidance is written for software used in medical device production and
-              quality systems. It is not a pharmaceutical GMP regulation. Its principles, though,
-              line up closely with ISPE’s GAMP 5 second edition, and many pharma, biotech and lab
-              organisations apply the same risk-based thinking. Always check what your own
-              regulators, SOPs and quality agreements require.
+              FDA’s CSA guidance is written for software used in medical device
+              production and quality systems. It is not a pharmaceutical GMP
+              regulation. Its principles, though, line up closely with ISPE’s
+              GAMP 5 second edition, and many pharma, biotech and lab
+              organisations apply the same risk-based thinking. Always check
+              what your own regulators, SOPs and quality agreements require.
             </p>
           </Callout>
         </>
@@ -86,18 +94,43 @@ export const csvVsCsa: Post = {
             caption="How traditional CSV practice compares with CSA"
             head={["Aspect", "Traditional CSV practice", "CSA approach"]}
             rows={[
-              ["Mindset", "Document to satisfy an auditor", "Build confidence that the software is fit for its intended use"],
-              ["Effort", "Similar depth for most functions", "Scaled to the risk of each feature or function"],
-              ["Testing", "Mostly scripted, step-by-step test cases", "Scripted for high-risk features; unscripted methods where risk is lower"],
-              ["Evidence", "Screenshots and signatures on every step", "Records that show what was tested, by whom, the result and the conclusion"],
-              ["Supplier work", "Often repeated in-house", "Leveraged where the supplier is assessed and trustworthy"],
-              ["Tools", "Manual execution and paper or PDF records", "Automated testing, digital records and system logs welcomed"],
+              [
+                "Mindset",
+                "Document to satisfy an auditor",
+                "Build confidence that the software is fit for its intended use",
+              ],
+              [
+                "Effort",
+                "Similar depth for most functions",
+                "Scaled to the risk of each feature or function",
+              ],
+              [
+                "Testing",
+                "Mostly scripted, step-by-step test cases",
+                "Scripted for high-risk features; unscripted methods where risk is lower",
+              ],
+              [
+                "Evidence",
+                "Screenshots and signatures on every step",
+                "Records that show what was tested, by whom, the result and the conclusion",
+              ],
+              [
+                "Supplier work",
+                "Often repeated in-house",
+                "Leveraged where the supplier is assessed and trustworthy",
+              ],
+              [
+                "Tools",
+                "Manual execution and paper or PDF records",
+                "Automated testing, digital records and system logs welcomed",
+              ],
             ]}
           />
           <p>
-            Note the word “practice”. Nothing in the older regulations demanded screenshots of
-            every click; much of the burden came from habit and caution. CSA makes it explicit that
-            a leaner, risk-based approach is acceptable.
+            Note the word “practice”. Nothing in the older regulations demanded
+            screenshots of every click; much of the burden came from habit and
+            caution. CSA makes it explicit that a leaner, risk-based approach is
+            acceptable.
           </p>
         </>
       ),
@@ -110,28 +143,31 @@ export const csvVsCsa: Post = {
           <p>The guidance describes a simple sequence of thinking:</p>
           <ol>
             <li>
-              <strong>Identify the intended use.</strong> Is the software used directly in
-              production or the quality system, or does it support those processes? Software with
-              no such role is outside the scope.
+              <strong>Identify the intended use.</strong> Is the software used
+              directly in production or the quality system, or does it support
+              those processes? Software with no such role is outside the scope.
             </li>
             <li>
-              <strong>Determine the risk.</strong> For each feature, function or operation, ask
-              whether its failure could lead to a quality problem that foreseeably compromises
-              safety. The guidance separates <em>high process risk</em> from{" "}
-              <em>not high process risk</em>.
+              <strong>Determine the risk.</strong> For each feature, function or
+              operation, ask whether its failure could lead to a quality problem
+              that foreseeably compromises safety. The guidance separates{" "}
+              <em>high process risk</em> from <em>not high process risk</em>.
             </li>
             <li>
-              <strong>Choose assurance activities</strong> that match the risk — more rigorous and
-              scripted for high-risk features, lighter and unscripted for the rest.
+              <strong>Choose assurance activities</strong> that match the risk —
+              more rigorous and scripted for high-risk features, lighter and
+              unscripted for the rest.
             </li>
             <li>
-              <strong>Establish the appropriate record</strong> — enough to show the software was
-              assessed and performs as intended, without collecting evidence for its own sake.
+              <strong>Establish the appropriate record</strong> — enough to show
+              the software was assessed and performs as intended, without
+              collecting evidence for its own sake.
             </li>
           </ol>
           <p>
-            A feature that calculates a release result or controls a process parameter is high
-            risk. A report layout, a search filter or a dashboard colour usually isn’t.
+            A feature that calculates a release result or controls a process
+            parameter is high risk. A report layout, a search filter or a
+            dashboard colour usually isn’t.
           </p>
         </>
       ),
@@ -142,25 +178,47 @@ export const csvVsCsa: Post = {
       body: (
         <>
           <p>
-            “Critical thinking” is the heart of CSA and of the GAMP 5 second edition. It means
-            people who understand the process and the system decide what could go wrong and how
-            best to check it — rather than following a template.
+            “Critical thinking” is the heart of CSA and of the GAMP 5 second
+            edition. It means people who understand the process and the system
+            decide what could go wrong and how best to check it — rather than
+            following a template.
           </p>
           <DataTable
             caption="Testing methods and where they fit"
             head={["Method", "What it is", "Typical use"]}
             rows={[
-              ["Robust scripted testing", "Detailed, pre-approved test cases with expected results and objective evidence", "High-risk features"],
-              ["Limited scripted testing", "Scripted tests for high-risk parts, unscripted for the rest", "Features that mix high and lower risk"],
-              ["Ad hoc testing", "Testing without a pre-written script, based on the tester’s understanding", "Lower-risk features"],
-              ["Error guessing", "Deliberately trying inputs likely to cause failures", "Lower-risk features; also useful alongside scripts"],
-              ["Exploratory testing", "Learning the system and designing tests on the fly, with notes on what was covered", "Lower-risk features and new or changed areas"],
+              [
+                "Robust scripted testing",
+                "Detailed, pre-approved test cases with expected results and objective evidence",
+                "High-risk features",
+              ],
+              [
+                "Limited scripted testing",
+                "Scripted tests for high-risk parts, unscripted for the rest",
+                "Features that mix high and lower risk",
+              ],
+              [
+                "Ad hoc testing",
+                "Testing without a pre-written script, based on the tester’s understanding",
+                "Lower-risk features",
+              ],
+              [
+                "Error guessing",
+                "Deliberately trying inputs likely to cause failures",
+                "Lower-risk features; also useful alongside scripts",
+              ],
+              [
+                "Exploratory testing",
+                "Learning the system and designing tests on the fly, with notes on what was covered",
+                "Lower-risk features and new or changed areas",
+              ],
             ]}
           />
           <p>
-            Unscripted does not mean undocumented or careless. Testers still plan the objective,
-            record what they covered and log any defects. It often finds more real problems than
-            a script, because testers look for failures rather than confirming expected steps.
+            Unscripted does not mean undocumented or careless. Testers still
+            plan the objective, record what they covered and log any defects. It
+            often finds more real problems than a script, because testers look
+            for failures rather than confirming expected steps.
           </p>
         </>
       ),
@@ -171,8 +229,8 @@ export const csvVsCsa: Post = {
       body: (
         <>
           <p>
-            CSA reduces unnecessary evidence; it does not remove records. A lean record for an
-            assurance activity typically covers:
+            CSA reduces unnecessary evidence; it does not remove records. A lean
+            record for an assurance activity typically covers:
           </p>
           <Checklist
             items={[
@@ -185,9 +243,10 @@ export const csvVsCsa: Post = {
             ]}
           />
           <p>
-            Records can be digital. System logs, automated test results and tool output are
-            acceptable evidence where they show what happened. Screenshots are useful when they
-            add assurance, not as a default for every step.
+            Records can be digital. System logs, automated test results and tool
+            output are acceptable evidence where they show what happened.
+            Screenshots are useful when they add assurance, not as a default for
+            every step.
           </p>
         </>
       ),
@@ -199,28 +258,36 @@ export const csvVsCsa: Post = {
         <>
           <h3>GAMP 5 second edition</h3>
           <p>
-            ISPE’s GAMP 5 second edition, published in 2022, puts critical thinking, risk-based
-            effort, supplier leverage and agile delivery at the centre — the same direction as
-            CSA. If you already follow GAMP 5 well, adopting CSA thinking is an evolution rather
-            than a new framework. Software categories, the life-cycle approach and the V-model
-            still apply; CSA influences how deeply you test and document each part. Our{" "}
-            <Link href="/insights/gamp-5-software-validation-guide">GAMP 5 validation guide</Link>{" "}
+            ISPE’s GAMP 5 second edition, published in 2022, puts critical
+            thinking, risk-based effort, supplier leverage and agile delivery at
+            the centre — the same direction as CSA. If you already follow GAMP 5
+            well, adopting CSA thinking is an evolution rather than a new
+            framework. Software categories, the life-cycle approach and the
+            V-model still apply; CSA influences how deeply you test and document
+            each part. Our{" "}
+            <Link href="/insights/gamp-5-software-validation-guide">
+              GAMP 5 validation guide
+            </Link>{" "}
             covers the framework itself.
           </p>
           <h3>21 CFR Part 11</h3>
           <p>
-            CSA does not replace or relax 21 CFR Part 11. Where a system creates or keeps
-            electronic records or signatures that fall under Part 11, you still need the required
-            controls — audit trails, access control, signature controls, record protection and
-            validation. CSA can shape how you verify those controls, but a system’s audit trail
-            and signatures will usually count as high risk. See our{" "}
-            <Link href="/insights/21-cfr-part-11-compliance-checklist-lims">Part 11 checklist</Link>.
+            CSA does not replace or relax 21 CFR Part 11. Where a system creates
+            or keeps electronic records or signatures that fall under Part 11,
+            you still need the required controls — audit trails, access control,
+            signature controls, record protection and validation. CSA can shape
+            how you verify those controls, but a system’s audit trail and
+            signatures will usually count as high risk. See our{" "}
+            <Link href="/insights/21-cfr-part-11-compliance-checklist-lims">
+              Part 11 checklist
+            </Link>
+            .
           </p>
           <Callout title="The short version">
             <p>
-              GAMP 5 describes the framework, Part 11 sets requirements for electronic records and
-              signatures, and CSA guides how much assurance effort each feature needs. They work
-              together.
+              GAMP 5 describes the framework, Part 11 sets requirements for
+              electronic records and signatures, and CSA guides how much
+              assurance effort each feature needs. They work together.
             </p>
           </Callout>
         </>
@@ -231,21 +298,45 @@ export const csvVsCsa: Post = {
       title: "Moving from CSV to CSA in practice",
       body: (
         <>
-          <p>Teams that move to CSA successfully tend to follow a similar path:</p>
+          <p>
+            Teams that move to CSA successfully tend to follow a similar path:
+          </p>
           <ul>
-            <li><strong>Update SOPs first.</strong> Auditors inspect you against your own procedures. If they still demand screenshots on every step, CSA won’t happen.</li>
-            <li><strong>Train people in risk assessment</strong>, with worked examples from your own systems.</li>
-            <li><strong>Pilot on one system</strong> — a lower-risk system or a change to an existing one — and compare effort and defects found.</li>
-            <li><strong>Assess suppliers properly</strong> so you can rely on their testing with confidence.</li>
-            <li><strong>Use automation</strong> for regression testing, keeping results as records.</li>
+            <li>
+              <strong>Update SOPs first.</strong> Auditors inspect you against
+              your own procedures. If they still demand screenshots on every
+              step, CSA won’t happen.
+            </li>
+            <li>
+              <strong>Train people in risk assessment</strong>, with worked
+              examples from your own systems.
+            </li>
+            <li>
+              <strong>Pilot on one system</strong> — a lower-risk system or a
+              change to an existing one — and compare effort and defects found.
+            </li>
+            <li>
+              <strong>Assess suppliers properly</strong> so you can rely on
+              their testing with confidence.
+            </li>
+            <li>
+              <strong>Use automation</strong> for regression testing, keeping
+              results as records.
+            </li>
           </ul>
           <p>
-            We build regulated software — LIMS, pharmacovigilance and other GxP systems — with
-            risk-based validation packs produced alongside the code, and our{" "}
-            <Link href="/academy/software-validation-gamp5-course">Software Validation course</Link>{" "}
-            teaches GAMP 5, CSV and Part 11 to QA and life-science professionals. For a project,
-            see our <Link href="/services/regulated-software">regulated software service</Link> or{" "}
-            <Link href="/#contact">get in touch</Link>.
+            We build regulated software — LIMS, pharmacovigilance and other GxP
+            systems — with risk-based validation packs produced alongside the
+            code, and our{" "}
+            <Link href="/academy/software-validation-gamp5-course">
+              Software Validation course
+            </Link>{" "}
+            teaches GAMP 5, CSV and Part 11 to QA and life-science
+            professionals. For a project, see our{" "}
+            <Link href="/services/regulated-software">
+              regulated software service
+            </Link>{" "}
+            or <Link href="/#contact">get in touch</Link>.
           </p>
         </>
       ),

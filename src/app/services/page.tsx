@@ -10,8 +10,15 @@ import PageHero from "@/components/pages/PageHero";
 import PageLayout from "@/components/pages/PageLayout";
 import styles from "@/components/pages/Pages.module.css";
 import { ENGAGEMENTS, SERVICE_DETAILS } from "@/components/pages/content";
+import landing from "@/components/pages/Landing.module.css";
 import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
+import { SERVICE_PAGES, slugOf } from "@/content/landing";
 import { siteConfig } from "@/lib/site-config";
+
+// Service pages beyond the five core disciplines above (LIMS, PV, CSV, SaaS, chatbots…).
+const SPECIALIST = SERVICE_PAGES.filter(
+  (p) => !SERVICE_DETAILS.some((d) => d.slug === slugOf(p)),
+);
 
 const description =
   "Product & UX design, web platforms, Flutter mobile apps, AI agents and GxP-ready regulated software — built end to end by one senior team in India.";
@@ -55,7 +62,7 @@ export default function ServicesPage() {
           "Software, ",
           { text: "end to end.", className: home.accentItalic },
         ]}
-        lead="Product design, web platforms, mobile apps, AI agents and regulated software — five disciplines, one senior team, from the first sketch to production and beyond."
+        lead="Regulated software, product design, web platforms, mobile apps and AI agents — five disciplines, one senior team, from the first sketch to production and beyond."
         index={SERVICES.map((s, i) => ({
           href: `#${SERVICE_DETAILS[i].slug}`,
           n: s.n,
@@ -160,6 +167,25 @@ export default function ServicesPage() {
             );
           })}
         </div>
+      </section>
+
+      <section className={styles.sectionPad} aria-labelledby="specialist-title">
+        <SectionHeading
+          kicker="Specialist services"
+          id="specialist-title"
+          title={["Focused pages for ", accent("specific needs.")]}
+          lead="Regulated systems, SaaS products, chatbots, dedicated teams and online stores — each with its own scope, questions and answers."
+        />
+        <ul className={landing.relatedList}>
+          {SPECIALIST.map((p) => (
+            <li key={p.path}>
+              <Link href={p.path}>
+                <span>{p.crumb}</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className={styles.sectionPad} aria-labelledby="engage-title">

@@ -12,6 +12,7 @@ import styles from "@/components/pages/Pages.module.css";
 import { VALUES } from "@/components/pages/content";
 import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
 import { siteConfig } from "@/lib/site-config";
+import { FOUNDER } from "@/content/authors";
 
 const description =
   "Bright Infonet is an AI-first software company in India: one senior team that designs, builds and validates web platforms, mobile apps and AI agents.";
@@ -42,7 +43,10 @@ export default function AboutPage() {
       <PageHero
         crumb="About"
         kicker="About the studio"
-        title={["Small team. ", { text: "Senior hands.", className: home.accentItalic }]}
+        title={[
+          "Small team. ",
+          { text: "Senior hands.", className: home.accentItalic },
+        ]}
         lead="Bright Infonet is an AI-first software development company in India. We design, build and validate web platforms, mobile apps, AI agents and regulated software — end to end, with the same people from the first call to go-live."
       >
         <Reveal className={styles.heroActions} delay={0.4}>
@@ -52,6 +56,12 @@ export default function AboutPage() {
           <Link href="/work" className={home.btnOutline}>
             See our work <span className={home.btnArrow}>&rarr;</span>
           </Link>
+          {/* only once the founder profile is filled in (src/content/authors.ts) */}
+          {FOUNDER?.name.trim() && (
+            <Link href="/about/founder" className={home.btnOutline}>
+              Meet the founder <span className={home.btnArrow}>&rarr;</span>
+            </Link>
+          )}
         </Reveal>
       </PageHero>
 
@@ -68,7 +78,12 @@ export default function AboutPage() {
         />
         <div className={styles.cards4}>
           {VALUES.map((v, i) => (
-            <Reveal key={v.n} as="article" className={styles.card} delay={i * 0.07}>
+            <Reveal
+              key={v.n}
+              as="article"
+              className={styles.card}
+              delay={i * 0.07}
+            >
               <span className={`${styles.cardNum} ${home.mono}`}>{v.n}</span>
               <h3 className={`${styles.cardTitle} ${home.serif}`}>{v.t}</h3>
               <p className={styles.cardText}>{v.d}</p>

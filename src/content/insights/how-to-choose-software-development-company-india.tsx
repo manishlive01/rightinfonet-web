@@ -12,6 +12,8 @@ export const howToChooseSoftwareDevelopmentCompanyIndia: Post = {
   excerpt:
     "A practical checklist for choosing a software development partner in India — the criteria that matter, how to check them, what the contract should say, and the red flags to walk away from.",
   category: "Choosing a partner",
+  pillar: "cost",
+  cta: { href: "/services/web-platforms", label: "Web platform development" },
   cover: "vmodel",
   published: "2026-09-28",
   readingMinutes: 8,

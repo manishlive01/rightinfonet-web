@@ -129,6 +129,40 @@
   color: var(--mut);
 }
 
+/* name, address, phone, WhatsApp, email */
+.nap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  font-style: normal;
+}
+
+.napName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.calendly {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--fg);
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+
+.calendly:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+}
+
 .clock {
   display: inline-flex;
   align-items: center;
@@ -211,4 +245,66 @@
 
 .toTop:hover {
   color: var(--acc);
+}
+
+/* phones: stacked CTA, two-column link groups, bottom row clear of the floating buttons */
+@media (max-width: 767px) {
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 28px 0;
+  }
+
+  .ctaText {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .ctaBtn {
+    justify-content: center;
+    min-height: 52px;
+    box-sizing: border-box;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 20px;
+    padding: 36px 0;
+  }
+
+  .grid> :nth-child(n + 5) {
+    grid-column: 1 / -1;
+  }
+
+  .link,
+  .muted {
+    font-size: 14px;
+  }
+
+  .link {
+    padding: 4px 0;
+    overflow-wrap: anywhere;
+  }
+
+  .col {
+    gap: 8px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 72px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 380px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid>* {
+    grid-column: auto;
+  }
 }

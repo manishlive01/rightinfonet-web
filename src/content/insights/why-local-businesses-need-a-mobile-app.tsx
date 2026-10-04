@@ -12,6 +12,7 @@ export const whyLocalBusinessesNeedAMobileApp: Post = {
   excerpt:
     "A practical guide for Tricity clinics, schools, restaurants and shops: when an app beats a website or WhatsApp, which features matter for each business type, what drives cost and how to start small.",
   category: "Mobile apps",
+  pillar: "cost",
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,

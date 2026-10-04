@@ -12,6 +12,8 @@ export const softwareDeveloperCareerChandigarhTricity: Post = {
   excerpt:
     "What a software developer career looks like in the Tricity — the roles companies hire for, the skills that get interviews, indicative fresher and mid-level salary ranges, remote options and how to build a portfolio.",
   category: "Careers & training",
+  pillar: "academy",
+  pillarHub: true,
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,

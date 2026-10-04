@@ -31,7 +31,10 @@ export default function IndustriesPage() {
       <PageHero
         crumb="Industries"
         kicker="Industries"
-        title={["Built for teams where ", { text: "errors cost.", className: home.accentItalic }]}
+        title={[
+          "Built for teams where ",
+          { text: "errors cost.", className: home.accentItalic },
+        ]}
         lead="Deep experience where software meets regulation and real-world operations — and the same rigour for every other product we build."
         index={INDUSTRIES.map((ind, i) => ({
           href: `#${INDUSTRY_DETAILS[i].slug}`,
@@ -42,7 +45,10 @@ export default function IndustriesPage() {
 
       <Industries bare />
 
-      <section className={styles.sectionPad} aria-labelledby="industry-detail-title">
+      <section
+        className={styles.sectionPad}
+        aria-labelledby="industry-detail-title"
+      >
         <SectionHeading
           kicker="Up close"
           id="industry-detail-title"
@@ -68,12 +74,16 @@ export default function IndustriesPage() {
                   >
                     {ind.t}
                   </h3>
-                  <span className={`${styles.detailNum} ${home.mono}`}>{ind.n}</span>
+                  <span className={`${styles.detailNum} ${home.mono}`}>
+                    {ind.n}
+                  </span>
                 </div>
                 <p className={styles.cardText}>{ind.d}</p>
                 <div className={styles.industryCols}>
                   <div>
-                    <span className={`${styles.monoLabel} ${home.mono}`}>What’s hard</span>
+                    <span className={`${styles.monoLabel} ${home.mono}`}>
+                      What’s hard
+                    </span>
                     <ul className={styles.dots}>
                       {detail.hard.map((h) => (
                         <li key={h}>{h}</li>
@@ -81,7 +91,9 @@ export default function IndustriesPage() {
                     </ul>
                   </div>
                   <div>
-                    <span className={`${styles.monoLabel} ${home.mono}`}>What we build</span>
+                    <span className={`${styles.monoLabel} ${home.mono}`}>
+                      What we build
+                    </span>
                     <ul className={styles.checks}>
                       {ind.builds.map((b) => (
                         <li key={b}>{b}</li>
@@ -97,9 +109,15 @@ export default function IndustriesPage() {
                       </li>
                     ))}
                   </ul>
+                  {detail.page && (
+                    <Link href={detail.page.href} className={styles.related}>
+                      {detail.page.label} <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  )}
                   {detail.related && (
                     <Link href={detail.related.href} className={styles.related}>
-                      {detail.related.label} <span aria-hidden="true">&rarr;</span>
+                      {detail.related.label}{" "}
+                      <span aria-hidden="true">&rarr;</span>
                     </Link>
                   )}
                 </div>
@@ -127,8 +145,9 @@ export default function IndustriesPage() {
           ))}
         </Reveal>
         <p className={styles.note}>
-          We build the technical controls and the validation documents. Compliance itself also
-          depends on your procedures, and validation sign-off stays with your QA team.
+          We build the technical controls and the validation documents.
+          Compliance itself also depends on your procedures, and validation
+          sign-off stays with your QA team.
         </p>
       </section>
     </PageLayout>

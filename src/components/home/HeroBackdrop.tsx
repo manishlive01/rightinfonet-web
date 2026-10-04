@@ -8,7 +8,7 @@ import styles from "./HeroBackdrop.module.css";
    - On hover the dots around the cursor are pushed out like a lens, grow a little and
      warm up to brand orange, then spring back when the cursor moves on.
    - A click sends a soft ripple ring through the grid.
-   Plain 2D canvas, paused off-screen / in hidden tabs, static for reduced motion. */
+   Plain 2D canvas, paused off-screen / in hidden tabs, static for reduced motion and touch. */
 
 type Dot = {
   hx: number;
@@ -41,9 +41,11 @@ export default function HeroBackdrop() {
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    // Static grid (drawn once, no rAF loop) for reduced motion and for touch screens: the lens
+    // only follows a mouse, and the loop cost main-thread time on phones (Core Web Vitals).
+    const reduce =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(pointer: coarse)").matches;
     let colors = palette();
     let w = 0;
     let h = 0;

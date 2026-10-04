@@ -13,14 +13,15 @@ export type LandingSection = {
 };
 
 /**
- * A keyword-focused landing page: service pages (/services/…), local pages (/…-panchkula)
- * and Academy course or city pages (/academy/…). Plain strings only, so the same data feeds
+ * A keyword-focused landing page: service pages (/services/…), industry pages (/industries/…),
+ * local pages (/…-panchkula) and Academy course or city pages (/academy/…). Plain strings only, so the same data feeds
  * the page, its structured data and llms.txt.
  */
 export type Landing = {
   /** path from the site root, e.g. "/mobile-app-development-panchkula" */
   path: string;
-  kind: "service" | "local" | "course" | "training";
+  /** "industry" pages (/industries/…) render and get Service schema like "service" pages */
+  kind: "service" | "industry" | "local" | "course" | "training";
   /** breadcrumb parent between Home and this page */
   parent?: { name: string; path: string };
   crumb: string;
@@ -41,7 +42,7 @@ export type Landing = {
   sections: LandingSection[];
   faqs: Faq[];
   related: { href: string; label: string }[];
-  /** schema.org serviceType for service/local pages */
+  /** schema.org serviceType for service/industry/local pages */
   serviceType?: string;
   /** main city for local pages; omitted for India/worldwide pages */
   city?: string;

@@ -7,11 +7,13 @@
   letter-spacing: -0.02em;
   text-wrap: pretty;
 }
+
 /* each word brightens as scroll progress (--p) passes its position (--w) */
 .word {
   opacity: clamp(0.14, calc((var(--p) - var(--w)) * 9), 1);
   transition: opacity 0.2s linear;
 }
+
 @media (prefers-reduced-motion: reduce) {
   .word {
     opacity: 1;
@@ -25,6 +27,7 @@
   align-items: start;
   margin-top: clamp(64px, 8vw, 120px);
 }
+
 @media (min-width: 960px) {
   .grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
@@ -43,6 +46,7 @@
   list-style: none;
   border-top: 1px solid var(--line);
 }
+
 .point {
   position: relative;
   display: grid;
@@ -51,11 +55,13 @@
   padding: clamp(28px, 3vw, 40px) 0;
   border-bottom: 1px solid var(--line);
 }
+
 .pointNum {
   padding-top: 8px;
   font-size: 12px;
   color: var(--acc);
 }
+
 .pointTitle {
   margin: 0 0 10px;
   font-size: clamp(24px, 2.2vw, 32px);
@@ -63,6 +69,7 @@
   letter-spacing: -0.02em;
   line-height: 1.15;
 }
+
 .pointDesc {
   margin: 0;
   max-width: 460px;
@@ -76,12 +83,15 @@
 .pointNum {
   transition: color 0.4s;
 }
+
 .point:not(.pointActive) .pointTitle {
   color: var(--mut);
 }
+
 .point:not(.pointActive) .pointNum {
   color: var(--dim);
 }
+
 .pointBar {
   position: absolute;
   left: 0;
@@ -93,16 +103,61 @@
   animation: pointFill 5s linear both;
   animation-play-state: paused;
 }
+
 .pointBar[data-running="true"] {
   animation-play-state: running;
 }
+
 @keyframes pointFill {
   from {
     transform: scaleX(0);
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .pointBar {
     display: none;
+  }
+}
+
+/* phones: statement and points first, studio board after */
+@media (max-width: 767px) {
+  .points {
+    order: 1;
+  }
+
+  .boardWrap {
+    order: 2;
+  }
+
+  .grid {
+    gap: 28px;
+    margin-top: 36px;
+  }
+
+  .statement {
+    font-size: clamp(22px, 6.4vw, 26px);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+  }
+
+  .point {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+    padding: 20px 0;
+  }
+
+  .pointTitle {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .pointDesc {
+    font-size: 15px;
+    max-width: none;
+  }
+
+  .pointNum {
+    padding-top: 5px;
   }
 }

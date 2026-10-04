@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
-import { POSTS, getPost } from "@/content/insights";
+import { notFound } from "next/navigation";
+import { getPost, getPublishedPosts } from "@/content/insights";
 import { siteConfig } from "@/lib/site-config";
 import { logoWhiteDataUri } from "@/lib/brand-image";
 
@@ -7,14 +8,24 @@ export const alt = `${siteConfig.name} Insights`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Same schedule rules as the post page: live posts are prerendered, a post that goes live after
+// the build renders on demand, scheduled/unknown slugs 404.
+export const dynamicParams = true;
+export const revalidate = 3600;
+
 export function generateStaticParams() {
-  return POSTS.map((post) => ({ slug: post.slug }));
+  return getPublishedPosts().map((post) => ({ slug: post.slug }));
 }
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = getPost(slug);
-  const title = post?.title ?? `${siteConfig.name} Insights`;
+  if (!post) notFound();
+  const title = post.title;
   const logo = await logoWhiteDataUri();
   return new ImageResponse(
     <div
@@ -30,7 +41,13 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         color: "#f2ede4",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <img src={logo} width={400} height={50} alt="" />
         <div
           style={{
@@ -44,7 +61,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             letterSpacing: 2,
           }}
         >
-          {post?.category ?? "Insights"}
+          {post.category}
         </div>
       </div>
       <div
@@ -58,7 +75,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         {title}
       </div>
       <div style={{ display: "flex", fontSize: 26, color: "#bdb7ac" }}>
-        Insights · {post ? `${post.readingMinutes} min read` : "brightinfonet.com"}
+        Insights · {post.readingMinutes} min read
       </div>
     </div>,
     size,

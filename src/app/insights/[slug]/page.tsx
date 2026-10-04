@@ -5,19 +5,36 @@ import home from "@/components/home/Home.module.css";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import SectionHeading, { accent } from "@/components/home/SectionHeading";
+import AuthorBox from "@/components/insights/AuthorBox";
+import PillarNav from "@/components/insights/PillarNav";
 import PostCard from "@/components/insights/PostCard";
 import PostCover from "@/components/insights/PostCover";
 import Toc from "@/components/insights/Toc";
 import styles from "@/components/insights/Insights.module.css";
-import { POSTS, formatDate, getPost, relatedPosts } from "@/content/insights";
+import {
+  formatDate,
+  getPost,
+  getPublishedPosts,
+  postCta,
+  relatedPosts,
+} from "@/content/insights";
+import { getAuthor, isFounder } from "@/content/authors";
 import JsonLd from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import { faqJsonLd } from "@/components/pages/seo";
+import {
+  breadcrumbTrailJsonLd,
+  faqJsonLd,
+  seoTitle,
+} from "@/components/pages/seo";
 
-export const dynamicParams = false;
+// Live posts are prerendered; a post whose publish day arrives after the build renders on demand
+// (dynamicParams), and every page re-renders hourly so pillar/related links stay current.
+// Scheduled and unknown slugs 404 (that 404 is also refreshed within the hour).
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
-  return POSTS.map((post) => ({ slug: post.slug }));
+  return getPublishedPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -29,11 +46,15 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
   const url = `${siteConfig.url}/insights/${post.slug}`;
+  const author = getAuthor(post.author);
   return {
-    title: post.metaTitle,
+    title: seoTitle(post.metaTitle),
     description: post.description,
     keywords: post.keywords,
     alternates: { canonical: `/insights/${post.slug}` },
+    ...(author && {
+      authors: [{ name: author.name, url: author.linkedin || undefined }],
+    }),
     openGraph: {
       type: "article",
       url,
@@ -43,7 +64,7 @@ export async function generateMetadata({
       locale: siteConfig.locale,
       publishedTime: post.published,
       modifiedTime: post.updated ?? post.published,
-      authors: [siteConfig.url],
+      authors: [author?.linkedin || siteConfig.url],
       section: post.category,
       tags: post.keywords,
     },
@@ -66,6 +87,8 @@ export default async function InsightPage({
 
   const url = `${siteConfig.url}/insights/${post.slug}`;
   const updated = post.updated ?? post.published;
+  const author = getAuthor(post.author);
+  const cta = postCta(post);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -76,36 +99,39 @@ export default async function InsightPage({
         description: post.description,
         url,
         mainEntityOfPage: url,
-        image: `${url}/opengraph-image`,
+        image: {
+          "@type": "ImageObject",
+          url: `${url}/opengraph-image`,
+          width: 1200,
+          height: 630,
+        },
         datePublished: post.published,
         dateModified: updated,
         inLanguage: "en-IN",
         articleSection: post.category,
         keywords: post.keywords.join(", "),
         timeRequired: `PT${post.readingMinutes}M`,
-        author: { "@id": `${siteConfig.url}/#organization` },
+        // A real, named author gets a Person; otherwise the post is credited to the company.
+        author: author
+          ? {
+              "@type": "Person",
+              name: author.name,
+              ...(author.role && { jobTitle: author.role }),
+              ...(author.linkedin && { sameAs: [author.linkedin] }),
+              ...(isFounder(author) && {
+                url: `${siteConfig.url}/about/founder`,
+              }),
+              worksFor: { "@id": `${siteConfig.url}/#organization` },
+            }
+          : { "@id": `${siteConfig.url}/#organization` },
         publisher: { "@id": `${siteConfig.url}/#organization` },
         isPartOf: { "@id": `${siteConfig.url}/insights#blog` },
       },
       ...(post.faqs?.length ? [faqJsonLd(post.faqs, url)] : []),
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: siteConfig.url,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Insights",
-            item: `${siteConfig.url}/insights`,
-          },
-          { "@type": "ListItem", position: 3, name: post.title, item: url },
-        ],
-      },
+      breadcrumbTrailJsonLd([
+        { name: "Insights", path: "/insights" },
+        { name: post.title, path: `/insights/${post.slug}` },
+      ]),
     ],
   };
 
@@ -132,10 +158,6 @@ export default async function InsightPage({
             </nav>
             <div className={`${styles.heroMeta} ${home.mono}`}>
               <span className={styles.catPill}>{post.category}</span>
-              <time dateTime={post.published}>
-                {formatDate(post.published)}
-              </time>
-              <span aria-hidden="true">&middot;</span>
               <span>{post.readingMinutes} min read</span>
             </div>
             <h1 id="article-title" className={`${styles.title} ${home.serif}`}>
@@ -145,16 +167,17 @@ export default async function InsightPage({
             <div className={styles.byline}>
               <span className={styles.bylineMark} aria-hidden="true" />
               <span className={styles.bylineText}>
-                <span>{siteConfig.name} Engineering</span>
+                <span>
+                  {author ? author.name : `${siteConfig.name} Engineering`}
+                </span>
                 <span className={styles.bylineSub}>
-                  {post.updated ? (
-                    <>
-                      Updated{" "}
-                      <time dateTime={updated}>{formatDate(updated)}</time>
-                    </>
-                  ) : (
-                    "Written by the team that builds these systems"
-                  )}
+                  Published{" "}
+                  <time dateTime={post.published}>
+                    {formatDate(post.published)}
+                  </time>
+                  <span aria-hidden="true"> &middot; </span>
+                  Last updated{" "}
+                  <time dateTime={updated}>{formatDate(updated)}</time>
                 </span>
               </span>
             </div>
@@ -206,6 +229,10 @@ export default async function InsightPage({
                 )}
               </div>
 
+              {author && <AuthorBox author={author} />}
+
+              <PillarNav post={post} />
+
               <aside className={styles.endCta} aria-label="Work with us">
                 <p className={`${styles.endCtaTitle} ${home.serif}`}>
                   Building something{" "}
@@ -215,9 +242,15 @@ export default async function InsightPage({
                   Tell us what you&rsquo;re working on. An engineer &mdash; not
                   a sales rep &mdash; will reply within one working day.
                 </p>
-                <Link href="/#contact" className={home.btnPrimary}>
-                  Start a project <span className={home.btnArrow}>&rarr;</span>
-                </Link>
+                <div className={styles.endCtaActions}>
+                  <Link href={cta.href} className={home.btnPrimary}>
+                    {cta.label} <span className={home.btnArrow}>&rarr;</span>
+                  </Link>
+                  <Link href="/#contact" className={home.btnOutline}>
+                    Start a project{" "}
+                    <span className={home.btnArrow}>&rarr;</span>
+                  </Link>
+                </div>
               </aside>
             </div>
           </div>

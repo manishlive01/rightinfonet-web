@@ -5,6 +5,8 @@ import { landingMetadata } from "@/components/pages/landing-seo";
 import { ACADEMY_PAGES, landingBySlug, slugOf } from "@/content/landing";
 
 export const dynamicParams = false;
+// Hourly, so related links to scheduled posts appear on their publish day.
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return ACADEMY_PAGES.map((p) => ({ slug: slugOf(p) }));

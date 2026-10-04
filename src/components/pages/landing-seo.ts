@@ -7,6 +7,7 @@ import {
   pageMetadata,
 } from "./seo";
 import type { Landing } from "@/content/landing/types";
+import { pricingFor, testimonialsFor } from "@/content/trust";
 import { siteConfig } from "@/lib/site-config";
 
 export const ACADEMY_ID = `${siteConfig.url}/academy#academy`;
@@ -21,7 +22,11 @@ export function landingMetadata(page: Landing): Metadata {
 }
 
 /** Course entity for an Academy track; shared by course pages and the Academy page. */
-export function courseJsonLd(trackIndex: number, url: string, description?: string) {
+export function courseJsonLd(
+  trackIndex: number,
+  url: string,
+  description?: string,
+) {
   const t = TRACKS[trackIndex];
   return {
     "@type": "Course",
@@ -43,7 +48,10 @@ export function courseJsonLd(trackIndex: number, url: string, description?: stri
 
 export function landingJsonLd(page: Landing) {
   const url = `${siteConfig.url}${page.path}`;
-  const trail = [...(page.parent ? [page.parent] : []), { name: page.crumb, path: page.path }];
+  const trail = [
+    ...(page.parent ? [page.parent] : []),
+    { name: page.crumb, path: page.path },
+  ];
   const area = page.city
     ? [
         { "@type": "City", name: page.city },
@@ -65,7 +73,8 @@ export function landingJsonLd(page: Landing) {
               name: `${t.t} course`,
             })),
           }
-        : {
+        : // service, industry and local pages
+          {
             "@type": "Service",
             "@id": `${url}#service`,
             name: page.metaTitle,
@@ -75,6 +84,38 @@ export function landingJsonLd(page: Landing) {
             provider: { "@id": `${siteConfig.url}/#organization` },
             areaServed: area,
           };
+
+  // Owner-gated: a price only with a real numeric minPrice, reviews only from real testimonials
+  // tagged for this page. No AggregateRating (there are no ratings to aggregate).
+  const price = pricingFor(page.path);
+  const reviews = testimonialsFor(page.path);
+  const extras =
+    main["@type"] === "ItemList"
+      ? {}
+      : {
+          ...(price?.minPrice !== undefined && {
+            offers: {
+              "@type": "Offer",
+              url,
+              priceCurrency: price.currency,
+              priceSpecification: {
+                "@type": "PriceSpecification",
+                minPrice: price.minPrice,
+                priceCurrency: price.currency,
+              },
+            },
+          }),
+          ...(reviews.length > 0 && {
+            review: reviews.map((t) => ({
+              "@type": "Review",
+              reviewBody: t.quote,
+              author: { "@type": "Person", name: t.name },
+              ...(t.source && {
+                publisher: { "@type": "Organization", name: t.source },
+              }),
+            })),
+          }),
+        };
 
   return {
     "@context": "https://schema.org",
@@ -89,7 +130,7 @@ export function landingJsonLd(page: Landing) {
         isPartOf: { "@id": `${siteConfig.url}/#website` },
         about: { "@id": `${siteConfig.url}/#organization` },
       },
-      main,
+      { ...main, ...extras },
       breadcrumbTrailJsonLd(trail),
       faqJsonLd(page.faqs, url),
     ],

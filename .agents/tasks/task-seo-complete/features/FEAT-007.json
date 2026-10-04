@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-007",
+  "type": "docs",
+  "description": "Plan item 14: tick SEO-CHECKLIST.md honestly from verified evidence, update SEO-PLAN.md and the seo-audit skill (project map + learnings log), write the Hinglish owner to-do report SEO-OWNER-TODO.md, and save the final crawler report. Depends on all previous FEATs (reads their findings).",
+  "status": "pending",
+  "steps": [
+    "Run a final normal npm run lint + npm run build, serve on 3100, run the crawler to .agents/seo-audit-2026-10-04.md; note error/warning/info counts vs the baseline (56 pages, 0/25/2).",
+    "Read findings in FEAT-001..FEAT-006. In SEO-CHECKLIST.md mark [x] only items verified on the built/served site, [~] for code-done-but-owner-data-pending (GA4, Calendly, verification meta, IndexNow key, author box, founder page, testimonials, logos, proof slots, pricing, geo/hours/map, lead magnet endpoint, calculator ranges) with a one-line note on what is pending, [ ] for anything not done or not verifiable (e.g. CWV if Lighthouse could not run). Scheduled posts: mark the code/content item done but note go-live dates.",
+    "Update SEO-PLAN.md: new pages table (14 landing pages + calculator + resource page), scheduled posts table (D5 dates), hosting note (ISR needs next start / Node or Vercel; otherwise daily rebuild ~00:30 IST), owner pending list.",
+    "Update .kiro/skills/seo-audit/SKILL.md: project map (industries route, trust.ts, authors.ts, cost-calculator.ts, schedule.ts + CONTENT_NOW, PostLink, tools/resources routes, indexnow), Learnings log dated 2026-10-04 with what was found/fixed/pending and gotchas.",
+    "Write SEO-OWNER-TODO.md in Hinglish: Done summary; every env var and config field to fill (file + key) incl. .env.local.example vars; Search Console + Bing verify and sitemap submit; IndexNow key + run scripts/indexnow-submit.mjs; GBP, 25 real reviews, directories with identical NAP, backlinks, LinkedIn/YouTube/Quora/Reddit, PR (Phase 9); proofread cost/salary/regulatory posts before their dates; confirm calculator ranges, Ambala/Shimla areaServed, street address + PIN; privacy policy page needed before collecting emails; daily rebuild if host lacks ISR; original survey data only if real."
+  ],
+  "acceptance_criteria": [
+    "Final npm run lint and npm run build pass and the crawler reports 0 errors",
+    "Every [x] in SEO-CHECKLIST.md maps to evidence in FEAT findings or the final crawler report; no owner-data item is marked [x]",
+    "SEO-OWNER-TODO.md exists in Hinglish and lists every env var, config file/key and off-site task",
+    "SEO-PLAN.md and SKILL.md reflect the new routes, schedule mechanism and learnings"
+  ],
+  "verification": [
+    "npm run lint",
+    "npm run build",
+    "npx next start -p 3100 (background) then node .kiro/skills/seo-audit/scripts/audit.mjs http://localhost:3100 --out .agents/seo-audit-2026-10-04.md"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

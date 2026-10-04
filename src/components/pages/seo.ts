@@ -62,6 +62,33 @@ export function postalAddressJsonLd() {
   };
 }
 
+/**
+ * Owner-gated local-business fields (geo, opening hours, map link) from siteConfig. Each one is
+ * left out until a real value is filled in, so empty config never reaches structured data.
+ */
+export function localBusinessExtrasJsonLd() {
+  const { geo, openingHours, googleBusinessUrl } = siteConfig;
+  return {
+    ...(geo.lat !== null &&
+      geo.lng !== null && {
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: geo.lat,
+          longitude: geo.lng,
+        },
+      }),
+    ...(openingHours.length > 0 && {
+      openingHoursSpecification: openingHours.map((h) => ({
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: h.days,
+        opens: h.opens,
+        closes: h.closes,
+      })),
+    }),
+    ...(googleBusinessUrl && { hasMap: googleBusinessUrl }),
+  };
+}
+
 export const areaServedJsonLd = () =>
   siteConfig.areaServed.map((name) =>
     name === "India" ? { "@type": "Country", name } : { "@type": "City", name },
@@ -73,6 +100,18 @@ const SHARE_IMAGE = {
   height: 630,
   alt: `${siteConfig.name} — AI-first software development company in India`,
 };
+
+/** Longest <title> we ship; longer titles get cut off in search results. */
+export const MAX_TITLE = 60;
+
+/**
+ * The final <title>: "{metaTitle} | Bright Infonet" when that fits in 60 characters, otherwise the
+ * metaTitle alone (keyword first beats the brand suffix). metaTitle itself must be ≤ 60.
+ */
+export function seoTitle(metaTitle: string): { absolute: string } {
+  const branded = `${metaTitle} | ${siteConfig.name}`;
+  return { absolute: branded.length <= MAX_TITLE ? branded : metaTitle };
+}
 
 /**
  * Full metadata for an inner page. Setting `openGraph` on a page replaces the root layout's
@@ -89,9 +128,10 @@ export function pageMetadata({
   description: string;
   keywords?: string[];
 }): Metadata {
-  const shareTitle = `${title} | ${siteConfig.name}`;
+  const fullTitle = seoTitle(title);
+  const shareTitle = fullTitle.absolute;
   return {
-    title,
+    title: fullTitle,
     description,
     ...(keywords && { keywords }),
     alternates: { canonical: path },

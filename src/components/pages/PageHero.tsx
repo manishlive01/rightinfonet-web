@@ -47,7 +47,8 @@ export default function PageHero({
 
       <div className={styles.heroGrid}>
         <div className={styles.heroMain}>
-          <Reveal as="span" className={home.kicker}>
+          {/* above the fold: CSS load animation, so it never waits for hydration (LCP) */}
+          <Reveal as="span" className={home.kicker} trigger="load">
             <span className={home.kickerDash} />
             {kicker}
           </Reveal>
@@ -57,7 +58,12 @@ export default function PageHero({
             className={`${styles.heroTitle} ${home.serif}`}
             parts={title}
           />
-          <Reveal as="p" className={styles.heroLead} delay={0.25}>
+          <Reveal
+            as="p"
+            className={styles.heroLead}
+            delay={0.25}
+            trigger="load"
+          >
             {lead}
           </Reveal>
           {children}
@@ -69,6 +75,7 @@ export default function PageHero({
             className={styles.heroIndex}
             aria-label="On this page"
             delay={0.35}
+            trigger="load"
           >
             <span className={`${styles.heroIndexLabel} ${home.mono}`}>
               On this page

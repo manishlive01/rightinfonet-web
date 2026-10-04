@@ -1,0 +1,201 @@
+/* Owner-gated trust blocks (testimonials, logos, proof, pricing, map). Nothing here renders
+   until real data exists in src/content/trust.ts or src/lib/site-config.ts. */
+
+.section {
+  position: relative;
+  padding: clamp(96px, 12vw, 168px) var(--pad-x) 0;
+}
+
+/* ---------- testimonials ---------- */
+.quotes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 760px) {
+  .quotes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1100px) {
+  .quotes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.quoteCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  margin: 0;
+  padding: clamp(24px, 2.6vw, 32px);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+.quoteText {
+  margin: 0;
+  font-size: clamp(20px, 1.8vw, 24px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.quoteBy {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--mut);
+}
+.quoteName {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--fg);
+}
+.quoteSource {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--dim);
+}
+
+/* ---------- client logos ---------- */
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px clamp(28px, 4vw, 56px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  opacity: 0.75;
+  filter: grayscale(1);
+  transition:
+    opacity 0.3s,
+    filter 0.3s;
+}
+.logoLink:hover .logo,
+.logoLink:focus-visible .logo {
+  opacity: 1;
+  filter: none;
+}
+
+/* ---------- proof + pricing (landing pages) ---------- */
+.proof {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+@media (min-width: 900px) {
+  .proof {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.panel {
+  padding: clamp(22px, 2.6vw, 30px);
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+.label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 20px;
+  margin: 0;
+}
+.metric {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+}
+.metric dt {
+  font-size: 12px;
+  color: var(--dim);
+}
+.metric dd {
+  margin: 0;
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 1px solid color-mix(in srgb, var(--acc) 60%, transparent);
+  padding-bottom: 3px;
+}
+.link:hover {
+  color: var(--acc);
+}
+.priceFrom {
+  margin: 0;
+  font-size: clamp(32px, 3vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.priceNote {
+  margin: 12px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mut);
+}
+
+/* ---------- case study proof on /work ---------- */
+.caseProof {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+/* ---------- footer map ---------- */
+.map {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4 / 3;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}

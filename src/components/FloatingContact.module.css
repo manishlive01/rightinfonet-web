@@ -22,14 +22,17 @@
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
+
 .btn:hover {
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 12px 30px rgb(0 0 0 / 0.34);
 }
+
 .btn:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 3px;
 }
+
 .btn svg {
   width: 26px;
   height: 26px;
@@ -38,6 +41,7 @@
 .call {
   background: #2563eb;
 }
+
 .whatsapp {
   background: #25d366;
 }
@@ -52,20 +56,24 @@
   animation: pulse 2.4s ease-out infinite;
   pointer-events: none;
 }
+
 @keyframes pulse {
   from {
     transform: scale(1);
     opacity: 0.7;
   }
+
   to {
     transform: scale(1.5);
     opacity: 0;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .whatsapp::after {
     animation: none;
   }
+
   .btn {
     transition: none;
   }
@@ -89,17 +97,37 @@
     transform 0.2s;
   pointer-events: none;
 }
+
 .btn:hover .label,
 .btn:focus-visible .label {
   opacity: 1;
   transform: translate(0, -50%);
 }
 
+/* hidden while the mobile menu sheet is open (React omits `inert` when the menu is open) */
+:global(html:has(#site-menu:not([inert]))) .wrap {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 @media (max-width: 600px) {
-  .btn {
-    width: 50px;
-    height: 50px;
+  .wrap {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    gap: 10px;
   }
+
+  .btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
   .label {
     display: none;
   }

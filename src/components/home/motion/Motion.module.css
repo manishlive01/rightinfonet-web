@@ -7,6 +7,7 @@
     transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
   transition-delay: var(--reveal-delay, 0s);
 }
+
 .reveal[data-in="true"] {
   opacity: 1;
   transform: none;
@@ -17,6 +18,7 @@
   from {
     transform: translateY(108%) rotate(4deg);
   }
+
   to {
     transform: none;
   }
@@ -31,22 +33,56 @@
   padding: 0 0.08em 0.1em 0;
   margin: 0 -0.08em -0.1em 0;
 }
+
 .wordInner {
   display: inline-block;
   transform-origin: 0 100%;
 }
+
 .split .wordInner {
   transform: translateY(108%) rotate(4deg);
   transition: transform 1.15s cubic-bezier(0.19, 1, 0.22, 1);
   transition-delay: calc(var(--split-delay, 0s) + var(--i) * var(--split-stagger, 0.055s));
 }
+
 .splitIn .wordInner {
   transform: none;
 }
+
 .splitLoad .wordInner {
   transform: none;
   animation: wordUp 1.15s cubic-bezier(0.19, 1, 0.22, 1) both;
   animation-delay: calc(var(--split-delay, 0s) + var(--i) * var(--split-stagger, 0.055s));
+}
+
+/* ---------- fade-up on first paint (above the fold) ----------
+   Pure CSS, so the text is painted without waiting for JavaScript to hydrate: this is what
+   keeps hero leads from becoming a late Largest Contentful Paint. */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.revealLoad {
+  animation: revealUp 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+/* Phones: hero text is static. The load animations held back the LCP (the hero headline or
+   lead) on mobile, which is the form factor Google measures. */
+@media (max-width: 767px) {
+
+  .splitLoad .wordInner,
+  .revealLoad {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -54,6 +90,11 @@
     opacity: 1;
     transform: none;
   }
+
+  .revealLoad {
+    animation: none;
+  }
+
   .split .wordInner {
     transform: none;
     animation: none;

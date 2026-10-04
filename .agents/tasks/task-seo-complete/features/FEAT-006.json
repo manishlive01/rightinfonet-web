@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-006",
+  "type": "feat",
+  "description": "Pillar 3 (AI agents) and Pillar 4 (Academy) content, existing-article audit, and Phase 8 GEO wrap-up (plan items 12 and 13 minus the crawler part done in FEAT-001): scheduled posts #11-#18, expansion of ai-agents-for-business-operations, audit/fix of all 26 existing posts against the article rules, llms.txt NAP + pillar-grouped published guides + tools/resources, schema coverage sweep. Depends on FEAT-001..FEAT-005.",
+  "status": "pending",
+  "steps": [
+    "Create schedule #11-#18 posts (exact slugs/dates from the D5 table; #11-#13 pillar 'academy', #14-#18 pillar 'ai') following the article rules. Salary post (#11): indicative ranges only, phrased as typical ranges with 'varies; check current job listings', name public sources generally without inventing figures or surveys; no placement stats. AI posts link /services/ai-agents, /services/ai-chatbot-development-india, /ai-development-company-chandigarh, /academy/ai-agents-course as relevant; AI agent cost post uses indicative ranges + 'get a written quote' and avoids numbers not already used on the site unless clearly labelled as indicative ranges. Register in index.ts.",
+    "Expand src/content/insights/ai-agents-business.tsx (slug ai-agents-for-business-operations, pillar hub) to the article rules; updated = real edit date.",
+    "Audit all 26 existing posts with the crawler (Words column, extended in-article link count) and by reading each file: answer-first intro, >= 1 DataTable, >= 5 FAQs, 3-5 in-body internal links, pillar set. Fix only gaps (each fix is a real edit → set updated); list per-post results in findings.",
+    "llms.txt (src/app/llms.txt/route.ts): NAP line with only non-empty fields, sections Services / Industries / Local / Academy / Tools & resources / Guides grouped by pillar (published only) / Company; pricing line only when PRICING has entries.",
+    "Schema sweep on the served site: Service on service/local/industry pages, BlogPosting on posts, Course on course pages, FAQPage wherever FAQs are visible, BreadcrumbList on every inner page, no Review/AggregateRating; fix anything missing.",
+    "Verify normal + CONTENT_NOW builds and crawler; record results in findings."
+  ],
+  "acceptance_criteria": [
+    "npm run lint and npm run build pass",
+    "CONTENT_NOW=2026-12-31 build: posts #11-#18 render, 1,500-2,500 words each, crawler 0 errors, 0 orphans, 0 'fewer than 3 in-article links' warnings across all posts",
+    "Normal build: #11-#18 hidden everywhere; /llms.txt lists only published posts grouped by pillar, NAP without empty separators, Industries and Tools & resources sections",
+    "Every existing post either already met the article rules or was fixed with updated set; findings lists each of the 26 with its result",
+    "No invented salaries, stats, surveys or claims; costs/salaries labelled indicative with quote/verification language"
+  ],
+  "verification": [
+    "npm run lint",
+    "npm run build",
+    "$env:CONTENT_NOW=\"2026-12-31\"; npm run build; Remove-Item Env:CONTENT_NOW",
+    "npx next start -p 3100 (background) then node .kiro/skills/seo-audit/scripts/audit.mjs http://localhost:3100 --out .agents/seo-audit-2026-10-04.md",
+    "curl.exe -s http://localhost:3100/llms.txt"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

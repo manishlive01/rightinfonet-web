@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Pillar 2 cost/hiring content, comparisons and the interactive cost calculator (plan item 11): /tools/app-development-cost-calculator (server shell + client CostCalculator, ranges in src/content/cost-calculator.ts flagged OWNER CONFIRM and copied only from figures already published), update of flutter-vs-native-app-development into Flutter vs React Native vs native for startups (same slug), scheduled posts #19-#23 (app development cost Chandigarh, MVP in 8 weeks, how to write a software RFP, Next.js vs WordPress, in-house vs outsourcing). Depends on FEAT-001.",
+  "status": "pending",
+  "steps": [
+    "Read app-development-cost-india.tsx, website-development-cost-small-business-india.tsx and mvp-development-cost-timeline.tsx; create src/content/cost-calculator.ts with only those published indicative ranges (header comment 'OWNER CONFIRM: indicative ranges copied from existing articles'), structured by platform/complexity/add-ons.",
+    "Create src/components/tools/CostCalculator.tsx (client; labelled form controls, fieldsets/legends, aria-live result, range output in lakh INR, 'indicative, get a written quote' text, link to /#contact) and src/app/tools/app-development-cost-calculator/page.tsx (PageLayout, pageMetadata with seoTitle, h1, direct answer, breadcrumb, FAQ + faqJsonLd, WebPage schema, revalidate 3600). Add to sitemap.ts, llms.txt ('Tools & resources'), footer, and link it from app-development-cost-india, website-development-cost-small-business-india, mvp-development-cost-timeline (real edits → updated) and /services/mobile-apps related.",
+    "Update src/content/insights/flutter-vs-native.tsx (keep slug flutter-vs-native-app-development and published date): new H1 'Flutter vs React Native vs native: how to choose for your startup app' (or similar), metaTitle <= 60, a Flutter vs React Native comparison DataTable, startup-specific section, 1,500+ words, 5+ FAQs, 3-5 internal links, cta /services/mobile-apps, updated = real edit date.",
+    "Create schedule #19-#23 posts (exact slugs/dates from the D5 table, pillar 'cost') following the article rules and the cannibalisation angles in D5 (#19 local Tricity angle linking app-development-cost-india; #20 week-by-week plan linking mvp-development-cost-timeline; #22 and #23 comparison posts with decision tables). Costs only as 'indicative' ranges already used in existing posts plus 'get a written quote'. Register in index.ts.",
+    "Verify normal + CONTENT_NOW builds, run the calculator in a served page and record a sample result in findings."
+  ],
+  "acceptance_criteria": [
+    "npm run lint and npm run build pass",
+    "/tools/app-development-cost-calculator returns 200; server HTML contains h1, direct answer, FAQ and disclaimer; changing inputs updates the indicative range on the client; all ranges come from cost-calculator.ts and match figures already in existing posts",
+    "flutter-vs-native-app-development keeps its URL and published date, has updated set, a Flutter vs React Native table, >= 1,500 words",
+    "Normal build hides #19-#23; CONTENT_NOW=2026-12-31 build renders them with crawler 0 errors and 1,500-2,500 words each",
+    "Calculator page is in sitemap, llms.txt and footer and is not an orphan"
+  ],
+  "verification": [
+    "npm run lint",
+    "npm run build",
+    "$env:CONTENT_NOW=\"2026-12-31\"; npm run build; Remove-Item Env:CONTENT_NOW",
+    "npx next start -p 3100 (background) then node .kiro/skills/seo-audit/scripts/audit.mjs http://localhost:3100 --out .agents/seo-audit-2026-10-04.md"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

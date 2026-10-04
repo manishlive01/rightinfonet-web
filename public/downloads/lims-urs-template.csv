@@ -1,0 +1,38 @@
+ID,Section,Requirement,Type (GxP/Business),Priority,Regulatory reference,Verification method,Notes
+URS-GEN-001,Scope and process,"The system shall support the laboratory processes listed in the scope section (edit: labs, sites, sample types).",Business,Mandatory,,Inspection of document,Example row. Replace with your own scope.
+URS-GEN-002,Scope and process,The system shall allow configuration of sample types without code changes.,Business,Important,,Demonstration,
+URS-SM-001,Sample management,The system shall assign a unique sample ID at login.,GxP,Mandatory,,Test,
+URS-SM-002,Sample management,The system shall print a barcode label containing the sample ID at login.,Business,Important,,Test,Confirm label printer model.
+URS-SM-003,Sample management,"The system shall record sample receipt date, time, received-by user and condition on receipt.",GxP,Mandatory,,Test,
+URS-SM-004,Sample management,The system shall record storage location and every change of location for each sample.,GxP,Important,,Test,
+URS-SM-005,Sample management,"The system shall record retention, disposal date and the user who disposed of each sample.",GxP,Important,,Test,
+URS-SPEC-001,Specifications and methods,"The system shall hold specifications with version, effective date and approval status.",GxP,Mandatory,,Test,
+URS-SPEC-002,Specifications and methods,The system shall link each sample to the approved specification version in force at login.,GxP,Mandatory,,Test,
+URS-SPEC-003,Specifications and methods,The system shall prevent use of a specification version that is not approved.,GxP,Mandatory,,Test,
+URS-TEST-001,Testing and results,The system shall generate worklists of pending tests by analyst or instrument.,Business,Important,,Demonstration,
+URS-TEST-002,Testing and results,The system shall compare each result with the specification limits and flag results outside them.,GxP,Mandatory,,Test,
+URS-TEST-003,Testing and results,The system shall require an investigation reference before an out-of-specification result can be reviewed.,GxP,Mandatory,,Test,Align with OOS SOP.
+URS-TEST-004,Testing and results,The system shall perform defined calculations and store the inputs used for each calculated result.,GxP,Mandatory,,Test,List calculations in the functional specification.
+URS-TEST-005,Testing and results,The system shall record units for every numeric result.,GxP,Mandatory,,Test,
+URS-REV-001,Review and approval,The system shall prevent the user who entered a result from reviewing or approving the same result.,GxP,Mandatory,21 CFR 11.10(g),Test,Segregation of duties.
+URS-REV-002,Review and approval,The system shall enforce the sequence entry then review then approval.,GxP,Mandatory,21 CFR 11.10(f),Test,
+URS-REV-003,Review and approval,The system shall generate a certificate of analysis only from approved results.,GxP,Mandatory,,Test,
+URS-DI-001,Data integrity,The system shall require a unique user ID and password for every user.,GxP,Mandatory,21 CFR 11.10(d); 11.300,Test,
+URS-DI-002,Data integrity,The system shall restrict functions by role and record every change to user roles and access rights.,GxP,Mandatory,21 CFR 11.10(d); EU GMP Annex 11 section 12,Test,
+URS-DI-003,Data integrity,"The system shall record in a secure audit trail the user, server date and time, record, field, old value, new value and reason for every create, change and delete of GxP data.",GxP,Mandatory,21 CFR 11.10(e); EU GMP Annex 11 section 9,Test,
+URS-DI-004,Data integrity,"The system shall prevent any user, including administrators, from editing, deleting or disabling the audit trail for GxP data.",GxP,Mandatory,21 CFR 11.10(e),Test,
+URS-DI-005,Data integrity,"The system shall show the signer's printed name, date and time of signing and the meaning of the signature on every signed record.",GxP,Mandatory,21 CFR 11.50,Test,
+URS-DI-006,Data integrity,The system shall link each electronic signature to the record version it applies to.,GxP,Mandatory,21 CFR 11.70,Test,
+URS-DI-007,Data integrity,The system shall require the user ID and password at the time of signing.,GxP,Mandatory,21 CFR 11.200,Test,Check behaviour for repeated signings in one session.
+URS-DI-008,Data integrity,The system shall use a synchronised server clock for all time stamps and record the time zone.,GxP,Mandatory,,Test,
+URS-DI-009,Data integrity,"The system shall export records with their metadata and audit trail in human-readable and electronic form.",GxP,Mandatory,21 CFR 11.10(b),Test,
+URS-DI-010,Data integrity,"The system shall provide filters on the audit trail by record, user, date and action to support audit-trail review.",GxP,Important,EU GMP Annex 11 section 9,Demonstration,
+URS-INT-001,Interfaces,"The system shall import results from the listed instruments or data systems with a link to the source data (edit: list instruments).",GxP,Mandatory,EU GMP Annex 11 section 5,Test,Confirm output format of each instrument during discovery.
+URS-INT-002,Interfaces,The system shall reject and log imported data that fails defined format or range checks.,GxP,Mandatory,EU GMP Annex 11 section 5,Test,
+URS-NF-001,Non-functional,The system shall support backup and restore of all data and audit trails to a test environment for verification.,GxP,Mandatory,21 CFR 11.10(c); EU GMP Annex 11 section 7,Test,
+URS-NF-002,Non-functional,The system shall automatically lock a session after a configurable period of inactivity.,GxP,Important,,Test,
+URS-NF-003,Non-functional,The system shall meet the response times agreed in the performance test plan with the agreed data volume.,Business,Important,,Test,Define volumes and targets with IT.
+URS-MIG-001,Data migration,"Migrated records shall keep their original values, units and approval history.",GxP,Mandatory,EU GMP Annex 11 section 4.8,Test,Verify with a documented comparison.
+URS-ARC-001,Archiving,Archived records shall remain retrievable and readable for the defined retention period.,GxP,Mandatory,21 CFR 11.10(c); EU GMP Annex 11 section 17,Test,
+URS-DOC-001,Documentation and support,The supplier shall provide a configuration or design specification for the delivered system.,GxP,Mandatory,,Inspection of document,
+URS-DOC-002,Documentation and support,The supplier shall provide user and administrator training material.,Business,Important,,Inspection of document,

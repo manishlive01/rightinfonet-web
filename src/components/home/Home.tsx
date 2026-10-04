@@ -12,6 +12,8 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 import Tone from "./Tone";
 import SectionFx from "./SectionFx";
+import Testimonials from "../trust/Testimonials";
+import ClientLogos from "../trust/ClientLogos";
 
 export default function Home() {
   return (
@@ -28,6 +30,9 @@ export default function Home() {
         <SectionFx kind="lines">
           <Work />
         </SectionFx>
+        {/* owner-gated: both render nothing until src/content/trust.ts has real entries */}
+        <Testimonials />
+        <ClientLogos />
         <SectionFx kind="orbits">
           <Industries />
         </SectionFx>

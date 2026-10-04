@@ -12,6 +12,7 @@ export const sixMonthsIndustrialTrainingChandigarh: Post = {
   excerpt:
     "Everything B.Tech, BCA and MCA students need for 6-month industrial training in the Tricity — how it works, 6 weeks vs 6 months, choosing a live-project company, what to build and which documents to collect.",
   category: "Careers & training",
+  pillar: "academy",
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,

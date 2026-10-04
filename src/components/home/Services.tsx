@@ -18,7 +18,10 @@ export default function Services({ bare = false }: { bare?: boolean }) {
     const measure = () => {
       const sec = sectionRef.current;
       if (!sec) return;
-      const mid = window.innerHeight * (window.innerWidth >= 1040 ? 0.5 : 0.78);
+      // phones: the stage is pinned at the bottom, so a block is active while it sits above it
+      const w = window.innerWidth;
+      const mid =
+        window.innerHeight * (w >= 1040 ? 0.5 : w < 768 ? 0.42 : 0.78);
       let a = 0;
       blockRefs.current.forEach((block, i) => {
         if (block && block.getBoundingClientRect().top < mid) a = i;
@@ -26,8 +29,12 @@ export default function Services({ bare = false }: { bare?: boolean }) {
       setActive((prev) => (prev === a ? prev : a));
 
       const rect = sec.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height - window.innerHeight)));
-      if (barRef.current) barRef.current.style.transform = `scaleX(${p.toFixed(4)})`;
+      const p = Math.min(
+        1,
+        Math.max(0, -rect.top / Math.max(1, rect.height - window.innerHeight)),
+      );
+      if (barRef.current)
+        barRef.current.style.transform = `scaleX(${p.toFixed(4)})`;
     };
     const onScroll = () => {
       if (raf) return;
@@ -49,7 +56,11 @@ export default function Services({ bare = false }: { bare?: boolean }) {
   const activeService = SERVICES[active];
 
   return (
-    <section id="services" className={styles.section} aria-labelledby="services-title">
+    <section
+      id="services"
+      className={styles.section}
+      aria-labelledby="services-title"
+    >
       {bare && (
         <h2 id="services-title" className={styles.srOnly}>
           What we build
@@ -63,8 +74,9 @@ export default function Services({ bare = false }: { bare?: boolean }) {
           style={{ marginBottom: "clamp(20px,3vw,40px)" }}
           lead={
             <>
-              Product design, web platforms, mobile apps, AI agents and regulated software &mdash;
-              five disciplines, one team. Scroll to see what each one looks like when it ships.
+              Regulated software, product design, web platforms, mobile apps and
+              AI agents &mdash; five disciplines, one team. Scroll to see what
+              each one looks like when it ships.
             </>
           }
         />
@@ -75,7 +87,9 @@ export default function Services({ bare = false }: { bare?: boolean }) {
           <div className={styles.stageCard}>
             <div className={styles.stageGridBg} aria-hidden="true" />
             <div className={styles.stageGlow} aria-hidden="true" />
-            <span className={`${styles.stageBigNum} ${styles.serif}`}>{activeService.n}</span>
+            <span className={`${styles.stageBigNum} ${styles.serif}`}>
+              {activeService.n}
+            </span>
 
             <ServiceVisuals active={active} />
 
@@ -101,7 +115,9 @@ export default function Services({ bare = false }: { bare?: boolean }) {
                     className={styles.stageSeg}
                     style={{
                       background:
-                        i <= active ? "var(--acc)" : "color-mix(in srgb,var(--fg) 16%,transparent)",
+                        i <= active
+                          ? "var(--acc)"
+                          : "color-mix(in srgb,var(--fg) 16%,transparent)",
                     }}
                   />
                 ))}
@@ -137,7 +153,9 @@ export default function Services({ bare = false }: { bare?: boolean }) {
                 <span className={styles.serviceEyebrowLine} />
                 <span className={styles.serviceEyebrowLabel}>Service</span>
               </span>
-              <h3 className={`${styles.serviceTitle} ${styles.serif}`}>{service.t}</h3>
+              <h3 className={`${styles.serviceTitle} ${styles.serif}`}>
+                {service.t}
+              </h3>
               <p className={styles.serviceDesc}>{service.d}</p>
               <div className={styles.serviceGetList}>
                 {service.get.map((line) => (
@@ -149,7 +167,10 @@ export default function Services({ bare = false }: { bare?: boolean }) {
               </div>
               <div className={styles.tagRow}>
                 {service.tags.map((tag) => (
-                  <span key={tag} className={`${styles.tagPill} ${styles.mono}`}>
+                  <span
+                    key={tag}
+                    className={`${styles.tagPill} ${styles.mono}`}
+                  >
                     {tag}
                   </span>
                 ))}

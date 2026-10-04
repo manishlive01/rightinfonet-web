@@ -8,6 +8,8 @@ import SplitText from "./motion/SplitText";
 import { CONTACT_BUDGETS, CONTACT_INTERESTS, CONTACT_STEPS } from "./data";
 import { siteConfig } from "@/lib/site-config";
 import SocialLinks from "./SocialLinks";
+import CalendlyButton from "../CalendlyButton";
+import { trackEvent } from "@/lib/analytics";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
@@ -120,6 +122,7 @@ export default function Contact() {
     window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(lines.join("\n"))}`;
+    trackEvent("generate_lead", { form: "contact" });
     setSent(true);
   };
 
@@ -187,6 +190,7 @@ export default function Contact() {
               WhatsApp &rarr;
             </a>
           )}
+          <CalendlyButton className={styles.phone} />
           <ol className={styles.steps}>
             {CONTACT_STEPS.map((step, i) => (
               <li key={step.t} className={styles.step}>

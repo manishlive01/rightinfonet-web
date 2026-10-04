@@ -28,10 +28,12 @@ const social: SocialLink[] = [
 
 export const siteConfig = {
   name: "Bright Infonet",
-  title:
-    "Bright Infonet | Software & App Development Company, Chandigarh Tricity",
+  // ≤ 65 characters (home <title>); the crawler warns above that.
+  title: "Bright Infonet | Software & App Development, Chandigarh Tricity",
+  // 150–160 characters. Feeds the home meta description, Organization schema, llms.txt and OG,
+  // so keep it identical everywhere (change it here only).
   description:
-    "AI-first software and mobile app development company serving Panchkula, Mohali, Chandigarh and clients worldwide — web platforms, Flutter apps, AI agents and IT training.",
+    "AI-first software company in Panchkula: GxP-ready LIMS and pharmacovigilance software, web platforms, Flutter apps, AI agents and IT training for the Tricity.",
   // Live domain (brightinfonet.com redirects to www). NEXT_PUBLIC_SITE_URL overrides it,
   // e.g. for a staging deploy.
   url: (
@@ -57,13 +59,26 @@ export const siteConfig = {
     postalCode: "",
     country: "IN",
   },
+  // OWNER: fill — office coordinates exactly as on Google Business Profile. null = left out of schema.
+  geo: { lat: null as number | null, lng: null as number | null },
+  // OWNER: fill — real opening hours, e.g. { days: ["Monday", "Tuesday"], opens: "09:30", closes: "18:30" }.
+  // Days are schema.org day names. Empty = no hours in schema.
+  openingHours: [] as { days: string[]; opens: string; closes: string }[],
+  // OWNER: fill — Google Maps "Embed a map" iframe src (https://www.google.com/maps/embed?pb=…).
+  // Empty = no map in the footer.
+  mapEmbedUrl: "",
+  // OWNER: fill — public Google Business Profile / Maps link (used as hasMap in schema).
+  googleBusinessUrl: "",
   /** cities we actively serve; used in structured data and local pages */
+  // CONFIRM: Ambala and Shimla added for the planned location pages.
   areaServed: [
     "Panchkula",
     "Mohali",
     "Chandigarh",
     "Zirakpur",
     "Kharar",
+    "Ambala",
+    "Shimla",
     "India",
   ],
 };

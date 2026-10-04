@@ -27,9 +27,22 @@ export const TABS = [
 ] as const;
 
 // PLACEHOLDER: replace with real, verifiable figures before launch.
+// Regulated software leads (positioning). SERVICE_DETAILS (pages/content.ts) and the VISUALS
+// order in ServiceVisuals.tsx are parallel to this array: reorder all three together.
 export const SERVICES = [
   {
     n: "01",
+    t: "Regulated software",
+    d: "LIMS and drug-safety systems built for audits from day one, with validation packs to match.",
+    tags: ["GAMP 5", "CSV", "21 CFR Part 11", "NABL"],
+    get: [
+      "Audit trails & e-signatures",
+      "Role-based access & locking",
+      "Validation pack, URS → VSR",
+    ],
+  },
+  {
+    n: "02",
     t: "Product & UX design",
     d: "Research, flows and interfaces that make complex software feel obvious — tested with real users before we build.",
     tags: ["Discovery", "UX flows", "Design systems", "Prototypes"],
@@ -40,7 +53,7 @@ export const SERVICES = [
     ],
   },
   {
-    n: "02",
+    n: "03",
     t: "Web platforms",
     d: "SaaS products, portals and internal tools that stay fast at ten users or ten thousand.",
     tags: ["Next.js", "Node", "PostgreSQL", "Cloud"],
@@ -51,7 +64,7 @@ export const SERVICES = [
     ],
   },
   {
-    n: "03",
+    n: "04",
     t: "Mobile apps",
     d: "One codebase, native feel on iOS and Android — offline-ready and store-approved.",
     tags: ["Flutter", "iOS", "Android", "Offline-first"],
@@ -62,7 +75,7 @@ export const SERVICES = [
     ],
   },
   {
-    n: "04",
+    n: "05",
     t: "AI agents & automation",
     d: "Assistants wired into your tools that read, decide and act — with evals so you can trust the output.",
     tags: ["LLMs", "RAG", "Tool use", "Evals"],
@@ -70,17 +83,6 @@ export const SERVICES = [
       "Agents wired into your tools",
       "RAG over your own documents",
       "Eval suites & cost monitoring",
-    ],
-  },
-  {
-    n: "05",
-    t: "Regulated software",
-    d: "LIMS and drug-safety systems built for audits from day one, with validation packs to match.",
-    tags: ["GAMP 5", "CSV", "21 CFR Part 11", "NABL"],
-    get: [
-      "Audit trails & e-signatures",
-      "Role-based access & locking",
-      "Validation pack, URS → VSR",
     ],
   },
 ] as const;

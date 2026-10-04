@@ -1269,11 +1269,12 @@ export const LOCAL_PAGES: Landing[] = [
     ],
     lead: "LIMS, pharmacovigilance and quality workflows for pharma, biotech and laboratories — engineered with audit trails and e-signatures, and delivered with the documents your QA needs.",
     answer:
-      "Bright Infonet develops GxP software in India, including LIMS, pharmacovigilance and QMS or document workflows, following a GAMP 5 risk-based approach. Systems support 21 CFR Part 11 and EU Annex 11 controls such as audit trails, e-signatures and ALCOA+ data integrity, and ship with a validation pack from URS to VSR. Your QA approves validation.",
+      "Bright Infonet is a GxP software and validation partner for pharma, biotech and lab teams across India, building LIMS, pharmacovigilance and QMS workflows with a GAMP 5 risk-based approach. Systems support 21 CFR Part 11 and EU Annex 11 controls such as audit trails, e-signatures and ALCOA+ data integrity, with a URS-to-VSR validation pack your QA approves.",
     about: [
       "Regulated software has to do two jobs: support the lab or safety team’s work, and prove that it does so reliably. We design for the second from the start — audit trails, electronic signatures, access control and data integrity are part of the data model, not a later add-on.",
       "We have built in this space ourselves: PVgenix, a pharmacovigilance SaaS with AI-assisted case intake, and a LIMS for NABL and ISO 15189 accredited labs and pharma QC. That experience shapes how we write requirements, trace them and test them.",
       "We prepare the validation deliverables and execute testing with your team, but validation decisions and sign-off stay with your Quality Assurance function. That division is how GxP responsibility is meant to work, and we make it explicit in every project plan.",
+      "For companies anywhere in India, from pharma clusters such as Baddi to labs in metro cities, most of the work runs remotely with on-site visits where validation needs them. For a single system, see our specialist pages on LIMS software development, pharmacovigilance software and computer system validation.",
     ],
     facts: [
       { k: "Framework", v: "GAMP 5 · risk-based" },
@@ -1384,6 +1385,18 @@ export const LOCAL_PAGES: Landing[] = [
         href: "/services/regulated-software",
         label: "Regulated software service",
       },
+      {
+        href: "/services/lims-software-development",
+        label: "LIMS software development",
+      },
+      {
+        href: "/services/pharmacovigilance-software",
+        label: "Pharmacovigilance software",
+      },
+      {
+        href: "/services/computer-system-validation",
+        label: "Computer system validation",
+      },
       { href: "/work", label: "Our work" },
       {
         href: "/academy/software-validation-gamp5-course",
@@ -1396,6 +1409,639 @@ export const LOCAL_PAGES: Landing[] = [
       {
         href: "/insights/21-cfr-part-11-compliance-checklist-lims",
         label: "21 CFR Part 11 checklist for LIMS",
+      },
+    ],
+  },
+  {
+    path: "/app-development-company-zirakpur",
+    kind: "local",
+    city: "Zirakpur",
+    serviceType: "Mobile app development",
+    crumb: "App development · Zirakpur",
+    kicker: "App development · Zirakpur",
+    title: "Apps for Zirakpur’s shops, societies",
+    titleAccent: "and showrooms.",
+    metaTitle: "App Development Company in Zirakpur | Flutter",
+    description:
+      "App development in Zirakpur for shops, restaurants, housing societies and property firms: Flutter apps for iOS and Android, by a team next door in Panchkula.",
+    keywords: [
+      "app development company in Zirakpur",
+      "mobile app developers Zirakpur",
+      "Flutter app development Zirakpur",
+      "society management app Zirakpur",
+      "real estate app development Zirakpur",
+      "restaurant ordering app Zirakpur",
+    ],
+    lead: "Booking, ordering, resident and property apps for businesses along VIP Road, Dhakoli, Peer Muchalla, Baltana and the Chandigarh–Ambala highway.",
+    answer:
+      "Bright Infonet builds mobile apps for Zirakpur businesses: ordering and loyalty apps for shops and restaurants, resident and visitor apps for housing societies, and lead and site-visit apps for real-estate firms. Apps are built once in Flutter for iOS and Android by a senior team based in neighbouring Panchkula, with a build to try every Friday.",
+    about: [
+      "Zirakpur has grown fast on the Chandigarh–Ambala and Patiala corridors, with large residential societies, shopping streets and restaurants that serve people from across the Tricity. Businesses here compete for customers who drive past several alternatives on the way home, so convenience on the phone matters.",
+      "The apps we see most demand for in a place like this are practical ones: repeat ordering and offers for a restaurant or store, gate, visitor and maintenance apps for a residential society, and enquiry, site-visit and booking tracking for builders and property dealers. Each is small to start and grows with use.",
+      "Peer Muchalla sits right on the Panchkula border, so our team can meet you at your showroom, site office or society clubhouse without planning a trip. Design reviews and test builds still run online every week, which suits owners who are busy on the shop floor during the day.",
+    ],
+    facts: [
+      { k: "Base", v: "Panchkula, next door" },
+      { k: "Platforms", v: "iOS + Android" },
+      { k: "Stack", v: "Flutter · Dart" },
+      { k: "Builds", v: "Every Friday" },
+    ],
+    sections: [
+      {
+        id: "zirakpur-apps",
+        kicker: "Apps we build",
+        title: "Apps that fit how",
+        accent: "Zirakpur buys and lives.",
+        cards: [
+          {
+            t: "Restaurant & café ordering",
+            d: "Menu, table or takeaway orders, UPI payment and repeat-order offers without paying a marketplace on every order.",
+          },
+          {
+            t: "Retail loyalty app",
+            d: "Points, member prices and offer alerts for a store or chain, linked to billing where it has an interface.",
+          },
+          {
+            t: "Housing society app",
+            d: "Visitor approvals, gate passes, complaints, notices and maintenance dues for residents, guards and the managing committee.",
+          },
+          {
+            t: "Real-estate leads & site visits",
+            d: "Enquiries from portals and ads in one app, with site-visit scheduling, follow-ups and booking status for the sales team.",
+          },
+          {
+            t: "Salon, gym & clinic booking",
+            d: "Slots, memberships, reminders and staff calendars for appointment-based businesses.",
+          },
+          {
+            t: "Delivery & service tracking",
+            d: "Order or technician status with live updates, proof of delivery and a dispatcher view.",
+          },
+        ],
+      },
+      {
+        id: "zirakpur-launch",
+        kicker: "From idea to store",
+        title: "A first version",
+        accent: "out of the door.",
+        cards: [
+          {
+            t: "Walk-through at your premises",
+            d: "We see how orders, visitors or enquiries are handled today before suggesting any screen.",
+          },
+          {
+            t: "One-page scope",
+            d: "The must-have features for version one, the ones that can wait, and a written estimate.",
+          },
+          {
+            t: "Clickable prototype",
+            d: "A tappable design you can show staff, residents or customers and change before coding starts.",
+          },
+          {
+            t: "Weekly test builds",
+            d: "A new build on your phone through TestFlight or Play testing every Friday.",
+          },
+          {
+            t: "Store launch",
+            d: "App Store and Play Store listings and submission under your own developer accounts.",
+          },
+          {
+            t: "After launch",
+            d: "Fixes, OS updates and new features under a support plan, or a clean handover.",
+          },
+        ],
+      },
+    ],
+    fit: [
+      "You run a restaurant, store, salon or gym in Zirakpur and want customers to order or book from their phone.",
+      "You manage a residential society and want visitors, complaints and dues off WhatsApp groups and registers.",
+      "Your real-estate sales team loses track of enquiries and site visits across portals and calls.",
+      "You want a team close enough to visit, but working with weekly online demos.",
+    ],
+    faqs: [
+      {
+        q: "How much does app development cost in Zirakpur?",
+        a: "It depends on the features, user roles and integrations such as payments or billing software. We give a written, itemised estimate after seeing your process, and can start with a smaller first version.",
+      },
+      {
+        q: "Can you build an app for our housing society?",
+        a: "Yes. Society apps usually cover visitor approvals, gate passes, complaints, notices and maintenance payments, with separate views for residents, guards and the committee.",
+      },
+      {
+        q: "Do you have an office in Zirakpur?",
+        a: "Our base is in Panchkula, which borders Zirakpur at Peer Muchalla, so meetings at your premises are easy to arrange. Most day-to-day work and reviews happen online.",
+      },
+      {
+        q: "Can our restaurant take orders without a delivery marketplace?",
+        a: "Yes. Your own ordering app or web store takes orders and UPI payments directly; you can still use marketplaces alongside it if you want.",
+      },
+      {
+        q: "Will the app work on both Android and iPhone?",
+        a: "Yes. We build in Flutter, so one codebase is released to both the Play Store and the App Store.",
+      },
+      {
+        q: "Do you also build websites for Zirakpur businesses?",
+        a: "Yes. Many clients launch a website or web store first and add an app later; see our web development and e-commerce pages.",
+      },
+    ],
+    related: [
+      {
+        href: "/services/mobile-apps",
+        label: "Mobile app development service",
+      },
+      {
+        href: "/mobile-app-development-panchkula",
+        label: "App development in Panchkula",
+      },
+      {
+        href: "/services/ecommerce-development-chandigarh",
+        label: "E-commerce development",
+      },
+      {
+        href: "/insights/why-local-businesses-need-a-mobile-app",
+        label: "Does a local business need an app?",
+      },
+      {
+        href: "/software-development-company-ambala",
+        label: "Software development in Ambala",
+      },
+      {
+        href: "/software-development-company-kharar",
+        label: "Software development in Kharar",
+      },
+    ],
+  },
+  {
+    path: "/software-development-company-kharar",
+    kind: "local",
+    city: "Kharar",
+    serviceType: "Custom software development",
+    crumb: "Software company · Kharar",
+    kicker: "Software development · Kharar",
+    title: "Software for Kharar’s institutes,",
+    titleAccent: "consultants and builders.",
+    metaTitle: "Software Development Company in Kharar",
+    description:
+      "Custom software in Kharar for coaching institutes, colleges, immigration consultants and builders: admission CRMs, student portals and case-tracking tools.",
+    keywords: [
+      "software development company in Kharar",
+      "software company Kharar",
+      "institute management software Kharar",
+      "admission CRM development",
+      "immigration consultant CRM software",
+      "web development Kharar",
+    ],
+    lead: "Admission CRMs, student portals, case-tracking tools and property CRMs for organisations in Kharar, Sunny Enclave, Landran, Kurali and New Chandigarh.",
+    answer:
+      "Bright Infonet builds custom software for Kharar organisations: admission CRMs and student portals for coaching institutes and colleges, case-tracking tools for immigration and study-abroad consultants, and lead and booking CRMs for builders. One senior team based in Panchkula maps your process, builds in small releases you review, and hands over code you own.",
+    about: [
+      "Kharar sits on the road from Mohali towards Ropar and has filled in quickly with residential colonies, coaching centres and offices serving students from the nearby university and college campuses. Many organisations here started with spreadsheets and phone calls, and now handle more enquiries than that setup can track.",
+      "Our work in a market like this is usually about enquiries and records. An institute needs every lead from ads, walk-ins and calls followed up until admission. A study-abroad consultancy needs each student’s documents, applications and deadlines in one file. A builder needs to know which buyer is at which stage.",
+      "We are in Panchkula, across the Tricity from Kharar, and run most projects online with a short weekly review. For the first discovery we prefer to visit, because watching your counsellors or sales staff at work shows more than any requirements document.",
+    ],
+    facts: [
+      { k: "Focus", v: "CRMs · portals · tracking" },
+      { k: "Users", v: "Staff + students/clients" },
+      { k: "Releases", v: "Small, reviewed" },
+      { k: "Code", v: "Yours, documented" },
+    ],
+    sections: [
+      {
+        id: "kharar-systems",
+        kicker: "What we build",
+        title: "Systems for",
+        accent: "enquiry-heavy businesses.",
+        cards: [
+          {
+            t: "Admission CRM",
+            d: "Leads from ads, website, walk-ins and calls in one pipeline, with counsellor follow-ups, demo classes and fee status.",
+          },
+          {
+            t: "Student portal",
+            d: "Timetables, attendance, tests, results, fee receipts and notices for students and parents.",
+          },
+          {
+            t: "Study-abroad case tracking",
+            d: "Each student’s documents, applications, offers and visa stages tracked with deadlines and reminders.",
+          },
+          {
+            t: "Builder & property CRM",
+            d: "Enquiries, site visits, unit availability, bookings and payment schedules for a sales team.",
+          },
+          {
+            t: "Fee & payment collection",
+            d: "Instalments, online payments and receipts with automatic reminders before due dates.",
+          },
+          {
+            t: "WhatsApp integration",
+            d: "Follow-ups, reminders and document requests sent from the CRM through an approved WhatsApp provider.",
+          },
+        ],
+      },
+      {
+        id: "kharar-approach",
+        kicker: "How a project runs",
+        title: "Built in stages",
+        accent: "your staff can absorb.",
+        cards: [
+          {
+            t: "Process mapping",
+            d: "We sit with counsellors, front-desk or sales staff to see how an enquiry really moves today.",
+          },
+          {
+            t: "Data clean-up",
+            d: "Existing spreadsheets and contact lists cleaned and imported so nobody starts from an empty system.",
+          },
+          {
+            t: "First module live",
+            d: "The part that removes the most manual work goes live first, usually lead tracking.",
+          },
+          {
+            t: "Staff training",
+            d: "Short hands-on sessions and simple guides for the people who use it every day.",
+          },
+          {
+            t: "Reports for owners",
+            d: "Dashboards on enquiries, conversions, collections and pending work, by branch or counsellor.",
+          },
+          {
+            t: "Next modules",
+            d: "Portals, payments and integrations added once the first module is in daily use.",
+          },
+        ],
+      },
+    ],
+    fit: [
+      "You run a coaching institute or college in Kharar and lose track of enquiries between ads, calls and walk-ins.",
+      "You are a study-abroad or immigration consultant juggling documents and deadlines in spreadsheets.",
+      "You are a builder or property firm whose sales follow-ups live in personal phones.",
+      "You want software built around your process, not a generic tool you have to bend.",
+    ],
+    faqs: [
+      {
+        q: "Do you build software for coaching institutes in Kharar?",
+        a: "Yes. Typical builds are admission CRMs, student and parent portals, attendance, tests and fee collection, either as one system or in stages.",
+      },
+      {
+        q: "Is custom software better than a ready-made CRM for us?",
+        a: "Not always. If a ready-made CRM fits your process, it is cheaper to start. Custom makes sense when your workflow, reports or integrations do not fit; we will tell you which applies.",
+      },
+      {
+        q: "Can you build a CRM for an immigration or study-abroad consultancy?",
+        a: "Yes. We track each client’s documents, applications, offers and visa stages with deadlines, reminders and role-based access for counsellors and managers.",
+      },
+      {
+        q: "Do you have an office in Kharar?",
+        a: "No, we are based in Panchkula. We visit for discovery and training, and run the rest of the project online with weekly reviews.",
+      },
+      {
+        q: "Can students and parents use it on their phones?",
+        a: "Yes. Portals are mobile-friendly by default, and we can add a Flutter app for iOS and Android when you need notifications or offline access.",
+      },
+      {
+        q: "How long does a custom CRM take?",
+        a: "A first module such as lead tracking can usually go live within weeks, depending on scope. Further modules follow in planned stages.",
+      },
+    ],
+    related: [
+      {
+        href: "/software-development-company-mohali",
+        label: "Software development in Mohali",
+      },
+      { href: "/services/web-platforms", label: "Web platform development" },
+      {
+        href: "/insights/custom-software-vs-saas",
+        label: "Custom software vs SaaS",
+      },
+      {
+        href: "/services/hire-dedicated-developers-india",
+        label: "Hire a dedicated team",
+      },
+      {
+        href: "/app-development-company-zirakpur",
+        label: "App development in Zirakpur",
+      },
+      {
+        href: "/academy/industrial-training-chandigarh",
+        label: "Industrial training for students",
+      },
+    ],
+  },
+  {
+    path: "/software-development-company-ambala",
+    kind: "local",
+    city: "Ambala",
+    serviceType: "Custom software development",
+    crumb: "Software company · Ambala",
+    kicker: "Software development · Ambala",
+    title: "Software for Ambala’s instrument makers",
+    titleAccent: "and traders.",
+    metaTitle: "Software Development Company in Ambala",
+    description:
+      "Custom software in Ambala for scientific-instrument makers, exporters and traders: B2B catalogues, dealer portals, quotations, inventory and serial tracking.",
+    keywords: [
+      "software development company in Ambala",
+      "software company Ambala Cantt",
+      "B2B portal development Ambala",
+      "scientific instrument catalogue website",
+      "dealer ordering portal",
+      "inventory software Ambala",
+    ],
+    lead: "Product catalogues, quotation tools, dealer portals and inventory systems for manufacturers, exporters and wholesalers in Ambala Cantt, Ambala City and nearby towns.",
+    answer:
+      "Bright Infonet builds custom software for Ambala businesses, especially scientific and laboratory instrument makers, exporters and wholesale traders: searchable B2B product catalogues, quotation and RFQ tools, dealer ordering portals, and inventory with batch and serial-number tracking. A senior team based in Panchkula builds it in reviewed stages, and you own the code.",
+    about: [
+      "Ambala is widely known for its scientific and laboratory instrument trade, with manufacturers and exporters supplying schools, colleges, hospitals and labs in India and abroad. These businesses often list thousands of products with models, specifications and variants, and much of the selling still happens through PDF catalogues, email quotes and phone calls.",
+      "Software helps most where that catalogue meets the customer. A searchable online catalogue with specification sheets, a quotation tool that turns an enquiry into a priced quote in minutes, and a dealer portal where distributors check prices and stock and place orders themselves. Behind it, inventory and serial-number tracking keeps dispatch accurate.",
+      "We understand the buyer’s side too: our team builds LIMS and software for laboratories, the same customers many instrument makers sell to. Ambala is a short highway drive from our Panchkula base, so a factory or warehouse visit for discovery is practical, and the build itself runs online with weekly reviews.",
+    ],
+    facts: [
+      { k: "Focus", v: "B2B · catalogue · dealers" },
+      { k: "Tracking", v: "Batch + serial numbers" },
+      { k: "Buyers", v: "India + export" },
+      { k: "Base", v: "Panchkula, by highway" },
+    ],
+    sections: [
+      {
+        id: "ambala-systems",
+        kicker: "What we build",
+        title: "From catalogue",
+        accent: "to dispatch.",
+        cards: [
+          {
+            t: "B2B product catalogue",
+            d: "Thousands of products with categories, models, specifications, images and downloadable data sheets, searchable by buyers.",
+          },
+          {
+            t: "Quotation & RFQ tool",
+            d: "Enquiries turned into priced quotations with your terms, taxes and validity, tracked until they convert.",
+          },
+          {
+            t: "Dealer ordering portal",
+            d: "Distributor logins with their own prices, stock visibility, order history and outstanding balances.",
+          },
+          {
+            t: "Inventory & serial tracking",
+            d: "Stock by location with batch and serial numbers, so every instrument shipped can be traced later.",
+          },
+          {
+            t: "Export documents",
+            d: "Proforma invoices, packing lists and product certificates generated from order data instead of retyped.",
+          },
+          {
+            t: "Tender & institution sales",
+            d: "Tender requirements, bids, deadlines and supply schedules tracked for school, college and government buyers.",
+          },
+        ],
+      },
+      {
+        id: "ambala-integration",
+        kicker: "Fitting in",
+        title: "Works with what",
+        accent: "you already run.",
+        cards: [
+          {
+            t: "Accounting software",
+            d: "Orders, invoices and stock synced with your accounting software where it offers an import or interface.",
+          },
+          {
+            t: "Product data import",
+            d: "Existing price lists and catalogue spreadsheets imported and cleaned so the online catalogue starts complete.",
+          },
+          {
+            t: "Website enquiries",
+            d: "Enquiries from your website, marketplaces and email gathered into one sales queue.",
+          },
+          {
+            t: "Calibration certificates",
+            d: "Certificates linked to serial numbers and downloadable by the customer when an instrument ships.",
+          },
+          {
+            t: "Search visibility",
+            d: "Product pages structured so search engines can index models and specifications that buyers search for.",
+          },
+          {
+            t: "Staff roles",
+            d: "Sales, accounts, dispatch and dealers each see only the data and actions they need.",
+          },
+        ],
+      },
+    ],
+    fit: [
+      "You make or export scientific, laboratory or educational instruments from Ambala and sell from PDF catalogues.",
+      "Your dealers phone or WhatsApp for prices and stock several times a day.",
+      "Quotations take hours because prices, specs and terms live in different files.",
+      "You need to trace which serial number went to which customer.",
+    ],
+    faqs: [
+      {
+        q: "Do you build software for scientific instrument manufacturers?",
+        a: "Yes. Typical builds are B2B catalogues with specification sheets, quotation tools, dealer portals and inventory with serial-number tracking. We also build software for the labs that buy these instruments, so we know both sides.",
+      },
+      {
+        q: "Can our online catalogue show different prices to different dealers?",
+        a: "Yes. Dealer logins can see their own price lists, discounts and credit terms, while public visitors see products and specifications without prices.",
+      },
+      {
+        q: "Do you have an office in Ambala?",
+        a: "No. We are based in Panchkula, within driving distance of Ambala Cantt and Ambala City. We visit for discovery and key reviews, and run the rest online.",
+      },
+      {
+        q: "Can the software work with our accounting package?",
+        a: "Usually, if the package supports imports, exports or an API. We check what your version allows during discovery before designing the sync.",
+      },
+      {
+        q: "Can you help us sell to buyers abroad?",
+        a: "We build the catalogue, enquiry and quotation tools, multi-currency pricing and export documents. Marketing and trade compliance stay with your team or advisers.",
+      },
+      {
+        q: "How much does custom software cost for an Ambala business?",
+        a: "It depends on the catalogue size, number of user roles and integrations. Once we have seen your catalogue and process, we send a written quote broken down by module, and the catalogue or quotation tool can come first.",
+      },
+    ],
+    related: [
+      {
+        href: "/software-development-company-mohali",
+        label: "Software development in Mohali",
+      },
+      {
+        href: "/services/ecommerce-development-chandigarh",
+        label: "E-commerce and B2B ordering",
+      },
+      {
+        href: "/industries/diagnostic-lab-software",
+        label: "Software for diagnostic labs",
+      },
+      {
+        href: "/insights/how-to-choose-software-development-company-india",
+        label: "Choosing a software company",
+      },
+      {
+        href: "/app-development-company-zirakpur",
+        label: "App development in Zirakpur",
+      },
+      {
+        href: "/web-development-company-shimla",
+        label: "Web development in Shimla",
+      },
+    ],
+  },
+  {
+    path: "/web-development-company-shimla",
+    kind: "local",
+    city: "Shimla",
+    serviceType: "Website development",
+    crumb: "Web development · Shimla",
+    kicker: "Web development · Shimla",
+    title: "Websites that fill Shimla’s rooms",
+    titleAccent: "in every season.",
+    metaTitle: "Web Development Company in Shimla | Hotels & Travel",
+    description:
+      "Web development in Shimla for hotels, homestays, tour operators and local brands: fast mobile sites, direct booking, enquiry tracking and Google visibility.",
+    keywords: [
+      "web development company in Shimla",
+      "website design Shimla",
+      "hotel website development Shimla",
+      "homestay website with booking",
+      "travel agency website Shimla",
+      "website developer Himachal Pradesh",
+    ],
+    lead: "Direct-booking websites, tour-package sites and online stores for hotels, homestays, travel agents and Himachali producers in Shimla, Kufri, Mashobra, Chail and Narkanda.",
+    answer:
+      "Bright Infonet builds websites for Shimla businesses: hotel and homestay sites with direct booking, tour-operator sites with package enquiries, and online stores for Himachali products. Sites load fast on mobile networks in the hills, show up on Google for local searches, and are managed by your own team. We work remotely from Panchkula, with visits when needed.",
+    about: [
+      "Shimla’s economy leans heavily on visitors: hotels, homestays, cottages, taxi operators and tour agents who are busy in summer and the snow season and quieter in between. Many depend on online travel agents for bookings and pay commission on each one. A good website gives guests a reason, and a way, to book with you directly.",
+      "Guests usually find a Shimla property on their phone, often on a patchy connection while travelling. So we build light pages that load quickly, show real photos of rooms and views, make the route and distance from Mall Road or the bus stand clear, and put the booking or WhatsApp enquiry button where a thumb can reach it.",
+      "Shimla is a few hours up the Kalka highway from our Panchkula base, so the work runs online, with a visit when we need to see the property or shoot details. Your team gets a simple admin to update rates, seasonal offers and photos without waiting for a developer before the next holiday weekend.",
+    ],
+    facts: [
+      { k: "Focus", v: "Hotels · travel · local brands" },
+      { k: "Booking", v: "Direct + WhatsApp" },
+      { k: "Speed", v: "Light on hill networks" },
+      { k: "Delivery", v: "Remote, from Panchkula" },
+    ],
+    sections: [
+      {
+        id: "shimla-sites",
+        kicker: "What we build",
+        title: "Sites for a",
+        accent: "visitor economy.",
+        cards: [
+          {
+            t: "Hotel & homestay websites",
+            d: "Rooms, photos, amenities, location and policies on a fast site with clear calls to book or enquire.",
+          },
+          {
+            t: "Direct booking engine",
+            d: "Availability, rates and online payment, or connection to the booking engine or channel manager you already use.",
+          },
+          {
+            t: "Tour & taxi package sites",
+            d: "Itineraries, package prices you set, vehicle options and enquiry forms that land in one inbox.",
+          },
+          {
+            t: "Himachali product stores",
+            d: "Online stores for local producers selling apples, preserves, woollens or crafts, with shipping across India.",
+          },
+          {
+            t: "School & institution sites",
+            d: "Admissions information, notices and galleries for schools and institutions, easy for staff to update.",
+          },
+          {
+            t: "Multilingual pages",
+            d: "Key pages in English and Hindi so more domestic visitors read the details before they call.",
+          },
+        ],
+      },
+      {
+        id: "shimla-visibility",
+        kicker: "Getting found",
+        title: "Seen by guests",
+        accent: "before they arrive.",
+        cards: [
+          {
+            t: "Local search setup",
+            d: "Page titles, structured data and location details aligned with your Google Business Profile.",
+          },
+          {
+            t: "Mobile speed",
+            d: "Compressed images, lean code and fast hosting so pages load on 4G in the hills.",
+          },
+          {
+            t: "Seasonal offers",
+            d: "Banners and landing pages for summer, snowfall and festival weekends that your team switches on itself.",
+          },
+          {
+            t: "WhatsApp enquiries",
+            d: "One-tap WhatsApp and call buttons, with enquiries tracked so none are forgotten in peak season.",
+          },
+          {
+            t: "Guest reviews, honestly shown",
+            d: "Links to your real Google and travel-site reviews rather than copied or invented testimonials.",
+          },
+          {
+            t: "Analytics",
+            d: "Which pages and sources bring bookings and enquiries, so marketing spend goes where it works.",
+          },
+        ],
+      },
+    ],
+    fit: [
+      "You run a hotel, homestay or cottage in or around Shimla and pay commission on most bookings.",
+      "You are a tour or taxi operator whose enquiries arrive across calls, WhatsApp and social media.",
+      "Your current website is slow on mobile or hard to update before the season starts.",
+      "You make Himachali products and want to sell them to customers across India.",
+    ],
+    faqs: [
+      {
+        q: "How much does a hotel website cost in Shimla?",
+        a: "It depends on the number of pages, booking engine or channel-manager integration, languages and online payments. After a short call about your property, you get an itemised quote in writing.",
+      },
+      {
+        q: "Can guests book directly on our website?",
+        a: "Yes. We add a booking engine with availability, rates and online payment, or connect the one you already use so rates stay in sync with travel sites.",
+      },
+      {
+        q: "Do you need to visit Shimla to build our website?",
+        a: "Usually not. We work remotely from Panchkula with video calls and shared previews, and plan a visit if the project needs on-site photos or training.",
+      },
+      {
+        q: "Will the website load on slow mobile networks?",
+        a: "We build for that: small images, minimal scripts and fast hosting, tested on throttled mobile connections before launch.",
+      },
+      {
+        q: "Can you help our property show up on Google?",
+        a: "We set up the technical side: page structure, structured data, speed and alignment with your Google Business Profile. Rankings also depend on reviews and competition, which no one can guarantee.",
+      },
+      {
+        q: "Can we update rates and offers ourselves?",
+        a: "Yes. You get a simple admin to change rates, offers, photos and pages, and we stay available for larger changes.",
+      },
+    ],
+    related: [
+      {
+        href: "/web-development-company-chandigarh",
+        label: "Web development in Chandigarh",
+      },
+      {
+        href: "/web-development-company-panchkula",
+        label: "Web development in Panchkula",
+      },
+      {
+        href: "/services/ecommerce-development-chandigarh",
+        label: "E-commerce development",
+      },
+      {
+        href: "/insights/website-development-cost-small-business-india",
+        label: "Website cost for small businesses",
+      },
+      {
+        href: "/services/ai-chatbot-development-india",
+        label: "WhatsApp chatbots for enquiries",
+      },
+      {
+        href: "/software-development-company-ambala",
+        label: "Software development in Ambala",
       },
     ],
   },

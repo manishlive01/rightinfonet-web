@@ -12,6 +12,7 @@ export const fullStackDeveloperRoadmapIndia: Post = {
   excerpt:
     "What to learn to become a full-stack developer in India in 2026, in the right order — from HTML and JavaScript to React, Next.js, Node, PostgreSQL, auth and deployment.",
   category: "Careers & training",
+  pillar: "academy",
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,

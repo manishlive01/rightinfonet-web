@@ -12,6 +12,7 @@ export const bestItTrainingInstituteChandigarhMohaliPanchkula: Post = {
   excerpt:
     "A student’s guide to comparing IT training institutes in the Tricity — who teaches, what you build, how big the batch is, how to verify placement claims and which red flags to avoid.",
   category: "Careers & training",
+  pillar: "academy",
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,

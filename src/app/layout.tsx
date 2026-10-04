@@ -3,7 +3,12 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { siteConfig, socialLinks } from "@/lib/site-config";
 import JsonLd from "@/lib/json-ld";
 import FloatingContact from "@/components/FloatingContact";
-import { areaServedJsonLd, postalAddressJsonLd } from "@/components/pages/seo";
+import Analytics from "@/components/Analytics";
+import {
+  areaServedJsonLd,
+  localBusinessExtrasJsonLd,
+  postalAddressJsonLd,
+} from "@/components/pages/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,6 +34,18 @@ export const viewport: Viewport = {
 
 // Applies the saved theme before first paint so a light-theme visitor never sees a dark flash.
 const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+
+const googleVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
+const bingVerification = process.env.BING_SITE_VERIFICATION?.trim();
+const verification: Metadata["verification"] | undefined =
+  googleVerification || bingVerification
+    ? {
+        ...(googleVerification && { google: googleVerification }),
+        ...(bingVerification && {
+          other: { "msvalidate.01": bingVerification },
+        }),
+      }
+    : undefined;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -69,6 +86,8 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
+  // Search Console / Bing Webmaster ownership tags, only when the codes are set (see .env.local.example).
+  ...(verification && { verification }),
 };
 
 const siteJsonLd = {
@@ -94,6 +113,8 @@ const siteJsonLd = {
       email: siteConfig.email,
       ...(siteConfig.phone && { telephone: siteConfig.phone }),
       address: postalAddressJsonLd(),
+      // geo, opening hours and map link only once they are filled in (site-config)
+      ...localBusinessExtrasJsonLd(),
       areaServed: areaServedJsonLd(),
       knowsAbout: [
         "Mobile app development",
@@ -155,6 +176,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <JsonLd data={siteJsonLd} />
         {children}
         <FloatingContact />
+        {/* GA4 + lead-click events; renders nothing without NEXT_PUBLIC_GA_ID */}
+        <Analytics />
       </body>
     </html>
   );

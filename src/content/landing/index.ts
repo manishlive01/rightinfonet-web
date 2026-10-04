@@ -1,12 +1,18 @@
 import { ACADEMY_PAGES } from "./academy";
+import { INDUSTRY_PAGES } from "./industries";
 import { LOCAL_PAGES } from "./local";
 import { SERVICE_PAGES } from "./services";
 import type { Landing } from "./types";
 
 export type { Landing } from "./types";
-export { ACADEMY_PAGES, LOCAL_PAGES, SERVICE_PAGES };
+export { ACADEMY_PAGES, INDUSTRY_PAGES, LOCAL_PAGES, SERVICE_PAGES };
 
-export const ALL_LANDING_PAGES: Landing[] = [...SERVICE_PAGES, ...LOCAL_PAGES, ...ACADEMY_PAGES];
+export const ALL_LANDING_PAGES: Landing[] = [
+  ...SERVICE_PAGES,
+  ...INDUSTRY_PAGES,
+  ...LOCAL_PAGES,
+  ...ACADEMY_PAGES,
+];
 
 /** Last path segment → page, for a route's dynamic segment. */
 export function landingBySlug(pages: Landing[], slug: string) {

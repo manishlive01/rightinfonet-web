@@ -11,6 +11,11 @@ export const flutterDeveloperHiringModels: Post = {
   excerpt:
     "Freelancer, agency or dedicated team? How the three ways to hire Flutter developers compare on cost, risk and control, when each one fits, and the questions that separate strong candidates.",
   category: "Mobile apps",
+  pillar: "cost",
+  cta: {
+    href: "/hire-flutter-developers-india",
+    label: "Hire Flutter developers",
+  },
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 7,

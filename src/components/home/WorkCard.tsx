@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { PointerEvent } from "react";
+import type { PointerEvent, ReactNode } from "react";
 import home from "./Home.module.css";
 import styles from "./Work.module.css";
 import InView from "./motion/InView";
@@ -21,11 +21,14 @@ export default function WorkCard({
   total,
   flip,
   headingLevel = "h3",
+  proof,
 }: {
   item: WorkItem;
   total: number;
   flip: boolean;
   headingLevel?: "h2" | "h3";
+  /** optional case study proof (numbers, screenshots, quote) rendered under the card body */
+  proof?: ReactNode;
 }) {
   const Heading = headingLevel;
   const Visual = WORK_VISUALS[item.id];
@@ -36,7 +39,11 @@ export default function WorkCard({
       aria-labelledby={`work-${item.id}`}
     >
       {/* PLACEHOLDER visual: swap for a real product screenshot or video when available. */}
-      <div className={styles.visual} onPointerMove={trackPointer} aria-hidden="true">
+      <div
+        className={styles.visual}
+        onPointerMove={trackPointer}
+        aria-hidden="true"
+      >
         <div className={styles.visualInner}>
           <Visual />
         </div>
@@ -48,7 +55,10 @@ export default function WorkCard({
         <span className={`${styles.index} ${home.mono}`}>
           {item.n} <span className={styles.indexTotal}>/ 0{total}</span>
         </span>
-        <Heading id={`work-${item.id}`} className={`${styles.name} ${home.serif}`}>
+        <Heading
+          id={`work-${item.id}`}
+          className={`${styles.name} ${home.serif}`}
+        >
           {item.name}
         </Heading>
         <p className={styles.headline}>{item.headline}</p>
@@ -56,7 +66,11 @@ export default function WorkCard({
 
         <dl className={styles.highlights}>
           {item.highlights.map((h, i) => (
-            <div key={h.k} className={styles.highlight} style={{ transitionDelay: `${0.25 + i * 0.08}s` }}>
+            <div
+              key={h.k}
+              className={styles.highlight}
+              style={{ transitionDelay: `${0.25 + i * 0.08}s` }}
+            >
               <dt className={home.mono}>{h.k}</dt>
               <dd>{h.v}</dd>
             </div>
@@ -78,6 +92,7 @@ export default function WorkCard({
             </span>
           </Link>
         </div>
+        {proof}
       </div>
     </InView>
   );

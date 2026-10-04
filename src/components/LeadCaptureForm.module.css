@@ -1,0 +1,98 @@
+/* Lead-magnet download + optional email form (resource pages). */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 640px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  .form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--fg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.input:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
+.input[aria-invalid="true"] {
+  border-color: var(--err);
+}
+
+.error {
+  font-size: 13px;
+  color: var(--err);
+}
+
+.consent {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--mut);
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.submit {
+  font: inherit;
+  cursor: pointer;
+}
+.submit[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.status {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mut);
+}
+.statusError {
+  color: var(--err);
+}
+
+.note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--dim);
+}

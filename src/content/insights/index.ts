@@ -24,12 +24,41 @@ import { skillsForPlacementBtechBcaMca } from "./skills-for-placement-btech-bca-
 import { softwareDeveloperCareerChandigarhTricity } from "./software-developer-career-chandigarh-tricity";
 import { websiteDevelopmentCostSmallBusinessIndia } from "./website-development-cost-small-business-india";
 import { whyLocalBusinessesNeedAMobileApp } from "./why-local-businesses-need-a-mobile-app";
-import type { Post } from "./types";
+// Pillar 1 (regulated software), scheduled Oct–Nov 2026
+import { gxpSoftwareValidationGuide } from "./gxp-software-validation-guide";
+import { part11AuditTrailRequirements } from "./21-cfr-part-11-audit-trail-requirements";
+import { gamp5Category4VsCategory5 } from "./gamp-5-category-4-vs-category-5";
+import { euAnnex11ComputerisedSystems } from "./eu-annex-11-computerised-systems";
+import { limsUrsTemplate } from "./lims-urs-template";
+import { customLimsVsOffTheShelfLims } from "./custom-lims-vs-off-the-shelf-lims";
+import { limsImplementationChecklist } from "./lims-implementation-checklist";
+import { nablIso15189LabSoftwareRequirements } from "./nabl-iso-15189-lab-software-requirements";
+import { pharmacovigilanceE2bR3Explained } from "./pharmacovigilance-e2b-r3-explained";
+import { whatIsAValidationPackage } from "./what-is-a-validation-package";
+import { isPublished, todayIST } from "./schedule";
+import type { Pillar, Post } from "./types";
 
-export type { Faq, Post, PostSection, CoverVariant } from "./types";
+export type { Faq, Pillar, Post, PostSection, CoverVariant } from "./types";
+export { todayIST } from "./schedule";
 
-/** Newest first; posts with the same date keep this order (the first one is featured). */
-export const POSTS: Post[] = [
+/**
+ * Every post, including scheduled ones (future `published` date). Private on purpose: pages must
+ * use the functions below, which only return posts that are live today (IST) and are evaluated
+ * per render so ISR picks up newly published posts without a rebuild.
+ *
+ * Newest first; posts with the same date keep this order (the first one is featured).
+ */
+const POSTS: Post[] = [
+  whatIsAValidationPackage,
+  pharmacovigilanceE2bR3Explained,
+  nablIso15189LabSoftwareRequirements,
+  limsImplementationChecklist,
+  customLimsVsOffTheShelfLims,
+  limsUrsTemplate,
+  euAnnex11ComputerisedSystems,
+  gamp5Category4VsCategory5,
+  part11AuditTrailRequirements,
+  gxpSoftwareValidationGuide,
   howToChooseAppDevelopmentCompanyChandigarh,
   bestItTrainingInstituteChandigarhMohaliPanchkula,
   appDevelopmentCostIndia,
@@ -58,17 +87,79 @@ export const POSTS: Post[] = [
   flutterVsNative,
 ].sort((a, b) => b.published.localeCompare(a.published));
 
-export function getPost(slug: string) {
-  return POSTS.find((p) => p.slug === slug);
+export const PILLARS: Record<
+  Pillar,
+  { name: string; cta: { href: string; label: string } }
+> = {
+  regulated: {
+    name: "Regulated software",
+    cta: {
+      href: "/services/regulated-software",
+      label: "Regulated software service",
+    },
+  },
+  cost: {
+    name: "App & software cost and hiring",
+    cta: { href: "/services/mobile-apps", label: "Mobile app development" },
+  },
+  ai: {
+    name: "AI agents",
+    cta: { href: "/services/ai-agents", label: "AI agent development" },
+  },
+  academy: {
+    name: "Academy & careers",
+    cta: { href: "/academy", label: "Bright Infonet Academy" },
+  },
+};
+
+/** Live posts (published on or before today, IST), newest first. */
+export function getPublishedPosts(today = todayIST()) {
+  return POSTS.filter((p) => isPublished(p, today));
 }
 
-/** Same-category posts first, then the newest of the rest. */
+/** A live post by slug; scheduled and unknown slugs return undefined (the page 404s). */
+export function getPost(slug: string) {
+  const post = POSTS.find((p) => p.slug === slug);
+  return post && isPublished(post) ? post : undefined;
+}
+
+export function isPostSlugPublished(slug: string) {
+  return getPost(slug) !== undefined;
+}
+
+/** Same pillar first, then same category, then the newest of the rest. Live posts only. */
 export function relatedPosts(post: Post, count = 3) {
-  const others = POSTS.filter((p) => p.slug !== post.slug);
-  return [
-    ...others.filter((p) => p.category === post.category),
-    ...others.filter((p) => p.category !== post.category),
-  ].slice(0, count);
+  const others = getPublishedPosts().filter((p) => p.slug !== post.slug);
+  const pillar = others.filter((p) => p.pillar === post.pillar);
+  const category = others.filter(
+    (p) => p.pillar !== post.pillar && p.category === post.category,
+  );
+  const rest = others.filter(
+    (p) => p.pillar !== post.pillar && p.category !== post.category,
+  );
+  return [...pillar, ...category, ...rest].slice(0, count);
+}
+
+/** Live posts grouped by pillar, each group newest first. */
+export function postsByPillar() {
+  const groups: Record<Pillar, Post[]> = {
+    regulated: [],
+    cost: [],
+    ai: [],
+    academy: [],
+  };
+  for (const p of getPublishedPosts()) groups[p.pillar].push(p);
+  return groups;
+}
+
+/** The pillar's hub article, if it is live. */
+export function pillarHub(pillar: Pillar) {
+  return getPublishedPosts().find((p) => p.pillar === pillar && p.pillarHub);
+}
+
+/** End-of-article service CTA: the post's override, else the pillar default. */
+export function postCta(post: Post) {
+  return post.cta ?? PILLARS[post.pillar].cta;
 }
 
 export function formatDate(iso: string) {

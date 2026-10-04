@@ -8,6 +8,8 @@ import { SERVICE_DETAILS } from "../pages/content";
 import { siteConfig } from "@/lib/site-config";
 import SocialLinks from "./SocialLinks";
 import Logo from "./Logo";
+import CalendlyButton from "../CalendlyButton";
+import MapEmbed from "../trust/MapEmbed";
 
 const COMPANY = [
   { href: "/work", label: "Work" },
@@ -45,10 +47,76 @@ const AREAS = [
     label: "AI development, Chandigarh",
   },
   { href: "/hire-flutter-developers-india", label: "Hire Flutter developers" },
+  {
+    href: "/app-development-company-zirakpur",
+    label: "App development, Zirakpur",
+  },
+  {
+    href: "/software-development-company-kharar",
+    label: "Software company, Kharar",
+  },
+  {
+    href: "/software-development-company-ambala",
+    label: "Software company, Ambala",
+  },
+  { href: "/web-development-company-shimla", label: "Web development, Shimla" },
+];
+
+// Regulated software leads the footer (positioning).
+const REGULATED = [
+  { href: "/services/regulated-software", label: "Regulated software" },
+  { href: "/services/lims-software-development", label: "LIMS development" },
+  {
+    href: "/services/pharmacovigilance-software",
+    label: "Pharmacovigilance software",
+  },
+  {
+    href: "/services/computer-system-validation",
+    label: "Computer system validation",
+  },
+  { href: "/industries/pharma-software", label: "Pharma software" },
+  {
+    href: "/industries/diagnostic-lab-software",
+    label: "Diagnostic lab software",
+  },
   { href: "/gxp-software-development-india", label: "GxP software, India" },
+  {
+    href: "/academy/software-validation-gamp5-course",
+    label: "GAMP 5 validation course",
+  },
+];
+
+// Specialist service pages listed under the five core services.
+const MORE_SERVICES = [
+  {
+    href: "/services/saas-development-company-india",
+    label: "SaaS development",
+  },
+  { href: "/services/ai-chatbot-development-india", label: "AI chatbots" },
+  {
+    href: "/services/hire-dedicated-developers-india",
+    label: "Dedicated developers",
+  },
+  {
+    href: "/services/ecommerce-development-chandigarh",
+    label: "E-commerce, Chandigarh",
+  },
+  {
+    href: "/industries/healthcare-app-development",
+    label: "Healthcare apps",
+  },
 ];
 
 const { street, locality, region, postalCode } = siteConfig.address;
+// NAP line: only the address parts that are filled in, so there are no empty separators.
+const addressLine = [
+  street,
+  [locality, region].filter(Boolean).join(", "),
+  postalCode,
+  "India",
+]
+  .filter(Boolean)
+  .join(" · ");
 
 export default function Footer() {
   return (
@@ -64,6 +132,16 @@ export default function Footer() {
       </div>
 
       <div className={styles.grid}>
+        <nav className={styles.col} aria-label="Regulated software">
+          <span className={`${styles.colLabel} ${home.mono}`}>
+            Regulated software
+          </span>
+          {REGULATED.map((l) => (
+            <Link key={l.href} href={l.href} className={styles.link}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
         <nav className={styles.col} aria-label="Services">
           <span className={`${styles.colLabel} ${home.mono}`}>Services</span>
           {SERVICES.map((s, i) => (
@@ -73,6 +151,11 @@ export default function Footer() {
               className={styles.link}
             >
               {s.t}
+            </Link>
+          ))}
+          {MORE_SERVICES.map((l) => (
+            <Link key={l.href} href={l.href} className={styles.link}>
+              {l.label}
             </Link>
           ))}
         </nav>
@@ -126,43 +209,41 @@ export default function Footer() {
         </nav>
         <div className={styles.col}>
           <span className={`${styles.colLabel} ${home.mono}`}>Contact</span>
-          <a href={`mailto:${siteConfig.supportEmail}`} className={styles.link}>
-            {siteConfig.supportEmail}
-          </a>
+          {/* full NAP (name, address, phone), kept identical to Google Business Profile */}
+          <address className={styles.nap}>
+            <span className={styles.napName}>{siteConfig.name}</span>
+            <span className={styles.muted}>{addressLine}</span>
+            {siteConfig.phone && (
+              <a
+                href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+                className={styles.link}
+              >
+                {siteConfig.phone}
+              </a>
+            )}
+            {siteConfig.whatsapp && (
+              <a
+                href={`https://wa.me/${siteConfig.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+              >
+                WhatsApp us
+              </a>
+            )}
+            <a href={`mailto:${siteConfig.email}`} className={styles.link}>
+              {siteConfig.email}
+            </a>
+          </address>
           <a href={`mailto:${siteConfig.hrEmail}`} className={styles.link}>
             {siteConfig.hrEmail} <span className={styles.muted}>(careers)</span>
           </a>
-          {siteConfig.phone && (
-            <a
-              href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
-              className={styles.link}
-            >
-              {siteConfig.phone}
-            </a>
-          )}
-          {siteConfig.whatsapp && (
-            <a
-              href={`https://wa.me/${siteConfig.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
-              WhatsApp us
-            </a>
-          )}
-          <address className={styles.muted} style={{ fontStyle: "normal" }}>
-            {[
-              street,
-              [locality, region].filter(Boolean).join(", "),
-              postalCode,
-              "India",
-            ]
-              .filter(Boolean)
-              .join(" · ")}
-            <br />
+          <CalendlyButton className={styles.calendly} />
+          <span className={styles.muted}>
             Serving Panchkula, Mohali &amp; Chandigarh &middot; Working
             worldwide
-          </address>
+          </span>
+          <MapEmbed />
           <SocialLinks className={styles.social} />
           <span className={`${styles.clock} ${home.mono}`}>
             <span className={styles.clockDot} aria-hidden="true" />

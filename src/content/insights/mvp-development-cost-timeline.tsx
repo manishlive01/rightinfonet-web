@@ -11,6 +11,7 @@ export const mvpDevelopmentCostTimeline: Post = {
   excerpt:
     "How to scope a minimum viable product, what a realistic 10–12 week build looks like week by week, indicative MVP budgets in India, and the features to cut so you launch sooner.",
   category: "Choosing a partner",
+  pillar: "cost",
   cover: "phones",
   published: "2026-09-28",
   readingMinutes: 8,

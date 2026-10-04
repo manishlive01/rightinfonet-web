@@ -1,6 +1,7 @@
 .outer {
   padding: clamp(96px, 12vw, 168px) var(--pad-wide) 0;
 }
+
 .panel {
   position: relative;
   overflow: hidden;
@@ -13,11 +14,13 @@
   background: var(--abg);
   color: var(--afg);
 }
+
 @media (min-width: 1040px) {
   .panel {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
 }
+
 .ringA,
 .ringB {
   position: absolute;
@@ -26,6 +29,7 @@
   pointer-events: none;
   animation: spin 80s linear infinite;
 }
+
 .ringA {
   left: -14vw;
   bottom: -32vw;
@@ -33,6 +37,7 @@
   height: 60vw;
   border-style: dashed;
 }
+
 .ringB {
   left: -5vw;
   bottom: -23vw;
@@ -40,6 +45,7 @@
   height: 44vw;
   animation-direction: reverse;
 }
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -52,6 +58,7 @@
   flex-direction: column;
   gap: 28px;
 }
+
 .topRow {
   display: flex;
   flex-wrap: wrap;
@@ -59,6 +66,7 @@
   gap: 14px 20px;
   margin-bottom: clamp(12px, 3vw, 40px);
 }
+
 .brand {
   display: flex;
   align-items: center;
@@ -67,6 +75,7 @@
   font-size: 17px;
   letter-spacing: -0.02em;
 }
+
 .brandRing {
   width: 20px;
   height: 20px;
@@ -76,12 +85,14 @@
   align-items: center;
   justify-content: center;
 }
+
 .brandDot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--aem);
 }
+
 .badge {
   padding: 4px 9px;
   border-radius: 6px;
@@ -92,6 +103,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
 .openPill {
   display: flex;
   align-items: center;
@@ -103,6 +115,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
 .pulse {
   width: 8px;
   height: 8px;
@@ -110,21 +123,26 @@
   background: var(--aem);
   animation: pulse 2s ease-in-out infinite;
 }
+
 @keyframes pulse {
+
   0%,
   100% {
     box-shadow: 0 0 0 0 color-mix(in srgb, var(--aem) 60%, transparent);
   }
+
   50% {
     box-shadow: 0 0 0 6px transparent;
   }
 }
+
 .kicker {
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--afg) 60%, var(--abg));
 }
+
 .headline {
   margin: -8px 0 0;
   font-weight: 400;
@@ -133,10 +151,12 @@
   letter-spacing: -0.03em;
   text-wrap: balance;
 }
+
 .em {
   font-style: italic;
   color: var(--aem);
 }
+
 .lead {
   margin: 0;
   max-width: 520px;
@@ -145,6 +165,7 @@
   color: color-mix(in srgb, var(--afg) 72%, var(--abg));
   text-wrap: pretty;
 }
+
 .cta {
   display: inline-flex;
   align-items: center;
@@ -157,13 +178,16 @@
   font-weight: 600;
   transition: transform 0.3s;
 }
+
 .cta:hover {
   transform: translateY(-2px);
 }
+
 .ctaArrow {
   display: inline-block;
   transition: transform 0.4s var(--ease-out);
 }
+
 .cta:hover .ctaArrow {
   transform: translateX(5px);
 }
@@ -175,6 +199,7 @@
   list-style: none;
   border-top: 1px solid color-mix(in srgb, var(--afg) 16%, transparent);
 }
+
 .track {
   position: relative;
   display: grid;
@@ -188,6 +213,7 @@
   isolation: isolate;
   transition: padding 0.5s var(--ease-out);
 }
+
 .track::before {
   content: "";
   position: absolute;
@@ -198,45 +224,55 @@
   transform-origin: bottom center;
   transition: transform 0.5s var(--ease-out);
 }
+
 .track:hover {
   padding-left: 14px;
   padding-right: 14px;
 }
+
 .track:hover::before {
   transform: scaleY(1);
 }
+
 .trackNum {
   font-size: 12px;
   color: var(--aem);
 }
+
 .trackMain {
   display: flex;
   flex-direction: column;
   gap: 4px;
   min-width: 0;
 }
+
 .trackTitle {
   font-size: clamp(20px, 1.8vw, 26px);
   font-weight: 500;
   letter-spacing: -0.02em;
 }
+
 .trackStack {
   font-size: 14px;
   color: color-mix(in srgb, var(--afg) 65%, var(--abg));
 }
+
 .trackMeta {
   font-size: 12px;
   white-space: nowrap;
   color: color-mix(in srgb, var(--afg) 70%, var(--abg));
 }
+
 @media (max-width: 560px) {
   .track {
     grid-template-columns: 30px minmax(0, 1fr) 30px;
   }
+
   .trackMeta {
     display: none;
   }
 }
+
 .trackArrow {
   width: 36px;
   height: 36px;
@@ -250,8 +286,81 @@
     background 0.3s,
     color 0.3s;
 }
+
 .track:hover .trackArrow {
   transform: rotate(45deg);
   background: var(--afg);
   color: var(--abg);
+}
+
+/* phones: compact app card, no spinning rings */
+@media (max-width: 767px) {
+  .outer {
+    padding-top: 56px;
+  }
+
+  .panel {
+    gap: 28px;
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .ringA,
+  .ringB {
+    display: none;
+  }
+
+  .copy {
+    gap: 18px;
+  }
+
+  .topRow {
+    gap: 10px 12px;
+    margin-bottom: 4px;
+  }
+
+  .brand {
+    font-size: 15px;
+  }
+
+  .headline {
+    font-size: clamp(26px, 7.6vw, 30px);
+    line-height: 1.05;
+    margin-top: 0;
+  }
+
+  .lead {
+    font-size: 16px;
+    max-width: none;
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    min-height: 52px;
+    box-sizing: border-box;
+  }
+
+  .track {
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .track:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .trackTitle {
+    font-size: 18px;
+  }
+
+  .trackStack {
+    font-size: 13px;
+  }
+
+  .trackArrow {
+    width: 32px;
+    height: 32px;
+  }
 }
