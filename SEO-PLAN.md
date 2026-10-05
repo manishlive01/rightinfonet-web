@@ -26,51 +26,64 @@ Note: #1 ranking ki guarantee koi nahi de sakta. "Best X in Panchkula" wale sear
 - [~] Case studies (`/work`) me client ki city, results aur numbers: slot ready (`CASE_STUDY_PROOF` in `src/content/trust.ts`), asli data chahiye.
 - [~] Testimonials aur `Review` schema: component + schema ready (`TESTIMONIALS` in `trust.ts`), sirf asli reviews ke saath bharna.
 - [x] `/llms.txt` bana diya. Isme saari services, local pages, courses aur guides apne aap aa jaate hain.
-- [x] Sitemap me saare live pages hain (2026-10-04: saare 49 posts sitemap me, crawler 95 pages; abhi koi post scheduled nahi).
+- [x] Sitemap me saare live indexable pages hain (2026-10-05: 91 URLs, saare 49 posts; noindex city pages aur purana `/resources/` URL bahar). Har URL par fixed content-date `lastmod` (`src/content/page-dates.ts`), priority/changefreq nahi.
 - [x] robots.txt me AI bots (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Bingbot) explicit allow.
 - [x] Regulated software home, services aur footer me sabse upar.
 - [~] GA4 + events, Calendly button, Search Console/Bing meta, IndexNow: code ready, env values aapko deni hain (`SEO-OWNER-TODO.md`).
 - [ ] Core Web Vitals: mobile LCP abhi ~3.6–4.2s (Lighthouse simulated), target 2.5s. Deploy ke baad PageSpeed field data dekhna.
 
-Naye pages (2026-10-04): 14 landing pages (neeche table me, LIMS se Shimla tak), `/tools/app-development-cost-calculator` aur `/resources/lims-urs-template` (+ `/downloads/lims-urs-template.csv`).
+### Live audit fixes 2026-10-04 (code done 2026-10-05, deploy baaki)
+
+Owner ke live audit ke 10 findings + minor items. Line-by-line status `SEO-CHECKLIST.md` ("Live audit fixes 2026-10-04"), owner kaam `SEO-OWNER-TODO.md` section 0. Local production build: crawler 91 pages 0/0/1, redirects 190/190 PASS.
+
+- [x] `/about` naya page hardened (AboutPage graph, gated Team section); claim strings code me kahin nahi. Live `/about` already naya, purana Google ka stale snippet.
+- [x] 96 old-URL 301 rules (`src/lib/redirects.ts` → `next.config.ts`), check `scripts/check-redirects.mjs`. `/privacy`, `/terms` jaan-boojh kar 404.
+- [x] URS duplicate khatam: `/resources/lims-urs-template` → 301 `/insights/lims-urs-template`.
+- [x] Schema sweep pass (94 pages): Organization/ProfessionalService, FAQPage, BlogPosting, Course, AboutPage, BreadcrumbList.
+- [x] Kharar/Ambala/Shimla `noindex,follow`, Panchkula pages unique; Ambala/Shimla `areaServed` se bahar.
+- [x] 12 regulated posts me official source links; Work sample builds labelled; home H1 me Panchkula; sitemap fixed `lastmod`, no priority/changefreq.
+- [~] NAP single source, founder/team/author (`credentials`, `PILLAR_AUTHORS`), case study slot, `/api/contact`: code ready, data/env aapka.
+- [ ] Owner: redeploy, live redirects verify, GSC sitemap + Request indexing, apex 302 → 301, Rich Results Test, founder/author/client data, full address + GBP link, reviews, `CONTACT_FORM_ENDPOINT`, noindex city pages ko real content milne par re-index.
+
+Naye pages (2026-10-04): 14 landing pages (neeche table me, LIMS se Shimla tak), `/tools/app-development-cost-calculator` aur LIMS URS template (ab `/insights/lims-urs-template#download`; `/resources/lims-urs-template` 2026-10-05 se 301).
 
 ## 3. Local aur landing pages (sab live)
 
 Har page ka content alag likha gaya hai, sirf city ka naam nahi badla. Har page me direct answer, 2 card sections, "fit" list, 6 FAQs aur related links hain.
 
-| Page                                            | Target keyword                               |
-| ----------------------------------------------- | -------------------------------------------- |
-| /mobile-app-development-panchkula               | mobile app development company in Panchkula  |
-| /mobile-app-development-chandigarh              | app development company Chandigarh           |
-| /mobile-app-development-mohali                  | app developers / Flutter partner Mohali      |
-| /web-development-company-panchkula              | website development company Panchkula        |
-| /web-development-company-chandigarh             | web development / web app company Chandigarh |
-| /software-development-company-mohali            | software development company Mohali          |
-| /ai-development-company-chandigarh              | AI development company Chandigarh            |
-| /hire-flutter-developers-india                  | hire Flutter developers India                |
-| /gxp-software-development-india                 | GxP / CSV software company India             |
-| /app-development-company-zirakpur               | app development company Zirakpur             |
-| /software-development-company-kharar            | software development company Kharar          |
-| /software-development-company-ambala            | software development company Ambala          |
-| /web-development-company-shimla                 | web development company Shimla               |
-| /services/lims-software-development             | LIMS software development                    |
-| /services/pharmacovigilance-software            | pharmacovigilance software                   |
-| /services/computer-system-validation            | computer system validation services          |
-| /services/saas-development-company-india        | SaaS development company India               |
-| /services/ai-chatbot-development-india          | AI chatbot development India                 |
-| /services/hire-dedicated-developers-india       | hire dedicated developers India              |
-| /services/ecommerce-development-chandigarh      | ecommerce website development Chandigarh     |
-| /industries/pharma-software                     | pharma software development                  |
-| /industries/diagnostic-lab-software             | diagnostic / pathology lab software          |
-| /industries/healthcare-app-development          | healthcare app development India             |
-| /academy/software-training-institute-panchkula  | IT training institute in Panchkula           |
-| /academy/software-training-institute-chandigarh | software training institute Chandigarh       |
-| /academy/it-training-institute-mohali           | IT training institute Mohali                 |
-| /academy/industrial-training-chandigarh         | 6 months industrial training Chandigarh      |
-| /academy/full-stack-web-development-course      | full stack course Chandigarh / Tricity       |
-| /academy/flutter-app-development-course         | Flutter course in Chandigarh                 |
-| /academy/ai-agents-course                       | AI / generative AI course                    |
-| /academy/software-validation-gamp5-course       | CSV / GAMP 5 training                        |
+| Page                                            | Target keyword                                                                |
+| ----------------------------------------------- | ----------------------------------------------------------------------------- |
+| /mobile-app-development-panchkula               | mobile app development company in Panchkula                                   |
+| /mobile-app-development-chandigarh              | app development company Chandigarh                                            |
+| /mobile-app-development-mohali                  | app developers / Flutter partner Mohali                                       |
+| /web-development-company-panchkula              | website development company Panchkula                                         |
+| /web-development-company-chandigarh             | web development / web app company Chandigarh                                  |
+| /software-development-company-mohali            | software development company Mohali                                           |
+| /ai-development-company-chandigarh              | AI development company Chandigarh                                             |
+| /hire-flutter-developers-india                  | hire Flutter developers India                                                 |
+| /gxp-software-development-india                 | GxP / CSV software company India                                              |
+| /app-development-company-zirakpur               | app development company Zirakpur                                              |
+| /software-development-company-kharar            | software development company Kharar (noindex jab tak real local content nahi) |
+| /software-development-company-ambala            | software development company Ambala (noindex)                                 |
+| /web-development-company-shimla                 | web development company Shimla (noindex)                                      |
+| /services/lims-software-development             | LIMS software development                                                     |
+| /services/pharmacovigilance-software            | pharmacovigilance software                                                    |
+| /services/computer-system-validation            | computer system validation services                                           |
+| /services/saas-development-company-india        | SaaS development company India                                                |
+| /services/ai-chatbot-development-india          | AI chatbot development India                                                  |
+| /services/hire-dedicated-developers-india       | hire dedicated developers India                                               |
+| /services/ecommerce-development-chandigarh      | ecommerce website development Chandigarh                                      |
+| /industries/pharma-software                     | pharma software development                                                   |
+| /industries/diagnostic-lab-software             | diagnostic / pathology lab software                                           |
+| /industries/healthcare-app-development          | healthcare app development India                                              |
+| /academy/software-training-institute-panchkula  | IT training institute in Panchkula                                            |
+| /academy/software-training-institute-chandigarh | software training institute Chandigarh                                        |
+| /academy/it-training-institute-mohali           | IT training institute Mohali                                                  |
+| /academy/industrial-training-chandigarh         | 6 months industrial training Chandigarh                                       |
+| /academy/full-stack-web-development-course      | full stack course Chandigarh / Tricity                                        |
+| /academy/flutter-app-development-course         | Flutter course in Chandigarh                                                  |
+| /academy/ai-agents-course                       | AI / generative AI course                                                     |
+| /academy/software-validation-gamp5-course       | CSV / GAMP 5 training                                                         |
 
 ## 4. Blogs (22 naye, sab `/insights` par live)
 
@@ -114,7 +127,7 @@ Chaar list-type topics badle gaye hain. Competitors ki ranking ya rates likhne s
 - [x] LIMS software cost in India
 - [x] Pharmacovigilance software: build vs buy
 - [x] Part 11 checklist post expansion (FAQ, answer-first intro, 5 body links; updated 2026-10-04)
-- [x] GAMP 5 validation guide: FAQ + links add kiye, CSA final (Sept 2025) fix kiya (updated 2026-10-04)
+- [x] GAMP 5 validation guide: FAQ + links add kiye, CSA status fix kiya (Sept 2025 final, Feb 2026 re-issue; updated 2026-10-04)
 
 **Pillar 1: Regulated software (live; owner decision 2026-10-04: staggered past dates, Tue + Fri)**
 
@@ -131,7 +144,7 @@ Chaar list-type topics badle gaye hain. Competitors ki ranking ya rates likhne s
 | 2026-08-14 | /insights/pharmacovigilance-e2b-r3-explained         |
 | 2026-08-18 | /insights/what-is-a-validation-package               |
 
-Lead magnet (live): `/resources/lims-urs-template` + `/downloads/lims-urs-template.csv`. Email form tabhi dikhega jab `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` (https form backend, jaise Formspree) set karke rebuild karoge; tab tak sirf download button.
+Lead magnet (live): `/insights/lims-urs-template#download` + `/downloads/lims-urs-template.csv` (purana `/resources/...` URL 301). Email form tabhi dikhega jab `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` (https form backend, jaise Formspree) set karke rebuild karoge; tab tak sirf download button.
 
 **Pillar 2: Cost, hiring aur comparisons (live)**
 
@@ -182,8 +195,10 @@ Abhi koi post future-dated nahi (23 naye posts 2026-07-17 se 2026-10-02 ki dates
 
 Poori list file + key ke saath `SEO-OWNER-TODO.md` me hai. Short me:
 
-- Street address aur PIN code (`src/lib/site-config.ts` → `address.street`, `address.postalCode`), `geo`, `openingHours`, `mapEmbedUrl`, `googleBusinessUrl`. Locality "Panchkula" maan li gayi hai, galat ho to badal dena. Ambala aur Shimla `areaServed` me add kiye, confirm karo.
-- Env: `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CALENDLY_URL`, `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`, `INDEXNOW_KEY`, `NEXT_PUBLIC_LEAD_FORM_ENDPOINT` (set karke rebuild).
+- Street address aur PIN code (`src/lib/site-config.ts` → `address.street`, `address.postalCode`), `geo`, `openingHours`, `mapEmbedUrl`, `googleBusinessUrl`. Locality "Panchkula" maan li gayi hai, galat ho to badal dena. Ambala aur Shimla `areaServed` se hata diye (pages noindex) jab tak real client na ho.
+- Env: `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CALENDLY_URL`, `GOOGLE_SITE_VERIFICATION`, `BING_SITE_VERIFICATION`, `INDEXNOW_KEY`, `NEXT_PUBLIC_LEAD_FORM_ENDPOINT`, `CONTACT_FORM_ENDPOINT` (set karke rebuild).
+- Redeploy + Search Console (sitemap resubmit, `/about`, `/courses/`, `/blog` Request indexing), apex 302 → 301, Rich Results Test.
+- Google Business Profile link, asli reviews, ek real case study, founder/author naam + GxP experience.
 - Authors aur founder (`src/content/authors.ts`), testimonials, client logos, proof numbers, case-study data, pricing (`src/content/trust.ts`), sab sirf asli aur permission ke saath.
 - Calculator ranges confirm (`src/content/cost-calculator.ts`).
 - Privacy policy page (email capture se pehle zaroori).
@@ -196,5 +211,6 @@ Poori list file + key ke saath `SEO-OWNER-TODO.md` me hai. Short me:
 - Blogs: `src/content/insights/*.tsx`, register in `index.ts`; schedule logic `schedule.ts` (`todayIST()`, `CONTENT_NOW`); post links ke liye `PostLink`
 - Trust/owner data: `src/content/trust.ts`, `src/content/authors.ts`, `src/content/cost-calculator.ts`, `src/lib/site-config.ts`
 - Page template: `src/components/pages/LandingView.tsx`; schema: `landing-seo.ts`, `seo.ts`
-- Routes: `src/app/[slug]` (local pages), `src/app/services/[slug]`, `src/app/industries/[slug]`, `src/app/academy/[slug]`, `src/app/tools/app-development-cost-calculator`, `src/app/resources/lims-urs-template`, `src/app/about/founder`, `src/app/llms.txt`, `src/app/indexnow.txt`
+- Routes: `src/app/[slug]` (local pages), `src/app/services/[slug]`, `src/app/industries/[slug]`, `src/app/academy/[slug]`, `src/app/tools/app-development-cost-calculator`, `src/app/about/founder`, `src/app/llms.txt`, `src/app/indexnow.txt`
 - IndexNow submit (owner-run): `scripts/indexnow-submit.mjs`
+- Old-URL redirects: `src/lib/redirects.ts` (check: `scripts/check-redirects.mjs`); sitemap dates `src/content/page-dates.ts`; contact API `src/app/api/contact/route.ts` + `src/lib/contact-endpoint.ts`; city page noindex flag `Landing.noindex` (`src/content/landing/local.ts`)

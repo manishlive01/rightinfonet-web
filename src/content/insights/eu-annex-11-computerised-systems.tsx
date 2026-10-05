@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -19,6 +24,7 @@ export const euAnnex11ComputerisedSystems: Post = {
   },
   cover: "audit",
   published: "2026-07-28",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "EU GMP Annex 11",
@@ -59,9 +65,10 @@ export const euAnnex11ComputerisedSystems: Post = {
       body: (
         <>
           <p>
-            Annex 11, <em>Computerised Systems</em>, is part of EudraLex Volume
-            4, the EU guidelines for Good Manufacturing Practice. The current
-            text came into operation on 30 June 2011. PIC/S member inspectorates
+            <Source href="https://health.ec.europa.eu/system/files/2016-11/annex11_01-2011_en_0.pdf">Annex 11, <em>Computerised Systems</em></Source>, is
+            part of <Source href="https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en">EudraLex Volume 4</Source>, the EU
+            guidelines for Good Manufacturing Practice. The current text came
+            into operation on 30 June 2011. PIC/S member inspectorates
             apply an equivalent annex in the PIC/S GMP Guide, so its reach goes
             well beyond the EU.
           </p>

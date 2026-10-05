@@ -5,11 +5,12 @@ import InView from "./motion/InView";
 import LocalTime from "./LocalTime";
 import { SERVICES } from "./data";
 import { SERVICE_DETAILS } from "../pages/content";
-import { siteConfig } from "@/lib/site-config";
+import { napAddressLine, siteConfig } from "@/lib/site-config";
 import SocialLinks from "./SocialLinks";
 import Logo from "./Logo";
 import CalendlyButton from "../CalendlyButton";
 import MapEmbed from "../trust/MapEmbed";
+import { isIndexable } from "@/content/landing";
 
 const COMPANY = [
   { href: "/work", label: "Work" },
@@ -20,6 +21,7 @@ const COMPANY = [
   { href: "/#contact", label: "Contact" },
 ];
 
+// Noindexed thin local pages (Landing.noindex) are filtered out below.
 const AREAS = [
   {
     href: "/mobile-app-development-panchkula",
@@ -60,7 +62,8 @@ const AREAS = [
     label: "Software company, Ambala",
   },
   { href: "/web-development-company-shimla", label: "Web development, Shimla" },
-];
+  // noindexed thin local pages (Landing.noindex) are dropped here
+].filter((l) => isIndexable(l.href));
 
 // Regulated software leads the footer (positioning).
 const REGULATED = [
@@ -80,7 +83,10 @@ const REGULATED = [
     label: "Diagnostic lab software",
   },
   { href: "/gxp-software-development-india", label: "GxP software, India" },
-  { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
+  {
+    href: "/insights/lims-urs-template#download",
+    label: "Free LIMS URS template",
+  },
   {
     href: "/academy/software-validation-gamp5-course",
     label: "GAMP 5 validation course",
@@ -112,16 +118,8 @@ const MORE_SERVICES = [
   },
 ];
 
-const { street, locality, region, postalCode } = siteConfig.address;
-// NAP line: only the address parts that are filled in, so there are no empty separators.
-const addressLine = [
-  street,
-  [locality, region].filter(Boolean).join(", "),
-  postalCode,
-  "India",
-]
-  .filter(Boolean)
-  .join(" · ");
+// NAP line: shared with the contact section and llms.txt so it is identical everywhere.
+const addressLine = napAddressLine();
 
 export default function Footer() {
   return (

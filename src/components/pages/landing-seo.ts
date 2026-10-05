@@ -13,12 +13,16 @@ import { siteConfig } from "@/lib/site-config";
 export const ACADEMY_ID = `${siteConfig.url}/academy#academy`;
 
 export function landingMetadata(page: Landing): Metadata {
-  return pageMetadata({
-    path: page.path,
-    title: page.metaTitle,
-    description: page.description,
-    keywords: page.keywords,
-  });
+  return {
+    ...pageMetadata({
+      path: page.path,
+      title: page.metaTitle,
+      description: page.description,
+      keywords: page.keywords,
+    }),
+    // thin local pages: kept reachable, but out of the index until they have real local content
+    ...(page.noindex && { robots: { index: false, follow: true } }),
+  };
 }
 
 /** Course entity for an Academy track; shared by course pages and the Academy page. */

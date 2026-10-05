@@ -7,6 +7,24 @@ Rule: koi review, number, client name, fee ya date invent nahi karni. Data na ho
 
 Last verified: 2026-10-04, production build (`next start -p 3100`) + crawler `.agents/seo-audit-2026-10-04.md`: 72 pages, 0 errors, 0 warnings, 1 info (CSV download file sitemap me nahi, jaan-boojh kar). Baseline tha 56 pages, 0/25/2.
 
+## Live audit fixes 2026-10-04
+
+Owner ke live SEO audit (findings 1–10 + minor) ka status. Local production build par verify kiya (2026-10-05): lint clean, build pass, crawler `.agents/seo-audit-2026-10-04-fixes.md` 91 pages, 0 errors, 0 warnings, 1 info; redirects 190/190 PASS; 94 pages ka JSON-LD parse OK. Details: `.agents/tasks/seo-live-verification.md`. **Deploy abhi nahi hua**, isliye live site par ye fixes tab dikhenge jab aap deploy karoge. Owner tasks ki list: `SEO-OWNER-TODO.md` section 0.
+
+- [x] **1. [Code]** `/about`: naya page, self-canonical, AboutPage (`@id`, `mainEntity`, `isPartOf`) + BreadcrumbList + Organization; koi "98% / 24/7 / #1 / dominate / fortified / Next-Gen" claim code me nahi. _Live `/about` curl par already naya hai; jo purana page dikha wo Google ka stale index/snippet hai._ [ ] **[Aap]** deploy + GSC "Request indexing" `/about`.
+- [x] **2. [Code]** Purane URLs ka 301 (Next 308) map: 96 rules `src/lib/redirects.ts` (`/courses` → `/academy`, `/blog` → `/insights`, `/projects` → `/work`, `/contact` → `/#contact`…), check `scripts/check-redirects.mjs` 190 PASS. [ ] **[Aap]** deploy, live par redirects verify, apex `brightinfonet.com` 302 → 301 (Firebase App Hosting). [ ] **[Aap]** privacy/terms policy text (ye URLs jaan-boojh kar 404).
+- [x] **3. [Code]** Duplicate URS: `/resources/lims-urs-template` route hataya, 301 → `/insights/lims-urs-template` (single canonical, `#download` section, DigitalDocument schema); sitemap/llms.txt/internal links update.
+- [x] **4. [Code]** Schema: Organization + ProfessionalService (LocalBusiness) site-wide, FAQPage sab local/service pages + FAQ wale posts, BlogPosting (dates, author), Course (4 course pages), AboutPage, BreadcrumbList har inner page. `geo`/`hasMap` aur Person sirf asli data par. [ ] **[Aap]** deploy ke baad Google Rich Results Test.
+- [~] **5. [Dono]** Local SEO / NAP: ek hi source (`siteConfig` + `napAddressLine()`) footer, contact, llms.txt, schema me; map/GBP/geo code ready, khali hai to hidden. [ ] **[Aap]** full street address + PIN, `geo`, `mapEmbedUrl`, Google Business Profile link. [ ] **[Aap]** asli Google reviews (site par `TESTIMONIALS` sirf permission ke saath).
+- [x] **6. [Code]** Doorway risk: Kharar, Ambala, Shimla `noindex,follow` (route chalu; sitemap, llms.txt, footer, related links se bahar; 0 internal links), Ambala/Shimla `areaServed` se hataye. Dono Panchkula pages Panchkula-specific likhe (sirf public geography, koi client/number nahi). Overlap max 3.5% local, 15.7% academy city, isliye Zirakpur + academy city pages indexed. [ ] **[Aap]** real local client/content mile to in pages ko re-index karna.
+- [~] **7. [Dono]** Team/founder: `TeamSection` + Person schema `/about` par, `/about/founder` page; `authors.ts` khali hai to hidden. Data pending: founder naam, photo, LinkedIn, GxP experience.
+- [~] **8. [Dono]** Blog author: `credentials`, `PILLAR_AUTHORS`, `getPostAuthor` → byline, AuthorBox, BlogPosting Person (`knowsAbout`). Abhi "Bright Infonet Engineering" hi dikhega jab tak real naam + bio nahi milta.
+- [x] **9. [Code]** 12 regulated posts me official authority links (eCFR Part 11, FDA Part 11 guidance, FDA CSA 2026, ISPE GAMP 5, EudraLex Vol 4, Annex 11 PDF, ICH E2B(R3), ISO 15189, NABL), `rel="noopener"`, no nofollow. _FDA/eCFR pages automated check ko block karte hain, search index se confirm kiye; deploy ke baad ek baar click karke dekh lena._
+- [~] **10. [Dono]** Work: Clinic booking + Ops agent par "Sample build · not client work" label, heading "Software we build"; `CASE_STUDY_PROOF` slot ready. Data pending: ek real case study (client naam permission ke saath, date, numbers, quote).
+- [x] **Minor [Code]** Sitemap: har URL par real fixed `lastmod` (`src/content/page-dates.ts`), priority/changefreq hata diye.
+- [~] **Minor [Dono]** Contact form: `/api/contact` (server validation, honeypot, rate limit) ready; endpoint ke bina pehle jaisa email app + WhatsApp link. Pending: `CONTACT_FORM_ENDPOINT` env + privacy policy. _Enable karne se pehle rate-limit IP key fix karna (review note, `SEO-OWNER-TODO.md`)._
+- [x] **Minor [Code]** Home H1: "AI-first software & app development · Panchkula, Chandigarh Tricity: We build software that thinks."
+
 ## Phase 0: Positioning (sabse pehle decide)
 
 - [~] **[Aap]** Priority confirm: 1) Regulated software (LIMS, PV, GAMP 5, Part 11, CSV), 2) Academy local, 3) Flutter + AI agents. "software company Chandigarh" baad me. _Aapke message wala order code me laga diya; final confirm aapka._
@@ -71,9 +89,9 @@ Har page: pehli 2 lines me direct answer, unique content, FAQ + schema, case stu
 Har page unique (local context, nearby areas, local examples). Template copy-paste nahi. _8-word shingle check: 4 pages me koi common sequence nahi._
 
 - [x] **[Dono]** Zirakpur `/app-development-company-zirakpur`
-- [x] **[Dono]** Kharar `/software-development-company-kharar`
-- [x] **[Dono]** Ambala `/software-development-company-ambala` _(areaServed me Ambala add kiya, confirm karo)_
-- [x] **[Dono]** Shimla `/web-development-company-shimla` _(areaServed me Shimla add kiya, confirm karo)_
+- [~] **[Dono]** Kharar `/software-development-company-kharar` _(2026-10-05: noindex,follow jab tak real local client/content na ho)_
+- [~] **[Dono]** Ambala `/software-development-company-ambala` _(noindex,follow; areaServed se hataya)_
+- [~] **[Dono]** Shimla `/web-development-company-shimla` _(noindex,follow; areaServed se hataya)_
 - [ ] **[Aap]** In shehron ke local clients/examples (ho to), warna page thin rahega.
 
 ## Phase 6: Comparison / decision pages
@@ -96,7 +114,7 @@ Article rules: 1,500–2,500 words, answer pehle, comparison table, FAQ, author 
 - [x] **[Code]** Part 11 audit trail requirements _live 2026-07-21_
 - [x] **[Code]** EU Annex 11 _live 2026-07-28_
 - [x] CSV vs CSA (hai, pillar se link karna)
-- [x] **[Code]** LIMS URS template (downloadable) _article live 2026-07-31; CSV download + `/resources/lims-urs-template` abhi live_
+- [x] **[Code]** LIMS URS template (downloadable) _article live 2026-07-31; CSV download ab article ke `#download` section me, purana `/resources/lims-urs-template` 301_
 - [x] **[Code]** LIMS implementation checklist _live 2026-08-07_
 - [x] **[Code]** NABL / ISO 15189 software requirements _live 2026-08-11_
 - [x] **[Code]** Pharmacovigilance E2B(R3) explained _live 2026-08-14_
@@ -152,4 +170,4 @@ Article rules: 1,500–2,500 words, answer pehle, comparison table, FAQ, author 
 
 ## Owner se chahiye (ek jagah)
 
-Poori list file + key ke saath `SEO-OWNER-TODO.md` me hai: street address + PIN, timings, geo/map pin, GBP URL, author/founder details, client logos + testimonials, case study numbers + screenshots, pricing ranges, Calendly link, GA4 ID, Search Console/Bing verification codes, IndexNow key, lead form endpoint + privacy policy, calculator ranges confirm, Ambala/Shimla confirm, placement stats, article dates ka decision confirm.
+Poori list file + key ke saath `SEO-OWNER-TODO.md` me hai: street address + PIN, timings, geo/map pin, GBP URL, author/founder details, client logos + testimonials, case study numbers + screenshots, pricing ranges, Calendly link, GA4 ID, Search Console/Bing verification codes, IndexNow key, lead form endpoint + privacy policy, calculator ranges confirm, Kharar/Ambala/Shimla ke real local clients (re-index ke liye), `CONTACT_FORM_ENDPOINT`, placement stats, article dates ka decision confirm.

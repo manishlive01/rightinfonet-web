@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -63,8 +68,8 @@ export const gamp5Guide: Post = {
               Systems
             </em>{" "}
             is published by ISPE, the International Society for Pharmaceutical
-            Engineering. The first edition came out in 2008; the second edition,
-            published in 2022, updated it for agile development, cloud services
+            Engineering. The first edition came out in 2008; the{" "}
+            <Source href="https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition">second edition</Source>, published in 2022, updated it for agile development, cloud services
             and a stronger focus on critical thinking.
           </p>
           <p>
@@ -261,7 +266,10 @@ export const gamp5Guide: Post = {
             evidence. Low-risk functions can rely on supplier testing or
             lighter, unscripted checks. This is the same thinking behind the
             FDA’s <strong>Computer Software Assurance (CSA)</strong> approach,
-            published as draft guidance in 2022 and finalised in September 2025.
+            published as draft guidance in 2022, finalised in September 2025
+            and re-issued in February 2026 as the{" "}
+            <Source href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-management-system-software">CSA guidance for production and quality management system software</Source>
+            .
             It was written for medical-device production and quality-system
             software, but its message — use critical thinking, and don’t
             generate evidence that adds no assurance — is shaping validation

@@ -1,0 +1,22 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "id": "spoofable-rate-limit-key",
+      "severity": "non-blocking",
+      "confidence": "likely",
+      "file": "src/app/api/contact/route.ts",
+      "issue": "clientIp() keys the rate limit on the first X-Forwarded-For entry, which the client controls behind Firebase App Hosting / Cloud Run, so rotating the header bypasses the 5-per-10-min limit.",
+      "action": "Key on the rightmost platform-appended XFF hop (or the platform client-IP header) before setting CONTACT_FORM_ENDPOINT."
+    },
+    {
+      "id": "lead-endpoint-doubles-as-contact",
+      "severity": "non-blocking",
+      "confidence": "confirmed",
+      "file": "src/lib/contact-endpoint.ts",
+      "issue": "contactEndpoint() falls back to NEXT_PUBLIC_LEAD_FORM_ENDPOINT, so setting it for URS downloads also switches the home contact form to post there, mixing both streams in one inbox (told apart only by the form field).",
+      "action": "Drop the fallback, or keep it and tell the owner in SEO-OWNER-TODO."
+    }
+  ],
+  "reviewDoc": "d:\\Bright infonet web\\brightinfonet-web/.agents/tasks/seo-live-review.md"
+}

@@ -53,6 +53,7 @@ export default function FounderPage() {
         url,
         ...(founder.photo && { image: `${siteConfig.url}${founder.photo}` }),
         ...(founder.linkedin && { sameAs: [founder.linkedin] }),
+        ...(founder.credentials?.length && { knowsAbout: founder.credentials }),
         worksFor: { "@id": `${siteConfig.url}/#organization` },
       },
     ],
@@ -99,10 +100,20 @@ export default function FounderPage() {
             {founder.story.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
             ))}
+            {founder.credentials && founder.credentials.length > 0 && (
+              <ul aria-label="Experience">
+                {founder.credentials.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
+              </ul>
+            )}
             <p>
               Read more <Link href="/about">about the studio</Link>, see{" "}
-              <Link href="/work">the work we have shipped</Link> or explore{" "}
-              <Link href="/services/regulated-software">regulated software</Link>.
+              <Link href="/work">our work</Link> or explore{" "}
+              <Link href="/services/regulated-software">
+                regulated software
+              </Link>
+              .
             </p>
           </Reveal>
         </div>

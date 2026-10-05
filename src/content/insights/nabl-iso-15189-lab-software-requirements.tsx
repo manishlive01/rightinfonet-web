@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -20,6 +25,7 @@ export const nablIso15189LabSoftwareRequirements: Post = {
   },
   cover: "audit",
   published: "2026-08-11",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "NABL software requirements",
@@ -63,16 +69,22 @@ export const nablIso15189LabSoftwareRequirements: Post = {
         <>
           <p>
             ISO 15189,{" "}
-            <em>
-              Medical laboratories — Requirements for quality and competence
-            </em>
+            <Source href="https://www.iso.org/standard/76677.html">
+              <em>
+                Medical laboratories — Requirements for quality and competence
+              </em>
+            </Source>
             , is the international standard for medical labs. Its current
             edition was published in 2022 and also absorbed the requirements for
             point-of-care testing that used to sit in a separate standard.
           </p>
           <p>
-            NABL, the National Accreditation Board for Testing and Calibration
-            Laboratories, is a constituent board of the Quality Council of
+            NABL, the{" "}
+            <Source href="https://nabl-india.org/">
+              National Accreditation Board for Testing and Calibration
+              Laboratories
+            </Source>
+            , is a constituent board of the Quality Council of
             India. It accredits medical laboratories against ISO 15189 together
             with its own specific criteria and policies. Accreditation bodies
             set transition timelines when a standard is revised, so check NABL’s

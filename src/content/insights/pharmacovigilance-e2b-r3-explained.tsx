@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -20,6 +25,7 @@ export const pharmacovigilanceE2bR3Explained: Post = {
   },
   cover: "audit",
   published: "2026-08-14",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "E2B(R3)",
@@ -60,7 +66,9 @@ export const pharmacovigilanceE2bR3Explained: Post = {
       body: (
         <>
           <p>
-            The ICH guideline E2B(R3) covers the electronic transmission of
+            The{" "}
+            <Source href="https://www.ich.org/page/e2br3-individual-case-safety-report-icsr-specification-and-related-files">ICH guideline E2B(R3)</Source> covers the
+            electronic transmission of
             ICSRs: the data elements that describe a suspected adverse reaction
             case, and the message specification for sending them. It is
             implemented through the ISO ICSR standard developed with HL7, and

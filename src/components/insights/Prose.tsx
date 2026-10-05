@@ -3,7 +3,31 @@ import styles from "./Insights.module.css";
 
 /** Building blocks for article bodies; plain elements (p, ul, h3…) are styled by .prose. */
 
-export function Callout({ title, children }: { title: string; children: ReactNode }) {
+/**
+ * Link to an official external source (regulator, standards body). Same tab, followed (no
+ * nofollow): citing primary sources is part of the article's evidence.
+ */
+export function Source({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  return (
+    <a href={href} rel="noopener">
+      {children}
+    </a>
+  );
+}
+
+export function Callout({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
   return (
     <aside className={styles.callout}>
       <p className={styles.calloutTitle}>{title}</p>
@@ -22,7 +46,12 @@ export function DataTable({
   rows: ReactNode[][];
 }) {
   return (
-    <div className={styles.tableWrap} role="region" aria-label={caption} tabIndex={0}>
+    <div
+      className={styles.tableWrap}
+      role="region"
+      aria-label={caption}
+      tabIndex={0}
+    >
       <table>
         <caption>{caption}</caption>
         <thead>

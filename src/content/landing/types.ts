@@ -50,4 +50,11 @@ export type Landing = {
   trackIndex?: number;
   /** label for the main call to action */
   cta?: string;
+  /** ISO date of the last real content change (sitemap lastmod); defaults to LANDING_UPDATED_DEFAULT */
+  updated?: string;
+  /**
+   * Thin local page with no real local client or content yet: robots noindex,follow, and left
+   * out of the sitemap, llms.txt, footer and related links. The route stays (delete to re-index).
+   */
+  noindex?: true;
 };

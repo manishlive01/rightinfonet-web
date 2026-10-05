@@ -115,7 +115,8 @@ export default function Hero() {
           <h1 className={styles.heroTitle}>
             <span className={styles.heroEyebrow}>
               <span className={styles.kickerDash} />
-              AI-first software &amp; app development company &middot; India
+              AI-first software &amp; app development &middot; Panchkula,
+              Chandigarh Tricity
               {/* keeps the H1 readable as one sentence for search engines and screen readers */}
               <span className={styles.srOnly}>: </span>
             </span>

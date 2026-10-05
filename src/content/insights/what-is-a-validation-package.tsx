@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -20,6 +25,7 @@ export const whatIsAValidationPackage: Post = {
   },
   cover: "vmodel",
   published: "2026-08-18",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "validation package",
@@ -315,8 +321,10 @@ export const whatIsAValidationPackage: Post = {
             the full set.
           </p>
           <p>
-            FDA’s Computer Software Assurance guidance and the GAMP 5 second
-            edition both encourage this: rigorous scripted testing where failure
+            FDA’s{" "}
+            <Source href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-management-system-software">Computer Software Assurance guidance</Source> and
+            the <Source href="https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition">GAMP 5 second edition</Source> both encourage
+            this: rigorous scripted testing where failure
             could harm patients or product, lighter unscripted testing and lean
             records elsewhere. Our article on{" "}
             <PostLink slug="csv-vs-csa-computer-software-assurance">

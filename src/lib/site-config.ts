@@ -70,17 +70,29 @@ export const siteConfig = {
   // OWNER: fill — public Google Business Profile / Maps link (used as hasMap in schema).
   googleBusinessUrl: "",
   /** cities we actively serve; used in structured data and local pages */
-  // CONFIRM: Ambala and Shimla added for the planned location pages.
+  // Tricity + periphery only. Ambala and Shimla were removed (never owner-confirmed; their pages
+  // are noindexed until there is a real local client or project there). OWNER: add a city back
+  // only once you actually serve it.
   areaServed: [
     "Panchkula",
     "Mohali",
     "Chandigarh",
     "Zirakpur",
     "Kharar",
-    "Ambala",
-    "Shimla",
     "India",
   ],
 };
 
 export const socialLinks = social.filter((link) => link.href);
+
+/**
+ * The one NAP address string used on the site (footer, contact section, llms.txt), e.g.
+ * "Street, Panchkula, Haryana 134109, India". Empty parts are left out, no stray separators.
+ */
+export function napAddressLine() {
+  const { street, locality, region, postalCode } = siteConfig.address;
+  const cityLine = [locality, region].filter(Boolean).join(", ");
+  return [street, [cityLine, postalCode].filter(Boolean).join(" "), "India"]
+    .filter(Boolean)
+    .join(", ");
+}

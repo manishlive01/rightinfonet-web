@@ -27,6 +27,13 @@ export default function AuthorBox({ author }: { author: Author }) {
           )}
         </p>
         {author.bio && <p className={styles.authorBio}>{author.bio}</p>}
+        {author.credentials && author.credentials.length > 0 && (
+          <ul className={styles.authorBio} aria-label="Experience">
+            {author.credentials.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
+          </ul>
+        )}
         {author.linkedin && (
           <a href={author.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn profile

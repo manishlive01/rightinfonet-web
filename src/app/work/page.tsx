@@ -13,9 +13,9 @@ import CaseStudyProof from "@/components/trust/CaseStudyProof";
 
 export const metadata: Metadata = pageMetadata({
   path: "/work",
-  title: "Work — Web, Mobile & AI Projects We’ve Shipped",
+  title: "Work — Web, Mobile & AI Software We Build",
   description:
-    "Selected Bright Infonet projects: pharmacovigilance and LIMS platforms, a clinic booking app and an AI operations agent — built for regulated, real-world use.",
+    "Selected Bright Infonet projects and sample builds: pharmacovigilance and LIMS platforms, a clinic booking app and an AI operations agent for real-world use.",
 });
 
 export default function WorkPage() {
@@ -44,13 +44,13 @@ export default function WorkPage() {
                 id="work-page-title"
                 className={`${styles.h1} ${styles.serif}`}
               >
-                Software we&rsquo;ve{" "}
-                <span className={styles.accentItalic}>put live.</span>
+                Software we <span className={styles.accentItalic}>build.</span>
               </Reveal>
             </div>
             <Reveal as="p" className={styles.sectionLead} delay={0.2}>
-              Platforms for pharma, labs, clinics and ops teams &mdash; software
-              that has to survive an audit, not just a demo.
+              Selected projects and sample builds for pharma, labs, clinics and
+              ops teams &mdash; software that has to survive an audit, not just
+              a demo.
             </Reveal>
           </div>
 

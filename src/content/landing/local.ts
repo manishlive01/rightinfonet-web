@@ -22,13 +22,14 @@ export const LOCAL_PAGES: Landing[] = [
       "Android app development Panchkula",
       "iOS app development Panchkula",
     ],
-    lead: "iOS and Android apps for clinics, schools, retailers, service businesses and startups in Panchkula — designed, built and launched by one senior team.",
+    lead: "iOS and Android apps for clinics, schools, retailers, manufacturers and startups in Panchkula — designed, built and launched by one senior team based in the city.",
+    updated: "2026-10-04",
     answer:
-      "Bright Infonet builds mobile apps for Panchkula businesses with Flutter, so one codebase runs on both iOS and Android. One senior team handles design, backend, testing and the App Store and Play Store launch, and you try a working build on your own phone every Friday.",
+      "Bright Infonet is a mobile app development company based in Panchkula, so meetings, workshops and app testing with your customers can happen in person. We build with Flutter, one codebase for iOS and Android, and one senior team handles design, backend, store launch and support.",
     about: [
-      "Most apps we build for local businesses are booking, ordering, loyalty, field-team or customer-portal apps. They need to be simple for customers, reliable on patchy mobile networks and easy for your staff to manage from an admin panel.",
-      "We start with a short discovery to agree the first release, then work in two-week sprints with a live demo every Friday and a short written update. You own the code, the store accounts and the cloud from day one.",
-      "Because we work across the Tricity, in-person workshops, user testing with your own customers and quick reviews are easy to arrange. The rest of the work runs in shared tools you can see.",
+      "Panchkula is our home base, and its business mix shapes the apps we are asked for. The sectors along the Chandigarh border are full of clinics, coaching centres, salons and shops that need booking, ordering and loyalty apps. The units in Industrial Area Phase I and Phase II need field-sales, dispatch, inventory and service-visit apps that keep working on a factory floor with weak signal.",
+      "Being in the same city changes how a project runs. Discovery can be a half-day workshop at your clinic, shop or unit rather than a video call, we can watch your staff use a prototype on their own phones, and the first build can be tested with your real customers before it goes to the stores. Teams in Mansa Devi Complex, Pinjore, Kalka or Zirakpur are a short drive away.",
+      "The rest of the work runs in shared tools you can see: two-week sprints, a live demo every Friday and a short written update. You own the code, the App Store and Play Store accounts and the cloud from day one.",
     ],
     facts: [
       { k: "Platforms", v: "iOS + Android" },
@@ -44,28 +45,28 @@ export const LOCAL_PAGES: Landing[] = [
         accent: "actually use.",
         cards: [
           {
-            t: "Booking & appointments",
-            d: "Clinics, salons, coaching centres and service businesses — slots, reminders, payments and a staff dashboard.",
+            t: "Clinics & diagnostic centres",
+            d: "Appointment booking, reminders, reports on the phone and a front-desk dashboard for clinics across the Panchkula sectors.",
           },
           {
-            t: "Ordering & delivery",
-            d: "Restaurants, stores and distributors — catalogue, cart, UPI payments, order tracking and WhatsApp updates.",
+            t: "Industrial Area units",
+            d: "Dispatch, inventory, machine-service and field-sales apps for manufacturers in Industrial Area Phase I and II, built to work offline on the shop floor.",
           },
           {
-            t: "Field & sales teams",
-            d: "Visits, orders, photos and reports that keep working offline and sync when the network returns.",
+            t: "Shops & restaurants",
+            d: "Catalogue, cart, UPI payments, order tracking and WhatsApp updates for retail and food businesses in the market sectors.",
           },
           {
-            t: "Customer portals",
-            d: "Invoices, service requests, documents and support in one branded app.",
+            t: "Schools & coaching centres",
+            d: "Attendance, fees, homework, notices and parent communication in one app.",
           },
           {
-            t: "Schools & coaching",
-            d: "Attendance, fees, homework, notices and parent communication.",
+            t: "Distributors toward Pinjore & Kalka",
+            d: "Route plans, order booking and payment collection for sales teams covering Panchkula, Pinjore, Kalka and Zirakpur.",
           },
           {
             t: "Startup MVPs",
-            d: "A focused first release to test the idea with real users, built so it can grow without a rewrite.",
+            d: "A focused first release, tested face to face with real users in the Tricity before launch, built so it can grow without a rewrite.",
           },
         ],
       },
@@ -122,22 +123,30 @@ export const LOCAL_PAGES: Landing[] = [
         a: "Yes. We use Flutter, so one codebase runs on iOS and Android, with native modules where a feature needs them.",
       },
       {
-        q: "Can we meet in person in Panchkula?",
-        a: "Yes. We work with businesses across Panchkula, Mohali and Chandigarh and are happy to run discovery workshops and reviews in person.",
+        q: "Are you based in Panchkula?",
+        a: "Yes. Bright Infonet is based in Panchkula, Haryana, so discovery workshops, design reviews and app testing sessions can be held in person, at your premises or ours.",
+      },
+      {
+        q: "Can you visit our unit in the Industrial Area to plan a field or dispatch app?",
+        a: "Yes. For apps used on a shop floor or by field staff we prefer to see the work first. A visit to your unit in Industrial Area Phase I or II is usually part of discovery.",
+      },
+      {
+        q: "Do you build apps for businesses in Pinjore, Kalka and Zirakpur?",
+        a: "Yes. They are a short drive from Panchkula, so in-person meetings work the same way, and the rest of the project runs in shared tools with a live demo every Friday.",
       },
       {
         q: "Who owns the app and the source code?",
         a: "You do. You get repository access from the start, and the app is published under your own App Store and Play Store accounts.",
-      },
-      {
-        q: "Do you provide support after launch?",
-        a: "Yes. We offer support plans for OS updates, fixes and new features, or hand over to your in-house team with documentation.",
       },
     ],
     related: [
       {
         href: "/services/mobile-apps",
         label: "Mobile app development service",
+      },
+      {
+        href: "/web-development-company-panchkula",
+        label: "Web development in Panchkula",
       },
       {
         href: "/mobile-app-development-chandigarh",
@@ -497,13 +506,14 @@ export const LOCAL_PAGES: Landing[] = [
       "SEO friendly website Panchkula",
       "web application development Panchkula",
     ],
-    lead: "Websites, online stores and web apps that load quickly, show up in search and let your team update content without calling a developer.",
+    lead: "Websites, online stores and web apps for Panchkula businesses, from a web team based in the city: fast on a phone, found in local search, easy for your staff to update.",
+    updated: "2026-10-04",
     answer:
-      "Bright Infonet builds websites, online stores and web applications for Panchkula businesses. Sites are designed for your customers, built on modern frameworks such as Next.js, load quickly on mobile, include technical SEO from the first release and come with an easy content editor, so your team can update pages without a developer.",
+      "Bright Infonet is a web development company based in Panchkula. We build business websites, online stores and web apps on Next.js that load fast on mobile, carry technical SEO for local search from launch and include an easy editor, and we can plan and review the site with you in person.",
     about: [
-      "A website for a Panchkula clinic, school, showroom or consultancy has a simple job: help people nearby find you, trust you and get in touch. Speed on a phone, clear service pages and a working enquiry or booking form matter more than animation.",
-      "We plan the page structure around what people actually search for, write clean markup with structured data, and connect Google Search Console and analytics so you can see what brings enquiries.",
-      "When a site needs to do more — sell products, take bookings, run a member area or connect to your billing — we build it as a proper web app on the same foundation, so you do not have to start again later.",
+      "Most Panchkula searches are local: a clinic in a nearby sector, a coaching centre, a showroom on the main road, a supplier in the Industrial Area. A site for those businesses has to answer three questions fast on a phone: what you do, where you are in Panchkula and how to reach you. We plan pages around the services and sectors people actually search for, with your address and phone shown exactly as on your Google Business Profile.",
+      "Manufacturers and traders in Industrial Area Phase I and Phase II usually need more than a brochure: a product catalogue with specifications, dealer enquiry forms, downloadable data sheets, and sometimes a dealer or distributor portal. We build those as a web app on the same foundation as the site, so it can grow without a rebuild.",
+      "Because we are in Panchkula, the content workshop, photo walk-through and launch training can happen at your premises. After launch your team edits pages itself, and Search Console and analytics show which pages bring enquiries.",
     ],
     facts: [
       { k: "Stack", v: "Next.js · Node · PostgreSQL" },
@@ -519,12 +529,12 @@ export const LOCAL_PAGES: Landing[] = [
         accent: "to a full web app.",
         cards: [
           {
-            t: "Business websites",
-            d: "Service pages, team, reviews, location and enquiry forms that route straight to your inbox or WhatsApp.",
+            t: "Sites for sector businesses",
+            d: "Clinics, schools, coaching centres and consultancies across the Panchkula sectors: service pages, location, enquiry forms that reach your inbox or WhatsApp.",
           },
           {
-            t: "Content-managed sites",
-            d: "A friendly CMS so staff can edit pages, publish news and swap images without touching code.",
+            t: "Industrial Area catalogues",
+            d: "Product and specification pages, data-sheet downloads and dealer enquiry forms for manufacturers in Industrial Area Phase I and II.",
           },
           {
             t: "Online stores",
@@ -535,8 +545,8 @@ export const LOCAL_PAGES: Landing[] = [
             d: "Appointment slots, class or event registration and follow-up reminders for service businesses.",
           },
           {
-            t: "Web apps & portals",
-            d: "Customer or dealer portals, member areas and internal tools that grow out of your website.",
+            t: "Dealer & customer portals",
+            d: "Order status, price lists, documents and service requests for dealers across Panchkula, Pinjore, Kalka and beyond.",
           },
           {
             t: "Redesigns & migrations",
@@ -593,16 +603,20 @@ export const LOCAL_PAGES: Landing[] = [
         a: "Both can work. We often build on Next.js with a headless CMS for speed and security, but if WordPress suits your team and needs, we will say so.",
       },
       {
+        q: "Are you a Panchkula-based web company?",
+        a: "Yes. Bright Infonet is based in Panchkula, Haryana. Content workshops, reviews and launch training can be held in person at your premises or ours.",
+      },
+      {
+        q: "Will our website show up when people in Panchkula search for us?",
+        a: "No one can honestly guarantee rankings. We build the local foundations: fast pages, one clear page per service, your sector and address shown exactly as on your Google Business Profile, and LocalBusiness markup.",
+      },
+      {
+        q: "We are a manufacturer in the Industrial Area. Can you build a product catalogue with dealer enquiries?",
+        a: "Yes. We build specification pages, data-sheet downloads and dealer enquiry forms, and can add a dealer portal with price lists and order status later on the same codebase.",
+      },
+      {
         q: "Can we update the website ourselves?",
         a: "Yes. Every site comes with a content editor and a short training session, so your team can change text, images and posts on its own.",
-      },
-      {
-        q: "Will our website rank on Google?",
-        a: "No one can honestly guarantee rankings. We build the technical foundations — speed, structure, markup and local pages — and advise on content, which is what search engines reward over time.",
-      },
-      {
-        q: "Can you build an online store with UPI payments?",
-        a: "Yes. We integrate Indian payment gateways for UPI, cards and net banking, with GST-ready invoices and order notifications.",
       },
       {
         q: "Who owns the domain, hosting and code?",
@@ -628,8 +642,8 @@ export const LOCAL_PAGES: Landing[] = [
         label: "Website cost for small businesses",
       },
       {
-        href: "/web-development-company-shimla",
-        label: "Web development in Shimla",
+        href: "/app-development-company-zirakpur",
+        label: "App development in Zirakpur",
       },
     ],
   },
@@ -1586,6 +1600,8 @@ export const LOCAL_PAGES: Landing[] = [
   {
     path: "/software-development-company-kharar",
     kind: "local",
+    // thin local page (no real local client/content yet): noindex,follow; remove to re-index
+    noindex: true,
     city: "Kharar",
     serviceType: "Custom software development",
     crumb: "Software company · Kharar",
@@ -1742,6 +1758,8 @@ export const LOCAL_PAGES: Landing[] = [
   {
     path: "/software-development-company-ambala",
     kind: "local",
+    // thin local page (no real local client/content yet): noindex,follow; remove to re-index
+    noindex: true,
     city: "Ambala",
     serviceType: "Custom software development",
     crumb: "Software company · Ambala",
@@ -1901,6 +1919,8 @@ export const LOCAL_PAGES: Landing[] = [
   {
     path: "/web-development-company-shimla",
     kind: "local",
+    // thin local page (no real local client/content yet): noindex,follow; remove to re-index
+    noindex: true,
     city: "Shimla",
     serviceType: "Website development",
     crumb: "Web development · Shimla",

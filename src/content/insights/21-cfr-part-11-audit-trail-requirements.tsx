@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -20,6 +25,7 @@ export const part11AuditTrailRequirements: Post = {
   },
   cover: "audit",
   published: "2026-07-21",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "21 CFR Part 11 audit trail",
@@ -63,8 +69,10 @@ export const part11AuditTrailRequirements: Post = {
       body: (
         <>
           <p>
-            Part 11 is short on detail. Section 11.10(e) gives four requirements
-            for closed systems:
+            The{" "}
+            <Source href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11">text of 21 CFR Part 11</Source> is
+            short on detail. Section 11.10(e) gives four requirements for closed
+            systems:
           </p>
           <ul>
             <li>
@@ -86,8 +94,9 @@ export const part11AuditTrailRequirements: Post = {
             </li>
           </ul>
           <p>
-            FDA’s 2003 guidance on the scope and application of Part 11 said the
-            agency would apply enforcement discretion to some requirements,
+            FDA’s 2003{" "}
+            <Source href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application">guidance on the scope and application of Part 11</Source>{" "}
+            said the agency would apply enforcement discretion to some requirements,
             including audit trails, while expecting companies to meet their
             predicate rules and use risk assessment. That is not a licence to
             skip them. FDA’s 2018 guidance on data integrity and CGMP describes

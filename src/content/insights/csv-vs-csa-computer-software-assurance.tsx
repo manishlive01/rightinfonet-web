@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import type { Post } from "./types";
 
 export const csvVsCsa: Post = {
@@ -14,6 +19,7 @@ export const csvVsCsa: Post = {
   pillar: "regulated",
   cover: "audit",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "CSV vs CSA",
@@ -46,7 +52,16 @@ export const csvVsCsa: Post = {
         <em>
           Computer Software Assurance for Production and Quality System Software
         </em>
-        , in September 2025, after a draft in 2022. This article explains what
+        , in September 2025, after a draft in 2022. In February 2026 it
+        re-issued the guidance as{" "}
+        <Source href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-management-system-software">
+          <em>
+            Computer Software Assurance for Production and Quality Management
+            System Software
+          </em>
+        </Source>
+        , aligned with the new Quality Management System Regulation, which
+        supersedes the September 2025 version. This article explains what
         CSA changes in practice, what stays the same, and how it relates to GAMP
         5 and Part 11.
       </p>
@@ -258,7 +273,9 @@ export const csvVsCsa: Post = {
         <>
           <h3>GAMP 5 second edition</h3>
           <p>
-            ISPE’s GAMP 5 second edition, published in 2022, puts critical
+            ISPE’s{" "}
+            <Source href="https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition">GAMP 5 second edition</Source>, published
+            in 2022, puts critical
             thinking, risk-based effort, supplier leverage and agile delivery at
             the centre — the same direction as CSA. If you already follow GAMP 5
             well, adopting CSA thinking is an evolution rather than a new
@@ -349,7 +366,7 @@ export const csvVsCsa: Post = {
     },
     {
       q: "Is the FDA CSA guidance final?",
-      a: "Yes. FDA issued the final guidance, Computer Software Assurance for Production and Quality System Software, in September 2025, following a draft published in 2022.",
+      a: "Yes. FDA finalised the guidance in September 2025, following a 2022 draft, and in February 2026 re-issued it as Computer Software Assurance for Production and Quality Management System Software, which supersedes the September 2025 version.",
     },
     {
       q: "Does CSA apply to pharmaceutical companies?",

@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -35,7 +40,10 @@ export const part11Checklist: Post = {
   intro: (
     <>
       <p>
-        <strong>21 CFR Part 11</strong> applies to a LIMS or other lab system
+        <strong>
+          <Source href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11">21 CFR Part 11</Source>
+        </strong>{" "}
+        applies to a LIMS or other lab system
         when it holds electronic records that FDA rules require or that are
         submitted to the FDA. The software then needs validation, secure audit
         trails, unique logins, role-based access, operational and authority
@@ -72,10 +80,12 @@ export const part11Checklist: Post = {
           </p>
           <p>
             In 2003 the FDA published guidance,{" "}
-            <em>
-              Part 11, Electronic Records; Electronic Signatures — Scope and
-              Application
-            </em>
+            <Source href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/part-11-electronic-records-electronic-signatures-scope-and-application">
+              <em>
+                Part 11, Electronic Records; Electronic Signatures — Scope and
+                Application
+              </em>
+            </Source>
             , which narrowed how it interprets the rule and took a risk-based
             approach to some requirements, such as validation and audit trails.
             That did not make those controls optional: predicate rules still

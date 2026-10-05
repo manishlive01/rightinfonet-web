@@ -948,7 +948,7 @@ export const SERVICE_PAGES: Landing[] = [
         href: "/insights/21-cfr-part-11-compliance-checklist-lims",
         label: "Part 11 checklist for LIMS",
       },
-      { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
+      { href: "/insights/lims-urs-template#download", label: "Free LIMS URS template" },
       { href: "/work", label: "Our LIMS and PVgenix" },
     ],
   },
@@ -1258,7 +1258,7 @@ export const SERVICE_PAGES: Landing[] = [
         href: "/academy/software-validation-gamp5-course",
         label: "Software Validation course",
       },
-      { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
+      { href: "/insights/lims-urs-template#download", label: "Free LIMS URS template" },
     ],
   },
   {

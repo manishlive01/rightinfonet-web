@@ -128,6 +128,8 @@ export const WORK = [
     n: "03",
     name: "Clinic booking",
     kind: "Mobile app · Healthcare",
+    /** sample build, not client work: WorkCard shows a visible label */
+    sample: true,
     headline:
       "Booking a doctor in three taps, with reminders patients actually see.",
     description:
@@ -144,6 +146,7 @@ export const WORK = [
     n: "04",
     name: "Ops agent",
     kind: "AI agents · Automation",
+    sample: true,
     headline: "An AI agent that turns client emails into done tasks.",
     description:
       "Reads the inbox, updates the calendar and CRM, and tells the team on Slack — and asks a human before anything risky.",

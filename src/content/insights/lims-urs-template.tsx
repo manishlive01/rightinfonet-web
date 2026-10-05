@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -19,7 +24,22 @@ export const limsUrsTemplate: Post = {
   },
   cover: "vmodel",
   published: "2026-07-31",
+  updated: "2026-10-04",
   readingMinutes: 7,
+  download: {
+    href: "/downloads/lims-urs-template.csv",
+    label: "Download the LIMS URS template (CSV)",
+    form: "urs_template",
+    name: "LIMS URS template",
+    encodingFormat: "text/csv",
+    inside: [
+      "Example requirements for scope, sample management, specifications, testing and results, review and approval, interfaces, non-functional needs, data migration, archiving and documentation.",
+      "Data-integrity requirements for unique logins, role-based access, audit trails, electronic signatures, server time stamps and readable exports.",
+      "Eight columns: ID, Section, Requirement, Type (GxP or Business), Priority, Regulatory reference, Verification method and Notes.",
+      "Regulatory references to 21 CFR Part 11 clauses and EU GMP Annex 11 sections where a requirement maps to one.",
+      "Plain CSV that opens in Excel, Google Sheets or LibreOffice, ready to import into a requirements tool.",
+    ],
+  },
   keywords: [
     "LIMS URS template",
     "user requirements specification LIMS",
@@ -48,8 +68,8 @@ export const limsUrsTemplate: Post = {
         A weak URS is the most common root cause of a LIMS project that runs
         late or fails validation. This guide explains how to structure one, how
         to write requirements that hold up in testing, and offers a{" "}
-        <Link href="/resources/lims-urs-template">free LIMS URS template</Link>{" "}
-        as a spreadsheet you can adapt.
+        <a href="#download">free LIMS URS template</a> as a spreadsheet you can
+        adapt.
       </p>
     </>
   ),
@@ -176,8 +196,9 @@ export const limsUrsTemplate: Post = {
               nice to have.
             </li>
             <li>
-              <strong>Regulatory reference</strong> — such as 21 CFR 11.10(e) or
-              Annex 11 section 9, where one applies.
+              <strong>Regulatory reference</strong> — such as{" "}
+              <Source href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11">21 CFR 11.10(e)</Source> or{" "}
+              <Source href="https://health.ec.europa.eu/system/files/2016-11/annex11_01-2011_en_0.pdf">Annex 11 section 9</Source>, where one applies.
             </li>
             <li>
               <strong>Verification method</strong> — test, inspection of a
@@ -337,7 +358,10 @@ export const limsUrsTemplate: Post = {
       body: (
         <>
           <ol>
-            <li>Download the spreadsheet from the template page.</li>
+            <li>
+              Download the spreadsheet from the{" "}
+              <a href="#download">download section</a> above.
+            </li>
             <li>Delete the example rows that do not apply to your lab.</li>
             <li>Add your own process, sample types, methods and interfaces.</li>
             <li>Mark each row GxP or business, and set its priority.</li>
@@ -378,6 +402,14 @@ export const limsUrsTemplate: Post = {
     {
       q: "Is the free URS template ready to use as it is?",
       a: "No. It is a generic starting point with example rows. Adapt it to your process, remove what does not apply, and have your QA review and approve the final version.",
+    },
+    {
+      q: "Is the template free?",
+      a: "Yes. The CSV file is free to download and adapt for your own laboratory.",
+    },
+    {
+      q: "Which tools can open the file?",
+      a: "Any spreadsheet tool that opens CSV files, such as Microsoft Excel, Google Sheets or LibreOffice Calc, and most requirements-management tools can import it.",
     },
     {
       q: "Should GxP and business requirements be in the same URS?",

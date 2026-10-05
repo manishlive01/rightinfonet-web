@@ -61,6 +61,11 @@ export default function WorkCard({
         >
           {item.name}
         </Heading>
+        {"sample" in item && item.sample && (
+          <p className={`${styles.index} ${home.mono}`}>
+            Sample build &middot; not client work
+          </p>
+        )}
         <p className={styles.headline}>{item.headline}</p>
         <p className={styles.desc}>{item.description}</p>
 

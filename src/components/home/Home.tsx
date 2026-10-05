@@ -14,6 +14,7 @@ import Tone from "./Tone";
 import SectionFx from "./SectionFx";
 import Testimonials from "../trust/Testimonials";
 import ClientLogos from "../trust/ClientLogos";
+import { contactEndpoint } from "@/lib/contact-endpoint";
 
 export default function Home() {
   return (
@@ -50,7 +51,8 @@ export default function Home() {
         </SectionFx>
         <Tone kind="ember">
           <SectionFx kind="embers">
-            <Contact />
+            {/* real submission via /api/contact only when a form backend is configured */}
+            <Contact formEndpoint={Boolean(contactEndpoint())} />
           </SectionFx>
         </Tone>
       </main>

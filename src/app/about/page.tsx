@@ -12,7 +12,11 @@ import styles from "@/components/pages/Pages.module.css";
 import { VALUES } from "@/components/pages/content";
 import { breadcrumbJsonLd, pageMetadata } from "@/components/pages/seo";
 import { siteConfig } from "@/lib/site-config";
-import { FOUNDER } from "@/content/authors";
+import { FOUNDER, getTeam } from "@/content/authors";
+import TeamSection, { teamJsonLd } from "@/components/pages/TeamSection";
+
+// Real people only (src/content/authors.ts); empty = no team section and no Person nodes.
+const team = getTeam();
 
 const description =
   "Bright Infonet is an AI-first software company in India: one senior team that designs, builds and validates web platforms, mobile apps and AI agents.";
@@ -29,11 +33,16 @@ const jsonLd = {
     breadcrumbJsonLd("About", "/about"),
     {
       "@type": "AboutPage",
+      "@id": `${siteConfig.url}/about#webpage`,
       url: `${siteConfig.url}/about`,
       name: `About ${siteConfig.name}`,
       description,
+      inLanguage: "en-IN",
+      isPartOf: { "@id": `${siteConfig.url}/#website` },
       about: { "@id": `${siteConfig.url}/#organization` },
+      mainEntity: { "@id": `${siteConfig.url}/#organization` },
     },
+    ...teamJsonLd(team),
   ],
 };
 
@@ -91,6 +100,8 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+
+      <TeamSection team={team} />
 
       <AcademyTeaser kicker="Academy" />
     </PageLayout>

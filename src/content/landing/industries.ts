@@ -314,7 +314,7 @@ export const INDUSTRY_PAGES: Landing[] = [
         href: "/insights/lims-software-development-cost-india",
         label: "LIMS development cost in India",
       },
-      { href: "/resources/lims-urs-template", label: "Free LIMS URS template" },
+      { href: "/insights/lims-urs-template#download", label: "Free LIMS URS template" },
       { href: "/work", label: "Our LIMS and other work" },
     ],
   },

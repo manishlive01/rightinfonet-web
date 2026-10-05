@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -21,6 +26,7 @@ export const gxpSoftwareValidationGuide: Post = {
   },
   cover: "vmodel",
   published: "2026-07-17",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "GxP software validation",
@@ -149,9 +155,11 @@ export const gxpSoftwareValidationGuide: Post = {
             ]}
           />
           <p>
-            If you export to the US, Part 11 applies to the records your
+            If you export to the US,{" "}
+            <Source href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11">21 CFR Part 11</Source> applies to the records your
             predicate rules require. If you supply the EU or work with PIC/S
-            inspectorates, Annex 11 is the reference; our{" "}
+            inspectorates, Annex 11 in{" "}
+            <Source href="https://health.ec.europa.eu/medicinal-products/eudralex/eudralex-volume-4_en">EudraLex Volume 4</Source> is the reference; our{" "}
             <PostLink slug="eu-annex-11-computerised-systems">
               EU Annex 11 guide
             </PostLink>{" "}
@@ -317,7 +325,8 @@ export const gxpSoftwareValidationGuide: Post = {
         <>
           <p>
             Traditional computer system validation often meant scripted tests
-            and screenshots for every screen. GAMP 5’s second edition and FDA’s
+            and screenshots for every screen.{" "}
+            <Source href="https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition">GAMP 5’s second edition</Source> and FDA’s
             Computer Software Assurance guidance both push the other way: think
             critically, test hardest where failure could harm patients or
             product, and use lighter, unscripted testing where risk is low. The

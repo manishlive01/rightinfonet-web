@@ -43,4 +43,19 @@ export type Post = {
   sections: PostSection[];
   /** rendered after the article and emitted as FAQPage structured data; plain-text answers */
   faqs?: Faq[];
+  /** optional free download rendered as a #download section (+ DigitalDocument schema) */
+  download?: {
+    /** file under /public, e.g. "/downloads/lims-urs-template.csv" */
+    href: string;
+    /** button label */
+    label: string;
+    /** GA4 `form` parameter */
+    form: string;
+    /** DigitalDocument name */
+    name: string;
+    /** MIME type, e.g. "text/csv" */
+    encodingFormat: string;
+    /** what the file contains (bullet list) */
+    inside: string[];
+  };
 };

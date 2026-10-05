@@ -7,13 +7,13 @@ import {
 import {
   ACADEMY_PAGES,
   ALL_LANDING_PAGES,
+  INDEXABLE_LOCAL_PAGES,
   INDUSTRY_PAGES,
-  LOCAL_PAGES,
   SERVICE_PAGES,
   type Landing,
 } from "@/content/landing";
 import { PRICING } from "@/content/trust";
-import { siteConfig } from "@/lib/site-config";
+import { napAddressLine, siteConfig } from "@/lib/site-config";
 
 // A plain-text summary for AI assistants and crawlers (https://llmstxt.org). Prerendered at build
 // time and regenerated hourly so scheduled posts are listed from their publish day.
@@ -25,18 +25,9 @@ const line = (p: Landing) =>
 
 /** Name, address, phone, email and WhatsApp, leaving out every empty field (no stray separators). */
 function napLine() {
-  const { street, locality, region, postalCode } = siteConfig.address;
-  const cityLine = [locality, region].filter(Boolean).join(", ");
-  const address = [
-    street,
-    [cityLine, postalCode].filter(Boolean).join(" "),
-    "India",
-  ]
-    .filter(Boolean)
-    .join(", ");
   return [
     siteConfig.name,
-    address,
+    napAddressLine(),
     siteConfig.phone,
     siteConfig.email,
     siteConfig.whatsapp ? `WhatsApp https://wa.me/${siteConfig.whatsapp}` : "",
@@ -96,14 +87,16 @@ ${SERVICE_PAGES.map(line).join("\n")}
 ${INDUSTRY_PAGES.map(line).join("\n")}
 
 ## Local and India-wide services
-${LOCAL_PAGES.map(line).join("\n")}
+${INDEXABLE_LOCAL_PAGES.map(line).join("\n")}
 
 ## Academy
-${ACADEMY_PAGES.map(line).join("\n")}
+${ACADEMY_PAGES.filter((p) => !p.noindex)
+  .map(line)
+  .join("\n")}
 
 ## Tools & resources
 - [App development cost calculator](${siteConfig.url}/tools/app-development-cost-calculator): a free calculator that returns an indicative cost range and typical timeline for a mobile app, website or MVP in India, using the ranges published in the cost guides (indicative; get a written quote)
-- [Free LIMS URS template](${siteConfig.url}/resources/lims-urs-template): a free CSV template of example LIMS user requirements with ID, GxP/business type, priority, Part 11 and Annex 11 references and verification method (file: ${siteConfig.url}/downloads/lims-urs-template.csv)
+- [Free LIMS URS template](${siteConfig.url}/insights/lims-urs-template): a free CSV template of example LIMS user requirements with ID, GxP/business type, priority, Part 11 and Annex 11 references and verification method (file: ${siteConfig.url}/downloads/lims-urs-template.csv)
 
 ## Guides
 ${guidesByPillar()}

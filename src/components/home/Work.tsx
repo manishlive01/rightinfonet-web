@@ -24,8 +24,21 @@ const easeOut = (t: number) => 1 - Math.pow(1 - t, 4);
 
 function Arrow({ flip }: { flip?: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style={flip ? { rotate: "180deg" } : undefined}>
-      <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      aria-hidden="true"
+      style={flip ? { rotate: "180deg" } : undefined}
+    >
+      <path
+        d="M4 12h15M13 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -35,9 +48,23 @@ export default function Work() {
   const trackRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
   // snap positions (scrollLeft for each slide) and the distance between two slides
-  const layout = useRef({ pos: [] as number[], raw: [] as number[], unit: 1, max: 0 });
+  const layout = useRef({
+    pos: [] as number[],
+    raw: [] as number[],
+    unit: 1,
+    max: 0,
+  });
   const anim = useRef(0);
-  const drag = useRef({ id: -1, x: 0, left: 0, moved: false, lastX: 0, lastT: 0, v: 0, suppress: false });
+  const drag = useRef({
+    id: -1,
+    x: 0,
+    left: 0,
+    moved: false,
+    lastX: 0,
+    lastT: 0,
+    v: 0,
+    suppress: false,
+  });
   const [index, setIndex] = useState(0);
   const [edges, setEdges] = useState({ start: true, end: false });
 
@@ -80,7 +107,10 @@ export default function Work() {
     // scroll-padding instead fails: it computes to a max()/calc() string, not pixels.
     const first = (el.children[0] as HTMLElement | undefined)?.offsetLeft ?? 0;
     const max = el.scrollWidth - el.clientWidth;
-    const raw = Array.from(el.children, (c) => (c as HTMLElement).offsetLeft - first);
+    const raw = Array.from(
+      el.children,
+      (c) => (c as HTMLElement).offsetLeft - first,
+    );
     layout.current = {
       raw,
       pos: raw.map((p) => Math.max(0, Math.min(max, p))),
@@ -236,12 +266,16 @@ export default function Work() {
   const shown = Math.min(index, total - 1) + 1;
 
   return (
-    <section id="work" className={`${home.section} ${styles.section}`} aria-labelledby="work-title">
+    <section
+      id="work"
+      className={`${home.section} ${styles.section}`}
+      aria-labelledby="work-title"
+    >
       <div className={styles.inner}>
         <SectionHeading
           kicker="(02) Selected work"
           id="work-title"
-          title={["Software we’ve ", accent("put live.")]}
+          title={["Software we ", accent("build.")]}
           lead="Platforms for pharma, labs, clinics and ops teams — software that has to survive an audit, not just a demo."
           style={{ marginBottom: "clamp(36px, 4vw, 56px)" }}
         />
@@ -253,13 +287,18 @@ export default function Work() {
                 {pad2(shown)}
               </span>
             </span>
-            <span className={`${styles.countTotal} ${home.mono}`}>/ {pad2(total)}</span>
+            <span className={`${styles.countTotal} ${home.mono}`}>
+              / {pad2(total)}
+            </span>
           </div>
           <span className={styles.progress} aria-hidden="true">
             <span ref={barRef} className={styles.progressFill} />
           </span>
           <div className={styles.controlsEnd}>
-            <Link href="/work" className={`${home.btnOutline} ${styles.viewAll}`}>
+            <Link
+              href="/work"
+              className={`${home.btnOutline} ${styles.viewAll}`}
+            >
               View all projects <span className={home.btnArrow}>&rarr;</span>
             </Link>
             <button
@@ -311,7 +350,13 @@ export default function Work() {
             role="group"
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${total}`}
-            style={{ "--f": i === 0 ? 1 : 0, "--o": i === 0 ? 0 : 1, "--a": i === 0 ? 1 : 0.3 } as CSSProperties}
+            style={
+              {
+                "--f": i === 0 ? 1 : 0,
+                "--o": i === 0 ? 0 : 1,
+                "--a": i === 0 ? 1 : 0.3,
+              } as CSSProperties
+            }
           >
             <WorkCard item={item} total={total} flip={false} />
           </div>
@@ -337,7 +382,8 @@ export default function Work() {
       <div className={styles.inner}>
         <Reveal className={styles.ctaBar}>
           <span className={`${styles.ctaBarText} ${home.serif}`}>
-            Your product could be <span className={home.accentItalic}>next.</span>
+            Your product could be{" "}
+            <span className={home.accentItalic}>next.</span>
           </span>
           <a href="#contact" className={home.btnOutline}>
             Start a project <span className={home.btnArrow}>&rarr;</span>

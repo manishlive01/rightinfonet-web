@@ -4,58 +4,49 @@ import { getPublishedPosts } from "@/content/insights";
 import { FOUNDER } from "@/content/authors";
 import {
   ACADEMY_PAGES,
+  INDEXABLE_LOCAL_PAGES,
   INDUSTRY_PAGES,
-  LOCAL_PAGES,
   SERVICE_PAGES,
+  type Landing,
 } from "@/content/landing";
+import { LANDING_UPDATED_DEFAULT, PAGE_UPDATED } from "@/content/page-dates";
 
 // Hourly, so a scheduled post enters the sitemap on its publish day (live posts only).
 export const revalidate = 3600;
 
+// lastModified comes from fixed content dates (src/content/page-dates.ts, Landing.updated, post
+// updated/published), never new Date(): with hourly ISR that would report a fresh lastmod every
+// hour for unchanged pages. No priority/changeFrequency: Google ignores both, and uniform values
+// carry no signal.
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getPublishedPosts();
   const postDate = (post: (typeof posts)[number]) =>
     post.updated ?? post.published;
 
-  // No lastModified on static/landing pages: with hourly ISR, new Date() would
-  // report a fresh lastmod every hour for unchanged pages. Only dated content
-  // (posts, and /insights via its newest post) carries a lastmod.
-  const page = (
-    path: string,
-    priority: number,
-    changeFrequency: "weekly" | "monthly",
-  ) => ({
+  const entry = (path: string, date: string) => ({
     url: `${siteConfig.url}${path}`,
-    changeFrequency,
-    priority,
+    lastModified: new Date(date),
   });
+  const page = (path: string) => entry(path, PAGE_UPDATED[path]);
+  const landing = (p: Landing) =>
+    entry(p.path, p.updated ?? LANDING_UPDATED_DEFAULT);
 
   const latestPostDate = posts.map(postDate).sort().at(-1);
 
   return [
-    page("", 1, "weekly"),
-    ...["/services", "/industries", "/process", "/about"].map((p) =>
-      page(p, 0.9, "monthly"),
-    ),
-    ...SERVICE_PAGES.map((p) => page(p.path, 0.9, "monthly")),
-    ...INDUSTRY_PAGES.map((p) => page(p.path, 0.9, "monthly")),
-    ...LOCAL_PAGES.map((p) => page(p.path, 0.9, "monthly")),
-    page("/academy", 0.9, "monthly"),
-    ...ACADEMY_PAGES.map((p) => page(p.path, 0.85, "monthly")),
+    page(""),
+    ...["/services", "/industries", "/process", "/about"].map(page),
+    ...SERVICE_PAGES.map(landing),
+    ...INDUSTRY_PAGES.map(landing),
+    // noindexed thin local pages are left out
+    ...INDEXABLE_LOCAL_PAGES.map(landing),
+    page("/academy"),
+    ...ACADEMY_PAGES.filter((p) => !p.noindex).map(landing),
     // founder profile only once the owner has filled it in (src/content/authors.ts)
-    ...(FOUNDER?.name.trim() ? [page("/about/founder", 0.6, "monthly")] : []),
-    page("/work", 0.8, "monthly"),
-    page("/resources/lims-urs-template", 0.7, "monthly"),
-    page("/tools/app-development-cost-calculator", 0.7, "monthly"),
-    {
-      ...page("/insights", 0.8, "weekly"),
-      ...(latestPostDate ? { lastModified: new Date(latestPostDate) } : {}),
-    },
-    ...posts.map((post) => ({
-      url: `${siteConfig.url}/insights/${post.slug}`,
-      lastModified: new Date(postDate(post)),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
+    ...(FOUNDER?.name.trim() ? [page("/about/founder")] : []),
+    page("/work"),
+    page("/tools/app-development-cost-calculator"),
+    entry("/insights", latestPostDate ?? LANDING_UPDATED_DEFAULT),
+    ...posts.map((post) => entry(`/insights/${post.slug}`, postDate(post))),
   ];
 }

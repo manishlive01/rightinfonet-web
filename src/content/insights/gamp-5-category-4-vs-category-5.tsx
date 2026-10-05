@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import PostLink from "@/components/insights/PostLink";
 import type { Post } from "./types";
 
@@ -20,6 +25,7 @@ export const gamp5Category4VsCategory5: Post = {
   },
   cover: "vmodel",
   published: "2026-07-24",
+  updated: "2026-10-04",
   readingMinutes: 7,
   keywords: [
     "GAMP 5 category 4 vs 5",
@@ -72,7 +78,8 @@ export const gamp5Category4VsCategory5: Post = {
             covers all of them and the V-model behind them.
           </p>
           <p>
-            The second edition of GAMP 5, published in 2022, keeps the
+            The <Source href="https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition">second edition of GAMP 5</Source>, published in
+            2022, keeps the
             categories but stresses that they are a starting point for thinking
             about risk, not a rule that decides the testing on its own.
           </p>

@@ -791,3 +791,12 @@ textarea.input {
     height: 120vw;
   }
 }
+/* ---------- honeypot (bots only): off-screen, not display:none ---------- */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

@@ -20,3 +20,15 @@ export function landingBySlug(pages: Landing[], slug: string) {
 }
 
 export const slugOf = (p: Landing) => p.path.split("/").pop()!;
+
+/** Paths of landing pages marked `noindex` (thin local pages). */
+const NOINDEX_PATHS = new Set(
+  ALL_LANDING_PAGES.filter((p) => p.noindex).map((p) => p.path),
+);
+
+/** false only for a noindexed landing page; any other href (incl. #hash) is indexable. */
+export const isIndexable = (href: string) =>
+  !NOINDEX_PATHS.has(href.split("#")[0].split("?")[0]);
+
+/** Local pages that are indexed (sitemap, llms.txt, footer). */
+export const INDEXABLE_LOCAL_PAGES = LOCAL_PAGES.filter((p) => !p.noindex);

@@ -10,6 +10,7 @@ import PillarNav from "@/components/insights/PillarNav";
 import PostCard from "@/components/insights/PostCard";
 import PostCover from "@/components/insights/PostCover";
 import Toc from "@/components/insights/Toc";
+import LeadCaptureForm from "@/components/LeadCaptureForm";
 import styles from "@/components/insights/Insights.module.css";
 import {
   formatDate,
@@ -18,7 +19,7 @@ import {
   postCta,
   relatedPosts,
 } from "@/content/insights";
-import { getAuthor, isFounder } from "@/content/authors";
+import { getPostAuthor, isFounder } from "@/content/authors";
 import JsonLd from "@/lib/json-ld";
 import { siteConfig } from "@/lib/site-config";
 import {
@@ -46,7 +47,7 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
   const url = `${siteConfig.url}/insights/${post.slug}`;
-  const author = getAuthor(post.author);
+  const author = getPostAuthor(post);
   return {
     title: seoTitle(post.metaTitle),
     description: post.description,
@@ -87,7 +88,7 @@ export default async function InsightPage({
 
   const url = `${siteConfig.url}/insights/${post.slug}`;
   const updated = post.updated ?? post.published;
-  const author = getAuthor(post.author);
+  const author = getPostAuthor(post);
   const cta = postCta(post);
   const jsonLd = {
     "@context": "https://schema.org",
@@ -118,6 +119,9 @@ export default async function InsightPage({
               name: author.name,
               ...(author.role && { jobTitle: author.role }),
               ...(author.linkedin && { sameAs: [author.linkedin] }),
+              ...(author.credentials?.length && {
+                knowsAbout: author.credentials,
+              }),
               ...(isFounder(author) && {
                 url: `${siteConfig.url}/about/founder`,
               }),
@@ -127,6 +131,22 @@ export default async function InsightPage({
         publisher: { "@id": `${siteConfig.url}/#organization` },
         isPartOf: { "@id": `${siteConfig.url}/insights#blog` },
       },
+      ...(post.download
+        ? [
+            {
+              "@type": "DigitalDocument",
+              "@id": `${url}#template`,
+              name: post.download.name,
+              description: post.description,
+              url: `${siteConfig.url}${post.download.href}`,
+              encodingFormat: post.download.encodingFormat,
+              inLanguage: "en-IN",
+              isAccessibleForFree: true,
+              publisher: { "@id": `${siteConfig.url}/#organization` },
+              mainEntityOfPage: url,
+            },
+          ]
+        : []),
       ...(post.faqs?.length ? [faqJsonLd(post.faqs, url)] : []),
       breadcrumbTrailJsonLd([
         { name: "Insights", path: "/insights" },
@@ -190,6 +210,9 @@ export default async function InsightPage({
             <aside className={styles.aside}>
               <Toc
                 items={[
+                  ...(post.download
+                    ? [{ id: "download", title: "Download" }]
+                    : []),
                   ...post.sections.map(({ id, title }) => ({ id, title })),
                   ...(post.faqs?.length ? [{ id: "faq", title: "FAQ" }] : []),
                 ]}
@@ -210,6 +233,22 @@ export default async function InsightPage({
 
               <div className={styles.prose}>
                 {post.intro}
+                {post.download && (
+                  <section id="download" aria-labelledby="download-title">
+                    <h2 id="download-title">Download the template</h2>
+                    <p>What the free file covers:</p>
+                    <ul>
+                      {post.download.inside.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                    <LeadCaptureForm
+                      downloadHref={post.download.href}
+                      downloadLabel={post.download.label}
+                      form={post.download.form}
+                    />
+                  </section>
+                )}
                 {post.sections.map((section) => (
                   <section key={section.id} aria-labelledby={section.id}>
                     <h2 id={section.id}>{section.title}</h2>

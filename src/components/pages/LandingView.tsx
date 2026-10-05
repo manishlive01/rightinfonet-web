@@ -15,6 +15,7 @@ import PricingBlock from "../trust/PricingBlock";
 import ProofSlot from "../trust/ProofSlot";
 import Testimonials from "../trust/Testimonials";
 import { isPostSlugPublished } from "@/content/insights";
+import { isIndexable } from "@/content/landing";
 import type { Landing } from "@/content/landing/types";
 
 /** Renders any keyword landing page (service, local, course or city training page). */
@@ -24,8 +25,10 @@ export default function LandingView({ page }: { page: Landing }) {
   const isAcademy = page.kind === "course" || page.kind === "training";
   const cta =
     page.cta ?? (isAcademy ? "Apply or ask a question" : "Start a project");
-  // Links to blog posts that are still scheduled are dropped until the post goes live.
+  // Links to blog posts that are still scheduled are dropped until the post goes live, and
+  // links to noindexed thin local pages are dropped too.
   const related = page.related.filter((r) => {
+    if (!isIndexable(r.href)) return false;
     const slug = r.href.match(/^\/insights\/([^/?#]+)/)?.[1];
     return !slug || isPostSlugPublished(slug);
   });

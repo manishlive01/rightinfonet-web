@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { Callout, Checklist, DataTable } from "@/components/insights/Prose";
+import {
+  Callout,
+  Checklist,
+  DataTable,
+  Source,
+} from "@/components/insights/Prose";
 import type { Post } from "./types";
 
 export const pharmacovigilanceSoftwareBuildVsBuy: Post = {
@@ -14,6 +19,7 @@ export const pharmacovigilanceSoftwareBuildVsBuy: Post = {
   pillar: "regulated",
   cover: "audit",
   published: "2026-09-28",
+  updated: "2026-10-04",
   readingMinutes: 8,
   keywords: [
     "pharmacovigilance software",
@@ -213,7 +219,8 @@ export const pharmacovigilanceSoftwareBuildVsBuy: Post = {
       body: (
         <>
           <p>
-            ICH E2B(R3) defines the electronic format for individual case safety
+            <Source href="https://www.ich.org/page/e2br3-individual-case-safety-report-icsr-specification-and-related-files">ICH E2B(R3)</Source> defines the electronic format for
+            individual case safety
             reports (ICSRs). Major regulators, including the EMA through
             EudraVigilance, use it, and regional implementation guides add their
             own rules on top of the core standard.

@@ -111,6 +111,16 @@ const sitemapPaths = new Set(
 );
 const prodOrigin = sitemapUrls[0] ? new URL(sitemapUrls[0]).origin : null;
 
+// Phrases from the old site's copy that the owner audit flagged as unverified claims.
+const CLAIM_PATTERNS = [
+  /\b\d{2,3}% (?:client |customer )?satisfaction\b/i,
+  /\b24\/7 support\b/i,
+  /#1 rated|\bno\. ?1 (?:company|agency|institute)\b/i,
+  /\bdominate\b/i,
+  /\bfortified\b/i,
+  /\bnext-gen digital solutions\b/i,
+];
+
 // ---------- page crawl ----------
 const pages = [];
 const internalLinks = new Map(); // path -> Set(sourcePaths)
@@ -390,6 +400,17 @@ for (const u of sitemapUrls.slice(0, maxPages)) {
   page.words = text.split(" ").filter(Boolean).length;
   if (page.words < 300 && path !== "/contact")
     add("WARN", path, `thin content (~${page.words} words in main)`);
+
+  // unverified marketing claims (old-site copy, no proof on the page). Visible <main> text only.
+  for (const re of CLAIM_PATTERNS) {
+    const hit = text.match(re);
+    if (hit)
+      add(
+        "WARN",
+        path,
+        `unverified claim phrase "${hit[0]}" (needs proof or removal)`,
+      );
+  }
 }
 
 // ---------- cross-page checks ----------
@@ -411,10 +432,17 @@ for (const [tp, sources] of internalLinks) {
     continue;
   if (!checked.has(tp)) {
     const r = await get(base + tp, { method: "GET" });
-    checked.set(tp, r.status);
+    const rm = (metaContent(r.body, "name", "robots") || "").toLowerCase();
+    checked.set(tp, { status: r.status, noindex: rm.includes("noindex") });
   }
-  const st = checked.get(tp);
-  if (st >= 400 || st === 0)
+  const { status: st, noindex } = checked.get(tp);
+  if (st === 200 && noindex)
+    add(
+      "WARN",
+      [...sources].slice(0, 3).join(", "),
+      `internal link -> noindex page ${tp} (drop the link or index the page)`,
+    );
+  else if (st >= 400 || st === 0)
     add(
       "ERROR",
       [...sources].slice(0, 3).join(", "),

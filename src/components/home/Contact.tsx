@@ -1,12 +1,18 @@
 "use client";
 
-import { useRef, useState, type CSSProperties, type FormEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type FormEvent,
+} from "react";
 import home from "./Home.module.css";
 import styles from "./Contact.module.css";
 import Reveal from "./Reveal";
 import SplitText from "./motion/SplitText";
 import { CONTACT_BUDGETS, CONTACT_INTERESTS, CONTACT_STEPS } from "./data";
-import { siteConfig } from "@/lib/site-config";
+import { napAddressLine, siteConfig } from "@/lib/site-config";
 import SocialLinks from "./SocialLinks";
 import CalendlyButton from "../CalendlyButton";
 import { trackEvent } from "@/lib/analytics";
@@ -63,11 +69,39 @@ function Field({
   );
 }
 
-export default function Contact() {
+/** idle → sending → sent (via the API or the mail app) | failed */
+type Status = "idle" | "sending" | "sent" | "failed";
+
+const WHATSAPP_HREF = siteConfig.whatsapp
+  ? `https://wa.me/${siteConfig.whatsapp}`
+  : "";
+
+/**
+ * `formEndpoint`: a form backend is configured on the server (decided at build time), so the
+ * form posts to /api/contact. Without one it opens the visitor's mail app (mailto) as before.
+ */
+export default function Contact({
+  formEndpoint = false,
+}: {
+  formEndpoint?: boolean;
+}) {
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [via, setVia] = useState<"api" | "mailto">(
+    formEndpoint ? "api" : "mailto",
+  );
+  const sent = status === "sent";
   const [open, setOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const statusHeadingRef = useRef<HTMLHeadingElement>(null);
+  const addressLine = napAddressLine();
+
+  // move focus to the result heading so keyboard and screen-reader users land on it
+  useEffect(() => {
+    if (status === "sent" || status === "failed") {
+      statusHeadingRef.current?.focus();
+    }
+  }, [status]);
 
   const openForm = (interest?: string) => {
     if (interest) {
@@ -87,8 +121,9 @@ export default function Contact() {
     );
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === "sending") return;
     const form = e.currentTarget;
     const data = new FormData(form);
     const get = (key: string) => String(data.get(key) ?? "").trim();
@@ -113,17 +148,61 @@ export default function Contact() {
       return;
     }
 
-    const lines = [`Name: ${name}`, `Email: ${email}`];
-    if (company) lines.push(`Company: ${company}`);
-    if (interests.length) lines.push(`Interested in: ${interests.join(", ")}`);
-    if (budget) lines.push(`Budget: ${budget}`);
-    lines.push("", message);
-    const subject = `New project enquiry — ${company || name}`;
-    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(lines.join("\n"))}`;
-    trackEvent("generate_lead", { form: "contact" });
-    setSent(true);
+    const openMailApp = () => {
+      const lines = [`Name: ${name}`, `Email: ${email}`];
+      if (company) lines.push(`Company: ${company}`);
+      if (interests.length)
+        lines.push(`Interested in: ${interests.join(", ")}`);
+      if (budget) lines.push(`Budget: ${budget}`);
+      lines.push("", message);
+      const subject = `New project enquiry — ${company || name}`;
+      window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+        subject,
+      )}&body=${encodeURIComponent(lines.join("\n"))}`;
+      // a mailto hand-off is counted as a lead, as before
+      trackEvent("generate_lead", { form: "contact" });
+      setVia("mailto");
+      setStatus("sent");
+    };
+
+    if (!formEndpoint) {
+      openMailApp();
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          message,
+          interests,
+          budget,
+          website: get("website"),
+        }),
+      });
+      if (res.ok) {
+        trackEvent("generate_lead", { form: "contact" });
+        setVia("api");
+        setStatus("sent");
+        return;
+      }
+      const result = (await res.json().catch(() => ({}))) as {
+        fallback?: boolean;
+      };
+      // the server has no form backend after all: hand off to the mail app
+      if (res.status === 503 && result.fallback) {
+        openMailApp();
+        return;
+      }
+      setStatus("failed");
+    } catch {
+      setStatus("failed");
+    }
   };
 
   const clearError = (target: EventTarget) => {
@@ -171,6 +250,10 @@ export default function Contact() {
             Careers or internships? Write to{" "}
             <a href={`mailto:${siteConfig.hrEmail}`}>{siteConfig.hrEmail}</a>
           </p>
+          {/* same NAP address line as the footer, schema and llms.txt (site-config) */}
+          <address className={styles.support} style={{ fontStyle: "normal" }}>
+            {siteConfig.name} &middot; {addressLine}
+          </address>
           <SocialLinks />
           {siteConfig.phone && (
             <a
@@ -259,31 +342,90 @@ export default function Contact() {
 
           <div id="contact-panel" className={styles.panel} inert={!open}>
             <div className={styles.collapse}>
-              {sent && (
-                <div className={styles.sent} role="status">
-                  <span className={styles.sentIcon} aria-hidden="true">
-                    &#10003;
-                  </span>
-                  <h3 className={`${styles.sentTitle} ${home.serif}`}>
-                    Almost there.
-                  </h3>
-                  <p className={styles.sentText}>
-                    Your email app should have opened with your message ready to
-                    send. If it didn&rsquo;t, write to us at{" "}
-                    <a href={`mailto:${siteConfig.email}`}>
-                      {siteConfig.email}
-                    </a>
-                    .
-                  </p>
-                  <button
-                    type="button"
-                    className={styles.reset}
-                    onClick={() => setSent(false)}
-                  >
-                    Edit my message
-                  </button>
-                </div>
-              )}
+              {/* always mounted so screen readers announce the result */}
+              <div role="status" aria-live="polite">
+                {sent && (
+                  <div className={styles.sent}>
+                    <span className={styles.sentIcon} aria-hidden="true">
+                      &#10003;
+                    </span>
+                    <h3
+                      ref={statusHeadingRef}
+                      tabIndex={-1}
+                      className={`${styles.sentTitle} ${home.serif}`}
+                    >
+                      {via === "api" ? "Thanks, we got it." : "Almost there."}
+                    </h3>
+                    {via === "api" ? (
+                      <p className={styles.sentText}>
+                        An engineer replies within one working day.
+                      </p>
+                    ) : (
+                      <p className={styles.sentText}>
+                        Your email app should have opened with your message
+                        ready to send. If it didn&rsquo;t, write to us at{" "}
+                        <a href={`mailto:${siteConfig.email}`}>
+                          {siteConfig.email}
+                        </a>
+                        {WHATSAPP_HREF && (
+                          <>
+                            {" "}
+                            or{" "}
+                            <a
+                              href={WHATSAPP_HREF}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              message us on WhatsApp
+                            </a>
+                          </>
+                        )}
+                        .
+                      </p>
+                    )}
+                    {via === "mailto" && (
+                      <button
+                        type="button"
+                        className={styles.reset}
+                        onClick={() => setStatus("idle")}
+                      >
+                        Edit my message
+                      </button>
+                    )}
+                  </div>
+                )}
+                {status === "failed" && (
+                  <div className={styles.sentText}>
+                    <h3
+                      ref={statusHeadingRef}
+                      tabIndex={-1}
+                      className={home.mono}
+                    >
+                      We couldn&rsquo;t send your message.
+                    </h3>
+                    <p>
+                      Please try again, or write to us at{" "}
+                      <a href={`mailto:${siteConfig.email}`}>
+                        {siteConfig.email}
+                      </a>
+                      {WHATSAPP_HREF && (
+                        <>
+                          {" "}
+                          or{" "}
+                          <a
+                            href={WHATSAPP_HREF}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            message us on WhatsApp
+                          </a>
+                        </>
+                      )}
+                      . What you typed is still in the form.
+                    </p>
+                  </div>
+                )}
+              </div>
               {/* stays mounted while hidden so "Edit my message" keeps what was typed */}
               <form
                 ref={formRef}
@@ -357,15 +499,35 @@ export default function Contact() {
                   ))}
                 </fieldset>
 
+                {/* honeypot for bots: off-screen (not display:none), skipped by keyboard and AT */}
+                <div className={styles.honeypot} aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input
+                    id="contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div className={styles.submitRow}>
-                  <button type="submit" className={styles.submit}>
-                    <span>Send enquiry</span>
+                  <button
+                    type="submit"
+                    className={styles.submit}
+                    disabled={status === "sending"}
+                  >
+                    <span>
+                      {status === "sending" ? "Sending…" : "Send enquiry"}
+                    </span>
                     <span className={styles.submitIcon} aria-hidden="true">
                       &rarr;
                     </span>
                   </button>
                   <span className={styles.hint}>
-                    Opens your email app with everything filled in.
+                    {formEndpoint
+                      ? "Sent straight to our team. An engineer replies within one working day."
+                      : "Opens your email app with everything filled in."}
                   </span>
                 </div>
               </form>
