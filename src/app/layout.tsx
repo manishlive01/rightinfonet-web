@@ -5,6 +5,10 @@ import JsonLd from "@/lib/json-ld";
 import FloatingContact from "@/components/FloatingContact";
 import Analytics from "@/components/Analytics";
 import {
+  GoogleTagManagerNoScript,
+  GoogleTagManagerScript,
+} from "@/components/GoogleTagManager";
+import {
   areaServedJsonLd,
   localBusinessExtrasJsonLd,
   postalAddressJsonLd,
@@ -173,6 +177,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
+        <GoogleTagManagerNoScript />
+        <GoogleTagManagerScript />
         <JsonLd data={siteJsonLd} />
         {children}
         <FloatingContact />
