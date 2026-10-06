@@ -115,8 +115,8 @@ export default function Hero() {
           <h1 className={styles.heroTitle}>
             <span className={styles.heroEyebrow}>
               <span className={styles.kickerDash} />
-              AI-first software &amp; app development &middot; Panchkula,
-              Chandigarh Tricity
+              Software, app &amp; AI development company &middot; Panchkula
+              &middot; Mohali &middot; Chandigarh
               {/* keeps the H1 readable as one sentence for search engines and screen readers */}
               <span className={styles.srOnly}>: </span>
             </span>
@@ -131,10 +131,10 @@ export default function Hero() {
             />
           </h1>
           <p className={styles.heroLead}>
-            LIMS and pharmacovigilance software built for GAMP 5 and 21 CFR Part
-            11, plus web platforms, mobile apps and AI agents &mdash; designed,
-            built and shipped by one small team, from first sketch to live
-            product.
+            Custom software, websites and web apps, Flutter mobile apps for iOS
+            and Android, AI agents and GxP-ready LIMS for businesses in the
+            Tricity and worldwide &mdash; plus job-focused IT training at our
+            Academy. One senior team, from first sketch to live product.
           </p>
           <div className={styles.heroActions}>
             <a href="#contact" className={styles.btnPrimary}>
